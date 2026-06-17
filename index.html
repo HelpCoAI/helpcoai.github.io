@@ -455,19 +455,8 @@
 <!-- CHAT WIDGET -->
 <button id="chatBtn" onclick="toggleChat()">💬</button>
 <div id="chatBox">
-  <div class="chat-head"><span class="dot"></span> HelpCo AI Assistant</div>
-  <div class="chat-body" id="chatBody">
-    <div class="msg bot"><div class="b">👋 Hey! I'm the AI assistant, the same kind I would build for your business. Ask me anything, or tap a question below.</div></div>
-  </div>
-  <div class="quick">
-    <button onclick="quick('What do you do?')">What do you do?</button>
-    <button onclick="quick('How much does it cost?')">Pricing?</button>
-    <button onclick="quick('Book a demo')">Book a demo</button>
-  </div>
-  <div class="chat-in">
-    <input id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
-    <button onclick="sendChat()">Send</button>
-  </div>
+  <div class="chat-head"><span class="dot"></span> HelpCo AI Assistant <button onclick="toggleChat()" aria-label="Close chat" style="margin-left:auto;background:none;border:none;color:#fff;font-size:20px;line-height:1;cursor:pointer">&times;</button></div>
+  <iframe src="https://notorious-help-flow-ai.base44.app" title="HelpCo AI Assistant" style="flex:1;width:100%;border:none" loading="lazy"></iframe>
 </div>
 
 <script>
