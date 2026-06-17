@@ -216,7 +216,6 @@
   <div class="grid-overlay"></div>
   <div class="wrap herogrid">
     <div>
-      <span class="badge"><span class="pulse"></span> <span id="geoArea">Serving Bradenton, Sarasota &amp; Lakewood Ranch</span></span>
       <h1><span class="grad">HelpCo AI</span>: never lose another customer to a competitor.</h1>
       <p class="sub">I install AI "employees" that answer your phone, text back missed callers, book appointments, and handle your reviews around the clock. You keep doing the work. They make sure no lead, and no hour of your day, gets wasted.</p>
       <div class="cta-row">
@@ -481,14 +480,6 @@ function calcROI(){
 }
 ['calls','jobValue'].forEach(function(id){document.getElementById(id).addEventListener('input',calcROI)});
 calcROI();
-(function(){
-  var el=document.getElementById('geoArea'); if(!el) return;
-  fetch('https://ipwho.is/?fields=success,city,region,region_code,country_code').then(function(r){return r.json();}).then(function(d){
-    if(d&&d.success&&d.country_code==='US'&&(d.region_code==='FL'||d.region==='Florida')&&d.city){
-      el.textContent='Serving '+d.city+' & nearby';
-    }
-  }).catch(function(){});
-})();
 function fakeSubmit(){document.getElementById('formMsg').style.display='block';return false;}
 function toggleChat(){document.getElementById('chatBox').classList.toggle('open');}
 function quick(t){document.getElementById('chatInput').value=t;sendChat();}
