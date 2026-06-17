@@ -436,13 +436,13 @@
         <p class="lead">Tell me your business and where you are losing customers or time. I will show you a live AI demo with your name on it. No pressure, no cost.</p>
         <p style="margin-top:20px;color:#c5d6ea;font-size:15px">📞 216-255-2770<br>✉️ Demo@HelpCoAI.com<br>📍 Bradenton / Sarasota, FL</p>
       </div>
-      <form class="form" onsubmit="return fakeSubmit()">
-        <input placeholder="Your name" required>
-        <input placeholder="Business name" required>
-        <input placeholder="Phone or email" required>
-        <textarea placeholder="What is your biggest headache? (missed calls, no-shows, reviews, too much busywork...)" rows="3"></textarea>
+      <form class="form" id="demoForm">
+        <input name="Name" placeholder="Your name" required>
+        <input name="Business" placeholder="Business name" required>
+        <input name="Contact" placeholder="Phone or email" required>
+        <textarea name="Message" placeholder="What is your biggest headache? (missed calls, no-shows, reviews, too much busywork...)" rows="3"></textarea>
         <button class="btn btn-primary" type="submit">Request My Free Demo</button>
-        <p id="formMsg" style="display:none;color:#2ee6a8;font-weight:700;margin-top:8px">Got it! (Demo form, this is a sample site.)</p>
+        <p id="formMsg" style="display:none;color:#2ee6a8;font-weight:700;margin-top:8px">Thanks! Your request is in. I'll reach out shortly.</p>
       </form>
     </div>
   </div>
@@ -480,7 +480,7 @@ function calcROI(){
 }
 ['calls','jobValue'].forEach(function(id){document.getElementById(id).addEventListener('input',calcROI)});
 calcROI();
-function fakeSubmit(){document.getElementById('formMsg').style.display='block';return false;}
+(function(){var f=document.getElementById('demoForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('button[type=submit]');var msg=document.getElementById('formMsg');btn.disabled=true;var data=Object.fromEntries(new FormData(f));data._subject='New demo request - helpcoai.com';data._captcha='false';fetch('https://formsubmit.co/ajax/demo@helpcoai.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}).then(function(r){return r.json();}).then(function(){msg.textContent='Thanks! Your request is in. I will reach out shortly.';msg.style.display='block';f.reset();}).catch(function(){msg.textContent='Something glitched. Please email Demo@HelpCoAI.com directly.';msg.style.display='block';}).finally(function(){btn.disabled=false;});});})();
 function toggleChat(){document.getElementById('chatBox').classList.toggle('open');}
 function quick(t){document.getElementById('chatInput').value=t;sendChat();}
 function add(text,who){var b=document.getElementById('chatBody');var d=document.createElement('div');d.className='msg '+who;d.innerHTML='<div class="b">'+text+'</div>';b.appendChild(d);b.scrollTop=b.scrollHeight;}
