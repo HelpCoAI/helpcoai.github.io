@@ -205,7 +205,7 @@
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="#contact" class="navbtn">Book a Free Demo</a>
+      <a href="#book" class="navbtn">Book a Free Demo</a>
     </nav>
   </div>
 </header>
@@ -219,7 +219,7 @@
       <h1><span class="grad">HelpCo AI</span>: never lose another customer to a competitor.</h1>
       <p class="sub">I install AI "employees" that answer your phone, text back missed callers, book appointments, and handle your reviews around the clock. You keep doing the work. They make sure no lead, and no hour of your day, gets wasted.</p>
       <div class="cta-row">
-        <a href="#contact" class="btn btn-primary">Book a Free 15-min Demo</a>
+        <a href="#book" class="btn btn-primary">Book a Free 15-min Demo</a>
         <a href="#services" class="btn btn-ghost">See what it does</a>
       </div>
       <div class="trust">
@@ -426,6 +426,22 @@
   </div>
 </section>
 
+<!-- BOOK (live Cal.com Auto-Booking Engine) -->
+<section id="book" style="background:#fff">
+  <div class="wrap center">
+    <div class="eyebrow">Book instantly</div>
+    <h2>Grab a free demo call</h2>
+    <p class="lead" style="margin:0 auto 26px">Pick a time that works and it books straight into the calendar, with reminders sent automatically. This is the same Auto-Booking Engine I install for clients.</p>
+    <div id="my-cal-inline" style="max-width:920px;margin:0 auto;min-height:620px;border:1px solid var(--line);border-radius:16px;overflow:auto;background:#fff"></div>
+  </div>
+  <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://cal.com"});
+  Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline", config: {"layout":"month_view"}, calLink: "helpcoai/30min"});
+  Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
@@ -485,6 +501,10 @@ function reply(q){
   return "Good question! The best next step is a quick free demo where I show this working for your business. Want me to set that up?";
 }
 function sendChat(){var i=document.getElementById('chatInput');var t=i.value.trim();if(!t)return;add(t,'me');i.value='';setTimeout(function(){add(reply(t),'bot');},420);}
+</script>
+<!-- VAPI AI Front Desk (web voice call) -->
+<script>
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);g.onload=function(){try{window.vapiSDK.run({apiKey:"7596ef01-8c50-49ea-9dc5-128ce409bc53",assistant:"513f3f93-fc44-45ed-9a5a-23770a0ca78e",config:{position:"bottom-left",offset:"24px",width:"60px",height:"60px",idle:{color:"#1f6ff0",type:"pill",title:"Talk to our AI",subtitle:"AI Front Desk",icon:"https://unpkg.com/lucide-static@latest/icons/phone.svg"},loading:{color:"#0fa697",type:"pill",title:"Connecting...",subtitle:"One sec",icon:"https://unpkg.com/lucide-static@latest/icons/loader.svg"},active:{color:"#c0392b",type:"pill",title:"End call",subtitle:"Talking...",icon:"https://unpkg.com/lucide-static@latest/icons/phone-off.svg"}}});}catch(e){console.error("Vapi load error",e);}};})(document,"script");
 </script>
 </body>
 </html>
