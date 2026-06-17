@@ -143,6 +143,13 @@
   /* ABOUT */
   .about{display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:center}
   .about .photo{background:linear-gradient(135deg,var(--teal),var(--violet));border-radius:22px;height:300px;display:grid;place-items:center;color:#fff;font-size:88px;box-shadow:0 24px 50px rgba(108,92,231,.3)}
+  .about .photo-logo{background:linear-gradient(160deg,#eaf3fb,#dcebfa);padding:30px}
+  .about .photo-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 14px 30px rgba(16,40,80,.18))}
+  .why-list{display:flex;flex-direction:column;gap:20px;margin-top:22px}
+  .why-item{display:flex;gap:15px;align-items:flex-start}
+  .why-ic{flex:0 0 auto;width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;box-shadow:0 8px 18px rgba(15,166,151,.32)}
+  .why-item h4{margin:0 0 4px;font-size:18px;color:var(--navy)}
+  .why-item p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
   /* FAQ */
   .faq details{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 22px;margin-bottom:12px}
   .faq summary{font-weight:700;color:var(--navy);cursor:pointer;font-size:16px;list-style:none}
@@ -321,7 +328,7 @@
         <label>Missed calls per week</label>
         <input id="calls" type="number" value="10" min="0">
         <label>Average job or customer value ($)</label>
-        <input id="value" type="number" value="350" min="0">
+        <input id="jobValue" type="number" value="350" min="0">
         <div class="out">
           <div class="big" id="roiOut">$5,300</div>
           <div class="lbl">estimated revenue recovered per month *</div>
@@ -377,15 +384,28 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- WHY USE AI -->
 <section>
   <div class="wrap about">
-    <div class="photo">🤖</div>
+    <div class="photo photo-logo"><img src="logo.png" alt="HelpCo AI"></div>
     <div>
-      <div class="eyebrow">Why work with me</div>
-      <h2>I am your AI guy, not another marketing agency</h2>
-      <p class="lead">I do not do ads, SEO, or fluff. I install practical AI systems that capture the customers you are already paying to attract, automate the busywork that eats your week, and keep it all running. Local, responsive, and focused on one thing: more booked jobs and more free time for you.</p>
-      <p style="margin-top:18px"><a href="#contact" class="btn btn-primary">Book your free demo</a></p>
+      <div class="eyebrow">Why use AI</div>
+      <h2>Three ways AI pays for itself</h2>
+      <div class="why-list">
+        <div class="why-item">
+          <span class="why-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="15 7 21 7 21 13"></polyline></svg></span>
+          <div><h4>Scalable Growth</h4><p>Grow without the growing pains. Handle more calls, leads, and bookings as you grow, without hiring more staff or letting anything slip through the cracks.</p></div>
+        </div>
+        <div class="why-item">
+          <span class="why-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h8l-1 8 10-12h-8z"></path></svg></span>
+          <div><h4>Boost Efficiency</h4><p>Spend your time on the work, not the busywork. AI answers, texts back, books jobs, and chases reviews automatically, so you and your crew stay focused on the actual job.</p></div>
+        </div>
+        <div class="why-item">
+          <span class="why-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+          <div><h4>Cost Reduction</h4><p>Lower costs, higher return. Automating the repetitive stuff means fewer missed calls, fewer mistakes, and more revenue per dollar, without adding payroll.</p></div>
+        </div>
+      </div>
+      <p style="margin-top:24px"><a href="#contact" class="btn btn-primary">Book your free demo</a></p>
     </div>
   </div>
 </section>
@@ -452,11 +472,11 @@
 <script>
 function calcROI(){
   var c=+document.getElementById('calls').value||0;
-  var v=+document.getElementById('value').value||0;
+  var v=+document.getElementById('jobValue').value||0;
   var monthly=c*4.33*v*0.35;
   document.getElementById('roiOut').textContent='$'+Math.round(monthly).toLocaleString();
 }
-['calls','value'].forEach(function(id){document.getElementById(id).addEventListener('input',calcROI)});
+['calls','jobValue'].forEach(function(id){document.getElementById(id).addEventListener('input',calcROI)});
 calcROI();
 function fakeSubmit(){document.getElementById('formMsg').style.display='block';return false;}
 function toggleChat(){document.getElementById('chatBox').classList.toggle('open');}
