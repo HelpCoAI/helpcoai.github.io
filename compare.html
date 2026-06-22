@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI vs Hiring Calculator | HelpCo AI</title>
+<style>:root{--navy:#1F3B66;--teal:#0fa697;--sun:#f5a623}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(160deg,#eaf6f4,#eef2f7);color:#1b2a3a}.wrap{max-width:700px;margin:0 auto;padding:24px}h1{font-size:26px;margin:0 0 4px;background:linear-gradient(100deg,var(--teal),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}p.sub{color:#5a6b7d;margin:0 0 18px;font-size:14px}.card{background:#fff;border:1px solid #d8e0ea;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.05)}.chk{display:flex;align-items:center;gap:11px;font-size:14.5px;padding:10px 8px;cursor:pointer;border-radius:10px}.chk:hover{background:#f4f9f8}.chk input{width:18px;height:18px;flex:0 0 auto}.chk .meta{margin-left:auto;color:#8595a6;font-size:12.5px;font-weight:700;flex:none}.chk b{color:var(--navy)}.btn{color:#fff;border:0;border-radius:11px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;width:100%;background:linear-gradient(100deg,var(--teal),#0c8f82)}.out{display:none}.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px}.box{border-radius:14px;padding:18px;text-align:center}.box.hire{background:#fdecec;border:1.5px solid #f3c2c2}.box.ai{background:#e7faf5;border:1.5px solid #b6ebe0}.box .lab{font-size:12.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#7a8696}.box .n{font-size:28px;font-weight:800;margin-top:4px}.box.hire .n{color:#c0392b}.box.ai .n{color:#0c8f82}.box .yr{font-size:12px;color:#8595a6}.save{background:linear-gradient(135deg,#08233f,#0e3a5a);color:#fff;border-radius:14px;padding:20px;text-align:center;margin:12px 0}.save .n{font-size:40px;font-weight:800;line-height:1}.perk{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:#33485c;padding:6px 0}.perk .c{color:var(--teal);font-weight:800;flex:none}.cta{background:linear-gradient(100deg,var(--sun),#e6951a);margin-top:10px;display:block;text-align:center;text-decoration:none;color:#fff;border-radius:11px;padding:16px;font-weight:800}small.dis{color:#8595a6;font-size:11.5px;display:block;margin-top:12px}@media(max-width:520px){.vs{grid-template-columns:1fr}}</style></head><body><div class="wrap">
+<h1>AI vs Hiring Calculator</h1><p class="sub">A human team means salaries, payroll taxes, training, sick days and turnover. Check what you need covered and see what an AI team costs instead &mdash; and what you&rsquo;d save every year.</p>
+
+<div class="card"><div style="font-weight:800;color:var(--navy);margin-bottom:6px">What do you need covered?</div><div id="opts"></div></div>
+<button class="btn" onclick="calc()">Compare the cost &rarr;</button>
+
+<div id="out" class="out card" style="margin-top:16px">
+ <div class="vs">
+  <div class="box hire"><div class="lab">Hiring people</div><div class="n" id="hireN"></div><div class="yr">per year</div></div>
+  <div class="box ai"><div class="lab">HelpCo AI</div><div class="n" id="aiN"></div><div class="yr" id="aiPlan"></div></div>
+ </div>
+ <div class="save"><div style="font-size:13px;opacity:.85">You&rsquo;d save about</div><div class="n" id="saveN"></div><div style="font-size:13px;opacity:.85" id="savePct"></div></div>
+ <div id="perks"></div>
+ <a class="cta" href="index.html#book">Build my AI team &mdash; book a free demo &rarr;</a>
+</div>
+<small class="dis">Estimate only. Hiring figures use typical U.S. loaded costs (wages + payroll taxes/benefits) for local small businesses; part-time roles cost less. AI pricing reflects HelpCo AI plans with no setup fee. Your exact quote depends on your business.</small></div>
+<script>
+// [icon, label, sublabel, annual hire cost]
+var OPTS=[
+ ["📞","Answer the phone & book jobs","Full-time receptionist",38000],
+ ["⏰","Cover after-hours & missed calls","Answering service",9600],
+ ["📅","Scheduling, reminders & admin","Part-time admin",22000],
+ ["⭐","Get & manage reviews","Reputation VA",6000],
+ ["💬","Website chat & lead follow-up","Inside sales / VA",18000],
+ ["📣","Marketing & SEO","Marketer / agency",24000]
+];
+var el=document.getElementById('opts');
+el.innerHTML=OPTS.map(function(o,i){return '<label class="chk"><input type="checkbox" value="'+i+'"'+(i<2?' checked':'')+'><span style="font-size:18px">'+o[0]+'</span><span><b>'+o[1]+'</b><br><span style="color:#8595a6;font-size:12.5px">vs '+o[2]+'</span></span><span class="meta">$'+o[3].toLocaleString()+'/yr</span></label>';}).join('');
+function calc(){
+ var picks=[].slice.call(document.querySelectorAll('#opts input:checked'));
+ if(!picks.length){picks=[document.querySelector('#opts input')];picks[0].checked=true;}
+ var hire=picks.reduce(function(a,p){return a+OPTS[p.value][3];},0);
+ var n=picks.length;
+ var plan=n<=2?['Starter','$297/mo',297]:n<=4?['Growth','$497/mo',497]:['Pro','$897/mo',897];
+ var aiYr=plan[2]*12;
+ var save=hire-aiYr;
+ var pct=hire>0?Math.round(save/hire*100):0;
+ document.getElementById('hireN').textContent='$'+hire.toLocaleString();
+ document.getElementById('aiN').textContent='$'+aiYr.toLocaleString();
+ document.getElementById('aiPlan').textContent=plan[0]+' plan · '+plan[1]+' · no setup fee';
+ document.getElementById('saveN').textContent='$'+save.toLocaleString()+'/yr';
+ document.getElementById('savePct').textContent=pct+'% less than hiring — and the AI works 24/7';
+ document.getElementById('perks').innerHTML=[
+  'No payroll taxes, benefits, or workers&rsquo; comp',
+  'No training, no turnover, no calling in sick',
+  'Works 24/7/365 — nights, weekends, holidays',
+  'Answers every lead in seconds, never misses a call',
+  'No setup fee — you pay nothing until it&rsquo;s live and working'
+ ].map(function(t){return '<div class="perk"><span class="c">✓</span><span>'+t+'</span></div>';}).join('');
+ document.getElementById('out').style.display='block';
+ document.getElementById('out').scrollIntoView({behavior:'smooth'});
+}
+</script></body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Instant SEO Health Check | HelpCo AI</title>
+<style>:root{--navy:#1F3B66;--teal:#0fa697;--sun:#f5a623}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(160deg,#eaf6f4,#eef2f7);color:#1b2a3a}.wrap{max-width:720px;margin:0 auto;padding:24px}h1{font-size:26px;margin:0 0 4px;background:linear-gradient(100deg,var(--teal),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}p.sub{color:#5a6b7d;margin:0 0 18px;font-size:14px}.card{background:#fff;border:1px solid #d8e0ea;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.05)}label.f{display:block;font-weight:800;color:var(--navy);margin:0 0 8px;font-size:15px}input{width:100%;padding:12px;border:1px solid #c7d2de;border-radius:10px;font-size:15px}.btn{color:#fff;border:0;border-radius:11px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;width:100%}.btn.teal{background:linear-gradient(100deg,var(--teal),#0c8f82)}.btn.sun{background:linear-gradient(100deg,var(--sun),#e6951a)}.out{display:none}.gradebig{border-radius:14px;padding:22px;text-align:center;margin-bottom:8px;color:#fff}.gradebig .n{font-size:46px;font-weight:800;line-height:1}.scorerow{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid #eef1f5;border-radius:10px;margin:8px 0;font-size:14px}.pill{font-weight:800;color:#fff;border-radius:8px;width:34px;height:30px;display:grid;place-items:center;flex:none;font-size:15px}.scorerow .t{flex:1}.scorerow .t b{color:var(--navy)}.scorerow .t span{display:block;color:#6a7889;font-size:12.5px}.spin{display:none;text-align:center;padding:20px;color:var(--teal);font-weight:700}.why{background:#fff7ef;border-left:4px solid var(--sun);border-radius:9px;padding:12px 14px;margin:9px 0;font-size:13.5px;line-height:1.5}.why b{color:#9a5b00}.cta{background:linear-gradient(100deg,var(--sun),#e6951a);margin-top:10px;display:block;text-align:center;text-decoration:none;color:#fff;border-radius:11px;padding:16px;font-weight:800}small.dis{color:#8595a6;font-size:11.5px;display:block;margin-top:12px}h2{font-size:19px;color:var(--navy);margin:4px 0 2px}.err{display:none;background:#fff4e6;border:1.5px solid #ffd9a8;border-radius:12px;padding:15px;font-size:14px;color:#7a5600;margin-top:8px}</style></head><body><div class="wrap">
+<h1>Instant SEO Health Check</h1><p class="sub">See how Google sees your website right now &mdash; live, in about 10 seconds. We grade the on-page basics that decide whether customers find you, then show you exactly what to fix.</p>
+
+<div class="card">
+<label class="f">Your website address</label>
+<input id="url" type="text" placeholder="yourbusiness.com" onkeydown="if(event.key==='Enter')run()">
+<button class="btn teal" style="margin-top:12px" onclick="run()">Check my SEO &rarr;</button>
+<div class="spin" id="spin">Fetching your page and grading it live&hellip;</div>
+<div class="err" id="err"></div>
+</div>
+
+<div id="out" class="out">
+<div class="card">
+  <div class="gradebig" id="gradebig"><div class="n" id="ovL"></div><div id="ovT" style="font-size:14px;opacity:.92"></div></div>
+  <div style="text-align:center;color:#6a7889;font-size:13px;margin-bottom:6px" id="urlnote"></div>
+  <div id="rows"></div>
+</div>
+<div class="card" id="whycard">
+  <h2>Why your low grades matter for rankings</h2>
+  <p style="color:#6a7889;font-size:13.5px;margin:2px 0 8px">Each item below is a ranking or trust signal Google (and AI search like ChatGPT) uses. The ones you scored C, D or F are the fastest wins.</p>
+  <div id="whys"></div>
+</div>
+<div class="card" style="background:linear-gradient(135deg,#08233f,#0e3a5a);color:#fff;border:none">
+  <h2 style="color:#fff">We fix all of this with AI &mdash; for you</h2>
+  <p style="color:#cfe0f2;font-size:14px;margin:6px 0 0">HelpCo AI rewrites your titles and meta, fixes your headings and schema, builds your Google Business Profile, and uses cutting-edge AI to climb your local rankings &mdash; so customers find you first. No setup fee, and you pay nothing until it&rsquo;s live and working.</p>
+  <a class="cta" href="index.html#book">Rank higher on Google &mdash; book a free SEO demo &rarr;</a>
+  <p style="color:#9fb6cb;font-size:12.5px;margin:12px 0 6px;text-align:center">Want the full written report (speed, rankings, competitors, backlinks) emailed to you?</p>
+  <input id="email" type="email" placeholder="you@email.com" style="margin-bottom:8px">
+  <button class="btn sun" onclick="sendReport()">Email me my full AI SEO report</button>
+  <p id="emsg" style="display:none;color:#2ee6a8;font-weight:700;text-align:center;margin-top:8px"></p>
+</div>
+</div>
+<small class="dis">Live on-page &amp; technical read from your homepage HTML + SEO best practices. A full engagement also measures page speed/Core Web Vitals, keyword rankings, competitors and backlinks with professional tools.</small></div>
+<script>
+var POINTS={A:4,'A-':3.7,B:3,C:2,D:1,F:0};
+var COLOR={A:'#2e8b57','A-':'#2e8b57',B:'#3a9e6f',C:'#d59a00',D:'#e0772a',F:'#c0392b'};
+var WHY={
+ title:"<b>Title tag</b> — the #1 on-page ranking signal and the blue headline people click in Google. A missing, generic, or keyword-less title (e.g. just your business name or \"Home\") buries you. It should read like \"[Service] in [City] | [Business]\".",
+ meta:"<b>Meta description</b> — the snippet under your title in search results. A good one (with your service + city) lifts click-through, which lifts rankings. Missing it lets Google grab random text.",
+ h1:"<b>H1 heading</b> — your page's main headline tells Google what the page is about. You want exactly one, containing your service + location. Zero H1s (or several) is a classic, easy-to-fix miss.",
+ schema:"<b>Structured data (schema)</b> — invisible code that lets Google show your star rating, address and hours right in search. Without LocalBusiness + AggregateRating schema you're not eligible for those star snippets that win clicks.",
+ alt:"<b>Image alt text</b> — describes your photos to Google and to visually impaired visitors. Missing alt text wastes a free, location-rich ranking signal on every image.",
+ mobile:"<b>Mobile / viewport</b> — Google ranks the mobile version of your site first. A missing viewport tag (or one that blocks zoom) hurts rankings and accessibility.",
+ https:"<b>HTTPS</b> — the padlock. Google flags non-secure sites and many visitors bounce on the \"Not secure\" warning. This is a baseline trust signal.",
+ og:"<b>Open Graph tags</b> — control the title, text and image shown when your site is shared on Facebook, texts, etc. Missing them makes shared links look broken and lowers clicks.",
+ canonical:"<b>Canonical tag</b> — tells Google which version of a page is the 'real' one, preventing duplicate-content confusion that can split or sink your rankings."
+};
+function gradeChip(g){return '<span class="pill" style="background:'+(COLOR[g]||'#c0392b')+'">'+g+'</span>';}
+function run(){
+ var raw=(document.getElementById('url').value||'').trim();
+ if(!raw){document.getElementById('url').focus();return;}
+ if(!/^https?:\/\//i.test(raw))raw='https://'+raw;
+ var spin=document.getElementById('spin'),err=document.getElementById('err'),out=document.getElementById('out');
+ err.style.display='none';out.style.display='none';spin.style.display='block';
+ var proxies=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?url='];
+ var i=0;
+ function attempt(){
+  if(i>=proxies.length){fail();return;}
+  var u=proxies[i]+encodeURIComponent(raw);
+  var ctl=new AbortController();var to=setTimeout(function(){ctl.abort();},12000);
+  fetch(u,{signal:ctl.signal}).then(function(r){clearTimeout(to);if(!r.ok)throw 0;return r.text();})
+   .then(function(html){if(!html||html.length<200)throw 0;grade(html,raw);})
+   .catch(function(){clearTimeout(to);i++;attempt();});
+ }
+ attempt();
+}
+function fail(){
+ document.getElementById('spin').style.display='none';
+ var e=document.getElementById('err');
+ e.innerHTML="We couldn&rsquo;t auto-fetch that page (some sites block automated readers, or the address was off). That can itself be an SEO red flag. <b>Want us to run a full manual AI audit?</b> Drop your email at the bottom or <a href='index.html#book'>book a free demo</a> and we&rsquo;ll do it for you.";
+ e.style.display='block';
+ // still show the email-capture card
+ document.getElementById('out').style.display='block';
+ document.getElementById('gradebig').parentNode.style.display='none';
+ document.getElementById('whycard').style.display='none';
+}
+function grade(html,url){
+ document.getElementById('spin').style.display='none';
+ var doc=new DOMParser().parseFromString(html,'text/html');
+ var res=[];
+ // title
+ var t=doc.querySelector('title');var tt=t?t.textContent.trim():'';
+ (function(){var g,note;if(!tt){g='F';note='No title tag found.';}else if(tt.length<15||tt.length>62){g='C';note='Present but '+(tt.length<15?'too short':'too long')+' ('+tt.length+' chars): \"'+tt.slice(0,60)+'\"';}else{g='A-';note='Good length: \"'+tt.slice(0,60)+'\"';}res.push(['title','Title tag',g,note]);})();
+ // meta desc
+ var m=doc.querySelector('meta[name="description"]');var md=m?(m.getAttribute('content')||'').trim():'';
+ (function(){var g,note;if(!md){g='F';note='No meta description found.';}else if(md.length<70||md.length>165){g='C';note='Present but '+(md.length<70?'thin':'long')+' ('+md.length+' chars).';}else{g='A';note='Solid length ('+md.length+' chars).';}res.push(['meta','Meta description',g,note]);})();
+ // h1
+ var h1=doc.querySelectorAll('h1');
+ (function(){var g,note;if(h1.length===0){g='F';note='No H1 heading found.';}else if(h1.length===1){g='A';note='Exactly one H1: \"'+(h1[0].textContent.trim().slice(0,50))+'\"';}else{g='C';note=h1.length+' H1s found — should be one.';}res.push(['h1','H1 heading',g,note]);})();
+ // schema
+ var ld=doc.querySelectorAll('script[type="application/ld+json"]');var blob='';ld.forEach(function(s){blob+=s.textContent;});
+ (function(){var g,note;if(!ld.length){g='F';note='No structured data (schema) found.';}else if(/AggregateRating/i.test(blob)){g='A';note='Schema incl. AggregateRating (star-snippet eligible).';}else{g='B';note='Schema present, but no AggregateRating (no review stars).';}res.push(['schema','Structured data',g,note]);})();
+ // alt
+ var imgs=doc.querySelectorAll('img');var withalt=0;imgs.forEach(function(x){if((x.getAttribute('alt')||'').trim())withalt++;});
+ (function(){var g,note;if(!imgs.length){g='B';note='No images detected to check.';}else{var pct=Math.round(withalt/imgs.length*100);if(pct>=80){g='A';note=pct+'% of images have alt text.';}else if(pct>=40){g='C';note='Only '+pct+'% of images have alt text.';}else{g='D';note='Only '+pct+'% of images have alt text.';}}res.push(['alt','Image alt text',g,note]);})();
+ // mobile
+ var vp=doc.querySelector('meta[name="viewport"]');var vc=vp?(vp.getAttribute('content')||''):'';
+ (function(){var g,note;if(!vp){g='F';note='No mobile viewport tag.';}else if(/user-scalable\s*=\s*no|maximum-scale\s*=\s*1/.test(vc)){g='C';note='Viewport blocks pinch-zoom (accessibility hit).';}else{g='A';note='Mobile viewport set correctly.';}res.push(['mobile','Mobile / viewport',g,note]);})();
+ // https
+ (function(){var g=/^https:/i.test(url)?'A':'F';res.push(['https','HTTPS secure',g,g==='A'?'Served securely over HTTPS.':'Not secure (no HTTPS).']);})();
+ // OG
+ var og=doc.querySelector('meta[property^="og:"]');
+ res.push(['og','Social / Open Graph',og?'A':'C',og?'Open Graph tags present.':'No Open Graph tags (shared links look bare).']);
+ // canonical
+ var can=doc.querySelector('link[rel="canonical"]');
+ res.push(['canonical','Canonical tag',can?'A':'C',can?'Canonical tag present.':'No canonical tag found.']);
+
+ // render rows
+ var rows=res.map(function(r){return '<div class="scorerow">'+gradeChip(r[2])+'<div class="t"><b>'+r[1]+'</b><span>'+r[3]+'</span></div></div>';}).join('');
+ document.getElementById('rows').innerHTML=rows;
+ document.getElementById('gradebig').parentNode.style.display='block';
+ document.getElementById('whycard').style.display='block';
+ // overall
+ var avg=res.reduce(function(a,r){return a+(POINTS[r[2]]||0);},0)/res.length;
+ var ov=avg>=3.5?['A','Strong on-page SEO','#2e8b57']:avg>=2.6?['B','Good, with quick wins','#3a9e6f']:avg>=1.8?['C','Losing rankings — fixable','#d59a00']:['D','Costing you customers','#c0392b'];
+ document.getElementById('ovL').textContent=ov[0];document.getElementById('ovT').textContent=ov[1];
+ document.getElementById('gradebig').style.background=ov[2];
+ document.getElementById('urlnote').textContent='Live read of '+url;
+ // whys for C/D/F
+ var weak=res.filter(function(r){return ['C','D','F'].indexOf(r[2])>=0;});
+ var wc=document.getElementById('whycard');
+ if(!weak.length){document.getElementById('whys').innerHTML='<div class="why"><b>Nice work.</b> Your on-page basics are strong. The next gains are off-page: more Google reviews, local citations, page speed, and content. We can handle those too.</div>';}
+ else{document.getElementById('whys').innerHTML=weak.map(function(r){return '<div class="why">'+gradeChip(r[2])+' '+WHY[r[0]]+'</div>';}).join('');}
+ document.getElementById('out').style.display='block';
+ document.getElementById('out').scrollIntoView({behavior:'smooth'});
+}
+function sendReport(){
+ var em=(document.getElementById('email').value||'').trim();var msg=document.getElementById('emsg');
+ if(!/.+@.+\..+/.test(em)){document.getElementById('email').focus();return;}
+ var site=(document.getElementById('url').value||'').trim();
+ fetch('https://formsubmit.co/ajax/demo@helpcoai.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({Email:em,Website:site,_subject:'SEO report request - helpcoai.com',_captcha:'false'})})
+  .then(function(){msg.textContent='Got it! Your full AI SEO report is on the way.';msg.style.display='block';})
+  .catch(function(){msg.textContent='Email Demo@HelpCoAI.com and we’ll send it over.';msg.style.display='block';});
+}
+</script></body></html>

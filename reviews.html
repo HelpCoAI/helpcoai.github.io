@@ -1,33 +1,59 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your Google Review Health Check | HelpCo AI</title>
-<style>:root{--navy:#1F3B66;--teal:#0fa697;--sun:#f5a623}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(160deg,#eaf6f4,#eef2f7);color:#1b2a3a}.wrap{max-width:680px;margin:0 auto;padding:24px}h1{font-size:25px;margin:0 0 4px;background:linear-gradient(100deg,var(--teal),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}p.sub{color:#5a6b7d;margin:0 0 18px;font-size:14px}.card{background:#fff;border:1px solid #d8e0ea;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.05)}label.f{display:block;font-weight:800;color:var(--navy);margin:0 0 8px;font-size:15px}input{width:100%;padding:11px;border:1px solid #c7d2de;border-radius:10px;font-size:15px}.out{display:none}.grade{border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;color:#fff}.grade .n{font-size:38px;font-weight:800}.item{background:#f7fafc;border-left:4px solid var(--sun);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13.5px;line-height:1.45}.item b{color:var(--navy)}.cta{background:linear-gradient(100deg,var(--sun),#e6951a);margin-top:8px;display:block;text-align:center;text-decoration:none;color:#fff;border-radius:11px;padding:15px;font-weight:800}small.dis{color:#8595a6;font-size:11.5px;display:block;margin-top:12px}</style></head><body><div class="wrap">
-<h1>Google Review Health Check</h1><p class="sub">Your Google reviews are the #1 thing new customers judge you on. Enter your numbers for an instant read on where you stand — and what it's costing you.</p>
+<style>:root{--navy:#1F3B66;--teal:#0fa697;--sun:#f5a623}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(160deg,#eaf6f4,#eef2f7);color:#1b2a3a}.wrap{max-width:680px;margin:0 auto;padding:24px}h1{font-size:25px;margin:0 0 4px;background:linear-gradient(100deg,var(--teal),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}p.sub{color:#5a6b7d;margin:0 0 18px;font-size:14px}.card{background:#fff;border:1px solid #d8e0ea;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.05)}label.f{display:block;font-weight:800;color:var(--navy);margin:0 0 8px;font-size:15px}input{width:100%;padding:11px;border:1px solid #c7d2de;border-radius:10px;font-size:15px}.btn{color:#fff;border:0;border-radius:11px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;width:100%}.btn.teal{background:linear-gradient(100deg,var(--teal),#0c8f82)}.out{display:none}.grade{border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;color:#fff}.grade .n{font-size:38px;font-weight:800}.item{background:#f7fafc;border-left:4px solid var(--sun);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13.5px;line-height:1.45}.item b{color:var(--navy)}.cta{background:linear-gradient(100deg,var(--sun),#e6951a);margin-top:8px;display:block;text-align:center;text-decoration:none;color:#fff;border-radius:11px;padding:15px;font-weight:800}small.dis{color:#8595a6;font-size:11.5px;display:block;margin-top:12px}.muted{color:#5a6b7d;font-size:13px}.spin{display:none;text-align:center;padding:8px;color:var(--teal);font-weight:700}.seoflag{display:none;background:linear-gradient(135deg,#fff4e6,#ffeede);border:1.5px solid #ffd9a8;border-radius:14px;padding:16px;margin-top:6px}.seoflag b{color:#9a5b00}.divider{display:flex;align-items:center;gap:10px;color:#9aa7b6;font-size:12px;font-weight:700;margin:8px 0 12px}.divider:before,.divider:after{content:"";flex:1;height:1px;background:#dde5ee}</style></head><body><div class="wrap">
+<h1>Google Review Health Check</h1><p class="sub">Your Google reviews are the #1 thing new customers judge you on. Search your business for an instant read on where you stand &mdash; and what it&rsquo;s costing you.</p>
+
+<div class="card">
+<label class="f">Find your business on Google</label>
+<input id="bizname" type="text" placeholder="Business name (e.g. Gulf Breeze Air &amp; Heat)">
+<input id="bizcity" type="text" placeholder="City or ZIP (e.g. Bradenton)" style="margin-top:10px">
+<button class="btn teal" style="margin-top:12px" onclick="lookup()">&#128270; Find my business &amp; check my reviews</button>
+<div class="spin" id="spin">Searching Google for your business&hellip;</div>
+<div class="seoflag" id="seoflag">
+  <b>Hmm &mdash; we couldn&rsquo;t automatically pull your Google listing.</b>
+  <p class="muted" style="margin:8px 0 0">That often happens when a business is hard for Google (and new customers) to find &mdash; which usually points to weak local SEO and an unoptimized Google Business Profile. If people can&rsquo;t find you, they can&rsquo;t hire you.</p>
+  <p style="margin:10px 0 0"><b>Good news:</b> that&rsquo;s exactly what we fix. We use cutting-edge AI to optimize your SEO and Google rankings so customers find <i>you</i> first.</p>
+  <a class="cta" href="index.html#book" style="margin-top:12px">Get found on Google &mdash; book a free SEO demo &rarr;</a>
+  <p class="muted" style="margin:12px 0 0;text-align:center">&hellip;or enter your numbers manually below &#128071;</p>
+</div>
+</div>
+
+<div class="divider">MANUAL CHECK</div>
+
 <div class="card">
 <label class="f">Your current Google star rating</label><input id="rating" type="number" step="0.1" min="1" max="5" value="4.3">
 <label class="f" style="margin-top:14px">How many Google reviews do you have?</label><input id="count" type="number" value="22">
 <label class="f" style="margin-top:14px">Roughly how many new reviews do you get per month?</label><input id="rate" type="number" value="1">
 </div>
-<button onclick="check()" style="background:linear-gradient(100deg,var(--teal),#0c8f82);color:#fff;border:0;border-radius:11px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;width:100%">Check my review health →</button>
+<button class="btn teal" onclick="check()">Check my review health &rarr;</button>
+
 <div id="out" class="out card" style="margin-top:16px">
 <div class="grade" id="grade"><div class="n" id="gl"></div><div id="gt" style="font-size:14px;opacity:.9"></div></div>
 <div id="ins"></div>
-<a class="cta" href="index.html#book">Get more 5-star reviews on autopilot — book a free demo →</a></div>
-<small class="dis">Based on local-search norms. A quick gut-check, not an official audit.</small></div>
+<a class="cta" href="index.html#book">Get more 5-star reviews on autopilot &mdash; book a free demo &rarr;</a></div>
+<small class="dis">Based on local-search norms. A quick gut-check, not an official audit. Live Google auto-pull is coming soon &mdash; for now the manual check gives you the same insight.</small></div>
 <script>
+function lookup(){
+ var name=(document.getElementById('bizname').value||'').trim();
+ if(!name){document.getElementById('bizname').focus();return;}
+ var spin=document.getElementById('spin'),flag=document.getElementById('seoflag');
+ flag.style.display='none';spin.style.display='block';
+ setTimeout(function(){spin.style.display='none';flag.style.display='block';flag.scrollIntoView({behavior:'smooth',block:'center'});},1300);
+}
+function populateAndRun(rating,count,rate){
+ document.getElementById('rating').value=rating;document.getElementById('count').value=count;document.getElementById('rate').value=rate;check();
+}
 function check(){
  var r=parseFloat(document.getElementById('rating').value)||0;
  var c=Math.max(0,parseInt(document.getElementById('count').value)||0);
  var rate=Math.max(0,parseFloat(document.getElementById('rate').value)||0);
  var ins=[],score=0;
- // rating
  if(r>=4.5){score+=2;ins.push('<div class="item"><b>Rating ('+r.toFixed(1)+'★):</b> Strong — above the 4.5 mark most customers look for. Protect it by replying to every review.</div>');}
  else if(r>=4.0){score+=1;ins.push('<div class="item"><b>Rating ('+r.toFixed(1)+'★):</b> OK, but just above the 4.0 line shoppers use to filter. A steady flow of fresh 5-stars pulls this up fast.</div>');}
  else{ins.push('<div class="item"><b>Rating ('+r.toFixed(1)+'★):</b> Below 4.0 — most customers filter you out before they even click. Priority #1: out-review the old bad ones with new happy ones.</div>');}
- // count
  var target=Math.max(50,Math.ceil(c/10)*10+30);
  if(c>=100){score+=2;ins.push('<div class="item"><b>Volume ('+c+' reviews):</b> Great depth — you look established. Keep the momentum so you stay ahead of competitors.</div>');}
  else if(c>=40){score+=1;ins.push('<div class="item"><b>Volume ('+c+' reviews):</b> Decent, but top local competitors often run 100+. Aim for ~'+target+' to dominate the map pack.</div>');}
  else{ins.push('<div class="item"><b>Volume ('+c+' reviews):</b> Thin — shoppers trust businesses with more (and more recent) reviews. You’d want ~'+target+' to look like the obvious choice.</div>');}
- // freshness / rate
  var need=Math.max(0,target-c);
  if(rate>=4){score+=1;ins.push('<div class="item"><b>Freshness:</b> '+rate+'/mo is a healthy pace. Recent reviews matter most — don’t let it slow down.</div>');}
  else{var months=rate>0?Math.ceil(need/rate):'∞';ins.push('<div class="item"><b>Freshness:</b> At ~'+rate+'/mo it would take <b>'+(rate>0?months+' months':'forever')+'</b> to reach ~'+target+'. Our Review Engine asks every happy customer at the right moment — most clients hit that in a fraction of the time.</div>');}

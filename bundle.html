@@ -3,10 +3,10 @@
 <div class="card"><div id="mods"></div></div>
 <button onclick="calc()">See my plan →</button>
 <div id="out" class="out card" style="margin-top:16px">
-<div class="big"><div>Your AI team, roughly</div><div class="n" id="mo"></div><div style="margin-top:6px;font-size:13px;opacity:.85">+ one-time setup, quoted on your demo</div></div>
+<div class="big"><div>Your AI team, roughly</div><div class="n" id="mo"></div><div style="margin-top:6px;font-size:13px;opacity:.85">✓ No setup fee — pay nothing until it’s live</div></div>
 <div id="list"></div>
 <a class="cta" href="index.html#book">Book my free demo →</a></div>
-<small class="dis">Ballpark only — your exact quote depends on your business. No commitment.</small></div>
+<small class="dis">Ballpark only — your exact quote depends on your business. No setup fee, no commitment, and you pay nothing until it’s live and working.</small></div>
 <script>
 var MODS=[["Never Miss a Lead","Instantly texts back missed callers before they call a competitor."],["AI Front Desk","A human-sounding AI answers your phone 24/7, books jobs, flags emergencies."],["Online Booking","Customers self-book on your calendar; reminders kill no-shows."],["5-Star Reviews","Auto-asks happy customers for Google reviews at the perfect moment."],["Website Chatbot","Answers questions and captures leads on your site around the clock."],["Get Paid Faster","Sends invoices and politely chases late payers until you're paid."],["Customer Win-Back","Re-texts past customers to fill your slow days."],["Quote Follow-Up","Chases every estimate until they book or say no."],["Smart Website","A fast, SEO-ready site with all your AI tools built in."]];
 var m=document.getElementById('mods');m.innerHTML=MODS.map(function(x,i){return '<label class="chk"><input type="checkbox" value="'+i+'"'+(i==0?' checked':'')+'> <span><b>'+x[0]+'</b> — '+x[1]+'</span></label>'}).join('');

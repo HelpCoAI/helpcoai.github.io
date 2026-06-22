@@ -190,6 +190,19 @@
   .chat-in button{border:none;background:var(--teal-d);color:#fff;padding:0 18px;font-weight:700;cursor:pointer}
   .quick{padding:0 15px 10px;display:flex;gap:6px;flex-wrap:wrap;background:#f2f7fa}
   .quick button{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 11px;cursor:pointer;color:var(--navy)}
+  /* COMPACT MODULES */
+  .mods{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:14px;margin-top:34px}
+  .mod{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;transition:.16s;display:flex;flex-direction:column}
+  .mod:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,31,60,.10);border-color:#cdeee9}
+  .mod .h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .mod .mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--navy));display:grid;place-items:center;font-size:19px;flex:none;box-shadow:0 6px 14px rgba(25,198,179,.28)}
+  .mod h3{color:var(--navy);font-size:15px;margin:0;line-height:1.2}
+  .mod p{color:var(--muted);font-size:13px;margin:9px 0 0;line-height:1.45}
+  .mod .nf{font-size:10px;font-weight:800;color:#0b7d70;background:#d6f7f1;padding:2px 7px;border-radius:20px;letter-spacing:.4px}
+  @media(max-width:980px){.mods{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.mods{grid-template-columns:1fr}}
+  .guarantee{margin-top:30px;background:linear-gradient(135deg,#e6fbf7,#eef6ff);border:1.5px solid #bfeee7;border-radius:16px;padding:18px 22px;text-align:center;color:#14483f;font-size:16px;line-height:1.5}
+  .nofee{background:rgba(25,198,179,.12);border:1px solid rgba(25,198,179,.4);border-radius:13px;padding:16px 20px;margin-top:22px;color:#cffdf5;font-size:15px;text-align:center}
 </style>
 </head>
 <body>
@@ -200,7 +213,7 @@
       <a href="#top" class="logo" aria-label="HelpCo AI home"><img src="logo.png" alt="HelpCo AI" class="logo-img"></a>
       <div class="navlinks">
         <a href="#services">Services</a>
-        <a href="#value">Why it pays</a>
+        <a href="#value">Why</a>
         <a href="#roi">ROI</a>
         <a href="#pricing">Pricing</a>
         <a href="#tools">Free Tools</a>
@@ -227,6 +240,7 @@
         <div><span class="ck">⚡</span> Live in days, not months</div>
         <div><span class="ck">🚫</span> No long contracts</div>
         <div><span class="ck">🛠️</span> Done for you</div>
+        <div><span class="ck">💸</span> No setup fee &mdash; pay only when it works</div>
       </div>
     </div>
     <div class="hcard">
@@ -252,6 +266,8 @@
   </div>
 </div>
 
+<div class="wrap"><div class="guarantee">🛡️ <b>No setup fee. No risk.</b> You pay nothing until your AI employees are built, connected, and actually working &mdash; so you never pay for a promise, only for results.</div></div>
+
 <!-- PROBLEM -->
 <section>
   <div class="wrap center">
@@ -262,6 +278,44 @@
       <div class="card"><div class="n">62%</div><h4>of calls to small businesses go unanswered</h4><p>After hours, on a job, or on another line, the phone wins customers for whoever picks up first.</p></div>
       <div class="card"><div class="n">5 min</div><h4>is all it takes to lose a lead</h4><p>A lead contacted within 5 minutes is far more likely to convert. After that, they have moved on.</p></div>
       <div class="card"><div class="n">$1000s</div><h4>in jobs walk out the door monthly</h4><p>One recovered job a month usually pays for the whole system many times over.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:#fff">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">What I install</div>
+      <h2>12 different AI employees that work for you 24/7 so you don&rsquo;t have to.</h2>
+      <p class="lead" style="margin:0 auto">Pick one or bundle several. I build, connect, and maintain everything &mdash; <b>no setup fee, and you pay nothing until it&rsquo;s live and working.</b></p>
+    </div>
+    <div class="mods">
+      <div class="mod"><div class="h"><span class="mi">⚡</span><h3>Missed-Call Text-Back</h3></div><p>The instant you miss a call, an AI texts the caller back and books them before they try a competitor.</p></div>
+      <div class="mod"><div class="h"><span class="mi">📞</span><h3>AI Front Desk</h3></div><p>A human-sounding AI receptionist answers, qualifies, and books jobs 24/7.</p></div>
+      <div class="mod"><div class="h"><span class="mi">💬</span><h3>Website Lead Catcher</h3></div><p>A 24/7 AI chat answers FAQs and captures leads instead of letting them bounce.</p></div>
+      <div class="mod"><div class="h"><span class="mi">📅</span><h3>Auto-Booking Engine</h3></div><p>Customers self-book on your real calendar; automatic reminders crush no-shows.</p></div>
+      <div class="mod"><div class="h"><span class="mi">📧</span><h3>Email Triage + Reply</h3></div><p>Sorts your inbox and drafts replies so no lead ever goes cold.</p></div>
+      <div class="mod"><div class="h"><span class="mi">⭐</span><h3>5-Star Review Engine</h3></div><p>Auto-asks happy customers for a Google review at the perfect moment.</p></div>
+      <div class="mod"><div class="h"><span class="mi">🛡️</span><h3>Reputation Management</h3></div><p>Monitors your reviews and drafts on-brand replies to protect your rating.</p></div>
+      <div class="mod"><div class="h"><span class="mi">🗂️</span><h3>Customer Database (CRM)</h3></div><p>Every lead, customer, and conversation organized in one tidy place — automatically.</p></div>
+      <div class="mod"><div class="h"><span class="mi">🔄</span><h3>Database Reactivation</h3></div><p>Texts your past customers to rebook and quietly fills your slow days.</p></div>
+      <div class="mod"><div class="h"><span class="mi">📲</span><h3>Social Media Automation</h3></div><p>Drafts and schedules posts from your photos so your feed never goes quiet.</p></div>
+      <div class="mod"><div class="h"><span class="mi">🔍</span><h3>SEO Optimization</h3></div><p>Cutting-edge AI climbs your Google rankings so customers find you first.</p></div>
+      <div class="mod"><div class="h"><span class="mi">🌐</span><h3>AI-Smart Website</h3></div><p>A fast, modern, SEO-ready website with every one of your AI tools built right in.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap center">
+    <div class="eyebrow">Dead simple</div>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="circle">1</div><h4>Free demo call</h4><p>We talk for 15 minutes about where you are losing customers and time. I build you a live demo with your business name on it.</p></div>
+      <div class="step"><div class="circle">2</div><h4>I build and connect it</h4><p>I set everything up, connect your phone, calendar, and website, and test it end to end. Done for you.</p></div>
+      <div class="step"><div class="circle">3</div><h4>You capture more, do less</h4><p>The AI runs 24/7. You get a simple monthly report showing exactly what it caught and the hours it saved you.</p></div>
     </div>
   </div>
 </section>
@@ -281,38 +335,6 @@
         <li><div class="vic">⚙️</div><div><b>Run more efficiently</b><span>Bookings, follow-ups, and reminders happen automatically and on time, so fewer no-shows, fewer dropped balls, and a calmer day.</span></div></li>
         <li><div class="vic">📈</div><div><b>Grow without the chaos</b><span>Handle more customers without adding headcount. The system scales with you instead of stretching your team thin.</span></div></li>
       </ul>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" style="background:#fff">
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">What I install</div>
-      <h2>AI employees that work while you work</h2>
-      <p class="lead" style="margin:0 auto">Pick one or bundle them. I build, connect, and maintain everything, so you just watch the leads come in and the busywork disappear.</p>
-    </div>
-    <div class="svc">
-      <div class="card"><span class="flag">FLAGSHIP</span><div class="ico">⚡</div><h3>Never Miss a Lead</h3><p>The instant you miss a call, an AI agent texts them back in seconds and books them before they call someone else. It can handle leads that come in from Google, your website, ads, or Yelp too.</p></div>
-      <div class="card"><div class="ico">📞</div><h3>AI Front Desk</h3><p>A friendly AI receptionist answers your phone 24/7, answers questions, qualifies callers, books jobs, and flags emergencies to you.</p></div>
-      <div class="card"><div class="ico">📅</div><h3>Auto-Booking Engine</h3><p>Customers self-book on your real calendar, and automatic reminders cut your no-shows dramatically.</p></div>
-      <div class="card"><div class="ico">⭐</div><h3>5-Star Review Engine</h3><p>Automatically asks happy customers for Google reviews at the perfect moment, and drafts on-brand replies to every review.</p></div>
-      <div class="card"><div class="ico">💬</div><h3>Website Lead Catcher</h3><p>A 24/7 AI chat on your site answers FAQs, captures contact info, and books visitors instead of letting them bounce.</p></div>
-      <div class="card"><div class="ico">🧠</div><h3>Team Brain <small style="font-size:12px;color:var(--teal-d)">(add-on)</small></h3><p>A private AI trained on your pricing and how you do things, so your staff stop interrupting you with the same questions.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW -->
-<section id="how">
-  <div class="wrap center">
-    <div class="eyebrow">Dead simple</div>
-    <h2>How it works</h2>
-    <div class="steps">
-      <div class="step"><div class="circle">1</div><h4>Free demo call</h4><p>We talk for 15 minutes about where you are losing customers and time. I build you a live demo with your business name on it.</p></div>
-      <div class="step"><div class="circle">2</div><h4>I build and connect it</h4><p>I set everything up, connect your phone, calendar, and website, and test it end to end. Done for you.</p></div>
-      <div class="step"><div class="circle">3</div><h4>You capture more, do less</h4><p>The AI runs 24/7. You get a simple monthly report showing exactly what it caught and the hours it saved you.</p></div>
     </div>
   </div>
 </section>
@@ -347,11 +369,11 @@
   <div class="wrap center">
     <div class="eyebrow">Simple, honest pricing</div>
     <h2>Plans that pay for themselves</h2>
-    <p class="lead" style="margin:0 auto">One-time setup plus a flat monthly fee. No long contracts. Cancel anytime.</p>
+    <p class="lead" style="margin:0 auto">Flat monthly fee &mdash; <b>no setup fee</b>. You pay nothing until your AI is live and working. No long contracts, cancel anytime.</p>
     <div class="price">
       <div class="plan">
         <h3>Starter</h3><div class="tag">Never Miss a Lead</div>
-        <div class="amt">$297<small>/mo</small></div><div class="setup">+ from $600 setup</div>
+        <div class="amt">$297<small>/mo</small></div><div class="setup">✓ No setup fee</div>
         <ul>
           <li>Missed-Call Text-Back</li>
           <li>Speed-to-Lead (all channels)</li>
@@ -362,7 +384,7 @@
       </div>
       <div class="plan pop">
         <h3>Growth</h3><div class="tag">AI Front Desk</div>
-        <div class="amt">$497<small>/mo</small></div><div class="setup">+ from $1,000 setup</div>
+        <div class="amt">$497<small>/mo</small></div><div class="setup">✓ No setup fee</div>
         <ul>
           <li>Everything in Starter</li>
           <li>AI Front Desk (24/7 voice)</li>
@@ -373,7 +395,7 @@
       </div>
       <div class="plan">
         <h3>Pro</h3><div class="tag">AI Operations</div>
-        <div class="amt">$897<small>/mo</small></div><div class="setup">+ from $1,800 setup</div>
+        <div class="amt">$897<small>/mo</small></div><div class="setup">✓ No setup fee</div>
         <ul>
           <li>Everything in Growth</li>
           <li>Website Lead Catcher</li>
@@ -383,6 +405,7 @@
         <a href="#contact" class="btn btn-ghost" style="border-color:var(--teal-d);color:var(--teal-d)">Talk to Me</a>
       </div>
     </div>
+    <div class="nofee" style="color:#155e54;background:rgba(25,198,179,.12);border:1px solid rgba(25,198,179,.45)">🛡️ <b>No setup fee &mdash; and nothing is due until your system is built, connected, and working.</b> You only ever pay for results that are live in your business.</div>
     <p class="note">Prices shown are starting points. Your exact quote depends on call volume and which AI employees you choose.</p>
   </div>
 </section>
@@ -418,7 +441,8 @@
   <div class="wrap" style="max-width:840px">
     <div class="center"><div class="eyebrow">Questions</div><h2>Good to know</h2></div>
     <div class="faq" style="margin-top:32px">
-      <details open><summary>Do I need to be techy?</summary><p>Not at all. I handle 100% of the setup and maintenance. You just take the extra calls and bookings.</p></details>
+      <details open><summary>Do I have to pay anything upfront?</summary><p>No. There is <b>no setup fee</b>, and you pay nothing until your AI is built, connected, and actually working. You should never pay for a promise &mdash; only for results that are live in your business.</p></details>
+      <details><summary>Do I need to be techy?</summary><p>Not at all. I handle 100% of the setup and maintenance. You just take the extra calls and bookings.</p></details>
       <details><summary>Will the AI sound robotic to my customers?</summary><p>No. It is trained on your business, your hours, your services, and your tone. Most callers cannot tell, and there is always a path to reach a human.</p></details>
       <details><summary>How fast can I go live?</summary><p>Usually within a few days of our call. Simple setups can be same week.</p></details>
       <details><summary>Is texting my customers legal?</summary><p>Yes. I set everything up compliantly, with proper registration, opt-outs, and quiet hours. That is part of the service.</p></details>
@@ -438,7 +462,9 @@
     <div class="svc">
       <a class="card" href="calculator.html" style="text-decoration:none;color:inherit"><div class="ico">💸</div><h3>Lost-Revenue Calculator</h3><p>See how much missed calls, no-shows, and unfollowed quotes cost you every month.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
       <a class="card" href="scorecard.html" style="text-decoration:none;color:inherit"><div class="ico">📊</div><h3>Leaking-Leads Scorecard</h3><p>Answer 7 quick questions and get your lead-leak grade in 60 seconds.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
-      <a class="card" href="reviews.html" style="text-decoration:none;color:inherit"><div class="ico">⭐</div><h3>Google Review Health Check</h3><p>Enter your rating and review count for an instant read on how you stack up locally.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
+      <a class="card" href="reviews.html" style="text-decoration:none;color:inherit"><div class="ico">⭐</div><h3>Google Review Health Check</h3><p>Search your business name and city for an instant read on how your Google reviews stack up locally.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
+      <a class="card" href="seo.html" style="text-decoration:none;color:inherit"><div class="ico">🔍</div><h3>Instant SEO Health Check</h3><p>Enter your website and get a live grade on how Google sees you &mdash; plus the fixes that matter most for ranking.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
+      <a class="card" href="compare.html" style="text-decoration:none;color:inherit"><div class="ico">🧮</div><h3>AI vs Hiring Calculator</h3><p>Compare the cost of an AI team against hiring staff &mdash; and see what you&rsquo;d save every year.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
       <a class="card" href="bundle.html" style="text-decoration:none;color:inherit"><div class="ico">🤖</div><h3>Build Your AI Team</h3><p>Pick the AI employees you want and get an instant ballpark price.</p><span style="color:var(--teal-d);font-weight:700">Open tool →</span></a>
     </div>
   </div>
@@ -508,7 +534,7 @@ function quick(t){document.getElementById('chatInput').value=t;sendChat();}
 function add(text,who){var b=document.getElementById('chatBody');var d=document.createElement('div');d.className='msg '+who;d.innerHTML='<div class="b">'+text+'</div>';b.appendChild(d);b.scrollTop=b.scrollHeight;}
 function reply(q){
   q=q.toLowerCase();
-  if(q.match(/price|cost|how much|pricing/)) return "Plans start at $297/mo plus setup. Most local businesses pick the $497 AI Front Desk plan. Want me to book you a free demo to get an exact quote?";
+  if(q.match(/price|cost|how much|pricing/)) return "Plans start at $297/mo with no setup fee \u2014 and you pay nothing until it\u2019s live and working. Most pick the $497 AI Front Desk plan. Want a free demo for an exact quote?";
   if(q.match(/what do you|what is|do you do|services|help/)) return "I install AI employees for local businesses: missed-call text-back, a 24/7 AI receptionist, online booking, review automation, and a website chatbot. Which one sounds most useful for you?";
   if(q.match(/time|hours|busy|hire|efficien/)) return "Great question. Most owners save 10 or more hours a week and avoid hiring extra help, because the AI handles the phone, scheduling, and follow-ups automatically. Want to see it on a quick demo?";
   if(q.match(/demo|book|call|talk|meeting|appointment/)) return "Love it! Scroll up to the booking form, or drop your name and number here and the team will reach out.";
