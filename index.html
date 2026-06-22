@@ -203,6 +203,18 @@
   @media(max-width:520px){.mods{grid-template-columns:1fr}}
   .guarantee{margin-top:30px;background:linear-gradient(135deg,#e6fbf7,#eef6ff);border:1.5px solid #bfeee7;border-radius:16px;padding:18px 22px;text-align:center;color:#14483f;font-size:16px;line-height:1.5}
   .nofee{background:rgba(25,198,179,.12);border:1px solid rgba(25,198,179,.4);border-radius:13px;padding:16px 20px;margin-top:22px;color:#cffdf5;font-size:15px;text-align:center}
+  /* 3D rolodex hero */
+  .herovis{position:relative;min-height:430px}
+  #ai3d{position:absolute;inset:0;width:100%;height:100%;display:none;cursor:grab;touch-action:pan-y}
+  .herovis.ready #ai3d{display:block}
+  .herovis.ready #fallback{display:none}
+  .vtitle{position:absolute;top:-4px;left:0;right:0;text-align:center;font-size:13px;color:#dbe8f6;font-weight:700;z-index:3;pointer-events:none;display:none}
+  .herovis.ready .vtitle{display:block}
+  .hint{position:absolute;bottom:-4px;left:0;right:0;text-align:center;font-size:12px;color:#bcd0e6;opacity:.8;z-index:3;pointer-events:none;display:none}
+  .herovis.ready .hint{display:block}
+  .mod.pulse{animation:pulseM 1.1s ease 2}
+  @keyframes pulseM{0%,100%{box-shadow:0 0 0 0 rgba(25,198,179,0)}50%{box-shadow:0 0 0 5px rgba(25,198,179,.45);border-color:var(--teal)}}
+  @media(max-width:860px){.herovis{min-height:350px}}
 </style>
 </head>
 <body>
@@ -231,7 +243,7 @@
   <div class="wrap herogrid">
     <div>
       <h1><span class="grad">HelpCo AI</span>: never lose another customer to a competitor.</h1>
-      <p class="sub">I install AI "employees" that answer your phone, text back missed callers, book appointments, and handle your reviews around the clock. You keep doing the work. They make sure no lead, and no hour of your day, gets wasted.</p>
+      <p class="sub">I install AI "employees" that answer your phone, text back missed callers, book jobs, handle your reviews, and so much more. Your new AI employees will work around the clock so no lead, and no hour of your day, gets wasted.</p>
       <div class="cta-row">
         <a href="#book" class="btn btn-primary">Book a Free 15-min Demo</a>
         <a href="#services" class="btn btn-ghost">See what it does</a>
@@ -243,12 +255,17 @@
         <div><span class="ck">💸</span> No setup fee &mdash; pay only when it works</div>
       </div>
     </div>
-    <div class="hcard">
-      <div class="floatpill">+1 job booked 🎉</div>
-      <div class="title">🔔 Your AI assistant, working right now</div>
-      <div class="notif"><div class="ic t">⚡</div><div class="tx"><b>Missed call texted back</b><span>"Hi! Sorry we missed you, how can we help?"</span></div><div class="time">9:42p</div></div>
-      <div class="notif"><div class="ic c">📅</div><div class="tx"><b>Appointment booked</b><span>Tue 10:30 AM, confirmation sent</span></div><div class="time">9:43p</div></div>
-      <div class="notif"><div class="ic r">⭐</div><div class="tx"><b>5-star review requested</b><span>Reply drafted and posted for you</span></div><div class="time">9:51p</div></div>
+        <div class="herovis" id="herovis">
+      <canvas id="ai3d"></canvas>
+      <div class="vtitle">🔔 Your AI assistant, working right now</div>
+      <div class="hint">live feed — tap a card to explore</div>
+      <div class="hcard" id="fallback">
+        <div class="floatpill">+1 job booked 🎉</div>
+        <div class="title">🔔 Your AI assistant, working right now</div>
+        <div class="notif"><div class="ic t">⚡</div><div class="tx"><b>Missed call texted back</b><span>"Hi! Sorry we missed you, how can we help?"</span></div><div class="time">9:42p</div></div>
+        <div class="notif"><div class="ic c">📅</div><div class="tx"><b>Appointment booked</b><span>Tue 10:30 AM, confirmation sent</span></div><div class="time">9:43p</div></div>
+        <div class="notif"><div class="ic r">⭐</div><div class="tx"><b>5-star review requested</b><span>Reply drafted and posted for you</span></div><div class="time">9:51p</div></div>
+      </div>
     </div>
   </div>
   <div class="wave">
@@ -549,6 +566,61 @@ function sendChat(){var i=document.getElementById('chatInput');var t=i.value.tri
 <!-- VAPI AI Front Desk (web voice call) -->
 <script>
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);g.onload=function(){try{window.vapiSDK.run({apiKey:"7596ef01-8c50-49ea-9dc5-128ce409bc53",assistant:"513f3f93-fc44-45ed-9a5a-23770a0ca78e",config:{position:"bottom-left",offset:"24px",width:"60px",height:"60px",idle:{color:"#1f6ff0",type:"pill",title:"Talk to our AI",subtitle:"AI Front Desk",icon:"https://unpkg.com/lucide-static@latest/icons/phone.svg"},loading:{color:"#0fa697",type:"pill",title:"Connecting...",subtitle:"One sec",icon:"https://unpkg.com/lucide-static@latest/icons/loader.svg"},active:{color:"#c0392b",type:"pill",title:"End call",subtitle:"Talking...",icon:"https://unpkg.com/lucide-static@latest/icons/phone-off.svg"}}});}catch(e){console.error("Vapi load error",e);}};})(document,"script");
+</script>
+<script>
+/* Rolodex / Ferris-wheel hero (progressive enhancement) */
+function gotoServices(){var el=document.getElementById('services');if(!el)return;el.scrollIntoView({behavior:'smooth'});var t=document.querySelectorAll('.mod');t.forEach(function(x){x.classList.remove('pulse');});setTimeout(function(){t.forEach(function(x){x.classList.add('pulse');});},500);}
+(function(){
+ var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+ function webglOK(){try{var c=document.createElement('canvas');return !!(window.WebGLRenderingContext&&(c.getContext('webgl')||c.getContext('experimental-webgl')));}catch(e){return false;}}
+ if(!document.getElementById('herovis')||!webglOK())return;
+ var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';sc.async=true;
+ sc.onerror=function(){};sc.onload=function(){try{init();}catch(e){console.warn('rolodex hero skipped',e);}};
+ document.head.appendChild(sc);
+ var FEED=[
+  ["⚡","Missed-Call Text-Back","Missed caller texted back & booked","now","#e6fbf7"],
+  ["📞","AI Front Desk","Call answered & qualified, 24/7","1m","#e9f4ff"],
+  ["💬","Website Lead Catcher","New lead captured from your site","3m","#eee9ff"],
+  ["📅","Auto-Booking Engine","Appointment booked · reminder sent","5m","#fff2d9"],
+  ["📧","Email Triage + Reply","Inbox sorted · reply drafted","7m","#e9f4ff"],
+  ["⭐","5-Star Review Engine","5-star review requested","9m","#eee9ff"],
+  ["🛡️","Reputation Management","On-brand review reply posted","12m","#e6fbf7"],
+  ["🗂️","Customer Database (CRM)","New contact saved & organized","15m","#e8f8ee"],
+  ["🔄","Database Reactivation","Past customer re-booked","18m","#fff2d9"],
+  ["📲","Social Media Automation","Post scheduled to FB & Instagram","21m","#eee9ff"],
+  ["🔍","SEO Optimization","Ranking climbed for a local search","24m","#e9f4ff"],
+  ["🌐","AI-Smart Website","New AI-smart website is live","28m","#e6fbf7"]
+ ];
+ var renderer,scene,camera,raf,clock,cards=[],ray,pointer={x:-2,y:-2},hovered=null,canvas,container,qi=0;
+ var N=7,R=2.6,SPEED=0.25;
+ function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();}
+ function tex(it){var cv=document.createElement('canvas');cv.width=600;cv.height=200;var x=cv.getContext('2d');
+  rr(x,10,12,580,176,28);x.fillStyle='rgba(255,255,255,.97)';x.fill();x.lineWidth=2;x.strokeStyle='rgba(16,40,80,.10)';x.stroke();
+  rr(x,34,52,96,96,22);x.fillStyle=it[4];x.fill();x.font='52px serif';x.textAlign='center';x.textBaseline='middle';x.fillText(it[0],82,100);
+  x.textAlign='left';x.fillStyle='#16202e';x.font='bold 35px Plus Jakarta Sans, Arial, sans-serif';var ti=it[1];while(x.measureText(ti).width>360&&ti.length>6){ti=ti.slice(0,-2);}x.fillText(ti,156,80);
+  x.fillStyle='#6a7889';x.font='27px Plus Jakarta Sans, Arial, sans-serif';var sb=it[2];while(x.measureText(sb).width>390&&sb.length>6){sb=sb.slice(0,-2);}if(sb!==it[2])sb=sb+'…';x.fillText(sb,156,126);
+  x.fillStyle='#9aa7b6';x.font='23px Plus Jakarta Sans, Arial, sans-serif';x.textAlign='right';x.fillText(it[3],560,46);
+  var t=new THREE.CanvasTexture(cv);t.anisotropy=4;return t;}
+ function setCard(m,it){if(m.material.map)m.material.map.dispose();m.material.map=tex(it);m.material.needsUpdate=true;}
+ function init(){container=document.getElementById('herovis');canvas=document.getElementById('ai3d');
+  var W=container.clientWidth,H=container.clientHeight;
+  renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setSize(W,H,false);
+  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(46,W/H,0.1,100);camera.position.set(0,0,8.6);clock=new THREE.Clock();ray=new THREE.Raycaster();
+  for(var i=0;i<N;i++){var geo=new THREE.PlaneGeometry(3.0,1.0);var mat=new THREE.MeshBasicMaterial({transparent:true,depthWrite:false});var m=new THREE.Mesh(geo,mat);setCard(m,FEED[qi%FEED.length]);qi++;m.userData={a0:(i/N)*Math.PI*2,rev:0};scene.add(m);cards.push(m);}
+  container.classList.add('ready');
+  canvas.addEventListener('pointermove',onMove);canvas.addEventListener('pointerleave',function(){pointer.x=-2;pointer.y=-2;});canvas.addEventListener('click',onClick);
+  window.addEventListener('resize',onResize);document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(raf);}else{if(!reduce)loop();}});
+  if(reduce){frame(0);}else{loop();}}
+ function onMove(e){var b=canvas.getBoundingClientRect();pointer.x=((e.clientX-b.left)/b.width)*2-1;pointer.y=-((e.clientY-b.top)/b.height)*2+1;}
+ function onClick(e){onMove(e);ray.setFromCamera(pointer,camera);if(ray.intersectObjects(cards).length)gotoServices();}
+ function onResize(){if(!renderer)return;var W=container.clientWidth,H=container.clientHeight;renderer.setSize(W,H,false);camera.aspect=W/H;camera.updateProjectionMatrix();}
+ function frame(t){if(!reduce){ray.setFromCamera(pointer,camera);var hit=ray.intersectObjects(cards);hovered=hit.length?hit[0].object:null;canvas.style.cursor=hovered?'pointer':'grab';}
+  cards.forEach(function(m){var a=m.userData.a0+(reduce?0:t*SPEED);var rev=Math.floor(a/(Math.PI*2));if(rev>m.userData.rev){m.userData.rev=rev;setCard(m,FEED[qi%FEED.length]);qi++;}
+   var aa=a%(Math.PI*2);var y=R*Math.cos(aa),z=R*Math.sin(aa);m.position.set(0,y,z);m.lookAt(camera.position);
+   var d=(z+R)/(2*R);var s2=0.5+d*0.62;if(m===hovered)s2*=1.05;m.scale.set(s2,s2,s2);m.material.opacity=0.12+d*0.88;m.renderOrder=Math.round(z*100);});
+  renderer.render(scene,camera);}
+ function loop(){raf=requestAnimationFrame(loop);frame(clock.getElapsedTime());}
+})();
 </script>
 </body>
 </html>
