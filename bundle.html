@@ -10,8 +10,8 @@
 <script>
 var MODS=[["Never Miss a Lead","Instantly texts back missed callers before they call a competitor."],["AI Front Desk","A human-sounding AI answers your phone 24/7, books jobs, flags emergencies."],["Online Booking","Customers self-book on your calendar; reminders kill no-shows."],["5-Star Reviews","Auto-asks happy customers for Google reviews at the perfect moment."],["Website Chatbot","Answers questions and captures leads on your site around the clock."],["Get Paid Faster","Sends invoices and politely chases late payers until you're paid."],["Customer Win-Back","Re-texts past customers to fill your slow days."],["Quote Follow-Up","Chases every estimate until they book or say no."],["Smart Website","A fast, SEO-ready site with all your AI tools built in."]];
 var m=document.getElementById('mods');m.innerHTML=MODS.map(function(x,i){return '<label class="chk"><input type="checkbox" value="'+i+'"'+(i==0?' checked':'')+'> <span><b>'+x[0]+'</b> — '+x[1]+'</span></label>'}).join('');
-function calc(){var picks=[].slice.call(document.querySelectorAll('#mods input:checked'));var n=picks.length||1;var base=149,lo=base+(n-1)*60,hi=lo+120;
-document.getElementById('mo').textContent='$'+lo+'–$'+hi+'/mo';
+function calc(){var picks=[].slice.call(document.querySelectorAll('#mods input:checked'));var n=picks.length||1;var price=n<=1?99:(n<=4?Math.round(99+(n-1)*(230/3)):Math.round(329+(n-4)*90));
+document.getElementById('mo').textContent='$'+price+'/mo ('+n+' AI employee'+(n>1?'s':'')+')';
 document.getElementById('list').innerHTML=picks.map(function(p){return '<div class="row"><span>'+MODS[p.value][0]+'</span><b>\u2713</b></div>'}).join('');
 document.getElementById('out').style.display='block';document.getElementById('out').scrollIntoView({behavior:'smooth'});}
 </script></body></html>

@@ -175,6 +175,7 @@
   }
   /* CHAT WIDGET */
   #chatBtn{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 10px 28px rgba(25,198,179,.5);z-index:90}
+  #voiceBtn{position:fixed;bottom:98px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 10px 26px rgba(10,31,60,.45);z-index:90;display:grid;place-items:center}
   #chatBox{position:fixed;bottom:100px;right:24px;width:350px;max-width:92vw;height:470px;background:#fff;border-radius:18px;box-shadow:0 26px 60px rgba(0,0,0,.3);display:none;flex-direction:column;overflow:hidden;z-index:90}
   #chatBox.open{display:flex}
   .chat-head{background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;padding:15px 17px;font-weight:700;display:flex;align-items:center;gap:8px}
@@ -194,7 +195,8 @@
   .mods{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:14px;margin-top:34px}
   .mod{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;transition:.16s;display:flex;flex-direction:column}
   .mod:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,31,60,.10);border-color:#cdeee9}
-  .mod .h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .mod .h{display:flex;align-items:center;gap:10px}
+  .mod .h h3{min-width:0}
   .mod .mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--navy));display:grid;place-items:center;font-size:19px;flex:none;box-shadow:0 6px 14px rgba(25,198,179,.28)}
   .mod h3{color:var(--navy);font-size:15px;margin:0;line-height:1.2}
   .mod p{color:var(--muted);font-size:13px;margin:9px 0 0;line-height:1.45}
@@ -205,8 +207,9 @@
   .nofee{background:rgba(25,198,179,.12);border:1px solid rgba(25,198,179,.4);border-radius:13px;padding:16px 20px;margin-top:22px;color:#cffdf5;font-size:15px;text-align:center}
   /* 3D rolodex hero */
   .herovis{position:relative;min-height:430px}
-  #ai3d{position:absolute;inset:0;width:100%;height:100%;display:none;cursor:grab;touch-action:pan-y}
-  .herovis.ready #ai3d{display:block}
+  #ai3d{position:absolute;inset:0;width:100%;height:100%;display:none;opacity:0;transition:opacity .45s ease;cursor:grab;touch-action:pan-y}
+  .herovis.ready #ai3d{display:block;opacity:1}
+  html.js3d #fallback{display:none}
   .herovis.ready #fallback{display:none}
   .vtitle{position:absolute;top:-4px;left:0;right:0;text-align:center;font-size:13px;color:#dbe8f6;font-weight:700;z-index:3;pointer-events:none;display:none}
   .herovis.ready .vtitle{display:block}
@@ -216,6 +219,7 @@
   @keyframes pulseM{0%,100%{box-shadow:0 0 0 0 rgba(25,198,179,0)}50%{box-shadow:0 0 0 5px rgba(25,198,179,.45);border-color:var(--teal)}}
   @media(max-width:860px){.herovis{min-height:350px}}
 </style>
+<script>(function(){try{var c=document.createElement("canvas");if(window.WebGLRenderingContext&&(c.getContext("webgl")||c.getContext("experimental-webgl"))){document.documentElement.className+=" js3d";}}catch(e){}})();</script>
 </head>
 <body>
 
@@ -251,8 +255,7 @@
       <div class="trust">
         <div><span class="ck">⚡</span> Live in days, not months</div>
         <div><span class="ck">🚫</span> No long contracts</div>
-        <div><span class="ck">🛠️</span> Done for you</div>
-        <div><span class="ck">💸</span> No setup fee &mdash; pay only when it works</div>
+        <div><span class="ck">💸</span> No setup fee + Pay only when it works</div>
       </div>
     </div>
         <div class="herovis" id="herovis">
@@ -389,41 +392,41 @@
     <p class="lead" style="margin:0 auto">Flat monthly fee &mdash; <b>no setup fee</b>. You pay nothing until your AI is live and working. No long contracts, cancel anytime.</p>
     <div class="price">
       <div class="plan">
-        <h3>Starter</h3><div class="tag">Never Miss a Lead</div>
-        <div class="amt">$297<small>/mo</small></div><div class="setup">✓ No setup fee</div>
+        <h3>1 AI Employee</h3><div class="tag">Start lean</div>
+        <div class="amt">$99<small>/mo</small></div><div class="setup">✓ No setup fee</div>
         <ul>
-          <li>Missed-Call Text-Back</li>
-          <li>Speed-to-Lead (all channels)</li>
-          <li>Auto-Booking Engine</li>
-          <li>Monthly report</li>
+          <li>Any 1 AI employee you choose</li>
+          <li>Done-for-you setup &amp; upkeep</li>
+          <li>Monthly results report</li>
+          <li>No long contracts</li>
         </ul>
-        <a href="#contact" class="btn btn-ghost" style="border-color:var(--teal-d);color:var(--teal-d)">Get Started</a>
+        <a href="#book" class="btn btn-ghost" style="border-color:var(--teal-d);color:var(--teal-d)">Get Started</a>
       </div>
       <div class="plan pop">
-        <h3>Growth</h3><div class="tag">AI Front Desk</div>
-        <div class="amt">$497<small>/mo</small></div><div class="setup">✓ No setup fee</div>
+        <h3>4 AI Employees</h3><div class="tag">Most popular</div>
+        <div class="amt">$329<small>/mo</small></div><div class="setup">✓ No setup fee</div>
         <ul>
-          <li>Everything in Starter</li>
-          <li>AI Front Desk (24/7 voice)</li>
-          <li>5-Star Review Engine</li>
+          <li>Any 4 AI employees you choose</li>
+          <li>Done-for-you setup &amp; upkeep</li>
           <li>Priority support</li>
+          <li>Monthly results report</li>
         </ul>
-        <a href="#contact" class="btn btn-primary">Book a Demo</a>
+        <a href="#book" class="btn btn-primary">Book a Demo</a>
       </div>
       <div class="plan">
-        <h3>Pro</h3><div class="tag">AI Operations</div>
-        <div class="amt">$897<small>/mo</small></div><div class="setup">✓ No setup fee</div>
+        <h3>8 AI Employees</h3><div class="tag">Full team</div>
+        <div class="amt">$689<small>/mo</small></div><div class="setup">✓ No setup fee</div>
         <ul>
-          <li>Everything in Growth</li>
-          <li>Website Lead Catcher</li>
-          <li>Team Brain assistant</li>
+          <li>Any 8 AI employees you choose</li>
+          <li>Done-for-you setup &amp; upkeep</li>
+          <li>Priority support</li>
           <li>Quarterly strategy review</li>
         </ul>
-        <a href="#contact" class="btn btn-ghost" style="border-color:var(--teal-d);color:var(--teal-d)">Talk to Me</a>
+        <a href="#book" class="btn btn-ghost" style="border-color:var(--teal-d);color:var(--teal-d)">Talk to Me</a>
       </div>
     </div>
     <div class="nofee" style="color:#155e54;background:rgba(25,198,179,.12);border:1px solid rgba(25,198,179,.45)">🛡️ <b>No setup fee &mdash; and nothing is due until your system is built, connected, and working.</b> You only ever pay for results that are live in your business.</div>
-    <p class="note">Prices shown are starting points. Your exact quote depends on call volume and which AI employees you choose.</p>
+    <p class="note">Mix and match any of our 12 AI employees &mdash; custom combinations get custom pricing. Not sure what you need? <a href="bundle.html" style="color:var(--teal-d);font-weight:700">Build your team &amp; get an instant price &rarr;</a></p>
   </div>
 </section>
 
@@ -530,6 +533,7 @@
 </footer>
 
 <!-- CHAT WIDGET -->
+<button id="voiceBtn" aria-label="Talk to our AI front desk" title="Talk to our AI front desk">📞</button>
 <button id="chatBtn" onclick="toggleChat()">💬</button>
 <div id="chatBox">
   <div class="chat-head"><span class="dot"></span> HelpCo AI Assistant <button onclick="toggleChat()" aria-label="Close chat" style="margin-left:auto;background:none;border:none;color:#fff;font-size:20px;line-height:1;cursor:pointer">&times;</button></div>
@@ -551,7 +555,7 @@ function quick(t){document.getElementById('chatInput').value=t;sendChat();}
 function add(text,who){var b=document.getElementById('chatBody');var d=document.createElement('div');d.className='msg '+who;d.innerHTML='<div class="b">'+text+'</div>';b.appendChild(d);b.scrollTop=b.scrollHeight;}
 function reply(q){
   q=q.toLowerCase();
-  if(q.match(/price|cost|how much|pricing/)) return "Plans start at $297/mo with no setup fee \u2014 and you pay nothing until it\u2019s live and working. Most pick the $497 AI Front Desk plan. Want a free demo for an exact quote?";
+  if(q.match(/price|cost|how much|pricing/)) return "Plans start at $99/mo for one AI employee \u2014 no setup fee, and you pay nothing until it\u2019s live and working. Most pick around 4 employees ($329/mo). Want a free demo for an exact quote?";
   if(q.match(/what do you|what is|do you do|services|help/)) return "I install AI employees for local businesses: missed-call text-back, a 24/7 AI receptionist, online booking, review automation, and a website chatbot. Which one sounds most useful for you?";
   if(q.match(/time|hours|busy|hire|efficien/)) return "Great question. Most owners save 10 or more hours a week and avoid hiring extra help, because the AI handles the phone, scheduling, and follow-ups automatically. Want to see it on a quick demo?";
   if(q.match(/demo|book|call|talk|meeting|appointment/)) return "Love it! Scroll up to the booking form, or drop your name and number here and the team will reach out.";
@@ -563,9 +567,12 @@ function reply(q){
 }
 function sendChat(){var i=document.getElementById('chatInput');var t=i.value.trim();if(!t)return;add(t,'me');i.value='';setTimeout(function(){add(reply(t),'bot');},420);}
 </script>
-<!-- VAPI AI Front Desk (web voice call) -->
-<script>
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);g.onload=function(){try{window.vapiSDK.run({apiKey:"7596ef01-8c50-49ea-9dc5-128ce409bc53",assistant:"513f3f93-fc44-45ed-9a5a-23770a0ca78e",config:{position:"bottom-left",offset:"24px",width:"60px",height:"60px",idle:{color:"#1f6ff0",type:"pill",title:"Talk to our AI",subtitle:"AI Front Desk",icon:"https://unpkg.com/lucide-static@latest/icons/phone.svg"},loading:{color:"#0fa697",type:"pill",title:"Connecting...",subtitle:"One sec",icon:"https://unpkg.com/lucide-static@latest/icons/loader.svg"},active:{color:"#c0392b",type:"pill",title:"End call",subtitle:"Talking...",icon:"https://unpkg.com/lucide-static@latest/icons/phone-off.svg"}}});}catch(e){console.error("Vapi load error",e);}};})(document,"script");
+<!-- VAPI AI Front Desk (custom fixed button, scrolls with chat) -->
+<script type="module">
+import Vapi from "https://esm.sh/@vapi-ai/web";
+var vapi=null,calling=false,btn=document.getElementById("voiceBtn");
+try{vapi=new Vapi("7596ef01-8c50-49ea-9dc5-128ce409bc53");vapi.on("call-end",function(){calling=false;if(btn){btn.textContent="📞";btn.style.background="";}});}catch(e){}
+if(btn){btn.addEventListener("click",function(){if(!vapi){location.href="tel:+12162552770";return;}if(!calling){try{vapi.start("513f3f93-fc44-45ed-9a5a-23770a0ca78e");calling=true;btn.textContent="■";btn.style.background="#c0392b";}catch(e){location.href="tel:+12162552770";}}else{try{vapi.stop();}catch(e){}calling=false;btn.textContent="📞";btn.style.background="";}});}
 </script>
 <script>
 /* Rolodex / Ferris-wheel hero (progressive enhancement) */
@@ -575,7 +582,7 @@ function gotoServices(){var el=document.getElementById('services');if(!el)return
  function webglOK(){try{var c=document.createElement('canvas');return !!(window.WebGLRenderingContext&&(c.getContext('webgl')||c.getContext('experimental-webgl')));}catch(e){return false;}}
  if(!document.getElementById('herovis')||!webglOK())return;
  var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';sc.async=true;
- sc.onerror=function(){};sc.onload=function(){try{init();}catch(e){console.warn('rolodex hero skipped',e);}};
+ sc.onerror=function(){document.documentElement.classList.remove("js3d");};sc.onload=function(){try{init();}catch(e){document.documentElement.classList.remove('js3d');console.warn('rolodex hero skipped',e);}};setTimeout(function(){var h=document.getElementById('herovis');if(h&&!h.classList.contains('ready'))document.documentElement.classList.remove('js3d');},5000);
  document.head.appendChild(sc);
  var FEED=[
   ["⚡","Missed-Call Text-Back","Missed caller texted back & booked","now","#e6fbf7"],
