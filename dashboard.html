@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Owner Dashboard Example | HelpCo AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1f3c;--navy2:#102a4f;--teal:#19c6b3;--teal-d:#0fa697;--sun:#ffb23e;--violet:#6c5ce7;--ink:#16202e;--muted:#5d6b7c;--bg:#eef3f8;--line:#e2e9f1;--good:#1f9d6b;--bad:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.bar{background:#13243d;color:#cfe0f2;text-align:center;font-size:12.5px;padding:7px;font-weight:600}
+header{background:linear-gradient(120deg,var(--navy),#123a63);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px}
+.brand .dot{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--violet));display:grid;place-items:center;font-size:18px}
+.brand small{display:block;font-weight:600;font-size:12px;color:#bcd0e6}
+.hr{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.toggle{display:flex;background:rgba(255,255,255,.12);border-radius:10px;padding:3px}
+.toggle button{border:0;background:none;color:#cfe0f2;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:inherit}
+.toggle button.on{background:var(--teal);color:#062b27}
+.rep{background:var(--sun);color:#3a2400;border:0;border-radius:9px;padding:9px 14px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px}
+.sec{font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:22px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px;cursor:pointer;transition:.15s;position:relative;display:flex;flex-direction:column;min-height:132px}
+.tile:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,31,60,.12);border-color:#cdeee9}
+.tile .h{display:flex;align-items:center;gap:9px}
+.tile .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:linear-gradient(135deg,var(--teal),var(--navy));color:#fff;flex:none}
+.tile .name{font-size:13px;font-weight:700;color:var(--navy);line-height:1.15}
+.tile .n{font-size:27px;font-weight:800;margin-top:10px;line-height:1}
+.tile .sub2{font-size:12px;color:var(--muted);margin-top:2px}
+.tile .d{font-size:11.5px;font-weight:700;margin-top:auto;padding-top:7px}.up{color:var(--good)}.dn{color:var(--bad)}
+.tile .view{position:absolute;top:13px;right:13px;font-size:11px;color:var(--teal-d);font-weight:800;opacity:0;transition:.15s}
+.tile:hover .view{opacity:1}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px}
+.card h3{font-size:15px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.feed{display:flex;flex-direction:column;gap:9px;max-height:330px;overflow:auto}
+.fitem{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:11px}
+.fitem .fic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;background:#eef7f5;flex:none}
+.fitem b{font-size:13.5px}.fitem span{display:block;font-size:12px;color:var(--muted)}
+.fitem .t{margin-left:auto;font-size:11px;color:#9aa7b6;white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+.pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.pill.due{background:#fdecec;color:var(--bad)}.pill.ok{background:#e7f7ef;color:var(--good)}.pill.soon{background:#fff3e0;color:#9a5b00}
+.attn{background:linear-gradient(135deg,#fff7ef,#fff0e0);border:1px solid #ffd9a8}.attn .fitem{border-color:#ffe1b8;background:#fff}
+.scrim{position:fixed;inset:0;background:rgba(10,20,35,.45);display:none;z-index:50}.scrim.open{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:540px;max-width:94vw;background:#fff;box-shadow:-12px 0 40px rgba(0,0,0,.25);transform:translateX(100%);transition:.25s;z-index:51;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.dhead{color:#fff;padding:16px 18px;display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,var(--navy),#123a63)}
+.dhead .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:17px;background:rgba(255,255,255,.18);flex:none}
+.dhead b{font-size:16px}.dhead small{display:block;font-weight:600;font-size:12px;opacity:.85}
+.dhead button{margin-left:auto;background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
+.dbody{padding:16px 18px;overflow:auto}.note{font-size:12px;color:var(--muted);margin-top:12px}
+@media(max-width:980px){.grid{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style><meta name="description" content="See an example HelpCo AI Owner Dashboard: every AI employee, live activity, appointments, unpaid invoices, and alerts in one place. Your real dashboard depends on the AI employees you install."><link rel="canonical" href="https://helpcoai.com/dashboard.html"><meta name="robots" content="index,follow"><style>
+header.site{position:sticky;top:0;z-index:200;background:rgba(10,31,60,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif}
+header.site .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header.site .nav{display:flex;align-items:center;justify-content:space-between;height:64px;color:#fff;gap:14px}
+header.site .logo{font-weight:800;font-size:19px;color:#fff;display:flex;align-items:center;gap:9px;text-decoration:none}
+header.site .menu{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}
+header.site .menu>li{list-style:none;position:relative}
+header.site .menu>li>a,header.site .menu>li>span{display:block;color:#cfdcec;font-weight:600;font-size:14.5px;padding:10px 12px;cursor:pointer;border-radius:8px;text-decoration:none}
+header.site .menu>li>a:hover,header.site .menu>li>span:hover{color:#fff;background:rgba(255,255,255,.08)}
+header.site .caret{font-size:10px;opacity:.7;margin-left:3px}
+header.site .drop{position:absolute;top:100%;left:0;background:#fff;min-width:250px;border-radius:12px;box-shadow:0 18px 44px rgba(8,20,38,.28);padding:8px;display:none;z-index:210}
+header.site .drop.two{min-width:430px;display:none;grid-template-columns:1fr 1fr}
+header.site .menu>li:hover .drop{display:block}header.site .menu>li:hover .drop.two{display:grid}
+header.site .drop a{display:block;color:#16202e;font-size:14px;font-weight:600;padding:9px 11px;border-radius:8px;text-decoration:none}
+header.site .drop a:hover{background:#eef7f5;color:#0fa697}
+header.site .navbtn{background:linear-gradient(135deg,#ffb23e,#ff9b2f);color:#3a2400;padding:10px 18px;border-radius:9px;font-weight:800;font-size:13.5px;text-decoration:none}
+header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+.mnav{display:none;background:#0a1f3c;color:#fff;padding:8px 22px 18px;font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif}
+.mnav details{border-bottom:1px solid rgba(255,255,255,.1)}.mnav summary{padding:12px 2px;font-weight:700;cursor:pointer;list-style:none;color:#dce8f5}
+.mnav summary::-webkit-details-marker{display:none}.mnav a{display:block;color:#bcd0e6;padding:8px 10px;font-size:14px;text-decoration:none}
+.mnav a.top{font-weight:700;color:#fff;padding:12px 2px;border-bottom:1px solid rgba(255,255,255,.1)}
+@media(max-width:1000px){header.site .menu{display:none}header.site .hamb{display:block}.mnav.open{display:block}}
+footer.site{background:#071831;color:#9fb6cb;padding:40px 0 26px;font-size:14px;margin-top:30px;font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif}
+footer.site .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+footer.site .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+footer.site h4{color:#fff;font-size:14px;margin-bottom:10px}footer.site a{display:block;color:#aebccd;padding:3px 0;text-decoration:none}footer.site a:hover{color:#fff}
+footer.site .bot{border-top:1px solid rgba(255,255,255,.1);margin-top:26px;padding-top:16px;text-align:center;font-size:13px}
+@media(max-width:860px){footer.site .cols{grid-template-columns:1fr}}
+.disclaimer{background:linear-gradient(135deg,#fff7ef,#fff0e0);border-bottom:1px solid #ffd9a8;color:#7a5600;text-align:center;padding:13px 18px;font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif;font-weight:700;font-size:15px;line-height:1.45}
+</style>
+</head><body>
+<header class="site"><div class="wrap"><nav class="nav">
+  <a class="logo" href="index.html"><img src="logo.png" alt="HelpCo AI" style="height:36px;width:auto;display:block"></a>
+  <ul class="menu">
+    <li><span>Services <span class="caret">&#9662;</span></span><div class="drop two"><a href="service-missed-call-text-back.html">⚡ Missed-Call Text-Back</a><a href="service-ai-front-desk.html">📞 AI Front Desk</a><a href="service-website-lead-catcher.html">💬 Website Lead Catcher</a><a href="service-auto-booking-engine.html">📅 Auto-Booking Engine</a><a href="service-email-triage-reply.html">📧 Email Triage + Reply</a><a href="service-review-engine.html">⭐ 5-Star Review Engine</a><a href="service-reputation-management.html">🛡️ Reputation Management</a><a href="service-customer-database-crm.html">🗂️ Customer Database (CRM)</a><a href="service-database-reactivation.html">🔄 Database Reactivation</a><a href="service-get-paid-faster.html">💸 Get-Paid-Faster</a><a href="service-seo-optimization.html">🔍 SEO Optimization</a><a href="service-ai-smart-website.html">🌐 AI-Smart Website</a></div></li>
+    <li><span>Free Tools <span class="caret">&#9662;</span></span><div class="drop"><a href="calculator.html">💸 Lost-Revenue Calculator</a><a href="scorecard.html">📊 Leaking-Leads Scorecard</a><a href="reviews.html">⭐ Google Review Health Check</a><a href="bundle.html">🤖 Build Your AI Team</a><a href="seo.html">🔍 Instant SEO Health Check</a><a href="compare.html">🧮 AI vs Hiring Calculator</a></div></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><span>Locations <span class="caret">&#9662;</span></span><div class="drop"><a href="area-bradenton.html">📍 Bradenton</a><a href="area-sarasota.html">📍 Sarasota</a><a href="area-lakewood-ranch.html">📍 Lakewood Ranch</a><a href="area-parrish.html">📍 Parrish</a><a href="area-venice.html">📍 Venice</a></div></li>
+    <li><span>Resources <span class="caret">&#9662;</span></span><div class="drop"><a href="faq.html">&#10067; FAQ</a><a href="blog.html">&#9997; Blog</a></div></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="navbtn" href="contact.html#book">Book a Free Demo</a>
+  <button class="hamb" aria-label="Open menu" onclick="document.getElementById('mnav').classList.toggle('open')">&#9776;</button>
+</nav></div>
+<div class="mnav" id="mnav"><div class="wrap">
+  <details><summary>Services &#9662;</summary><a href="service-missed-call-text-back.html">⚡ Missed-Call Text-Back</a><a href="service-ai-front-desk.html">📞 AI Front Desk</a><a href="service-website-lead-catcher.html">💬 Website Lead Catcher</a><a href="service-auto-booking-engine.html">📅 Auto-Booking Engine</a><a href="service-email-triage-reply.html">📧 Email Triage + Reply</a><a href="service-review-engine.html">⭐ 5-Star Review Engine</a><a href="service-reputation-management.html">🛡️ Reputation Management</a><a href="service-customer-database-crm.html">🗂️ Customer Database (CRM)</a><a href="service-database-reactivation.html">🔄 Database Reactivation</a><a href="service-get-paid-faster.html">💸 Get-Paid-Faster</a><a href="service-seo-optimization.html">🔍 SEO Optimization</a><a href="service-ai-smart-website.html">🌐 AI-Smart Website</a></details>
+  <details><summary>Free Tools &#9662;</summary><a href="calculator.html">💸 Lost-Revenue Calculator</a><a href="scorecard.html">📊 Leaking-Leads Scorecard</a><a href="reviews.html">⭐ Google Review Health Check</a><a href="bundle.html">🤖 Build Your AI Team</a><a href="seo.html">🔍 Instant SEO Health Check</a><a href="compare.html">🧮 AI vs Hiring Calculator</a></details>
+  <a class="top" href="dashboard.html">Dashboard</a>
+  <details><summary>Locations &#9662;</summary><a href="area-bradenton.html">Bradenton</a><a href="area-sarasota.html">Sarasota</a><a href="area-lakewood-ranch.html">Lakewood Ranch</a><a href="area-parrish.html">Parrish</a><a href="area-venice.html">Venice</a></details>
+  <details><summary>Resources &#9662;</summary><a href="faq.html">FAQ</a><a href="blog.html">Blog</a></details>
+  <a class="top" href="pricing.html">Pricing</a><a class="top" href="about.html">About</a><a class="top" href="contact.html">Contact</a>
+  <a class="top" href="contact.html#book" style="color:var(--sun)">Book a Free Demo</a>
+</div></div>
+</header>
+<div class="disclaimer">This is an example of what your Owner Dashboard could look like. Your real dashboard shows live data and changes depending on which AI Employees are implemented in your business.</div>
+<header>
+  <div class="brand"><img src="logo.png" alt="HelpCo AI" style="height:34px;width:auto;background:#fff;border-radius:7px;padding:3px 7px"><div style="margin-left:6px"><b style="color:#fff">Owner Dashboard</b><small>Example preview</small></div></div>
+  <div class="hr">
+    <div class="toggle"><button class="on" onclick="setRange('w',this)">This week</button><button onclick="setRange('m',this)">This month</button></div>
+    <button class="rep" onclick="alert('In the live version this emails/exports a polished monthly PDF report.')">⬇ Monthly report</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="sec">Your 12 AI employees - this <span id="rlabel">week</span></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="cols" style="margin-top:22px">
+    <div class="card"><h3>🔔 Live activity</h3><div class="feed" id="feed"></div></div>
+    <div class="card"><h3>📅 Upcoming appointments</h3><table id="appts"></table></div>
+  </div>
+  <div class="cols" style="margin-top:16px">
+    <div class="card"><h3>💸 Unpaid invoices</h3><table id="inv"></table></div>
+    <div class="card attn"><h3>🚩 Needs your attention</h3><div class="feed" id="attn"></div></div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" onclick="closeD()"></div>
+<div class="drawer" id="drawer">
+  <div class="dhead"><span class="ic" id="dic"></span><div><b id="dtitle"></b><small id="dsub"></small></div><button onclick="closeD()">&times;</button></div>
+  <div class="dbody" id="dbody"></div>
+</div>
+<script>
+var RANGE='w';
+var M=[
+ {ic:'⚡',name:'Missed-Call Text-Back',unit:'recovered',w:14,m:58,dw:'+22%',dm:'+15%',cols:['When','Caller','Outcome'],rows:[['Tue 9:42a','(941) •• 0188','Texted in 18s → booked Wed'],['Mon 4:01p','(941) •• 7741','Texted → replied'],['Mon 8:02a','(941) •• 2210','Texted → booked tune-up']]},
+ {ic:'📞',name:'AI Front Desk',unit:'calls answered',w:41,m:171,dw:'+9%',dm:'+7%',cols:['When','Type','Result'],rows:[['Tue 11:02a','Inbound','Qualified + booked'],['Mon 7:15p','After-hours','Routed emergency']]},
+ {ic:'💬',name:'Website Lead Catcher',unit:'leads captured',w:9,m:38,dw:'+14%',dm:'+10%',cols:['When','Page','Captured'],rows:[['Tue 8:10a','/ac-repair','Name + phone + job'],['Mon 9:50p','/contact','Quote request']]},
+ {ic:'📅',name:'Auto-Booking Engine',unit:'booked',w:19,m:77,dw:'no-shows -32%',dm:'-28%',cols:['When','Service','Status'],rows:[['Wed 10:30a','Diagnostic','Confirmed'],['Thu 1:00p','Tune-up','Reminder sent']]},
+ {ic:'📧',name:'Email Triage + Reply',unit:'emails handled',w:64,m:268,dw:'12 auto-replied',dm:'51 auto',cols:['When','Type','Action'],rows:[['Tue','Lead','Drafted reply'],['Tue','FAQ','Auto-answered']]},
+ {ic:'⭐',name:'5-Star Review Engine',unit:'review requests',w:17,m:69,dw:'6 new ★',dm:'21 new ★',cols:['When','Customer','Result'],rows:[['Tue','J. Smith','★★★★★ posted'],['Mon','D. Kelly','Requested']]},
+ {ic:'🛡️',name:'Reputation Management',unit:'replies posted',w:8,m:27,dw:'4.9★ avg',dm:'4.9★',cols:['When','Review','Reply'],rows:[['Tue','★★★★★','Thanked customer'],['Mon','★★★','Draft awaiting approval']]},
+ {ic:'🗂️',name:'Customer Database (CRM)',unit:'new contacts',w:23,m:96,dw:'+18%',dm:'+12%',cols:['Added','Name','Source'],rows:[['Tue','R. Martinez','Missed call'],['Tue','D. Kelly','Web chat']]},
+ {ic:'🔄',name:'Database Reactivation',unit:'re-booked',w:5,m:23,dw:'+40%',dm:'+19%',cols:['When','Customer','Outcome'],rows:[['Mon','T. Soto','Rebooked tune-up'],['Sun','A. Patel','Replied']]},
+ {ic:'📲',name:'Social Media Automation',unit:'posts published',w:5,m:20,dw:'312 reach',dm:'1.4k reach',cols:['When','Platform','Post'],rows:[['Tue','Facebook','AC maintenance tip'],['Mon','Instagram','Before/after job']]},
+ {ic:'🔍',name:'SEO Optimization',unit:'keywords improved',w:7,m:18,dw:'+6 positions',dm:'+14',cols:['Keyword','Was','Now'],rows:[['ac repair bradenton','#12','#6'],['hvac near me','#19','#11']]},
+ {ic:'🌐',name:'AI-Smart Website',unit:'visitors',w:214,m:910,dw:'8.1% → leads',dm:'7.4%',cols:['Day','Visitors','Leads'],rows:[['Tue','41','4'],['Mon','38','3']]}
+];
+function setRange(r,btn){RANGE=r;document.querySelectorAll('.toggle button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById('rlabel').textContent=r==='w'?'week':'month';render();}
+function render(){
+ document.getElementById('grid').innerHTML=M.map((m,i)=>{
+  var n=RANGE==='w'?m.w:m.m, d=RANGE==='w'?m.dw:m.dm, up=(''+d).indexOf('-')<0;
+  return '<div class="tile" onclick="drill('+i+')"><span class="view">View →</span><div class="h"><span class="ic">'+m.ic+'</span><span class="name">'+m.name+'</span></div><div class="n">'+n+'</div><div class="sub2">'+m.unit+'</div><div class="d '+(up?'up':'dn')+'">'+d+'</div></div>';
+ }).join('');
+}
+document.getElementById('feed').innerHTML=[
+ ['⚡','Missed call texted back','“Sorry we missed you - how can we help?”','now'],
+ ['📅','Appointment booked','Wed 10:30 AM · confirmation sent','2m'],
+ ['⭐','5-star review posted','“Fast and honest”','18m'],
+ ['💸','Invoice paid','#1043 · $650 collected','1h'],
+ ['💬','New website lead','Quote request captured','2h'],
+ ['🔄','Past customer re-booked','Win-back text worked','3h']
+].map(f=>'<div class="fitem"><div class="fic">'+f[0]+'</div><div><b>'+f[1]+'</b><span>'+f[2]+'</span></div><div class="t">'+f[3]+'</div></div>').join('');
+document.getElementById('appts').innerHTML='<tr><th>When</th><th>Service</th><th>Status</th></tr>'+[
+ ['Wed 10:30a','AC Diagnostic','<span class="pill ok">Confirmed</span>'],['Thu 1:00p','Tune-up','<span class="pill soon">Reminder sent</span>'],['Fri 9:00a','Install quote','<span class="pill ok">Confirmed</span>']
+].map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>').join('');
+document.getElementById('inv').innerHTML='<tr><th>Invoice</th><th>Amount</th><th>Status</th></tr>'+[
+ ['#1044','$880','<span class="pill due">12 days late</span>'],['#1045','$430','<span class="pill soon">Reminder sent</span>'],['#1047','$2,100','<span class="pill ok">Due in 5d</span>']
+].map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>').join('');
+document.getElementById('attn').innerHTML=[
+ ['🚩','Invoice #1044 is 12 days overdue','Get-Paid-Faster sent 3 reminders - may need a call','Act'],
+ ['🗣️','A caller asked for a human','AI Front Desk flagged it 20 min ago','Call'],
+ ['⭐','New 3-star review','Reputation Mgmt drafted a reply - approve it','Review']
+].map(f=>'<div class="fitem"><div class="fic">'+f[0]+'</div><div><b>'+f[1]+'</b><span>'+f[2]+'</span></div><div class="t">'+f[3]+'</div></div>').join('');
+function drill(i){var m=M[i];
+ document.getElementById('dic').textContent=m.ic;document.getElementById('dtitle').textContent=m.name;
+ document.getElementById('dsub').textContent=(RANGE==='w'?m.w:m.m)+' '+m.unit+' this '+(RANGE==='w'?'week':'month');
+ document.getElementById('dbody').innerHTML='<table><tr>'+m.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+m.rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</table><p class="note">In the live version, “View →” opens this AI employee’s filtered Airtable records - every row is real and clickable.</p>';
+ document.getElementById('scrim').classList.add('open');document.getElementById('drawer').classList.add('open');}
+function closeD(){document.getElementById('scrim').classList.remove('open');document.getElementById('drawer').classList.remove('open');}
+render();
+</script>
+<footer class="site"><div class="wrap">
+  <div class="cols">
+    <div><div style="margin-bottom:10px"><img src="logo.png" alt="HelpCo AI" style="height:42px;width:auto;display:block"></div>
+      <p style="color:#9fb6cb;font-size:13.5px;max-width:30ch">AI employees for local service businesses in Bradenton, Sarasota, and beyond. No setup fee, pay only when it works.</p>
+      <p style="margin-top:12px">📞 <a href="tel:+19419419930" style="display:inline">941-941-9930</a><br>&#9993; <a href="mailto:Demo@HelpCoAI.com" style="display:inline">Demo@HelpCoAI.com</a></p></div>
+    <div><h4>AI Employees</h4><a href="service-missed-call-text-back.html">Missed-Call Text-Back</a><a href="service-ai-front-desk.html">AI Front Desk</a><a href="service-website-lead-catcher.html">Website Lead Catcher</a><a href="service-auto-booking-engine.html">Auto-Booking Engine</a><a href="service-email-triage-reply.html">Email Triage + Reply</a><a href="service-review-engine.html">5-Star Review Engine</a><a href="service-reputation-management.html">Reputation Management</a><a href="service-customer-database-crm.html">Customer Database (CRM)</a><a href="service-database-reactivation.html">Database Reactivation</a><a href="service-get-paid-faster.html">Get-Paid-Faster</a><a href="service-seo-optimization.html">SEO Optimization</a><a href="service-ai-smart-website.html">AI-Smart Website</a></div>
+    <div><h4>Service Areas</h4><a href="area-bradenton.html">Bradenton</a><a href="area-sarasota.html">Sarasota</a><a href="area-lakewood-ranch.html">Lakewood Ranch</a><a href="area-parrish.html">Parrish</a><a href="area-venice.html">Venice</a></div>
+    <div><h4>Company</h4><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="dashboard.html">Dashboard</a><a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="bot">&#169; 2026 HelpCo AI &#183; Bradenton &amp; Sarasota, FL &#183; <a href="tel:+19419419930" style="display:inline">941-941-9930</a></div>
+</div></footer>
+</body></html>
