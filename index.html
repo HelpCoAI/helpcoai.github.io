@@ -38,7 +38,7 @@
   .logo .bot{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--teal),var(--violet));display:grid;place-items:center;font-size:20px;box-shadow:0 6px 18px rgba(25,198,179,.4)}
   .navlinks{display:flex;gap:28px;font-size:15px;font-weight:600;color:#bcd0e6}
   .navlinks a:hover{color:#fff}
-  .navbtn{background:linear-gradient(135deg,var(--sun),#ff9b2f);color:#3a2400;padding:11px 20px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:0 6px 16px rgba(255,178,62,.35)}
+  .navbtn{background:linear-gradient(135deg,var(--sun),#ff9b2f);color:#3a2400;padding:11px 16px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:0 6px 16px rgba(255,178,62,.35);white-space:nowrap;flex:0 0 auto}
   @media(max-width:860px){.navlinks{display:none}}
   /* HERO */
   .hero{position:relative;background:linear-gradient(155deg,#081a33 0%,#0d2a52 55%,#0a3a4f 100%);color:#fff;padding:96px 0 130px;overflow:hidden}
@@ -221,21 +221,21 @@
 
 header.site{position:sticky;top:0;z-index:200;background:rgba(10,31,60,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif}
 header.site .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-header.site .nav{display:flex;align-items:center;justify-content:space-between;height:64px;color:#fff;gap:14px}
+header.site .nav{display:flex;align-items:center;justify-content:space-between;height:64px;color:#fff;gap:8px}
 header.site .logo{font-weight:800;font-size:19px;color:#fff;display:flex;align-items:center;gap:9px;text-decoration:none}
 header.site .logo .b{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#19c6b3,#6c5ce7);display:grid;place-items:center;font-size:15px}
-header.site .menu{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}
+header.site .menu{display:flex;align-items:center;gap:2px;flex:1;justify-content:flex-end;min-width:0;list-style:none;margin:0;padding:0}
 header.site .menu>li{list-style:none;position:relative}
-header.site .menu>li>a,header.site .menu>li>span{display:block;color:#cfdcec;font-weight:600;font-size:14.5px;padding:10px 12px;cursor:pointer;border-radius:8px;text-decoration:none}
+header.site .menu>li>a,header.site .menu>li>span{display:flex;align-items:center;gap:3px;white-space:nowrap;color:#cfdcec;font-weight:600;font-size:13px;padding:10px 7px;cursor:pointer;border-radius:8px;text-decoration:none}
 header.site .menu>li>a:hover,header.site .menu>li>span:hover{color:#fff;background:rgba(255,255,255,.08)}
-header.site .caret{font-size:10px;opacity:.7;margin-left:3px}
+header.site .caret{font-size:10px;opacity:.7;margin-left:1px;display:inline-block;line-height:1;flex:0 0 auto}
 header.site .drop{position:absolute;top:100%;left:0;background:#fff;min-width:250px;border-radius:12px;box-shadow:0 18px 44px rgba(8,20,38,.28);padding:8px;display:none;z-index:210}
 header.site .drop.two{min-width:430px;display:none;grid-template-columns:1fr 1fr}
 header.site .menu>li:hover .drop{display:block}
 header.site .menu>li:hover .drop.two{display:grid}
 header.site .drop a{display:block;color:#16202e;font-size:14px;font-weight:600;padding:9px 11px;border-radius:8px;text-decoration:none}
 header.site .drop a:hover{background:#eef7f5;color:#0fa697}
-header.site .navbtn{background:linear-gradient(135deg,#ffb23e,#ff9b2f);color:#3a2400;padding:10px 18px;border-radius:9px;font-weight:800;font-size:13.5px;text-decoration:none}
+header.site .navbtn{background:linear-gradient(135deg,#ffb23e,#ff9b2f);color:#3a2400;padding:10px 12px;border-radius:9px;font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap;flex:0 0 auto}
 header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
 .mnav{display:none;background:#0a1f3c;color:#fff;padding:8px 22px 18px;font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif}
 .mnav details{border-bottom:1px solid rgba(255,255,255,.1)}
@@ -243,7 +243,7 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
 .mnav summary::-webkit-details-marker{display:none}
 .mnav a{display:block;color:#bcd0e6;padding:8px 10px;font-size:14px;text-decoration:none}
 .mnav a.top{font-weight:700;color:#fff;padding:12px 2px;border-bottom:1px solid rgba(255,255,255,.1)}
-@media(max-width:1000px){header.site .menu{display:none}header.site .hamb{display:block}.mnav.open{display:block}}
+@media(max-width:1120px){header.site .menu{display:none}header.site .hamb{display:block}.mnav.open{display:block}}
 
 .mods a.mod{text-decoration:none;color:inherit;display:flex;flex-direction:column}
 </style>
@@ -258,6 +258,7 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
   <ul class="menu">
     <li><span>Services <span class="caret">&#9662;</span></span><div class="drop two"><a href="service-missed-call-text-back.html">⚡ Missed-Call Text-Back</a><a href="service-ai-front-desk.html">📞 AI Front Desk</a><a href="service-website-lead-catcher.html">💬 Website Lead Catcher</a><a href="service-auto-booking-engine.html">📅 Auto-Booking Engine</a><a href="service-email-triage-reply.html">📧 Email Triage + Reply</a><a href="service-review-engine.html">⭐ 5-Star Review Engine</a><a href="service-reputation-management.html">🛡️ Reputation Management</a><a href="service-customer-database-crm.html">🗂️ Customer Database (CRM)</a><a href="service-database-reactivation.html">🔄 Database Reactivation</a><a href="service-get-paid-faster.html">💸 Get-Paid-Faster</a><a href="service-seo-optimization.html">🔍 SEO Optimization</a><a href="service-ai-smart-website.html">🌐 AI-Smart Website</a></div></li>
     <li><span>Free Tools <span class="caret">&#9662;</span></span><div class="drop"><a href="calculator.html">💸 Lost-Revenue Calculator</a><a href="scorecard.html">📊 Leaking-Leads Scorecard</a><a href="reviews.html">⭐ Google Review Health Check</a><a href="bundle.html">🤖 Build Your AI Team</a><a href="seo.html">🔍 Instant SEO Health Check</a><a href="compare.html">🧮 AI vs Hiring Calculator</a></div></li>
+    <li><span>Industries <span class="caret">&#9662;</span></span><div class="drop two"><a href="industries.html">All Industries</a><a href="industry-hvac.html">HVAC</a><a href="industry-plumbing.html">Plumbing</a><a href="industry-electrical.html">Electrical</a><a href="industry-roofing.html">Roofing</a><a href="industry-landscaping.html">Landscaping</a><a href="industry-auto-repair.html">Auto Repair</a><a href="industry-auto-detailing.html">Auto Detailing</a><a href="industry-salons-spas.html">Salons and Spas</a><a href="industry-law-firms.html">Law Firms</a><a href="industry-professional-services.html">Professional Services</a><a href="industry-financial-advisors.html">Financial Advisors</a><a href="industry-insurance-agencies.html">Insurance Agencies</a><a href="industry-restaurants.html">Restaurants</a><a href="industry-retail.html">Retail</a></div></li>
     <li><a href="dashboard.html">Dashboard</a></li>
     <li><span>Locations <span class="caret">&#9662;</span></span><div class="drop"><a href="area-bradenton.html">📍 Bradenton</a><a href="area-sarasota.html">📍 Sarasota</a><a href="area-lakewood-ranch.html">📍 Lakewood Ranch</a><a href="area-parrish.html">📍 Parrish</a><a href="area-venice.html">📍 Venice</a></div></li>
     <li><span>Resources <span class="caret">&#9662;</span></span><div class="drop"><a href="faq.html">&#10067; FAQ</a><a href="blog.html">&#9997; Blog</a></div></li>
@@ -271,6 +272,7 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
 <div class="mnav" id="mnav"><div class="wrap">
   <details><summary>Services &#9662;</summary><a href="service-missed-call-text-back.html">⚡ Missed-Call Text-Back</a><a href="service-ai-front-desk.html">📞 AI Front Desk</a><a href="service-website-lead-catcher.html">💬 Website Lead Catcher</a><a href="service-auto-booking-engine.html">📅 Auto-Booking Engine</a><a href="service-email-triage-reply.html">📧 Email Triage + Reply</a><a href="service-review-engine.html">⭐ 5-Star Review Engine</a><a href="service-reputation-management.html">🛡️ Reputation Management</a><a href="service-customer-database-crm.html">🗂️ Customer Database (CRM)</a><a href="service-database-reactivation.html">🔄 Database Reactivation</a><a href="service-get-paid-faster.html">💸 Get-Paid-Faster</a><a href="service-seo-optimization.html">🔍 SEO Optimization</a><a href="service-ai-smart-website.html">🌐 AI-Smart Website</a></details>
   <details><summary>Free Tools &#9662;</summary><a href="calculator.html">💸 Lost-Revenue Calculator</a><a href="scorecard.html">📊 Leaking-Leads Scorecard</a><a href="reviews.html">⭐ Google Review Health Check</a><a href="bundle.html">🤖 Build Your AI Team</a><a href="seo.html">🔍 Instant SEO Health Check</a><a href="compare.html">🧮 AI vs Hiring Calculator</a></details>
+  <details><summary>Industries &#9662;</summary><a href="industries.html">All Industries</a><a href="industry-hvac.html">HVAC</a><a href="industry-plumbing.html">Plumbing</a><a href="industry-electrical.html">Electrical</a><a href="industry-roofing.html">Roofing</a><a href="industry-landscaping.html">Landscaping</a><a href="industry-auto-repair.html">Auto Repair</a><a href="industry-auto-detailing.html">Auto Detailing</a><a href="industry-salons-spas.html">Salons and Spas</a><a href="industry-law-firms.html">Law Firms</a><a href="industry-professional-services.html">Professional Services</a><a href="industry-financial-advisors.html">Financial Advisors</a><a href="industry-insurance-agencies.html">Insurance Agencies</a><a href="industry-restaurants.html">Restaurants</a><a href="industry-retail.html">Retail</a></details>
   <a class="top" href="dashboard.html">Dashboard</a>
   <details><summary>Locations &#9662;</summary><a href="area-bradenton.html">Bradenton</a><a href="area-sarasota.html">Sarasota</a><a href="area-lakewood-ranch.html">Lakewood Ranch</a><a href="area-parrish.html">Parrish</a><a href="area-venice.html">Venice</a></details>
   <details><summary>Resources &#9662;</summary><a href="faq.html">FAQ</a><a href="blog.html">Blog</a></details>
@@ -286,7 +288,7 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
   <div class="wrap herogrid">
     <div>
       <h1><span class="grad">HelpCo AI</span>: never lose another customer to a competitor.</h1>
-      <p class="sub">I install AI "employees" that answer your phone, text back missed callers, book jobs, handle your reviews, and so much more. Your new AI employees will work around the clock so no lead, and no hour of your day, gets wasted.</p>
+      <p class="sub">I install AI "employees" that answer your phone, text back missed callers, book jobs, handle your reviews, and so much more. Your new AI employees will work around the clock so no lead, and no hour of your day, gets wasted. HelpCo AI builds practical AI employees, powered by artificial intelligence automation, for local businesses.</p>
       <div class="cta-row">
         <a href="#book" class="btn btn-primary">Book a Free 15-min Demo</a>
         <a href="#services" class="btn btn-ghost">See what it does</a>
@@ -340,6 +342,32 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
     </div>
   </div>
 </section>
+
+<!-- ROI -->
+<section id="roi">
+  <div class="wrap">
+    <div class="roi">
+      <div>
+        <div class="eyebrow" style="color:var(--sun)">Quick math</div>
+        <h2>How much are missed calls costing you?</h2>
+        <p class="lead">Most owners are shocked. Enter two numbers and see the revenue that is walking out the door right now.</p>
+        <div class="note" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#d8ecff">Estimate only, for illustration.</div>
+      </div>
+      <div class="panel">
+        <label>Missed calls per week</label>
+        <input id="calls" type="number" value="10" min="0">
+        <label>Average job or customer value ($)</label>
+        <input id="jobValue" type="number" value="350" min="0">
+        <div class="out">
+          <div class="big" id="roiOut">$5,300</div>
+          <div class="lbl">estimated revenue recovered <u>per month</u> *</div>
+        </div>
+        <div class="foot-note">* Assumes about 35% of missed callers are won back once they get an instant text, a conservative figure for local service businesses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- SERVICES -->
 <section id="services" style="background:#fff">
@@ -395,31 +423,6 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
         <li><div class="vic">⚙️</div><div><b>Run more efficiently</b><span>Bookings, follow-ups, and reminders happen automatically and on time, so fewer no-shows, fewer dropped balls, and a calmer day.</span></div></li>
         <li><div class="vic">📈</div><div><b>Grow without the chaos</b><span>Handle more customers without adding headcount. The system scales with you instead of stretching your team thin.</span></div></li>
       </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ROI -->
-<section id="roi">
-  <div class="wrap">
-    <div class="roi">
-      <div>
-        <div class="eyebrow" style="color:var(--sun)">Quick math</div>
-        <h2>How much are missed calls costing you?</h2>
-        <p class="lead">Most owners are shocked. Enter two numbers and see the revenue that is walking out the door right now.</p>
-        <div class="note" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#d8ecff">Estimate only, for illustration.</div>
-      </div>
-      <div class="panel">
-        <label>Missed calls per week</label>
-        <input id="calls" type="number" value="10" min="0">
-        <label>Average job or customer value ($)</label>
-        <input id="jobValue" type="number" value="350" min="0">
-        <div class="out">
-          <div class="big" id="roiOut">$5,300</div>
-          <div class="lbl">estimated revenue recovered <u>per month</u> *</div>
-        </div>
-        <div class="foot-note">* Assumes about 35% of missed callers are won back once they get an instant text, a conservative figure for local service businesses.</div>
-      </div>
     </div>
   </div>
 </section>
@@ -556,7 +559,9 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
         <p class="lead">Tell me your business and where you are losing customers or time. I will show you a live AI demo with your name on it. No pressure, no cost.</p>
         <p style="margin-top:20px;color:#c5d6ea;font-size:15px">📞 <a href="tel:+19419419930" style="color:inherit">941-941-9930</a><br>✉️ <a href="mailto:Demo@HelpCoAI.com" style="color:inherit">Demo@HelpCoAI.com</a><br>📍 Bradenton / Sarasota, FL</p>
       </div>
-      <form class="form" id="demoForm">
+      <form class="form" id="demoForm" action="https://formsubmit.co/Demo@HelpCoAI.com" method="POST">
+        <input type="hidden" name="_subject" value="New demo request - helpcoai.com">
+        <input type="hidden" name="_captcha" value="false">
         <input name="Name" placeholder="Your name" required>
         <input name="Business" placeholder="Business name" required>
         <input name="Contact" placeholder="Phone or email" required>
@@ -589,7 +594,7 @@ function calcROI(){
 }
 ['calls','jobValue'].forEach(function(id){document.getElementById(id).addEventListener('input',calcROI)});
 calcROI();
-(function(){var f=document.getElementById('demoForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('button[type=submit]');var msg=document.getElementById('formMsg');btn.disabled=true;var data=Object.fromEntries(new FormData(f));data._subject='New demo request - helpcoai.com';data._captcha='false';fetch('https://formsubmit.co/ajax/demo@helpcoai.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}).then(function(r){return r.json();}).then(function(){msg.textContent='Thanks! Your request is in. I will reach out shortly.';msg.style.display='block';f.reset();}).catch(function(){msg.textContent='Something glitched. Please email Demo@HelpCoAI.com directly.';msg.style.display='block';}).finally(function(){btn.disabled=false;});});})();
+(function(){var f=document.getElementById('demoForm');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('button[type=submit]');var msg=document.getElementById('formMsg');btn.disabled=true;var data=Object.fromEntries(new FormData(f));data._subject='New demo request - helpcoai.com';data._captcha='false';fetch('https://formsubmit.co/ajax/demo@helpcoai.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}).then(function(r){return r.json();}).then(function(){msg.textContent='Thanks! Your request is in. I will reach out shortly.';msg.style.display='block';f.reset();}).catch(function(){HTMLFormElement.prototype.submit.call(f);}).finally(function(){btn.disabled=false;});});})();
 function toggleChat(){document.getElementById('chatBox').classList.toggle('open');}
 function quick(t){document.getElementById('chatInput').value=t;sendChat();}
 function add(text,who){var b=document.getElementById('chatBody');var d=document.createElement('div');d.className='msg '+who;d.innerHTML='<div class="b">'+text+'</div>';b.appendChild(d);b.scrollTop=b.scrollHeight;}

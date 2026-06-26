@@ -16,14 +16,14 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:0 auto;paddin
 img{max-width:100%}
 /* HEADER */
 header.site{position:sticky;top:0;z-index:200;background:rgba(10,31,60,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px;color:#fff;gap:14px}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;color:#fff;gap:8px}
 .nav .logo{font-weight:800;font-size:19px;color:#fff;display:flex;align-items:center;gap:9px}
 .nav .logo .b{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--violet));display:grid;place-items:center;font-size:15px}
-.menu{display:flex;align-items:center;gap:4px}
+.menu{display:flex;align-items:center;gap:2px;flex:1;justify-content:flex-end;min-width:0}
 .menu>li{list-style:none;position:relative}
-.menu>li>a,.menu>li>span{display:block;color:#cfdcec;font-weight:600;font-size:14.5px;padding:10px 12px;cursor:pointer;border-radius:8px}
+.menu>li>a,.menu>li>span{display:flex;align-items:center;gap:3px;white-space:nowrap;color:#cfdcec;font-weight:600;font-size:13px;padding:10px 7px;cursor:pointer;border-radius:8px}
 .menu>li>a:hover,.menu>li>span:hover{color:#fff;background:rgba(255,255,255,.08)}
-.menu .caret{font-size:10px;opacity:.7;margin-left:3px}
+.menu .caret{font-size:10px;opacity:.7;margin-left:1px;display:inline-block;line-height:1;flex:0 0 auto}
 .drop{position:absolute;top:100%;left:0;background:#fff;min-width:250px;border-radius:12px;box-shadow:0 18px 44px rgba(8,20,38,.28);padding:8px;display:none;z-index:210}
 .drop.two{min-width:430px;display:none;grid-template-columns:1fr 1fr}
 .menu>li:hover .drop{display:block}
@@ -31,7 +31,7 @@ header.site{position:sticky;top:0;z-index:200;background:rgba(10,31,60,.92);back
 .drop a{display:block;color:var(--ink);font-size:14px;font-weight:600;padding:9px 11px;border-radius:8px}
 .drop a:hover{background:#eef7f5;color:var(--teal-d)}
 .drop a small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-.navbtn{background:linear-gradient(135deg,var(--sun),#ff9b2f);color:#3a2400;padding:10px 18px;border-radius:9px;font-weight:800;font-size:13.5px}
+.navbtn{background:linear-gradient(135deg,var(--sun),#ff9b2f);color:#3a2400;padding:10px 12px;border-radius:9px;font-weight:800;font-size:13px;white-space:nowrap;flex:0 0 auto}
 .hamb{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
 .mnav{display:none;background:#0a1f3c;color:#fff;padding:8px 22px 18px}
 .mnav details{border-bottom:1px solid rgba(255,255,255,.1)}
@@ -39,7 +39,7 @@ header.site{position:sticky;top:0;z-index:200;background:rgba(10,31,60,.92);back
 .mnav summary::-webkit-details-marker{display:none}
 .mnav a{display:block;color:#bcd0e6;padding:8px 10px;font-size:14px}
 .mnav a.top{font-weight:700;color:#fff;padding:12px 2px;border-bottom:1px solid rgba(255,255,255,.1)}
-@media(max-width:1000px){.menu{display:none}.hamb{display:block}.mnav.open{display:block}}
+@media(max-width:1120px){.menu{display:none}.hamb{display:block}.mnav.open{display:block}}
 /* generic */
 h1,h2,h3{line-height:1.15;letter-spacing:-.4px}
 .phero{background:linear-gradient(150deg,#081a33,#0d2a52 60%,#0a3a4f);color:#fff;padding:54px 0 48px;position:relative;overflow:hidden}
@@ -99,6 +99,7 @@ footer.site .bot{border-top:1px solid rgba(255,255,255,.1);margin-top:26px;paddi
   <ul class="menu">
     <li><span>Services <span class="caret">&#9662;</span></span><div class="drop two"><a href="service-missed-call-text-back.html">⚡ Missed-Call Text-Back</a><a href="service-ai-front-desk.html">📞 AI Front Desk</a><a href="service-website-lead-catcher.html">💬 Website Lead Catcher</a><a href="service-auto-booking-engine.html">📅 Auto-Booking Engine</a><a href="service-email-triage-reply.html">📧 Email Triage + Reply</a><a href="service-review-engine.html">⭐ 5-Star Review Engine</a><a href="service-reputation-management.html">🛡️ Reputation Management</a><a href="service-customer-database-crm.html">🗂️ Customer Database (CRM)</a><a href="service-database-reactivation.html">🔄 Database Reactivation</a><a href="service-get-paid-faster.html">💸 Get-Paid-Faster</a><a href="service-seo-optimization.html">🔍 SEO Optimization</a><a href="service-ai-smart-website.html">🌐 AI-Smart Website</a></div></li>
     <li><span>Free Tools <span class="caret">&#9662;</span></span><div class="drop"><a href="calculator.html">💸 Lost-Revenue Calculator</a><a href="scorecard.html">📊 Leaking-Leads Scorecard</a><a href="reviews.html">⭐ Google Review Health Check</a><a href="bundle.html">🤖 Build Your AI Team</a><a href="seo.html">🔍 Instant SEO Health Check</a><a href="compare.html">🧮 AI vs Hiring Calculator</a></div></li>
+    <li><span>Industries <span class="caret">&#9662;</span></span><div class="drop two"><a href="industries.html">All Industries</a><a href="industry-hvac.html">HVAC</a><a href="industry-plumbing.html">Plumbing</a><a href="industry-electrical.html">Electrical</a><a href="industry-roofing.html">Roofing</a><a href="industry-landscaping.html">Landscaping</a><a href="industry-auto-repair.html">Auto Repair</a><a href="industry-auto-detailing.html">Auto Detailing</a><a href="industry-salons-spas.html">Salons and Spas</a><a href="industry-law-firms.html">Law Firms</a><a href="industry-professional-services.html">Professional Services</a><a href="industry-financial-advisors.html">Financial Advisors</a><a href="industry-insurance-agencies.html">Insurance Agencies</a><a href="industry-restaurants.html">Restaurants</a><a href="industry-retail.html">Retail</a></div></li>
     <li><a href="dashboard.html">Dashboard</a></li>
     <li><span>Locations <span class="caret">&#9662;</span></span><div class="drop"><a href="area-bradenton.html">📍 Bradenton</a><a href="area-sarasota.html">📍 Sarasota</a><a href="area-lakewood-ranch.html">📍 Lakewood Ranch</a><a href="area-parrish.html">📍 Parrish</a><a href="area-venice.html">📍 Venice</a></div></li>
     <li><span>Resources <span class="caret">&#9662;</span></span><div class="drop"><a href="faq.html">&#10067; FAQ</a><a href="blog.html">&#9997; Blog</a></div></li>
@@ -112,6 +113,7 @@ footer.site .bot{border-top:1px solid rgba(255,255,255,.1);margin-top:26px;paddi
 <div class="mnav" id="mnav"><div class="wrap">
   <details><summary>Services &#9662;</summary><a href="service-missed-call-text-back.html">⚡ Missed-Call Text-Back</a><a href="service-ai-front-desk.html">📞 AI Front Desk</a><a href="service-website-lead-catcher.html">💬 Website Lead Catcher</a><a href="service-auto-booking-engine.html">📅 Auto-Booking Engine</a><a href="service-email-triage-reply.html">📧 Email Triage + Reply</a><a href="service-review-engine.html">⭐ 5-Star Review Engine</a><a href="service-reputation-management.html">🛡️ Reputation Management</a><a href="service-customer-database-crm.html">🗂️ Customer Database (CRM)</a><a href="service-database-reactivation.html">🔄 Database Reactivation</a><a href="service-get-paid-faster.html">💸 Get-Paid-Faster</a><a href="service-seo-optimization.html">🔍 SEO Optimization</a><a href="service-ai-smart-website.html">🌐 AI-Smart Website</a></details>
   <details><summary>Free Tools &#9662;</summary><a href="calculator.html">💸 Lost-Revenue Calculator</a><a href="scorecard.html">📊 Leaking-Leads Scorecard</a><a href="reviews.html">⭐ Google Review Health Check</a><a href="bundle.html">🤖 Build Your AI Team</a><a href="seo.html">🔍 Instant SEO Health Check</a><a href="compare.html">🧮 AI vs Hiring Calculator</a></details>
+  <details><summary>Industries &#9662;</summary><a href="industries.html">All Industries</a><a href="industry-hvac.html">HVAC</a><a href="industry-plumbing.html">Plumbing</a><a href="industry-electrical.html">Electrical</a><a href="industry-roofing.html">Roofing</a><a href="industry-landscaping.html">Landscaping</a><a href="industry-auto-repair.html">Auto Repair</a><a href="industry-auto-detailing.html">Auto Detailing</a><a href="industry-salons-spas.html">Salons and Spas</a><a href="industry-law-firms.html">Law Firms</a><a href="industry-professional-services.html">Professional Services</a><a href="industry-financial-advisors.html">Financial Advisors</a><a href="industry-insurance-agencies.html">Insurance Agencies</a><a href="industry-restaurants.html">Restaurants</a><a href="industry-retail.html">Retail</a></details>
   <a class="top" href="dashboard.html">Dashboard</a>
   <details><summary>Locations &#9662;</summary><a href="area-bradenton.html">Bradenton</a><a href="area-sarasota.html">Sarasota</a><a href="area-lakewood-ranch.html">Lakewood Ranch</a><a href="area-parrish.html">Parrish</a><a href="area-venice.html">Venice</a></details>
   <details><summary>Resources &#9662;</summary><a href="faq.html">FAQ</a><a href="blog.html">Blog</a></details>
@@ -150,7 +152,7 @@ footer.site .bot{border-top:1px solid rgba(255,255,255,.1);margin-top:26px;paddi
       <p style="margin-top:12px">📞 <a href="tel:+19419419930" style="display:inline">941-941-9930</a><br>&#9993; <a href="mailto:Demo@HelpCoAI.com" style="display:inline">Demo@HelpCoAI.com</a></p></div>
     <div><h4>AI Employees</h4><a href="service-missed-call-text-back.html">Missed-Call Text-Back</a><a href="service-ai-front-desk.html">AI Front Desk</a><a href="service-website-lead-catcher.html">Website Lead Catcher</a><a href="service-auto-booking-engine.html">Auto-Booking Engine</a><a href="service-email-triage-reply.html">Email Triage + Reply</a><a href="service-review-engine.html">5-Star Review Engine</a><a href="service-reputation-management.html">Reputation Management</a><a href="service-customer-database-crm.html">Customer Database (CRM)</a><a href="service-database-reactivation.html">Database Reactivation</a><a href="service-get-paid-faster.html">Get-Paid-Faster</a><a href="service-seo-optimization.html">SEO Optimization</a><a href="service-ai-smart-website.html">AI-Smart Website</a></div>
     <div><h4>Service Areas</h4><a href="area-bradenton.html">Bradenton</a><a href="area-sarasota.html">Sarasota</a><a href="area-lakewood-ranch.html">Lakewood Ranch</a><a href="area-parrish.html">Parrish</a><a href="area-venice.html">Venice</a></div>
-    <div><h4>Company</h4><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="dashboard.html">Dashboard</a><a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></div>
+    <div><h4>Company</h4><a href="industries.html">Industries</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="dashboard.html">Dashboard</a><a href="faq.html">FAQ</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></div>
   </div>
   <div class="bot">&#169; 2026 HelpCo AI &#183; Bradenton &amp; Sarasota, FL &#183; <a href="tel:+19419419930" style="display:inline">941-941-9930</a></div>
 </div></footer>
