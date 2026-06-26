@@ -112,33 +112,55 @@ var WHY={
 };
 function gradeChip(g){return '<span class="pill" style="background:'+(COLOR[g]||'#c0392b')+'">'+g+'</span>';}
 function rootHost(host){return (host||'').replace(/^www\./i,'').toLowerCase();}
-function fetchHtml(u,onDone,onFail){
- var ctl=new AbortController();var to=setTimeout(function(){ctl.abort();},12000);
+function normalizeUrl(raw){
+ raw=(raw||'').trim();
+ if(!/^https?:\/\//i.test(raw))raw='https://'+raw;
+ var u=new URL(raw);
+ u.hash='';
+ if(!u.pathname)u.pathname='/';
+ return u.href;
+}
+function fetchText(u,onDone,onFail,timeout){
+ var ctl=new AbortController();var to=setTimeout(function(){ctl.abort();},timeout||26000);
  fetch(u,{signal:ctl.signal,redirect:'follow'}).then(function(r){clearTimeout(to);if(!r.ok)throw 0;return r.text();})
   .then(function(html){if(!html||html.length<200)throw 0;onDone(html);})
   .catch(function(){clearTimeout(to);onFail();});
 }
+function readerToHtml(text){
+ var title=((text.match(/^Title:\s*(.+)$/m)||[])[1]||'').trim();
+ var desc=((text.match(/^Description:\s*(.+)$/m)||[])[1]||'').trim();
+ var body=text.replace(/^Title:.*$/m,'').replace(/^URL Source:.*$/m,'').replace(/^Markdown Content:\s*$/m,'');
+ var firstHeading=((body.match(/^#{1,2}\s+(.+)$/m)||[])[1]||title).trim();
+ return '<!doctype html><html><head><title>'+escapeHtml(title)+'</title>'+(desc?'<meta name="description" content="'+escapeAttr(desc)+'">':'')+'<meta name="viewport" content="width=device-width,initial-scale=1"></head><body><h1>'+escapeHtml(firstHeading||title||'Homepage')+'</h1><main>'+escapeHtml(body.slice(0,12000))+'</main></body></html>';
+}
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function escapeAttr(s){return escapeHtml(s).replace(/"/g,'&quot;');}
 function run(){
  var raw=(document.getElementById('url').value||'').trim();
  if(!raw){document.getElementById('url').focus();return;}
- if(!/^https?:\/\//i.test(raw))raw='https://'+raw;
+ try{raw=normalizeUrl(raw);}catch(e){raw='https://'+raw;}
  var spin=document.getElementById('spin'),err=document.getElementById('err'),out=document.getElementById('out');
- err.style.display='none';out.style.display='none';spin.style.display='block';
+  err.style.display='none';out.style.display='none';spin.style.display='block';
  var attempts=[];
  try{
   var current=rootHost(location.hostname),target=new URL(raw);
   if(current&&rootHost(target.hostname)===current){
    target.hostname=current;
+   if(!target.pathname)target.pathname='/';
    raw=target.href;
    attempts.push(raw);
   }
  }catch(e){}
- var proxies=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?url='];
- proxies.forEach(function(p){attempts.push(p+encodeURIComponent(raw));});
+ [
+  'https://api.allorigins.win/raw?url='+encodeURIComponent(raw),
+  'https://r.jina.ai/http://r.jina.ai/http://'+raw,
+  'https://corsproxy.io/?url='+encodeURIComponent(raw)
+ ].forEach(function(u){attempts.push(u);});
  var i=0;
  function attempt(){
   if(i>=attempts.length){fail();return;}
-  fetchHtml(attempts[i],function(html){grade(html,raw);},function(){i++;attempt();});
+  var isReader=/r\.jina\.ai/.test(attempts[i]);
+  fetchText(attempts[i],function(text){grade(isReader?readerToHtml(text):text,raw,isReader);},function(){i++;attempt();},isReader?30000:26000);
  }
  attempt();
 }
@@ -152,7 +174,7 @@ function fail(){
  document.getElementById('gradebig').parentNode.style.display='none';
  document.getElementById('whycard').style.display='none';
 }
-function grade(html,url){
+function grade(html,url,partial){
  document.getElementById('spin').style.display='none';
  var doc=new DOMParser().parseFromString(html,'text/html');
  var res=[];
@@ -193,7 +215,7 @@ function grade(html,url){
  var ov=avg>=3.5?['A','Strong on-page SEO','#2e8b57']:avg>=2.6?['B','Good, with quick wins','#3a9e6f']:avg>=1.8?['C','Losing rankings - fixable','#d59a00']:['D','Costing you customers','#c0392b'];
  document.getElementById('ovL').textContent=ov[0];document.getElementById('ovT').textContent=ov[1];
  document.getElementById('gradebig').style.background=ov[2];
- document.getElementById('urlnote').textContent='Live read of '+url;
+ document.getElementById('urlnote').textContent=(partial?'Partial reader audit of ':'Live read of ')+url;
  // whys for C/D/F
  var weak=res.filter(function(r){return ['C','D','F'].indexOf(r[2])>=0;});
  var wc=document.getElementById('whycard');
