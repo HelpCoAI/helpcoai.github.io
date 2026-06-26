@@ -111,21 +111,34 @@ var WHY={
  canonical:"<b>Canonical tag</b> - tells Google which version of a page is the 'real' one, preventing duplicate-content confusion that can split or sink your rankings."
 };
 function gradeChip(g){return '<span class="pill" style="background:'+(COLOR[g]||'#c0392b')+'">'+g+'</span>';}
+function rootHost(host){return (host||'').replace(/^www\./i,'').toLowerCase();}
+function fetchHtml(u,onDone,onFail){
+ var ctl=new AbortController();var to=setTimeout(function(){ctl.abort();},12000);
+ fetch(u,{signal:ctl.signal,redirect:'follow'}).then(function(r){clearTimeout(to);if(!r.ok)throw 0;return r.text();})
+  .then(function(html){if(!html||html.length<200)throw 0;onDone(html);})
+  .catch(function(){clearTimeout(to);onFail();});
+}
 function run(){
  var raw=(document.getElementById('url').value||'').trim();
  if(!raw){document.getElementById('url').focus();return;}
  if(!/^https?:\/\//i.test(raw))raw='https://'+raw;
  var spin=document.getElementById('spin'),err=document.getElementById('err'),out=document.getElementById('out');
  err.style.display='none';out.style.display='none';spin.style.display='block';
+ var attempts=[];
+ try{
+  var current=rootHost(location.hostname),target=new URL(raw);
+  if(current&&rootHost(target.hostname)===current){
+   target.hostname=current;
+   raw=target.href;
+   attempts.push(raw);
+  }
+ }catch(e){}
  var proxies=['https://api.allorigins.win/raw?url=','https://corsproxy.io/?url='];
+ proxies.forEach(function(p){attempts.push(p+encodeURIComponent(raw));});
  var i=0;
  function attempt(){
-  if(i>=proxies.length){fail();return;}
-  var u=proxies[i]+encodeURIComponent(raw);
-  var ctl=new AbortController();var to=setTimeout(function(){ctl.abort();},12000);
-  fetch(u,{signal:ctl.signal}).then(function(r){clearTimeout(to);if(!r.ok)throw 0;return r.text();})
-   .then(function(html){if(!html||html.length<200)throw 0;grade(html,raw);})
-   .catch(function(){clearTimeout(to);i++;attempt();});
+  if(i>=attempts.length){fail();return;}
+  fetchHtml(attempts[i],function(html){grade(html,raw);},function(){i++;attempt();});
  }
  attempt();
 }
