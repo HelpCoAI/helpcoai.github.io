@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <title>AI Receptionist &amp; AI Answering Service | Bradenton &amp; Sarasota FL</title>
 <link rel="canonical" href="https://helpcoai.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -169,7 +169,7 @@
   /* CONTACT */
   .contact{background:linear-gradient(135deg,#0a1f3c,#123a63);color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:42px}
   .contact h2{color:#fff}.contact .lead{color:#c5d6ea}
-  .form input,.form textarea{width:100%;padding:13px 15px;border-radius:10px;border:none;margin-bottom:12px;font-size:15px;font-family:inherit}
+  .form input,.form textarea{width:100%;padding:13px 15px;border-radius:10px;border:none;margin-bottom:12px;font-size:16px;font-family:inherit}
   .form .btn{width:100%;justify-content:center}
   footer{background:#071831;color:#9fb6cb;text-align:center;padding:34px;font-size:14px}
   .note{background:#fff7e6;border:1px solid #ffe1a8;color:#7a5600;font-size:13px;padding:9px 15px;border-radius:9px;display:inline-block;margin-top:16px}
@@ -181,12 +181,12 @@
     .trust{flex-direction:column;gap:12px}
   }
   /* CHAT WIDGET */
-  #chatBtn{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 10px 28px rgba(25,198,179,.5);z-index:90}
-  #voiceBtn{position:fixed;bottom:98px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 10px 26px rgba(10,31,60,.45);z-index:90;display:grid;place-items:center}
+  #chatBtn{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 10px 26px rgba(10,31,60,.45);z-index:90;display:grid;place-items:center}
+  #voiceBtn{position:fixed;bottom:90px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 10px 26px rgba(10,31,60,.45);z-index:90;display:grid;place-items:center}
   #chatBox{position:fixed;bottom:100px;right:24px;width:350px;max-width:92vw;height:470px;background:#fff;border-radius:18px;box-shadow:0 26px 60px rgba(0,0,0,.3);display:none;flex-direction:column;overflow:hidden;z-index:90}
   #chatBox.open{display:flex}
-  .chat-head{background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;padding:15px 17px;font-weight:700;display:flex;align-items:center;gap:8px}
-  .chat-head .dot{width:9px;height:9px;border-radius:50%;background:#3ce6a0;box-shadow:0 0 0 3px rgba(60,230,160,.25)}
+  .chat-x{position:absolute;top:8px;right:8px;z-index:2;width:30px;height:30px;border-radius:50%;border:none;background:rgba(7,24,49,.55);color:#fff;font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center}
+  .chat-x:hover{background:rgba(7,24,49,.8)}
   /* COMPACT MODULES */
   .mods{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:14px;margin-top:34px}
   .mod{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;transition:.16s;display:flex;flex-direction:column}
@@ -259,7 +259,7 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
   .stickycta{display:flex}
   body{padding-bottom:74px}
   #chatBtn{bottom:88px}
-  #voiceBtn{bottom:160px}
+  #voiceBtn{bottom:154px}
   .ctaband{padding:26px;text-align:center;justify-content:center}
 }
 </style>
@@ -627,7 +627,7 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
 <button id="voiceBtn" aria-label="Talk to our AI front desk" title="Talk to our AI front desk">📞</button>
 <button id="chatBtn" aria-label="Open chat" onclick="toggleChat()">💬</button>
 <div id="chatBox">
-  <div class="chat-head"><span class="dot"></span> HelpCo AI Assistant <button onclick="toggleChat()" aria-label="Close chat" style="margin-left:auto;background:none;border:none;color:#fff;font-size:20px;line-height:1;cursor:pointer">&times;</button></div>
+  <button class="chat-x" onclick="toggleChat()" aria-label="Close chat">&times;</button>
   <iframe data-src="https://notorious-help-flow-ai.base44.app" title="HelpCo AI Assistant" style="flex:1;width:100%;border:none" loading="lazy"></iframe>
 </div>
 
