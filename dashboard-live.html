@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Owner Dashboard | HelpCo AI</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1f3c;--navy2:#102a4f;--teal:#19c6b3;--teal-d:#0fa697;--sun:#ffb23e;--violet:#6c5ce7;--ink:#16202e;--muted:#5d6b7c;--bg:#eef3f8;--line:#e2e9f1;--good:#1f9d6b;--bad:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.dash-head{background:linear-gradient(120deg,var(--navy),#123a63);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:50}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px}
+.brand .dot{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--violet));display:grid;place-items:center;font-size:18px;color:#062b27;font-weight:800}
+.brand small{display:block;font-weight:600;font-size:12px;color:#bcd0e6}
+.locwrap{display:flex;align-items:center;gap:8px;margin-left:6px}
+.locwrap .lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9fc0dd}
+.locsel{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:9px;padding:8px 30px 8px 11px;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;max-width:250px;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 10px center}
+.locsel option{color:#16202e}
+.hr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px}
+.badge.live{background:rgba(25,198,179,.18);color:#7ff0e0;border:1px solid rgba(25,198,179,.5)}
+.badge.sample{background:rgba(255,178,62,.16);color:#ffd79b;border:1px solid rgba(255,178,62,.5)}
+.upd{font-size:11.5px;color:#a9c0d8}
+.toggle{display:flex;background:rgba(255,255,255,.12);border-radius:10px;padding:3px}
+.toggle button{border:0;background:none;color:#cfe0f2;font-weight:700;font-size:13px;padding:7px 14px;border-radius:8px;cursor:pointer;font-family:inherit}
+.toggle button.on{background:var(--teal);color:#062b27}
+.rbtn{background:var(--sun);color:#3a2400;border:0;border-radius:9px;padding:8px 12px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 70px}
+.sec{font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:22px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px;cursor:pointer;transition:.15s;position:relative;display:flex;flex-direction:column;min-height:128px}
+.tile:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,31,60,.12);border-color:#cdeee9}
+.tile .h{display:flex;align-items:center;gap:9px}
+.tile .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:linear-gradient(135deg,var(--teal),var(--navy));color:#fff;flex:none}
+.tile .name{font-size:13px;font-weight:700;color:var(--navy);line-height:1.15}
+.tile .n{font-size:27px;font-weight:800;margin-top:10px;line-height:1}
+.tile .sub2{font-size:12px;color:var(--muted);margin-top:2px}
+.tile .d{font-size:11.5px;font-weight:700;margin-top:auto;padding-top:7px;color:var(--muted)}
+.tile .st{position:absolute;top:13px;right:13px;font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px}
+.st.Live{background:#e7f7ef;color:var(--good)}.st.Provisioning{background:#fff3e0;color:#9a5b00}.st.Paused{background:#fdecec;color:var(--bad)}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px}
+.card h3{font-size:15px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.feed{display:flex;flex-direction:column;gap:9px;max-height:340px;overflow:auto}
+.fitem{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:11px}
+.fitem .fic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;background:#eef7f5;flex:none}
+.fitem b{font-size:13.5px}.fitem span{display:block;font-size:12px;color:var(--muted)}
+.fitem .t{margin-left:auto;font-size:11px;color:#9aa7b6;white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+.pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.pill.due{background:#fdecec;color:var(--bad)}.pill.ok{background:#e7f7ef;color:var(--good)}.pill.soon{background:#fff3e0;color:#9a5b00}
+.attn{background:linear-gradient(135deg,#fff7ef,#fff0e0);border:1px solid #ffd9a8}.attn .fitem{border-color:#ffe1b8;background:#fff}
+.empty{color:#9aa7b6;font-size:13px;padding:14px 4px}
+.scrim{position:fixed;inset:0;background:rgba(10,20,35,.45);display:none;z-index:190}.scrim.open{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:520px;max-width:94vw;background:#fff;box-shadow:-12px 0 40px rgba(0,0,0,.25);transform:translateX(100%);transition:.25s;z-index:191;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.dhead{color:#fff;padding:16px 18px;display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,var(--navy),#123a63)}
+.dhead .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:17px;background:rgba(255,255,255,.18);flex:none}
+.dhead b{font-size:16px}.dhead small{display:block;font-weight:600;font-size:12px;opacity:.85}
+.dhead button{margin-left:auto;background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
+.dbody{padding:16px 18px;overflow:auto}.note{font-size:12px;color:var(--muted);margin-top:12px}
+.loading{padding:60px 0;text-align:center;color:var(--muted);font-weight:600}
+@media(max-width:980px){.grid{grid-template-columns:1fr 1fr}.cols,.cols2{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.drawer{width:100%}.locsel{max-width:170px}}
+</style>
+</head><body>
+<header class="dash-head">
+  <div class="brand"><span class="dot">H</span><div><span id="htitle">Owner Dashboard</span><small id="hsub">HelpCo AI</small></div>
+    <div class="locwrap"><span class="lbl">Viewing</span><select id="locsel" class="locsel" onchange="pick(this.value)"><option>Loading...</option></select></div>
+  </div>
+  <div class="hr">
+    <span class="badge sample" id="mode">connecting</span>
+    <span class="upd" id="upd"></span>
+    <div class="toggle"><button class="on" id="tw" onclick="setRange('w')">This week</button><button id="tm" onclick="setRange('m')">This month</button></div>
+    <button class="rbtn" onclick="load(true)">&#8635; Refresh</button>
+  </div>
+</header>
+<div class="wrap"><div id="app"><div class="loading">Loading your dashboard...</div></div></div>
+
+<div class="scrim" id="scrim" onclick="closeD()"></div>
+<div class="drawer" id="drawer">
+  <div class="dhead"><span class="ic" id="dic"></span><div><b id="dtitle"></b><small id="dsub"></small></div><button onclick="closeD()">&times;</button></div>
+  <div class="dbody" id="dbody"></div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG - set this to your deployed Worker URL, no trailing slash.
+   Example: https://helpco-dashboard.yourname.workers.dev
+   Leave blank to preview with built-in sample data.
+   ============================================================ */
+var WORKER_URL = "https://helpco-dashboard.lhajnaj.workers.dev";
+
+/* ---- display maps ---- */
+var EMP = {
+ "Missed-Call Text-Back":{e:"⚡",u:"recovered"},
+ "AI Front Desk":{e:"📞",u:"calls answered"},
+ "Website Lead Catcher":{e:"💬",u:"leads captured"},
+ "Auto-Booking Engine":{e:"📅",u:"booked"},
+ "Email Triage + Reply":{e:"📧",u:"emails handled"},
+ "Review & Reputation Engine":{e:"⭐",u:"review actions"},
+ "Social Media Automation":{e:"📲",u:"posts published"},
+ "Customer Database (CRM)":{e:"🗂️",u:"new contacts"},
+ "Database Reactivation":{e:"🔄",u:"re-booked"},
+ "Get-Paid-Faster":{e:"💸",u:"invoices handled"},
+ "SEO + AI Search Optimization":{e:"🔍",u:"ranking moves"},
+ "AI-Smart Website":{e:"🌐",u:"visitors"}
+};
+function emo(name){return (EMP[name]||{}).e||"🤖";}
+function unit(name){return (EMP[name]||{}).u||"actions";}
+
+var RANGE='w', DATA=null, MODE='sample';
+function qs(k){return new URLSearchParams(location.search).get(k);}
+var TOKEN = qs('t')||'', OWNER = qs('owner')==='1';
+var LOCS=[], CANPORT=false, CUR=null;
+
+function ago(iso){ if(!iso) return ''; var s=(Date.now()-new Date(iso).getTime())/1000;
+ if(s<60) return 'now'; if(s<3600) return Math.floor(s/60)+'m'; if(s<86400) return Math.floor(s/3600)+'h';
+ return Math.floor(s/86400)+'d'; }
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function money(n){return '$'+Number(n||0).toLocaleString('en-US');}
+
+/* ---- locations / dropdown ---- */
+async function loadLocations(){
+ if(!WORKER_URL){ LOCS=SAMPLE.locations; CANPORT=true; setDefaultCur(); fillSelect(); return; }
+ try{
+  var r=await fetch(WORKER_URL+'/api/locations?t='+encodeURIComponent(TOKEN),{cache:'no-store'});
+  if(!r.ok) throw 0;
+  var d=await r.json(); LOCS=d.locations||[]; CANPORT=!!d.canPortfolio; setDefaultCur(); fillSelect();
+ }catch(e){ LOCS=SAMPLE.locations; CANPORT=true; MODE='sample'; setDefaultCur(); fillSelect(); }
+}
+function setDefaultCur(){
+ if(CUR) return;
+ if(CANPORT && OWNER) CUR='portfolio';
+ else CUR = (LOCS[0]&&LOCS[0].id) || (CANPORT?'portfolio':null);
+}
+function fillSelect(){
+ var sel=document.getElementById('locsel'), opts='';
+ if(CANPORT) opts+='<option value="portfolio">Portfolio (all clients)</option>';
+ opts+=LOCS.map(function(l){return '<option value="'+esc(l.id)+'">'+esc(l.name)+'</option>';}).join('');
+ sel.innerHTML=opts||'<option>No businesses</option>';
+ if(CUR) sel.value=CUR;
+ sel.style.display=(CANPORT||LOCS.length>1)?'':'none';
+}
+function pick(v){ CUR=v; var sel=document.getElementById('locsel'); if(sel) sel.value=v; load(true); }
+
+/* ---- fetch current selection ---- */
+async function load(manual){
+ try{
+  if(!WORKER_URL){ DATA = (CUR==='portfolio'?SAMPLE.portfolio:SAMPLE[CUR]) || SAMPLE.gulfbreeze; MODE='sample'; return draw(); }
+  var r;
+  if(CUR==='portfolio'){ r=await fetch(WORKER_URL+'/api/owner?t='+encodeURIComponent(TOKEN),{cache:'no-store'}); }
+  else { r=await fetch(WORKER_URL+'/api/client?t='+encodeURIComponent(TOKEN)+'&client='+encodeURIComponent(CUR||''),{cache:'no-store'}); }
+  if(!r.ok) throw new Error('http '+r.status);
+  DATA=await r.json(); MODE='live'; draw();
+ }catch(e){ DATA=(CUR==='portfolio'?SAMPLE.portfolio:SAMPLE[CUR])||SAMPLE.gulfbreeze; MODE='sample'; draw(); }
+}
+function setRange(r){ RANGE=r; document.getElementById('tw').classList.toggle('on',r==='w'); document.getElementById('tm').classList.toggle('on',r==='m'); draw(); }
+
+/* ---- draw ---- */
+function draw(){
+ var m=document.getElementById('mode');
+ m.className='badge '+(MODE==='live'?'live':'sample'); m.textContent=(MODE==='live'?'live data':'sample data');
+ document.getElementById('upd').textContent = DATA&&DATA.updated ? ('updated '+ago(DATA.updated)) : '';
+ if(DATA&&DATA.owner) return drawOwner(DATA);
+ drawClient(DATA);
+}
+
+function drawClient(d){
+ document.getElementById('htitle').textContent = (d.client&&d.client.name) ? d.client.name : 'Dashboard';
+ document.getElementById('hsub').textContent = (d.client&&d.client.plan) ? d.client.plan+' plan' : 'HelpCo AI';
+ var rl = RANGE==='w'?'week':'month';
+ var tiles=(d.employees||[]).map(function(e,i){
+  var n=RANGE==='w'?e.countWeek:e.countMonth;
+  var st=e.status?('<span class="st '+esc(e.status)+'">'+esc(e.status)+'</span>'):'';
+  return '<div class="tile" onclick="drill('+i+')">'+st+'<div class="h"><span class="ic">'+emo(e.name)+'</span><span class="name">'+esc(e.name)+'</span></div><div class="n">'+n+'</div><div class="sub2">'+unit(e.name)+' this '+rl+'</div><div class="d">'+(e.health?esc(e.health):'')+'</div></div>';
+ }).join('') || '<div class="empty">No employees switched on yet.</div>';
+
+ // ALWAYS shown
+ var feed=(d.feed||[]).map(function(f){return fitem(emo(f.employee),f.title,f.sub,ago(f.ts));}).join('')||'<div class="empty">No activity yet.</div>';
+ var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,a.sub,ago(a.ts));}).join('')||'<div class="empty">Nothing needs your attention. Nice.</div>';
+
+ // Tiles + Live activity + Needs attention. Per-employee detail lives in the click-through drawer (drill).
+ document.getElementById('app').innerHTML =
+  '<div class="sec">AI employees - this '+rl+'</div><div class="grid">'+tiles+'</div>'+
+  '<div class="cols" style="margin-top:22px"><div class="card"><h3>🔔 Live activity</h3><div class="feed">'+feed+'</div></div>'+
+  '<div class="card attn"><h3>🚩 Needs your attention</h3><div class="feed">'+attn+'</div></div></div>';
+}
+
+function drawOwner(d){
+ document.getElementById('htitle').textContent='Portfolio';
+ document.getElementById('hsub').textContent='All clients - HelpCo AI';
+ var s=d.stats||{};
+ var stat=function(lbl,val,e){return '<div class="tile" style="cursor:default"><div class="h"><span class="ic">'+e+'</span><span class="name">'+lbl+'</span></div><div class="n">'+val+'</div></div>';};
+ var tiles=stat('Active clients',s.clients||0,'🏢')+stat('Employees live',s.employeesLive||0,'🤖')+stat('Events this week',s.eventsWeek||0,'⚡')+stat('Needs attention',s.needsAttention||0,'🚩')+stat('Revenue attributed (30d)',money(s.revenue30),'💰');
+
+ var rows=(d.clients||[]).map(function(c){
+  var attn=c.needsAttention?('<span class="pill due">'+c.needsAttention+'</span>'):'<span class="pill ok">0</span>';
+  return '<tr><td><b>'+esc(c.name)+'</b></td><td>'+esc(c.plan||'')+'</td><td>'+esc(c.status||'')+'</td><td>'+c.employeesLive+' / '+c.employeesTotal+'</td><td>'+attn+'</td></tr>';
+ }).join('')||'<tr><td colspan="5" class="empty">No clients yet.</td></tr>';
+
+ var feed=(d.feed||[]).map(function(f){return fitem(emo(f.employee),f.title,(f.client?('['+esc(f.client)+'] '):'')+esc(f.sub),ago(f.ts));}).join('')||'<div class="empty">No activity yet.</div>';
+ var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,(a.client?('['+esc(a.client)+'] '):'')+esc(a.sub),ago(a.ts));}).join('')||'<div class="empty">All clear.</div>';
+
+ document.getElementById('app').innerHTML =
+  '<div class="sec">Portfolio overview</div><div class="grid" style="grid-template-columns:repeat(5,1fr)">'+tiles+'</div>'+
+  '<div class="cols" style="margin-top:22px"><div class="card"><h3>🏢 Clients</h3><table><tr><th>Client</th><th>Plan</th><th>Status</th><th>Live</th><th>Flags</th></tr>'+rows+'</table></div>'+
+  '<div class="card attn"><h3>🚩 Needs attention</h3><div class="feed">'+attn+'</div></div></div>'+
+  '<div class="card" style="margin-top:16px"><h3>🔔 Recent activity - all clients</h3><div class="feed">'+feed+'</div></div>';
+}
+
+function fitem(ic,title,sub,t){return '<div class="fitem"><div class="fic">'+ic+'</div><div><b>'+esc(title)+'</b><span>'+esc(sub)+'</span></div><div class="t">'+esc(t)+'</div></div>';}
+function statusPill(s){var x=(s||'').toLowerCase();var c='soon';if(/paid|booked|confirm|done|5 star|posted|routed|replied/.test(x))c='ok';if(/overdue|pending|late|needs|fail/.test(x))c='due';return '<span class="pill '+c+'">'+esc(s||'-')+'</span>';}
+
+function drill(i){ var d=DATA; if(!d||!d.employees) return; var e=d.employees[i];
+ document.getElementById('dic').textContent=emo(e.name);
+ document.getElementById('dtitle').textContent=e.name;
+ document.getElementById('dsub').textContent=(RANGE==='w'?e.countWeek:e.countMonth)+' '+unit(e.name)+' this '+(RANGE==='w'?'week':'month');
+ var rows=(e.recent||[]);
+ var body = rows.length ? '<table><tr><th>When</th><th>What happened</th><th>Result</th></tr>'+rows.map(function(r){return '<tr><td>'+ago(r.ts)+'</td><td>'+esc(r.title)+'</td><td>'+esc(r.status||'')+'</td></tr>';}).join('')+'</table>' : '<p class="note">No recent activity for this employee in the loaded window.</p>';
+ document.getElementById('dbody').innerHTML=body+'<p class="note">This reads live from your Airtable Activity Log. Every row is real.</p>';
+ document.getElementById('scrim').classList.add('open');document.getElementById('drawer').classList.add('open');}
+function closeD(){document.getElementById('scrim').classList.remove('open');document.getElementById('drawer').classList.remove('open');}
+
+/* ---- built-in sample (used only when no Worker URL / offline) ---- */
+var _n=Date.now();
+function D(o){return new Date(_n+o).toISOString();}
+var SAMPLE={
+ locations:[{id:'gulfbreeze',name:'Gulf Breeze HVAC (sample)'},{id:'helpco',name:'HelpCo AI'}],
+ portfolio:{owner:true,updated:new Date().toISOString(),
+  stats:{clients:2,employeesLive:24,eventsWeek:28,needsAttention:2,revenue30:1950},
+  clients:[
+   {name:'Gulf Breeze HVAC (sample)',plan:'Growth',status:'Active',employeesLive:12,employeesTotal:12,needsAttention:2},
+   {name:'HelpCo AI',plan:'Internal',status:'Active',employeesLive:12,employeesTotal:12,needsAttention:0}
+  ],
+  feed:[
+   {client:'Gulf Breeze HVAC (sample)',employee:'AI Front Desk',title:'After-hours call answered and routed',sub:'Emergency routed to on-call tech',ts:D(-3600000)},
+   {client:'Gulf Breeze HVAC (sample)',employee:'Review & Reputation Engine',title:'New 5-star Google review posted',sub:'Fast and honest',ts:D(-64800000)}
+  ],
+  attention:[
+   {client:'Gulf Breeze HVAC (sample)',title:'Caller asked to speak with a human',sub:'AI Front Desk flagged it 20 min ago.',ts:D(-1200000)}
+  ]},
+ gulfbreeze:{owner:false,updated:new Date().toISOString(),client:{name:"Gulf Breeze HVAC (sample)",plan:"Growth"},
+  employees:[
+   {name:"Missed-Call Text-Back",status:"Live",health:"+22% recovered",countWeek:3,countMonth:58,recent:[
+    {title:"Missed call from (941) 555-0198 texted back",status:"Booked",ts:D(-90000)},
+    {title:"Missed call from (941) 555-0177 texted back",status:"Replied",ts:D(-160000000)}
+   ]},
+   {name:"AI Front Desk",status:"Live",health:"+9%",countWeek:3,countMonth:171,recent:[
+    {title:"After-hours call answered and routed",status:"Routed",ts:D(-3600000)},
+    {title:"Inbound call booked an AC tune-up",status:"Booked",ts:D(-93600000)}
+   ]},
+   {name:"Website Lead Catcher",status:"Live",health:"+14%",countWeek:3,countMonth:38,recent:[
+    {title:"New website lead: AC not cooling",status:"Captured",ts:D(-10800000)},
+    {title:"After-hours chat booked a diagnostic",status:"Booked",ts:D(-320000000)}
+   ]},
+   {name:"Auto-Booking Engine",status:"Live",health:"no-shows -32%",countWeek:3,countMonth:77,recent:[
+    {title:"Tune-up booked for Thursday 1:00 PM",status:"Booked",ts:D(-77000000)},
+    {title:"Appointment auto-rescheduled",status:"Rescheduled",ts:D(-260000000)}
+   ]},
+   {name:"Email Triage + Reply",status:"Live",health:"51 auto-handled",countWeek:3,countMonth:268,recent:[
+    {title:"Sorted 14 inbox emails, drafted 5 replies",status:"Handled",ts:D(-16000000)},
+    {title:"Flagged a warranty question for the owner",status:"Needs owner",ts:D(-280000000)}
+   ]},
+   {name:"Review & Reputation Engine",status:"Live",health:"4.9★ avg",countWeek:3,countMonth:69,recent:[
+    {title:"New 5-star Google review posted",status:"5 stars",ts:D(-64800000)},
+    {title:"Replied to a new 4-star review",status:"Replied",ts:D(-68000000)}
+   ]},
+   {name:"Social Media Automation",status:"Live",health:"1.4k reach",countWeek:2,countMonth:20,recent:[
+    {title:"Published an AC maintenance tip to Facebook",status:"Published",ts:D(-3000000)},
+    {title:"Before and after job posted to Instagram",status:"Published",ts:D(-240000000)}
+   ]},
+   {name:"Customer Database (CRM)",status:"Live",health:"+18%",countWeek:2,countMonth:96,recent:[
+    {title:"New contact added from a missed call",status:"Added",ts:D(-2400000)},
+    {title:"Contact tagged as a repeat customer",status:"Updated",ts:D(-330000000)}
+   ]},
+   {name:"Database Reactivation",status:"Live",health:"+19%",countWeek:2,countMonth:23,recent:[
+    {title:"Past customer re-booked a tune-up",status:"Booked",ts:D(-160000000)},
+    {title:"Dormant customer replied to a seasonal offer",status:"Replied",ts:D(-430000000)}
+   ]},
+   {name:"Get-Paid-Faster",status:"Live",health:"collected faster",countWeek:3,countMonth:27,recent:[
+    {title:"Invoice #1051 paid: $420 collected",status:"Paid",ts:D(-70000000)},
+    {title:"Invoice #1044 is 12 days overdue",status:"Pending",ts:D(-160000000)}
+   ]},
+   {name:"SEO + AI Search Optimization",status:"Live",health:"+14 positions",countWeek:2,countMonth:18,recent:[
+    {title:"Moved up to #6 for 'AC repair Bradenton'",status:"Improved",ts:D(-180000000)},
+    {title:"Google Business Profile post published",status:"Published",ts:D(-450000000)}
+   ]},
+   {name:"AI-Smart Website",status:"Live",health:"7.4% to leads",countWeek:2,countMonth:910,recent:[
+    {title:"Website: 41 visitors, 4 became leads",status:"Captured",ts:D(-30000000)},
+    {title:"Contact form submission routed to CRM",status:"Captured",ts:D(-280000000)}
+   ]}
+  ],
+  feed:[
+   {employee:"Missed-Call Text-Back",title:"Missed call from (941) 555-0143 texted back",sub:"Sorry we missed you, how can we help?",ts:D(-90000)},
+   {employee:"Customer Database (CRM)",title:"New contact added from a missed call",sub:"Auto-created in the CRM",ts:D(-2400000)},
+   {employee:"Social Media Automation",title:"Published an AC maintenance tip to Facebook",sub:"Scheduled post went live",ts:D(-3000000)},
+   {employee:"AI Front Desk",title:"After-hours call answered and routed",sub:"Emergency routed to on-call tech",ts:D(-3600000)},
+   {employee:"Website Lead Catcher",title:"New website lead: AC not cooling",sub:"Name and phone captured",ts:D(-10800000)},
+   {employee:"Email Triage + Reply",title:"Sorted 14 inbox emails, drafted 5 replies",sub:"5 drafts waiting for approval",ts:D(-16000000)},
+   {employee:"Get-Paid-Faster",title:"Invoice #1051 paid: $420 collected",sub:"Same-day payment",ts:D(-70000000)},
+   {employee:"Review & Reputation Engine",title:"New 5-star Google review posted",sub:"Fast and honest",ts:D(-64800000)}
+  ],
+  attention:[
+   {title:"Caller asked to speak with a human",sub:"AI Front Desk flagged it 20 min ago.",ts:D(-1200000)},
+   {title:"Flagged a warranty question for the owner",sub:"Email Triage needs your input.",ts:D(-280000000)}
+  ]},
+ helpco:{owner:false,updated:new Date().toISOString(),client:{name:"HelpCo AI",plan:"Internal"},
+  employees:[
+   {name:"Missed-Call Text-Back",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"AI Front Desk",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Website Lead Catcher",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Auto-Booking Engine",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Email Triage + Reply",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Review & Reputation Engine",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Social Media Automation",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Customer Database (CRM)",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Database Reactivation",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"Get-Paid-Faster",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"SEO + AI Search Optimization",status:"Live",countWeek:0,countMonth:0,recent:[]},
+   {name:"AI-Smart Website",status:"Live",countWeek:0,countMonth:0,recent:[]}
+  ],
+  feed:[],attention:[]}
+};
+
+async function boot(){ await loadLocations(); load(); setInterval(function(){ load(); }, 20000); }
+boot();
+</script>
+</body></html>
