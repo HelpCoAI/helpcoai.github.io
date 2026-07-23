@@ -44,6 +44,7 @@
 .fitem .fic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;background:#eef7f5;flex:none}
 .fitem b{font-size:13.5px}.fitem span{display:block;font-size:12px;color:var(--muted)}
 .fitem .t{margin-left:auto;font-size:11px;color:#9aa7b6;white-space:nowrap}
+.fitem a{color:var(--teal-d);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--teal-d)}.fitem a:hover{color:var(--navy)}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
 th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
 .pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
@@ -118,6 +119,13 @@ function ago(iso){ if(!iso) return ''; var s=(Date.now()-new Date(iso).getTime()
  return Math.floor(s/86400)+'d'; }
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function money(n){return '$'+Number(n||0).toLocaleString('en-US');}
+/* escape, then turn emails into mailto: links and phone numbers into tel: links */
+function linkify(x){
+ var s=esc(x);
+ s=s.replace(/([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/g,function(m){return '<a href="mailto:'+m+'">'+m+'</a>';});
+ s=s.replace(/(\(\d{3}\)[\s.-]?\d{3}[\s.-]?\d{4}|\b\d{3}[\s.-]\d{3}[\s.-]\d{4}\b|\b\d{10}\b)/g,function(m){var d=m.replace(/\D/g,'');var tel=d.length===11?('+'+d):('+1'+d);return '<a href="tel:'+tel+'">'+m+'</a>';});
+ return s;
+}
 
 /* ---- locations / dropdown ---- */
 async function loadLocations(){
@@ -198,17 +206,17 @@ function drawOwner(d){
   return '<tr><td><b>'+esc(c.name)+'</b></td><td>'+esc(c.plan||'')+'</td><td>'+esc(c.status||'')+'</td><td>'+c.employeesLive+' / '+c.employeesTotal+'</td><td>'+attn+'</td></tr>';
  }).join('')||'<tr><td colspan="5" class="empty">No clients yet.</td></tr>';
 
- var feed=(d.feed||[]).map(function(f){return fitem(emo(f.employee),f.title,(f.client?('['+esc(f.client)+'] '):'')+esc(f.sub),ago(f.ts));}).join('')||'<div class="empty">No activity yet.</div>';
- var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,(a.client?('['+esc(a.client)+'] '):'')+esc(a.sub),ago(a.ts));}).join('')||'<div class="empty">All clear.</div>';
+ var feed=(d.feed||[]).map(function(f){return fitem(emo(f.employee),f.title,(f.client?('['+f.client+'] '):'')+f.sub,ago(f.ts));}).join('')||'<div class="empty">No activity yet.</div>';
+ var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,(a.client?('['+a.client+'] '):'')+a.sub,ago(a.ts));}).join('')||'<div class="empty">All clear.</div>';
 
  document.getElementById('app').innerHTML =
-  '<div class="sec">Portfolio overview</div><div class="grid" style="grid-template-columns:repeat(5,1fr)">'+tiles+'</div>'+
+  '<div class="sec">Portfolio overview</div><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">'+tiles+'</div>'+
   '<div class="cols" style="margin-top:22px"><div class="card"><h3>🏢 Clients</h3><table><tr><th>Client</th><th>Plan</th><th>Status</th><th>Live</th><th>Flags</th></tr>'+rows+'</table></div>'+
   '<div class="card attn"><h3>🚩 Needs attention</h3><div class="feed">'+attn+'</div></div></div>'+
   '<div class="card" style="margin-top:16px"><h3>🔔 Recent activity - all clients</h3><div class="feed">'+feed+'</div></div>';
 }
 
-function fitem(ic,title,sub,t){return '<div class="fitem"><div class="fic">'+ic+'</div><div><b>'+esc(title)+'</b><span>'+esc(sub)+'</span></div><div class="t">'+esc(t)+'</div></div>';}
+function fitem(ic,title,sub,t){return '<div class="fitem"><div class="fic">'+ic+'</div><div><b>'+linkify(title)+'</b><span>'+linkify(sub)+'</span></div><div class="t">'+esc(t)+'</div></div>';}
 function statusPill(s){var x=(s||'').toLowerCase();var c='soon';if(/paid|booked|confirm|done|5 star|posted|routed|replied/.test(x))c='ok';if(/overdue|pending|late|needs|fail/.test(x))c='due';return '<span class="pill '+c+'">'+esc(s||'-')+'</span>';}
 
 function drill(i){ var d=DATA; if(!d||!d.employees) return; var e=d.employees[i];
@@ -216,7 +224,7 @@ function drill(i){ var d=DATA; if(!d||!d.employees) return; var e=d.employees[i]
  document.getElementById('dtitle').textContent=e.name;
  document.getElementById('dsub').textContent=(RANGE==='w'?e.countWeek:e.countMonth)+' '+unit(e.name)+' this '+(RANGE==='w'?'week':'month');
  var rows=(e.recent||[]);
- var body = rows.length ? '<table><tr><th>When</th><th>What happened</th><th>Result</th></tr>'+rows.map(function(r){return '<tr><td>'+ago(r.ts)+'</td><td>'+esc(r.title)+'</td><td>'+esc(r.status||'')+'</td></tr>';}).join('')+'</table>' : '<p class="note">No recent activity for this employee in the loaded window.</p>';
+ var body = rows.length ? '<table><tr><th>When</th><th>What happened</th><th>Result</th></tr>'+rows.map(function(r){return '<tr><td>'+ago(r.ts)+'</td><td>'+linkify(r.title)+'</td><td>'+esc(r.status||'')+'</td></tr>';}).join('')+'</table>' : '<p class="note">No recent activity for this employee in the loaded window.</p>';
  document.getElementById('dbody').innerHTML=body+'<p class="note">This reads live from your Airtable Activity Log. Every row is real.</p>';
  document.getElementById('scrim').classList.add('open');document.getElementById('drawer').classList.add('open');}
 function closeD(){document.getElementById('scrim').classList.remove('open');document.getElementById('drawer').classList.remove('open');}
