@@ -77,7 +77,25 @@ a{color:var(--teal-d)}
 <script>
 // Point this at the Worker. Same origin-model as dashboard-live.html.
 var WORKER_URL = "https://helpco-dashboard.lhajnaj.workers.dev";
-var token = new URLSearchParams(location.search).get("t") || "";
+/* Access token: accept it from the URL once, save it to this browser, then strip it
+   out of the address bar. Keeping it in the URL leaked it into history, screenshots,
+   the Referer header and every lead-alert email. */
+var token = (function(){
+  var fromUrl = new URLSearchParams(location.search).get("t") || "";
+  if(fromUrl){
+    try{ localStorage.setItem('helpco_token', fromUrl); }catch(e){}
+    try{
+      var u=new URL(location.href); u.searchParams.delete('t');
+      history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);
+    }catch(e){}
+    return fromUrl;
+  }
+  try{ return localStorage.getItem('helpco_token')||''; }catch(e){ return ''; }
+})();
+function signOut(){
+  try{ localStorage.removeItem('helpco_token'); localStorage.removeItem('helpco_owner'); }catch(e){}
+  location.href = location.pathname;
+}
 var threads = [], active = null;
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){
@@ -128,7 +146,15 @@ function renderMsgs(){
 }
 
 function load(){
-  if(!token){ banner("<b>Missing access token.</b> Open this page using your owner link, which ends in <code>inbox.html?t=</code> followed by your token. It is the same token as your dashboard link (copy everything after <code>?t=</code> and before <code>&amp;owner=1</code>)."); document.getElementById("threads").innerHTML=""; return; }
+  if(!token){ banner("<b>This inbox needs your access key.</b> Open the Owner Dashboard first and sign in there; the key is shared between both pages on this device. <button class='btn' id='keyBtn' style='padding:6px 12px;font-size:13px;margin-left:8px'>Enter key</button>");
+    var kb=document.getElementById('keyBtn');
+    if(kb) kb.addEventListener('click', function(){
+      var v=window.prompt('Enter your access key:',''); if(v===null) return;
+      v=v.trim(); if(!v) return;
+      try{ localStorage.setItem('helpco_token', v); }catch(e){}
+      location.reload();
+    });
+    document.getElementById("threads").innerHTML=""; return; }
   fetch(WORKER_URL+"/api/conversations?t="+encodeURIComponent(token))
     .then(function(r){ if(!r.ok) throw new Error(r.status===401?"Not authorized. Check your token.":"Error "+r.status); return r.json(); })
     .then(function(d){

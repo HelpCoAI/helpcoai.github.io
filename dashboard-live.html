@@ -119,6 +119,7 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4p
     <span class="upd" id="upd"></span>
     <div class="toggle" id="rangeToggle"><button class="on" id="tw" onclick="setRange('w')">This week</button><button id="tm" onclick="setRange('m')">This month</button></div>
     <button class="rbtn" onclick="refreshCurrent()">&#8635; Refresh</button>
+    <button class="rbtn" onclick="signOut()" title="Forget the saved access key on this device">Sign out</button>
   </div>
 </header>
 <div class="wrap">
@@ -182,7 +183,48 @@ function unit(name){return (EMP[name]||{}).u||"actions";}
 
 var RANGE='w', DATA=null, MODE='sample';
 function qs(k){return new URLSearchParams(location.search).get(k);}
-var TOKEN = qs('t')||'', OWNER = qs('owner')==='1';
+/* ===== Access token handling =====
+   The token used to travel in the URL, which meant it ended up in browser history,
+   in screenshots, in the Referer header of any outbound link, and worst of all in
+   every lead-alert EMAIL. Forwarding one of those emails handed over the whole
+   dashboard. Now: if a token arrives in the URL we save it to this browser and
+   immediately strip it back out of the address bar, so it stops travelling. */
+function readToken(){
+  var fromUrl = qs('t')||'';
+  var ownerUrl = qs('owner')==='1';
+  if(fromUrl){
+    try{
+      localStorage.setItem('helpco_token', fromUrl);
+      localStorage.setItem('helpco_owner', ownerUrl?'1':'0');
+    }catch(e){}
+    // Remove t (and owner) from the visible URL without reloading the page.
+    try{
+      var u=new URL(location.href);
+      u.searchParams.delete('t'); u.searchParams.delete('owner');
+      history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);
+    }catch(e){}
+    return { token: fromUrl, owner: ownerUrl };
+  }
+  try{
+    return { token: localStorage.getItem('helpco_token')||'', owner: localStorage.getItem('helpco_owner')==='1' };
+  }catch(e){ return { token:'', owner:false }; }
+}
+var _tk = readToken();
+var TOKEN = _tk.token, OWNER = _tk.owner;
+// Let the owner drop the saved token from a shared or borrowed machine.
+function signOut(){
+  try{ localStorage.removeItem('helpco_token'); localStorage.removeItem('helpco_owner'); }catch(e){}
+  location.href = location.pathname;
+}
+// No token stored and none in the URL: ask for it once instead of silently
+// falling back to sample data, which looks like the product is broken.
+function askForToken(){
+  var v = window.prompt('Enter your dashboard access key:', '');
+  if(v===null) return false;
+  v=v.trim(); if(!v) return false;
+  try{ localStorage.setItem('helpco_token', v); localStorage.setItem('helpco_owner','1'); }catch(e){}
+  location.reload(); return true;
+}
 var LOCS=[], CANPORT=false, CUR=null;
 
 function ago(iso){ if(!iso) return ''; var s=(Date.now()-new Date(iso).getTime())/1000;
@@ -699,6 +741,16 @@ document.getElementById('ibSend').addEventListener('click', function(){
 });
 
 async function boot(){
+  // No key at all: ask once. Otherwise the page silently shows SAMPLE data and
+  // looks broken rather than locked.
+  if(!TOKEN && WORKER_URL){
+    document.getElementById('app').innerHTML =
+      '<div class="loading">This dashboard needs your access key.<br><br>'
+      + '<button class="rbtn" id="keyBtn">Enter access key</button></div>';
+    var kb=document.getElementById('keyBtn');
+    if(kb) kb.addEventListener('click', askForToken);
+    return;
+  }
   await loadLocations();
   load();
   ibLoad();                                  // pull threads once so the Messages badge is accurate immediately
