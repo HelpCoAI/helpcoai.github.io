@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Conversations Inbox | HelpCo AI</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" href="favicon.ico">
+<style>
+:root{--navy:#0a1f3c;--navy2:#102a4f;--teal:#19c6b3;--teal-d:#0fa697;--ink:#16202e;--muted:#5d6b7c;--bg:#f4f7fb;--line:#e6edf4;--white:#fff;--warn:#e8833a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+header{background:var(--navy);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header .brand{font-weight:800;font-size:17px;display:flex;align-items:center;gap:9px}
+header .brand .b{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--teal),#6c5ce7);display:grid;place-items:center;font-size:14px}
+header .meta{font-size:12.5px;color:#b9cbe0}
+.wrap{max-width:1180px;margin:0 auto;padding:16px 18px 40px}
+.bar{background:#fff;border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px;color:var(--ink)}
+.bar b{color:var(--navy)}
+.cols{display:grid;grid-template-columns:340px 1fr;gap:16px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}.thread-pane{max-height:none}}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.card h2{font-size:14px;padding:13px 15px;border-bottom:1px solid var(--line);color:var(--navy);letter-spacing:.2px}
+.thread-pane{max-height:70vh;overflow-y:auto}
+.thread{padding:13px 15px;border-bottom:1px solid var(--line);cursor:pointer;display:block;width:100%;text-align:left;background:none;border-left:3px solid transparent;font:inherit}
+.thread:hover{background:#f7fbfa}
+.thread.active{background:#eef7f5;border-left-color:var(--teal-d)}
+.thread .num{font-weight:700;color:var(--navy);font-size:14.5px}
+.thread .last{color:var(--muted);font-size:13px;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.thread .when{color:#93a3b4;font-size:11.5px;margin-top:4px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--warn);margin-right:6px;vertical-align:middle}
+.msgs{padding:16px;min-height:280px;max-height:56vh;overflow-y:auto;background:#fbfdff}
+.msg{max-width:78%;padding:9px 13px;border-radius:14px;margin-bottom:10px;font-size:14.5px;white-space:pre-wrap;word-wrap:break-word}
+.msg.in{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.out{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#04302b;margin-left:auto;border-bottom-right-radius:4px;font-weight:500}
+.msg .t{display:block;font-size:11px;opacity:.7;margin-top:4px;font-weight:400}
+.composer{border-top:1px solid var(--line);padding:12px;display:flex;gap:9px;align-items:flex-end}
+.composer textarea{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;resize:vertical;min-height:46px;max-height:150px}
+.btn{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#04302b;border:none;border-radius:10px;padding:12px 18px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:14.5px}
+.note{font-size:12.5px;color:var(--muted);padding:0 12px 12px}
+.err{color:#b3261e;font-weight:600}
+.ok{color:#1f9d6b;font-weight:600}
+a{color:var(--teal-d)}
+</style>
+</head><body>
+<header>
+  <div class="brand"><span class="b">&#128172;</span> HelpCo AI - Conversations</div>
+  <div class="meta" id="meta">Loading...</div>
+</header>
+<div class="wrap">
+  <div class="bar" id="banner" style="display:none"></div>
+  <div class="cols">
+    <div class="card">
+      <h2>Threads</h2>
+      <div class="thread-pane" id="threads"><div class="empty">Loading threads...</div></div>
+    </div>
+    <div class="card">
+      <h2 id="convTitle">Select a conversation</h2>
+      <div class="msgs" id="msgs"><div class="empty">Pick a thread on the left to read it and reply.</div></div>
+      <div class="composer">
+        <textarea id="reply" placeholder="Type your reply..." disabled></textarea>
+        <button class="btn" id="send" disabled>Send</button>
+      </div>
+      <div class="note" id="sendNote"></div>
+    </div>
+  </div>
+</div>
+<script>
+// Point this at the Worker. Same origin-model as dashboard-live.html.
+var WORKER_URL = "https://helpco-dashboard.lhajnaj.workers.dev";
+var token = new URLSearchParams(location.search).get("t") || "";
+var threads = [], active = null;
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function when(ts){ if(!ts) return ""; var d=new Date(ts); if(isNaN(d)) return "";
+  var now=new Date(), sameDay=d.toDateString()===now.toDateString();
+  return sameDay ? d.toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})
+                 : d.toLocaleDateString([], {month:"short",day:"numeric"}) + " " + d.toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}); }
+function pretty(n){ var m=String(n||"").match(/^\+1(\d{3})(\d{3})(\d{4})$/); return m ? "("+m[1]+") "+m[2]+"-"+m[3] : (n||""); }
+
+function banner(html, cls){ var b=document.getElementById("banner"); b.innerHTML=html; b.style.display="block"; if(cls) b.className="bar "+cls; }
+
+function renderThreads(){
+  var el=document.getElementById("threads");
+  if(!threads.length){ el.innerHTML='<div class="empty">No conversations yet.<br><br>When someone texts your business line, the thread appears here.</div>'; return; }
+  el.innerHTML = threads.map(function(t,i){
+    var unread = t.status==="Open" && t.messages && t.messages.length && t.messages[t.messages.length-1].direction==="in";
+    return '<button class="thread'+(active===i?" active":"")+'" data-i="'+i+'">'
+      + '<div class="num">'+(unread?'<span class="dot"></span>':'')+esc(pretty(t.number))+'</div>'
+      + '<div class="last">'+esc(t.lastMessage||"")+'</div>'
+      + '<div class="when">'+esc(when(t.lastActivity))+'</div></button>';
+  }).join("");
+  Array.prototype.forEach.call(el.querySelectorAll(".thread"), function(b){
+    b.addEventListener("click", function(){ active=+b.getAttribute("data-i"); renderThreads(); renderMsgs(); });
+  });
+}
+function renderMsgs(){
+  var box=document.getElementById("msgs"), title=document.getElementById("convTitle");
+  var ta=document.getElementById("reply"), btn=document.getElementById("send");
+  if(active===null || !threads[active]){ return; }
+  var t=threads[active];
+  title.textContent = pretty(t.number);
+  var ms = t.messages||[];
+  box.innerHTML = ms.length ? ms.map(function(m){
+    return '<div class="msg '+(m.direction==="out"?"out":"in")+'">'+esc(m.text)
+      +'<span class="t">'+esc(when(m.ts))+'</span></div>'; }).join("")
+    : '<div class="empty">No message history stored for this thread yet.</div>';
+  box.scrollTop = box.scrollHeight;
+  ta.disabled=false; btn.disabled=false;
+}
+
+function load(){
+  if(!token){ banner("<b>Missing access token.</b> Open this page with your owner link: <code>inbox.html?t=YOUR_OWNER_TOKEN</code>"); document.getElementById("threads").innerHTML=""; return; }
+  fetch(WORKER_URL+"/api/conversations?t="+encodeURIComponent(token))
+    .then(function(r){ if(!r.ok) throw new Error(r.status===401?"Not authorized. Check your token.":"Error "+r.status); return r.json(); })
+    .then(function(d){
+      threads = d.threads||[];
+      document.getElementById("meta").textContent = threads.length+" thread"+(threads.length===1?"":"s")+" - updated "+when(d.updated);
+      renderThreads(); if(active!==null) renderMsgs();
+    })
+    .catch(function(e){ document.getElementById("threads").innerHTML='<div class="empty err">'+esc(e.message)+'</div>'; });
+}
+
+document.getElementById("send").addEventListener("click", function(){
+  if(active===null) return;
+  var ta=document.getElementById("reply"), note=document.getElementById("sendNote");
+  var text=ta.value.trim(); if(!text) return;
+  var btn=this; btn.disabled=true; note.textContent="Sending...";
+  fetch(WORKER_URL+"/api/send?t="+encodeURIComponent(token), {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ to: threads[active].number, body: text })
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d.sent){ note.innerHTML='<span class="ok">Sent.</span>'; ta.value=""; setTimeout(load, 900); }
+    else if(d.reason==="no-creds"){ note.innerHTML='<span class="err">Not sent.</span> Texting is still switched off: the Twilio secrets are not on the Worker yet, and A2P must be approved first.'; }
+    else { note.innerHTML='<span class="err">Not sent.</span> '+esc(d.reason||"Unknown error"); }
+    btn.disabled=false;
+  }).catch(function(e){ note.innerHTML='<span class="err">Failed: '+esc(e.message)+'</span>'; btn.disabled=false; });
+});
+
+load();
+setInterval(load, 20000);
+</script>
+</body></html>
