@@ -35,6 +35,12 @@ header .meta{font-size:12.5px;color:#b9cbe0}
 .composer textarea{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;resize:vertical;min-height:46px;max-height:150px}
 .btn{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#04302b;border:none;border-radius:10px;padding:12px 18px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .btn:disabled{opacity:.5;cursor:not-allowed}
+.card h2{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.newbtn{padding:6px 12px;font-size:12.5px;border-radius:8px}
+.newbox{display:none;padding:12px 15px;border-bottom:1px solid var(--line);background:#f7fbfa}
+.newbox.open{display:block}
+.newbox input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px}
+.newbox .note{padding:8px 0 0}
 .empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:14.5px}
 .note{font-size:12.5px;color:var(--muted);padding:0 12px 12px}
 .err{color:#b3261e;font-weight:600}
@@ -50,7 +56,11 @@ a{color:var(--teal-d)}
   <div class="bar" id="banner" style="display:none"></div>
   <div class="cols">
     <div class="card">
-      <h2>Threads</h2>
+      <h2>Threads <button class="btn newbtn" id="newBtn" title="Start a new text conversation">+ New</button></h2>
+      <div class="newbox" id="newBox">
+        <input id="newTo" type="tel" inputmode="tel" placeholder="Phone number, e.g. 941-555-0133">
+        <div class="note" id="newNote">They must have opted in, or have texted or called you first.</div>
+      </div>
       <div class="thread-pane" id="threads"><div class="empty">Loading threads...</div></div>
     </div>
     <div class="card">
@@ -91,7 +101,15 @@ function renderThreads(){
       + '<div class="when">'+esc(when(t.lastActivity))+'</div></button>';
   }).join("");
   Array.prototype.forEach.call(el.querySelectorAll(".thread"), function(b){
-    b.addEventListener("click", function(){ active=+b.getAttribute("data-i"); renderThreads(); renderMsgs(); });
+    b.addEventListener("click", function(){
+      // Opening a real thread cancels any half-typed new message.
+      composeTo=null;
+      document.getElementById("newBox").classList.remove("open");
+      document.getElementById("newTo").value="";
+      document.getElementById("reply").placeholder="Type your reply...";
+      document.getElementById("sendNote").textContent="";
+      active=+b.getAttribute("data-i"); renderThreads(); renderMsgs();
+    });
   });
 }
 function renderMsgs(){
@@ -110,7 +128,7 @@ function renderMsgs(){
 }
 
 function load(){
-  if(!token){ banner("<b>Missing access token.</b> Open this page with your owner link: <code>inbox.html?t=YOUR_OWNER_TOKEN</code>"); document.getElementById("threads").innerHTML=""; return; }
+  if(!token){ banner("<b>Missing access token.</b> Open this page using your owner link, which ends in <code>inbox.html?t=</code> followed by your token. It is the same token as your dashboard link (copy everything after <code>?t=</code> and before <code>&amp;owner=1</code>)."); document.getElementById("threads").innerHTML=""; return; }
   fetch(WORKER_URL+"/api/conversations?t="+encodeURIComponent(token))
     .then(function(r){ if(!r.ok) throw new Error(r.status===401?"Not authorized. Check your token.":"Error "+r.status); return r.json(); })
     .then(function(d){
@@ -121,17 +139,67 @@ function load(){
     .catch(function(e){ document.getElementById("threads").innerHTML='<div class="empty err">'+esc(e.message)+'</div>'; });
 }
 
+/* ---- Start a NEW conversation ----
+   The inbox can only reply to threads that already exist, which is useless when YOU
+   need to text someone first. This opens a compose box: type a number, and the
+   normal composer below sends to it. The thread appears on the next refresh. */
+var composeTo = null;   // E.164 number when composing a brand-new thread
+
+// Accept 10-digit US, 11-digit starting with 1, or an already-formatted +E.164.
+function toE164(raw){
+  var s=String(raw||"").trim();
+  if(/^\+[1-9]\d{7,14}$/.test(s)) return s;
+  var d=s.replace(/\D/g,"");
+  if(d.length===10) return "+1"+d;
+  if(d.length===11 && d.charAt(0)==="1") return "+"+d;
+  return "";
+}
+
+document.getElementById("newBtn").addEventListener("click", function(){
+  var box=document.getElementById("newBox"), inp=document.getElementById("newTo");
+  var opening = !box.classList.contains("open");
+  box.classList.toggle("open", opening);
+  if(opening){ inp.value=""; inp.focus(); }
+  else { composeTo=null; }
+});
+
+// Typing a valid number arms the composer on the right.
+document.getElementById("newTo").addEventListener("input", function(){
+  var n=toE164(this.value), note=document.getElementById("newNote");
+  var ta=document.getElementById("reply"), btn=document.getElementById("send");
+  if(n){
+    composeTo=n; active=null;
+    document.getElementById("convTitle").textContent="New message to "+pretty(n);
+    document.getElementById("msgs").innerHTML='<div class="empty">New conversation. Type your message below and send.</div>';
+    ta.disabled=false; btn.disabled=false; ta.placeholder="Type your message...";
+    note.innerHTML='<span class="ok">Ready.</span> They must have opted in, or have texted or called you first.';
+    renderThreads();
+  } else {
+    composeTo=null; ta.disabled=true; btn.disabled=true;
+    note.textContent = this.value.trim() ? "Enter a valid 10-digit US number." : "They must have opted in, or have texted or called you first.";
+  }
+});
+
 document.getElementById("send").addEventListener("click", function(){
-  if(active===null) return;
+  // Send to either the open thread, or the number typed into the New box.
+  var target = composeTo || (active!==null && threads[active] ? threads[active].number : null);
+  if(!target) return;
   var ta=document.getElementById("reply"), note=document.getElementById("sendNote");
   var text=ta.value.trim(); if(!text) return;
   var btn=this; btn.disabled=true; note.textContent="Sending...";
   fetch(WORKER_URL+"/api/send?t="+encodeURIComponent(token), {
     method:"POST", headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({ to: threads[active].number, body: text })
+    body: JSON.stringify({ to: target, body: text })
   }).then(function(r){ return r.json(); }).then(function(d){
-    if(d.sent){ note.innerHTML='<span class="ok">Sent.</span>'; ta.value=""; setTimeout(load, 900); }
-    else if(d.reason==="no-creds"){ note.innerHTML='<span class="err">Not sent.</span> Texting is still switched off: the Twilio secrets are not on the Worker yet, and A2P must be approved first.'; }
+    if(d.sent){
+      note.innerHTML='<span class="ok">Sent.</span>'; ta.value="";
+      // Leave compose mode; the new thread shows up on the next refresh.
+      composeTo=null;
+      document.getElementById("newBox").classList.remove("open");
+      document.getElementById("newTo").value="";
+      setTimeout(load, 900);
+    }
+    else if(d.reason==="no-creds"){ note.innerHTML='<span class="err">Not sent.</span> Texting is switched off: the Twilio secrets are not all set on the Worker yet.'; }
     else { note.innerHTML='<span class="err">Not sent.</span> '+esc(d.reason||"Unknown error"); }
     btn.disabled=false;
   }).catch(function(e){ note.innerHTML='<span class="err">Failed: '+esc(e.message)+'</span>'; btn.disabled=false; });
