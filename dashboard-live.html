@@ -42,6 +42,8 @@
 .clrbtn{margin-left:auto;background:#eef3f8;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:4px 10px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
 .clrbtn:hover{background:#e3ebf3;color:var(--navy)}
 .clrbtn:disabled{opacity:.6;cursor:not-allowed}
+.livewarn{background:#fff4e5;border:1px solid #ffd9a3;border-left:4px solid var(--sun);color:#5a3d00;border-radius:12px;padding:13px 16px;margin:18px 0 0;font-size:14.5px;line-height:1.5}
+.livewarn b{color:#8a5a00}
 .fitem{position:relative}
 .xbtn{flex:0 0 auto;align-self:center;background:none;border:1px solid var(--line);color:#93a3b4;border-radius:7px;width:24px;height:24px;line-height:1;font-size:15px;cursor:pointer;padding:0;margin-left:4px}
 .xbtn:hover{background:#fdeaea;border-color:#f3c4c4;color:#b3261e}
@@ -182,6 +184,10 @@ function emo(name){return (EMP[name]||{}).e||"🤖";}
 function unit(name){return (EMP[name]||{}).u||"actions";}
 
 var RANGE='w', DATA=null, MODE='sample';
+/* Why we are not on live data. The dashboard used to fall back to SAMPLE data in
+   silence, so a bad key or an outage looked like real (but wrong) numbers. That is
+   the worst possible failure for a page someone makes decisions from. */
+var LASTERR='';
 function qs(k){return new URLSearchParams(location.search).get(k);}
 /* ===== Access token handling =====
    The token used to travel in the URL, which meant it ended up in browser history,
@@ -218,10 +224,19 @@ function signOut(){
 }
 // No token stored and none in the URL: ask for it once instead of silently
 // falling back to sample data, which looks like the product is broken.
+/* People paste more than the key: a whole URL, or the key with "&owner=1" still
+   stuck on the end (that is exactly how it appears in the old links). Any stray
+   character makes every request 401, so clean the input rather than fail on it. */
+function cleanKey(v){
+  v = String(v||'').trim();
+  if(v.indexOf('t=')!==-1) v = v.split('t=').pop();   // pasted a whole URL
+  v = v.split('&')[0].split('?')[0].split('#')[0];    // drop &owner=1 and friends
+  return v.replace(/[^A-Za-z0-9._-]/g,'').trim();     // keys are safe chars only
+}
 function askForToken(){
   var v = window.prompt('Enter your dashboard access key:', '');
   if(v===null) return false;
-  v=v.trim(); if(!v) return false;
+  v=cleanKey(v); if(!v) return false;
   try{ localStorage.setItem('helpco_token', v); localStorage.setItem('helpco_owner','1'); }catch(e){}
   location.reload(); return true;
 }
@@ -245,9 +260,14 @@ async function loadLocations(){
  if(!WORKER_URL){ LOCS=SAMPLE.locations; CANPORT=true; setDefaultCur(); fillSelect(); return; }
  try{
   var r=await fetch(WORKER_URL+'/api/locations?t='+encodeURIComponent(TOKEN),{cache:'no-store'});
-  if(!r.ok) throw 0;
-  var d=await r.json(); LOCS=d.locations||[]; CANPORT=!!d.canPortfolio; setDefaultCur(); fillSelect();
- }catch(e){ LOCS=SAMPLE.locations; CANPORT=true; MODE='sample'; setDefaultCur(); fillSelect(); }
+  if(!r.ok) throw new Error(r.status===401||r.status===404 ? 'key-rejected' : 'http '+r.status);
+  var d=await r.json(); LOCS=d.locations||[]; CANPORT=!!d.canPortfolio; setDefaultCur(); fillSelect(); LASTERR='';
+ }catch(e){
+  LASTERR = (e&&e.message==='key-rejected')
+    ? 'Your access key was rejected. Click Sign out, then enter the key again.'
+    : 'Could not reach live data ('+((e&&e.message)||'network error')+').';
+  LOCS=SAMPLE.locations; CANPORT=true; MODE='sample'; setDefaultCur(); fillSelect();
+ }
 }
 function setDefaultCur(){
  if(CUR) return;
@@ -271,16 +291,29 @@ async function load(manual){
   var r;
   if(CUR==='portfolio'){ r=await fetch(WORKER_URL+'/api/owner?t='+encodeURIComponent(TOKEN),{cache:'no-store'}); }
   else { r=await fetch(WORKER_URL+'/api/client?t='+encodeURIComponent(TOKEN)+'&client='+encodeURIComponent(CUR||''),{cache:'no-store'}); }
-  if(!r.ok) throw new Error('http '+r.status);
-  DATA=await r.json(); MODE='live'; draw();
- }catch(e){ DATA=(CUR==='portfolio'?SAMPLE.portfolio:SAMPLE[CUR])||SAMPLE.gulfbreeze; MODE='sample'; draw(); }
+  if(!r.ok) throw new Error(r.status===401||r.status===404 ? 'key-rejected' : 'http '+r.status);
+  DATA=await r.json(); MODE='live'; LASTERR=''; draw();
+ }catch(e){
+  LASTERR = (e&&e.message==='key-rejected')
+    ? 'Your access key was rejected. Click Sign out, then enter the key again.'
+    : 'Could not reach live data ('+((e&&e.message)||'network error')+').';
+  DATA=(CUR==='portfolio'?SAMPLE.portfolio:SAMPLE[CUR])||SAMPLE.gulfbreeze; MODE='sample'; draw();
+ }
 }
 function setRange(r){ RANGE=r; document.getElementById('tw').classList.toggle('on',r==='w'); document.getElementById('tm').classList.toggle('on',r==='m'); draw(); }
 
 /* ---- draw ---- */
 function draw(){
  var m=document.getElementById('mode');
- m.className='badge '+(MODE==='live'?'live':'sample'); m.textContent=(MODE==='live'?'live data':'sample data');
+ m.className='badge '+(MODE==='live'?'live':'sample'); m.textContent=(MODE==='live'?'live data':'SAMPLE - not your data');
+ // Say WHY, loudly. Silently showing sample numbers as if they were real is worse
+ // than showing nothing: it invites decisions based on figures that are fiction.
+ var wrapEl=document.querySelector('.wrap'), warn=document.getElementById('livewarn');
+ if(MODE!=='live' && LASTERR){
+   if(!warn){ warn=document.createElement('div'); warn.id='livewarn'; warn.className='livewarn'; wrapEl.insertBefore(warn, wrapEl.firstChild); }
+   warn.innerHTML='<b>These are sample numbers, not your business.</b> '+esc(LASTERR);
+   warn.style.display='';
+ } else if(warn){ warn.style.display='none'; }
  document.getElementById('upd').textContent = DATA&&DATA.updated ? ('updated '+ago(DATA.updated)) : '';
  if(DATA&&DATA.owner) return drawOwner(DATA);
  drawClient(DATA);
