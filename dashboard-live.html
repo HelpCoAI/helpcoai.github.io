@@ -403,7 +403,13 @@ var SAMPLE={
    Conversations are owner-scoped on the Worker, so a client token gets a 401.
    We surface that plainly rather than pretending the inbox is empty.
    ========================================================================== */
-var VIEW='dash', IBT=[], IBACTIVE=null, IBCOMPOSE=null, IBLOADED=false;
+/* The open thread is tracked by PHONE NUMBER, never by array position.
+   The server sorts threads by most-recent, and the list is replaced wholesale every
+   20s, so an index would silently re-point at a different person after any refresh -
+   and the next reply would be texted to the wrong customer. Keying on the number
+   makes the selection survive re-sorting. */
+var VIEW='dash', IBT=[], IBKEY=null, IBCOMPOSE=null, IBLOADED=false, IBSIG='';
+function ibFind(){ if(!IBKEY) return null; for(var i=0;i<IBT.length;i++){ if(IBT[i].number===IBKEY) return IBT[i]; } return null; }
 
 function ibPretty(n){ var m=String(n||'').match(/^\+1(\d{3})(\d{3})(\d{4})$/); return m?('('+m[1]+') '+m[2]+'-'+m[3]):(n||''); }
 function ibWhen(ts){ if(!ts) return ''; var d=new Date(ts); if(isNaN(d)) return '';
@@ -455,7 +461,7 @@ function ibLoad(){
    .then(function(r){ if(!r.ok) throw new Error(r.status===401?'Messages are owner-only. Open this page with your owner link.':'Error '+r.status); return r.json(); })
    .then(function(d){
      IBLOADED=true; IBT=d.threads||[];
-     ibRenderThreads(); if(IBACTIVE!==null) ibRenderMsgs(); ibBadge();
+     ibRenderThreads(); if(IBKEY) ibRenderMsgs(); ibBadge();
    })
    .catch(function(e){ document.getElementById('ibThreads').innerHTML='<div class="ib-empty ib-err">'+esc(e.message)+'</div>'; });
 }
@@ -463,36 +469,94 @@ function ibLoad(){
 function ibRenderThreads(){
   var el=document.getElementById('ibThreads');
   if(!IBT.length){ el.innerHTML='<div class="ib-empty">No conversations yet.<br><br>When someone texts your business line, the thread appears here.</div>'; return; }
-  el.innerHTML=IBT.map(function(t,i){
+  el.innerHTML=IBT.map(function(t){
     var ms=t.messages||[], unread=ms.length&&ms[ms.length-1].direction==='in';
-    return '<button class="ib-thread'+(IBACTIVE===i?' on':'')+'" data-i="'+i+'">'
-      +'<div class="n">'+(unread?'<span class="ib-newdot"></span>':'')+esc(ibPretty(t.number))+'</div>'
+    // Show the person's name when we know it, with the number underneath.
+    var label = t.name ? t.name : ibPretty(t.number);
+    var sub   = t.name ? ibPretty(t.number) : '';
+    return '<button class="ib-thread'+(IBKEY===t.number?' on':'')+'" data-num="'+esc(t.number)+'">'
+      +'<div class="n">'+(unread?'<span class="ib-newdot"></span>':'')+esc(label)+'</div>'
+      +(sub?'<div class="w" style="margin-top:2px">'+esc(sub)+'</div>':'')
       +'<div class="l">'+esc(t.lastMessage||'')+'</div>'
       +'<div class="w">'+esc(ibWhen(t.lastActivity))+'</div></button>';
   }).join('');
   Array.prototype.forEach.call(el.querySelectorAll('.ib-thread'), function(b){
     b.addEventListener('click', function(){
-      // Opening a real thread cancels any half-typed new message.
-      IBCOMPOSE=null;
+      var num=b.getAttribute('data-num');
+      if(num===IBKEY) return;                       // already open, do not wipe a draft
+      // Switching person clears the draft. Otherwise a reply typed for one customer
+      // stays in the box and can be sent to the next person clicked.
+      IBCOMPOSE=null; IBKEY=num; IBSIG='';
       document.getElementById('ibNewBox').classList.remove('open');
       document.getElementById('ibNewTo').value='';
+      document.getElementById('ibReply').value='';
       document.getElementById('ibReply').placeholder='Type your reply...';
       document.getElementById('ibSendNote').textContent='';
-      IBACTIVE=+b.getAttribute('data-i'); ibRenderThreads(); ibRenderMsgs(); ibMarkSeen();
+      ibRenderThreads(); ibRenderMsgs(); ibMarkSeen();
     });
   });
 }
 function ibRenderMsgs(){
-  if(IBACTIVE===null || !IBT[IBACTIVE]) return;
-  var t=IBT[IBACTIVE], box=document.getElementById('ibMsgs');
-  document.getElementById('ibTitle').textContent=ibPretty(t.number);
+  var t=ibFind();
+  // Selected thread vanished (deleted, or filtered out): fail safe by closing it
+  // rather than leaving a live Send button pointed at nothing.
+  if(!t){
+    if(IBKEY){
+      IBKEY=null; IBSIG='';
+      document.getElementById('ibTitle').textContent='Select a conversation';
+      document.getElementById('ibMsgs').innerHTML='<div class="ib-empty">Pick a thread on the left to read it and reply.</div>';
+      document.getElementById('ibReply').disabled=true;
+      document.getElementById('ibSend').disabled=true;
+    }
+    return;
+  }
+  var box=document.getElementById('ibMsgs');
+  // Header shows the name when known, plus a rename control that writes to the CRM.
+  var head=document.getElementById('ibTitle');
+  head.innerHTML = '<span>'+esc(t.name || ibPretty(t.number))
+    + (t.name ? ' <span style="font-weight:400;color:#5d6b7c">'+esc(ibPretty(t.number))+'</span>' : '')
+    + '</span><button class="ib-newbtn" id="ibNameBtn">'+(t.name?'Rename':'Add name')+'</button>';
+  document.getElementById('ibNameBtn').addEventListener('click', function(){ ibAskName(t); });
+
+  // Only repaint the message pane when it actually changed. A blind repaint every
+  // 20s would yank the scroll position back down and wipe any text selection.
   var ms=t.messages||[];
-  box.innerHTML = ms.length ? ms.map(function(m){
-      return '<div class="ib-msg '+(m.direction==='out'?'out':'in')+'">'+esc(m.text)+'<span class="ts">'+esc(ibWhen(m.ts))+'</span></div>';
-    }).join('') : '<div class="ib-empty">No message history stored for this thread yet.</div>';
-  box.scrollTop=box.scrollHeight;
+  var sig=t.number+'|'+ms.length+'|'+(ms.length?ms[ms.length-1].ts+ms[ms.length-1].text:'');
+  if(sig!==IBSIG){
+    IBSIG=sig;
+    box.innerHTML = ms.length ? ms.map(function(m){
+        return '<div class="ib-msg '+(m.direction==='out'?'out':'in')+'">'+esc(m.text)+'<span class="ts">'+esc(ibWhen(m.ts))+'</span></div>';
+      }).join('') : '<div class="ib-empty">No message history stored for this thread yet.</div>';
+    box.scrollTop=box.scrollHeight;
+  }
   document.getElementById('ibReply').disabled=false;
   document.getElementById('ibSend').disabled=false;
+}
+
+/* Naming a thread writes a real Contact into the Control Plane CRM, so the name
+   sticks everywhere and the Contacts table fills itself as you work. */
+function ibAskName(t){
+  var current = t.name || '';
+  var v = window.prompt('Name for '+ibPretty(t.number)+':', current);
+  if(v===null) return;                    // cancelled
+  v = v.trim(); if(!v) return;
+  var note=document.getElementById('ibSendNote');
+  note.textContent='Saving name...';
+  fetch(WORKER_URL+'/api/contact?t='+encodeURIComponent(TOKEN),{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ phone: t.number, name: v })
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d.ok){
+      note.innerHTML='<span class="ib-ok">Saved.</span>';
+      // Write the name onto the CURRENT thread object by number, not onto the copy
+      // captured when the button was drawn, which a refresh may already have replaced.
+      var live=null;
+      for(var i=0;i<IBT.length;i++){ if(IBT[i].number===t.number){ live=IBT[i]; break; } }
+      if(live) live.name=d.name;
+      ibRenderThreads(); ibRenderMsgs();
+    }
+    else { note.innerHTML='<span class="ib-err">Could not save: '+esc(d.error||'unknown')+'</span>'; }
+  }).catch(function(e){ note.innerHTML='<span class="ib-err">Failed: '+esc(e.message)+'</span>'; });
 }
 
 document.getElementById('ibNewBtn').addEventListener('click', function(){
@@ -505,8 +569,9 @@ document.getElementById('ibNewTo').addEventListener('input', function(){
   var n=ibE164(this.value), note=document.getElementById('ibNewNote');
   var ta=document.getElementById('ibReply'), btn=document.getElementById('ibSend');
   if(n){
-    IBCOMPOSE=n; IBACTIVE=null;
+    IBCOMPOSE=n; IBKEY=null; IBSIG='';
     document.getElementById('ibTitle').textContent='New message to '+ibPretty(n);
+    // No thread selected while composing, so there is nothing to rename yet.
     document.getElementById('ibMsgs').innerHTML='<div class="ib-empty">New conversation. Type your message below and send.</div>';
     ta.disabled=false; btn.disabled=false; ta.placeholder='Type your message...';
     note.innerHTML='<span class="ib-ok">Ready.</span> They must have opted in, or have texted or called you first.';
@@ -517,7 +582,9 @@ document.getElementById('ibNewTo').addEventListener('input', function(){
   }
 });
 document.getElementById('ibSend').addEventListener('click', function(){
-  var target = IBCOMPOSE || (IBACTIVE!==null && IBT[IBACTIVE] ? IBT[IBACTIVE].number : null);
+  // Resolve the recipient by number at click time, so a refresh cannot have moved it.
+  var openThread = ibFind();
+  var target = IBCOMPOSE || (openThread ? openThread.number : null);
   if(!target) return;
   var ta=document.getElementById('ibReply'), note=document.getElementById('ibSendNote');
   var text=ta.value.trim(); if(!text) return;
