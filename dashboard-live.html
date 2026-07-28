@@ -39,6 +39,13 @@
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px}
 .card h3{font-size:15px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.clrbtn{margin-left:auto;background:#eef3f8;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:4px 10px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.clrbtn:hover{background:#e3ebf3;color:var(--navy)}
+.clrbtn:disabled{opacity:.6;cursor:not-allowed}
+.fitem{position:relative}
+.xbtn{flex:0 0 auto;align-self:center;background:none;border:1px solid var(--line);color:#93a3b4;border-radius:7px;width:24px;height:24px;line-height:1;font-size:15px;cursor:pointer;padding:0;margin-left:4px}
+.xbtn:hover{background:#fdeaea;border-color:#f3c4c4;color:#b3261e}
+.xbtn:disabled{opacity:.5;cursor:not-allowed}
 .feed{display:flex;flex-direction:column;gap:9px;max-height:340px;overflow:auto}
 .fitem{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:11px}
 .fitem .fic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:15px;background:#eef7f5;flex:none}
@@ -248,14 +255,16 @@ function drawClient(d){
  }).join('') || '<div class="empty">No employees switched on yet.</div>';
 
  // ALWAYS shown
- var feed=(d.feed||[]).map(function(f){return fitem(emo(f.employee),f.title,f.sub,ago(f.ts));}).join('')||'<div class="empty">No activity yet.</div>';
- var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,a.sub,ago(a.ts));}).join('')||'<div class="empty">Nothing needs your attention. Nice.</div>';
+ var feedRows=hideOld(d.feed||[]);
+ var feed=feedRows.map(function(f){return fitem(emo(f.employee),f.title,f.sub,ago(f.ts),f.id,'feed');}).join('')||'<div class="empty">'+(FEEDCUT||HIDDEN.length?'Cleared. New activity will appear here.':'No activity yet.')+'</div>';
+ var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,a.sub,ago(a.ts),a.id,'attn');}).join('')||'<div class="empty">Nothing needs your attention. Nice.</div>';
 
  // Tiles + Live activity + Needs attention. Per-employee detail lives in the click-through drawer (drill).
  document.getElementById('app').innerHTML =
   '<div class="sec">AI employees - this '+rl+'</div><div class="grid">'+tiles+'</div>'+
-  '<div class="cols" style="margin-top:22px"><div class="card"><h3>🔔 Live activity</h3><div class="feed">'+feed+'</div></div>'+
-  '<div class="card attn"><h3>🚩 Needs your attention</h3><div class="feed">'+attn+'</div></div></div>';
+  '<div class="cols" style="margin-top:22px"><div class="card"><h3>🔔 Live activity'+clearBtn('feed')+'</h3><div class="feed">'+feed+'</div></div>'+
+  '<div class="card attn"><h3>🚩 Needs your attention'+clearBtn('attn')+'</h3><div class="feed">'+attn+'</div></div></div>';
+ wireClear();
 }
 
 function drawOwner(d){
@@ -270,17 +279,100 @@ function drawOwner(d){
   return '<tr><td><b>'+esc(c.name)+'</b></td><td>'+esc(c.plan||'')+'</td><td>'+esc(c.status||'')+'</td><td>'+c.employeesLive+' / '+c.employeesTotal+'</td><td>'+attn+'</td></tr>';
  }).join('')||'<tr><td colspan="5" class="empty">No clients yet.</td></tr>';
 
- var feed=(d.feed||[]).map(function(f){return fitem(emo(f.employee),f.title,(f.client?('['+f.client+'] '):'')+f.sub,ago(f.ts));}).join('')||'<div class="empty">No activity yet.</div>';
- var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,(a.client?('['+a.client+'] '):'')+a.sub,ago(a.ts));}).join('')||'<div class="empty">All clear.</div>';
+ var feedRows=hideOld(d.feed||[]);
+ var feed=feedRows.map(function(f){return fitem(emo(f.employee),f.title,(f.client?('['+f.client+'] '):'')+f.sub,ago(f.ts),f.id,'feed');}).join('')||'<div class="empty">'+(FEEDCUT||HIDDEN.length?'Cleared. New activity will appear here.':'No activity yet.')+'</div>';
+ var attn=(d.attention||[]).map(function(a){return fitem('🚩',a.title,(a.client?('['+a.client+'] '):'')+a.sub,ago(a.ts),a.id,'attn');}).join('')||'<div class="empty">All clear.</div>';
 
  document.getElementById('app').innerHTML =
   '<div class="sec">Portfolio overview</div><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">'+tiles+'</div>'+
   '<div class="cols" style="margin-top:22px"><div class="card"><h3>🏢 Clients</h3><table><tr><th>Client</th><th>Plan</th><th>Status</th><th>Live</th><th>Flags</th></tr>'+rows+'</table></div>'+
-  '<div class="card attn"><h3>🚩 Needs attention</h3><div class="feed">'+attn+'</div></div></div>'+
-  '<div class="card" style="margin-top:16px"><h3>🔔 Recent activity - all clients</h3><div class="feed">'+feed+'</div></div>';
+  '<div class="card attn"><h3>🚩 Needs attention'+clearBtn('attn')+'</h3><div class="feed">'+attn+'</div></div></div>'+
+  '<div class="card" style="margin-top:16px"><h3>🔔 Recent activity - all clients'+clearBtn('feed')+'</h3><div class="feed">'+feed+'</div></div>';
+ wireClear();
 }
 
-function fitem(ic,title,sub,t){return '<div class="fitem"><div class="fic">'+ic+'</div><div><b>'+linkify(title)+'</b><span>'+linkify(sub)+'</span></div><div class="t">'+esc(t)+'</div></div>';}
+/* ================= Clear buttons =================
+   Two DIFFERENT behaviours on purpose:
+   - "Needs your attention" clears for real: it POSTs to the Worker and flips the
+     Needs Attention flag off in Airtable. That flag is genuine state, and nothing
+     else ever unsets it, so the list and the count would otherwise only grow.
+   - "Live activity" only HIDES what is already there, locally in this browser.
+     That feed is the business's record of what happened; deleting history to tidy
+     a screen would destroy the audit trail. The cutoff is remembered per browser
+     and "Show all" brings it back.                                              */
+var FEEDCUT = (function(){ try { return localStorage.getItem('helpco_feedcut')||''; } catch(e){ return ''; } })();
+// Individually dismissed activity rows, remembered per browser.
+var HIDDEN = (function(){ try { return JSON.parse(localStorage.getItem('helpco_hidden')||'[]')||[]; } catch(e){ return []; } })();
+function saveHidden(){ try{ localStorage.setItem('helpco_hidden', JSON.stringify(HIDDEN.slice(-500))); }catch(e){} }
+function hideOld(rows){
+  var out=rows;
+  if(HIDDEN.length) out=out.filter(function(r){ return !r.id || HIDDEN.indexOf(r.id)===-1; });
+  if(!FEEDCUT) return out;
+  var cut=new Date(FEEDCUT).getTime();
+  if(isNaN(cut)) return out;
+  return out.filter(function(r){ var t=new Date(r.ts).getTime(); return isNaN(t) ? true : t>cut; });
+}
+function clearBtn(kind){
+  if(kind==='feed' && (FEEDCUT||HIDDEN.length)) return '<button class="clrbtn" data-clear="show">Show all</button><button class="clrbtn" data-clear="feed">Clear all</button>';
+  return '<button class="clrbtn" data-clear="'+kind+'">Clear all</button>';
+}
+function wireClear(){
+  Array.prototype.forEach.call(document.querySelectorAll('[data-clear]'), function(b){
+    b.addEventListener('click', function(){ doClear(b.getAttribute('data-clear'), b); });
+  });
+  // Per-line dismiss.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-x]'), function(b){
+    b.addEventListener('click', function(){ dismissOne(b.getAttribute('data-x'), b.getAttribute('data-id'), b); });
+  });
+}
+/* Dismiss a single line.
+   feed -> hide it in this browser only (the activity record is history, keep it)
+   attn -> real write: mark that one item handled in the shared data            */
+function dismissOne(kind, id, btn){
+  if(!id) return;
+  if(kind==='feed'){
+    if(HIDDEN.indexOf(id)===-1) HIDDEN.push(id);
+    saveHidden(); draw(); return;
+  }
+  if(!WORKER_URL || MODE!=='live'){ alert('Not connected to live data, so there is nothing to clear.'); return; }
+  btn.disabled=true; btn.textContent='...';
+  fetch(WORKER_URL+'/api/clear?t='+encodeURIComponent(TOKEN), {
+    method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ids:[id] })
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d && d.ok) load(true);
+    else { btn.disabled=false; btn.innerHTML='&times;'; alert('Could not clear that item.'); }
+  }).catch(function(e){ btn.disabled=false; btn.innerHTML='&times;'; alert('Failed: '+e.message); });
+}
+function doClear(kind, btn){
+  if(kind==='show'){
+    FEEDCUT=''; HIDDEN=[];
+    try{ localStorage.removeItem('helpco_feedcut'); localStorage.removeItem('helpco_hidden'); }catch(e){}
+    draw(); return;
+  }
+  if(kind==='feed'){
+    FEEDCUT=new Date().toISOString();
+    try{ localStorage.setItem('helpco_feedcut',FEEDCUT); }catch(e){}
+    draw(); return;
+  }
+  // kind === 'attn': a real write, so confirm and report honestly.
+  if(!WORKER_URL || MODE!=='live'){ alert('Not connected to live data, so there is nothing to clear.'); return; }
+  if(!window.confirm('Clear every flagged item? This marks them handled for good.')) return;
+  btn.disabled=true; btn.textContent='Clearing...';
+  var payload = (CUR && CUR!=='portfolio') ? { client: CUR } : {};
+  fetch(WORKER_URL+'/api/clear?t='+encodeURIComponent(TOKEN), {
+    method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d && d.ok){ load(true); }
+    else { btn.disabled=false; btn.textContent='Clear'; alert('Could not clear'+(d&&d.failed?(': '+d.failed+' failed'):'')+'.'); }
+  }).catch(function(e){ btn.disabled=false; btn.textContent='Clear'; alert('Failed: '+e.message); });
+}
+
+/* id + kind add a per-line dismiss button, so items can be cleared one at a time
+   as they are handled, instead of only all-at-once. */
+function fitem(ic,title,sub,t,id,kind){
+  var x = (id&&kind) ? '<button class="xbtn" data-x="'+esc(kind)+'" data-id="'+esc(id)+'" title="Dismiss">&times;</button>' : '';
+  return '<div class="fitem"><div class="fic">'+ic+'</div><div><b>'+linkify(title)+'</b><span>'+linkify(sub)+'</span></div><div class="t">'+esc(t)+'</div>'+x+'</div>';
+}
 function statusPill(s){var x=(s||'').toLowerCase();var c='soon';if(/paid|booked|confirm|done|5 star|posted|routed|replied/.test(x))c='ok';if(/overdue|pending|late|needs|fail/.test(x))c='due';return '<span class="pill '+c+'">'+esc(s||'-')+'</span>';}
 
 function drill(i){ var d=DATA; if(!d||!d.employees) return; var e=d.employees[i];
