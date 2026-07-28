@@ -62,6 +62,41 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4p
 .loading{padding:60px 0;text-align:center;color:var(--muted);font-weight:600}
 @media(max-width:980px){.grid{grid-template-columns:1fr 1fr}.cols,.cols2{grid-template-columns:1fr}}
 @media(max-width:560px){.grid{grid-template-columns:1fr}.drawer{width:100%}.locsel{max-width:170px}}
+/* ===== Conversations Inbox (merged in 2026-07-27). All classes are ib- prefixed
+   so they cannot collide with the dashboard's own .card/.empty/.note/.dot/.ok. ===== */
+.viewtabs{display:flex;gap:4px;background:rgba(255,255,255,.10);padding:3px;border-radius:10px}
+.viewtabs button{background:none;border:0;color:#cfdcec;font:inherit;font-weight:700;font-size:12.5px;padding:7px 14px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.viewtabs button.on{background:#fff;color:#0a1f3c}
+.ib-unread{display:inline-block;min-width:17px;height:17px;line-height:17px;padding:0 5px;border-radius:9px;background:#ffb23e;color:#3a2400;font-size:11px;font-weight:800;margin-left:6px;text-align:center}
+.ib-cols{display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start}
+.ib-card{background:#fff;border:1px solid var(--line,#e6edf4);border-radius:14px;overflow:hidden}
+.ib-card h3{font-size:14px;padding:13px 15px;border-bottom:1px solid var(--line,#e6edf4);color:var(--navy,#0a1f3c);display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0}
+.ib-newbtn{background:linear-gradient(135deg,#19c6b3,#0fa697);color:#04302b;border:none;border-radius:8px;padding:6px 12px;font-weight:800;font-size:12.5px;cursor:pointer;font-family:inherit}
+.ib-newbox{display:none;padding:12px 15px;border-bottom:1px solid var(--line,#e6edf4);background:#f7fbfa}
+.ib-newbox.open{display:block}
+.ib-newbox input{width:100%;border:1px solid var(--line,#e6edf4);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px}
+.ib-pane{max-height:64vh;overflow-y:auto}
+.ib-thread{padding:13px 15px;border-bottom:1px solid var(--line,#e6edf4);cursor:pointer;display:block;width:100%;text-align:left;background:none;border-left:3px solid transparent;font:inherit}
+.ib-thread:hover{background:#f7fbfa}
+.ib-thread.on{background:#eef7f5;border-left-color:#0fa697}
+.ib-thread .n{font-weight:700;color:var(--navy,#0a1f3c);font-size:14.5px}
+.ib-thread .l{color:var(--muted,#5d6b7c);font-size:13px;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib-thread .w{color:#93a3b4;font-size:11.5px;margin-top:4px}
+.ib-newdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ffb23e;margin-right:6px;vertical-align:middle}
+.ib-msgs{padding:16px;min-height:260px;max-height:52vh;overflow-y:auto;background:#fbfdff}
+.ib-msg{max-width:78%;padding:9px 13px;border-radius:14px;margin-bottom:10px;font-size:14.5px;white-space:pre-wrap;word-wrap:break-word}
+.ib-msg.in{background:#fff;border:1px solid var(--line,#e6edf4);border-bottom-left-radius:4px}
+.ib-msg.out{background:linear-gradient(135deg,#19c6b3,#0fa697);color:#04302b;margin-left:auto;border-bottom-right-radius:4px;font-weight:500}
+.ib-msg .ts{display:block;font-size:11px;opacity:.7;margin-top:4px;font-weight:400}
+.ib-composer{border-top:1px solid var(--line,#e6edf4);padding:12px;display:flex;gap:9px;align-items:flex-end}
+.ib-composer textarea{flex:1;border:1px solid var(--line,#e6edf4);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;resize:vertical;min-height:46px;max-height:150px}
+.ib-send{background:linear-gradient(135deg,#19c6b3,#0fa697);color:#04302b;border:none;border-radius:10px;padding:12px 18px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.ib-send:disabled{opacity:.5;cursor:not-allowed}
+.ib-empty{padding:38px 20px;text-align:center;color:var(--muted,#5d6b7c);font-size:14.5px}
+.ib-note{font-size:12.5px;color:var(--muted,#5d6b7c);padding:0 12px 12px}
+.ib-err{color:#b3261e;font-weight:600}
+.ib-ok{color:#1f9d6b;font-weight:600}
+@media(max-width:900px){.ib-cols{grid-template-columns:1fr}.ib-pane{max-height:40vh}}
 </style>
 </head><body>
 <header class="dash-head">
@@ -69,13 +104,42 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4p
     <div class="locwrap"><span class="lbl">Viewing</span><select id="locsel" class="locsel" onchange="pick(this.value)"><option>Loading...</option></select></div>
   </div>
   <div class="hr">
+    <div class="viewtabs">
+      <button class="on" id="vDash" onclick="setView('dash')">Dashboard</button>
+      <button id="vInbox" onclick="setView('inbox')">Messages<span class="ib-unread" id="ibBadge" style="display:none">0</span></button>
+    </div>
     <span class="badge sample" id="mode">connecting</span>
     <span class="upd" id="upd"></span>
-    <div class="toggle"><button class="on" id="tw" onclick="setRange('w')">This week</button><button id="tm" onclick="setRange('m')">This month</button></div>
-    <button class="rbtn" onclick="load(true)">&#8635; Refresh</button>
+    <div class="toggle" id="rangeToggle"><button class="on" id="tw" onclick="setRange('w')">This week</button><button id="tm" onclick="setRange('m')">This month</button></div>
+    <button class="rbtn" onclick="refreshCurrent()">&#8635; Refresh</button>
   </div>
 </header>
-<div class="wrap"><div id="app"><div class="loading">Loading your dashboard...</div></div></div>
+<div class="wrap">
+  <div id="app"><div class="loading">Loading your dashboard...</div></div>
+
+  <!-- Conversations Inbox, merged in so the dashboard is one stop for everything. -->
+  <div id="inboxView" style="display:none">
+    <div class="ib-cols">
+      <div class="ib-card">
+        <h3>Threads <button class="ib-newbtn" id="ibNewBtn" title="Start a new text conversation">+ New</button></h3>
+        <div class="ib-newbox" id="ibNewBox">
+          <input id="ibNewTo" type="tel" inputmode="tel" placeholder="Phone number, e.g. 941-555-0133">
+          <div class="ib-note" id="ibNewNote" style="padding:8px 0 0">They must have opted in, or have texted or called you first.</div>
+        </div>
+        <div class="ib-pane" id="ibThreads"><div class="ib-empty">Loading conversations...</div></div>
+      </div>
+      <div class="ib-card">
+        <h3 id="ibTitle">Select a conversation</h3>
+        <div class="ib-msgs" id="ibMsgs"><div class="ib-empty">Pick a thread on the left to read it and reply.</div></div>
+        <div class="ib-composer">
+          <textarea id="ibReply" placeholder="Type your reply..." disabled></textarea>
+          <button class="ib-send" id="ibSend" disabled>Send</button>
+        </div>
+        <div class="ib-note" id="ibSendNote"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="scrim" id="scrim" onclick="closeD()"></div>
 <div class="drawer" id="drawer">
@@ -330,7 +394,160 @@ var SAMPLE={
   feed:[],attention:[]}
 };
 
-async function boot(){ await loadLocations(); load(); setInterval(function(){ load(); }, 20000); }
+/* ==========================================================================
+   CONVERSATIONS INBOX (merged into the dashboard 2026-07-27)
+   Everything below is self-contained and ib-prefixed so it cannot clash with
+   the dashboard code above. It talks to the same Worker:
+     GET  /api/conversations?t=TOKEN   threads + recent messages
+     POST /api/send?t=TOKEN            send a reply from the business line
+   Conversations are owner-scoped on the Worker, so a client token gets a 401.
+   We surface that plainly rather than pretending the inbox is empty.
+   ========================================================================== */
+var VIEW='dash', IBT=[], IBACTIVE=null, IBCOMPOSE=null, IBLOADED=false;
+
+function ibPretty(n){ var m=String(n||'').match(/^\+1(\d{3})(\d{3})(\d{4})$/); return m?('('+m[1]+') '+m[2]+'-'+m[3]):(n||''); }
+function ibWhen(ts){ if(!ts) return ''; var d=new Date(ts); if(isNaN(d)) return '';
+  var now=new Date(), same=d.toDateString()===now.toDateString();
+  return same ? d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})
+              : d.toLocaleDateString([],{month:'short',day:'numeric'})+' '+d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}); }
+// Accept 10-digit US, 11-digit starting with 1, or an already-formatted +E.164.
+function ibE164(raw){ var s=String(raw||'').trim();
+  if(/^\+[1-9]\d{7,14}$/.test(s)) return s;
+  var d=s.replace(/\D/g,'');
+  if(d.length===10) return '+1'+d;
+  if(d.length===11 && d.charAt(0)==='1') return '+'+d;
+  return ''; }
+
+function setView(v){
+  VIEW=v;
+  var isDash=(v==='dash');
+  document.getElementById('app').style.display = isDash?'':'none';
+  document.getElementById('inboxView').style.display = isDash?'none':'';
+  document.getElementById('vDash').classList.toggle('on', isDash);
+  document.getElementById('vInbox').classList.toggle('on', !isDash);
+  // The week/month toggle and the location picker only mean anything on the dashboard.
+  var rt=document.getElementById('rangeToggle'); if(rt) rt.style.display=isDash?'':'none';
+  var lw=document.querySelector('.locwrap'); if(lw) lw.style.display=isDash?'':'none';
+  if(!isDash){ ibMarkSeen(); if(!IBLOADED) ibLoad(); }
+}
+function refreshCurrent(){ if(VIEW==='dash') load(true); else ibLoad(); }
+
+function ibUnreadCount(){
+  var n=0;
+  for(var i=0;i<IBT.length;i++){
+    var t=IBT[i], ms=t.messages||[];
+    if(ms.length && ms[ms.length-1].direction==='in') n++;
+  }
+  return n;
+}
+function ibMarkSeen(){ ibBadge(); }
+function ibBadge(){
+  var b=document.getElementById('ibBadge'); if(!b) return;
+  var n=ibUnreadCount();
+  // Only nag when there is something waiting AND we are not already reading it.
+  if(n>0 && VIEW!=='inbox'){ b.textContent=n; b.style.display=''; }
+  else b.style.display='none';
+}
+
+function ibLoad(){
+  if(!WORKER_URL){ document.getElementById('ibThreads').innerHTML='<div class="ib-empty">Connect the Worker to use Messages.</div>'; return; }
+  fetch(WORKER_URL+'/api/conversations?t='+encodeURIComponent(TOKEN),{cache:'no-store'})
+   .then(function(r){ if(!r.ok) throw new Error(r.status===401?'Messages are owner-only. Open this page with your owner link.':'Error '+r.status); return r.json(); })
+   .then(function(d){
+     IBLOADED=true; IBT=d.threads||[];
+     ibRenderThreads(); if(IBACTIVE!==null) ibRenderMsgs(); ibBadge();
+   })
+   .catch(function(e){ document.getElementById('ibThreads').innerHTML='<div class="ib-empty ib-err">'+esc(e.message)+'</div>'; });
+}
+
+function ibRenderThreads(){
+  var el=document.getElementById('ibThreads');
+  if(!IBT.length){ el.innerHTML='<div class="ib-empty">No conversations yet.<br><br>When someone texts your business line, the thread appears here.</div>'; return; }
+  el.innerHTML=IBT.map(function(t,i){
+    var ms=t.messages||[], unread=ms.length&&ms[ms.length-1].direction==='in';
+    return '<button class="ib-thread'+(IBACTIVE===i?' on':'')+'" data-i="'+i+'">'
+      +'<div class="n">'+(unread?'<span class="ib-newdot"></span>':'')+esc(ibPretty(t.number))+'</div>'
+      +'<div class="l">'+esc(t.lastMessage||'')+'</div>'
+      +'<div class="w">'+esc(ibWhen(t.lastActivity))+'</div></button>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('.ib-thread'), function(b){
+    b.addEventListener('click', function(){
+      // Opening a real thread cancels any half-typed new message.
+      IBCOMPOSE=null;
+      document.getElementById('ibNewBox').classList.remove('open');
+      document.getElementById('ibNewTo').value='';
+      document.getElementById('ibReply').placeholder='Type your reply...';
+      document.getElementById('ibSendNote').textContent='';
+      IBACTIVE=+b.getAttribute('data-i'); ibRenderThreads(); ibRenderMsgs(); ibMarkSeen();
+    });
+  });
+}
+function ibRenderMsgs(){
+  if(IBACTIVE===null || !IBT[IBACTIVE]) return;
+  var t=IBT[IBACTIVE], box=document.getElementById('ibMsgs');
+  document.getElementById('ibTitle').textContent=ibPretty(t.number);
+  var ms=t.messages||[];
+  box.innerHTML = ms.length ? ms.map(function(m){
+      return '<div class="ib-msg '+(m.direction==='out'?'out':'in')+'">'+esc(m.text)+'<span class="ts">'+esc(ibWhen(m.ts))+'</span></div>';
+    }).join('') : '<div class="ib-empty">No message history stored for this thread yet.</div>';
+  box.scrollTop=box.scrollHeight;
+  document.getElementById('ibReply').disabled=false;
+  document.getElementById('ibSend').disabled=false;
+}
+
+document.getElementById('ibNewBtn').addEventListener('click', function(){
+  var box=document.getElementById('ibNewBox'), inp=document.getElementById('ibNewTo');
+  var opening=!box.classList.contains('open');
+  box.classList.toggle('open', opening);
+  if(opening){ inp.value=''; inp.focus(); } else { IBCOMPOSE=null; }
+});
+document.getElementById('ibNewTo').addEventListener('input', function(){
+  var n=ibE164(this.value), note=document.getElementById('ibNewNote');
+  var ta=document.getElementById('ibReply'), btn=document.getElementById('ibSend');
+  if(n){
+    IBCOMPOSE=n; IBACTIVE=null;
+    document.getElementById('ibTitle').textContent='New message to '+ibPretty(n);
+    document.getElementById('ibMsgs').innerHTML='<div class="ib-empty">New conversation. Type your message below and send.</div>';
+    ta.disabled=false; btn.disabled=false; ta.placeholder='Type your message...';
+    note.innerHTML='<span class="ib-ok">Ready.</span> They must have opted in, or have texted or called you first.';
+    ibRenderThreads();
+  } else {
+    IBCOMPOSE=null; ta.disabled=true; btn.disabled=true;
+    note.textContent = this.value.trim() ? 'Enter a valid 10-digit US number.' : 'They must have opted in, or have texted or called you first.';
+  }
+});
+document.getElementById('ibSend').addEventListener('click', function(){
+  var target = IBCOMPOSE || (IBACTIVE!==null && IBT[IBACTIVE] ? IBT[IBACTIVE].number : null);
+  if(!target) return;
+  var ta=document.getElementById('ibReply'), note=document.getElementById('ibSendNote');
+  var text=ta.value.trim(); if(!text) return;
+  var btn=this; btn.disabled=true; note.textContent='Sending...';
+  fetch(WORKER_URL+'/api/send?t='+encodeURIComponent(TOKEN),{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ to:target, body:text })
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d.sent){
+      note.innerHTML='<span class="ib-ok">Sent.</span>'; ta.value='';
+      IBCOMPOSE=null;
+      document.getElementById('ibNewBox').classList.remove('open');
+      document.getElementById('ibNewTo').value='';
+      setTimeout(ibLoad, 900);
+    }
+    else if(d.reason==='no-creds'){ note.innerHTML='<span class="ib-err">Not sent.</span> Texting is switched off: the Twilio secrets are not all set on the Worker.'; }
+    else { note.innerHTML='<span class="ib-err">Not sent.</span> '+esc(d.reason||'Unknown error'); }
+    btn.disabled=false;
+  }).catch(function(e){ note.innerHTML='<span class="ib-err">Failed: '+esc(e.message)+'</span>'; btn.disabled=false; });
+});
+
+async function boot(){
+  await loadLocations();
+  load();
+  ibLoad();                                  // pull threads once so the Messages badge is accurate immediately
+  setInterval(function(){
+    if(VIEW==='dash') load(); else ibLoad();  // refresh whichever view is open
+  }, 20000);
+  setInterval(function(){ if(VIEW==='dash') ibLoad(); }, 60000); // keep the badge fresh while on the dashboard
+}
 boot();
 </script>
 </body></html>
