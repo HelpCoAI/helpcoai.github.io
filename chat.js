@@ -58,14 +58,14 @@
 
   /* ---------- styles ---------- */
   var css = ''
-    + '.hco-fab{position:fixed;right:20px;bottom:20px;z-index:2147483000;width:60px;height:60px;border-radius:50%;'
+    + '.hco-fab{position:fixed;right:20px;bottom:calc(20px + var(--hco-lift,0px));z-index:2147483000;width:60px;height:60px;border-radius:50%;'
     + 'border:0;cursor:pointer;background:' + ACCENT + ';color:#fff;box-shadow:0 6px 22px rgba(0,0,0,.28);'
     + 'display:flex;align-items:center;justify-content:center;transition:transform .18s ease}'
     + '.hco-fab:hover{transform:scale(1.06)}'
     + '.hco-fab svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}'
     + '.hco-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#ef4444;border:2px solid #fff}'
-    + '.hco-panel{position:fixed;right:20px;bottom:92px;z-index:2147483000;width:380px;max-width:calc(100vw - 32px);'
-    + 'height:560px;max-height:calc(100vh - 120px);background:#fff;border-radius:16px;overflow:hidden;'
+    + '.hco-panel{position:fixed;right:20px;bottom:calc(92px + var(--hco-lift,0px));z-index:2147483000;width:380px;max-width:calc(100vw - 32px);'
+    + 'height:560px;max-height:calc(100vh - 120px - var(--hco-lift,0px));background:#fff;border-radius:16px;overflow:hidden;'
     + 'box-shadow:0 18px 60px rgba(0,0,0,.26);display:none;flex-direction:column;'
     + 'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}'
     + '.hco-panel.hco-on{display:flex}'
@@ -93,8 +93,8 @@
     + '.hco-send:disabled{opacity:.45;cursor:default}'
     + '.hco-send svg{width:18px;height:18px;fill:#fff}'
     + '.hco-legal{flex:0 0 auto;background:#fff;padding:0 12px 9px;font-size:11px;color:#9ca3af;text-align:center}'
-    + '@media(max-width:520px){.hco-panel{right:8px;left:8px;bottom:84px;width:auto;height:calc(100vh - 104px)}'
-    + '.hco-fab{right:14px;bottom:14px;width:54px;height:54px}}';
+    + '@media(max-width:520px){.hco-panel{right:8px;left:8px;bottom:calc(84px + var(--hco-lift,0px));width:auto;height:calc(100vh - 104px - var(--hco-lift,0px))}'
+    + '.hco-fab{right:14px;bottom:calc(14px + var(--hco-lift,0px));width:54px;height:54px}}';
   var st = document.createElement('style');
   st.textContent = css;
   document.head.appendChild(st);
@@ -123,6 +123,20 @@
 
   document.body.appendChild(fab);
   document.body.appendChild(panel);
+
+  /* Sit above a sticky mobile CTA bar instead of underneath it.
+     A site with such a bar reserves room for it with body{padding-bottom:Npx},
+     so read that rather than hard-coding a pixel value for one site. Desktop
+     padding is 0 and sites without a bar have none, so this is a no-op there.
+     The small-value guard stops an ordinary decorative 8px or 16px of body
+     padding from nudging the bubble for no reason. */
+  function place() {
+    var pad = 0;
+    try { pad = parseInt(window.getComputedStyle(document.body).paddingBottom, 10) || 0; } catch (e) {}
+    document.documentElement.style.setProperty('--hco-lift', (pad >= 40 ? pad : 0) + 'px');
+  }
+  place();
+  window.addEventListener('resize', place);
 
   var log  = panel.querySelector('.hco-log');
   var box  = panel.querySelector('.hco-in');
