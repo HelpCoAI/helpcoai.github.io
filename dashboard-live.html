@@ -358,9 +358,9 @@ function setBucket(b){
 
 async function loadTrends(){
   var sec=document.getElementById('trends'); if(!sec) return;
-  // Portfolio view spans every client, so a single per-employee series would be
-  // meaningless. Hide rather than show a number nobody can act on.
-  if(!WORKER_URL || MODE!=='live' || CUR==='portfolio'){ sec.style.display='none'; return; }
+  // Portfolio IS supported: it aggregates every client, which is the agency's
+  // own performance view.
+  if(!WORKER_URL || MODE!=='live'){ sec.style.display='none'; return; }
   sec.style.display='';
   if(TLOADING) return; TLOADING=true;
   var body=document.getElementById('trendBody');

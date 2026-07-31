@@ -58,7 +58,9 @@
 
   /* ---------- styles ---------- */
   var css = ''
-    + '.hco-fab{position:fixed;right:20px;bottom:calc(20px + var(--hco-lift,0px));z-index:2147483000;width:60px;height:60px;border-radius:50%;'
+    /* 56px, not 60: it sits directly under the host page's own 56px voice
+       button on helpcoai.com and a 4px size difference reads as a mistake. */
+    + '.hco-fab{position:fixed;right:24px;bottom:calc(20px + var(--hco-lift,0px));z-index:2147483000;width:56px;height:56px;border-radius:50%;'
     + 'border:0;cursor:pointer;background:' + ACCENT + ';color:#fff;box-shadow:0 6px 22px rgba(0,0,0,.28);'
     + 'display:flex;align-items:center;justify-content:center;transition:transform .18s ease}'
     + '.hco-fab:hover{transform:scale(1.06)}'
@@ -94,7 +96,9 @@
     + '.hco-send svg{width:18px;height:18px;fill:#fff}'
     + '.hco-legal{flex:0 0 auto;background:#fff;padding:0 12px 9px;font-size:11px;color:#9ca3af;text-align:center}'
     + '@media(max-width:520px){.hco-panel{right:8px;left:8px;bottom:calc(84px + var(--hco-lift,0px));width:auto;height:calc(100vh - 104px - var(--hco-lift,0px))}'
-    + '.hco-fab{right:14px;bottom:calc(14px + var(--hco-lift,0px));width:54px;height:54px}}';
+    /* Same right offset and size as desktop so the bubble stays vertically in
+       line with the host page's voice button instead of stepping sideways. */
+    + '.hco-fab{right:24px;bottom:calc(14px + var(--hco-lift,0px));width:56px;height:56px}}';
   var st = document.createElement('style');
   st.textContent = css;
   document.head.appendChild(st);

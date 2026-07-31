@@ -688,7 +688,27 @@ wireForm('demoForm','formMsg','contact');
 (function(){
   var btn=document.getElementById("voiceBtn");if(!btn)return;
   var vapi=null,calling=false,loading=false;
-  function startCall(){try{vapi.start("513f3f93-fc44-45ed-9a5a-23770a0ca78e");calling=true;btn.textContent="■";btn.style.background="#c0392b";}catch(e){location.href="tel:+19419419930";}}
+  function reset(){calling=false;btn.textContent="📞";btn.style.background="";}
+  /* vapi.start() returns a PROMISE. The old code wrapped it in a synchronous
+     try/catch and turned the button red on the very next line, so an async
+     rejection - a blocked microphone is the common one - was never caught and
+     the button sat red doing nothing, with no error anywhere. Only show the
+     "in call" state once the call has actually connected. */
+  function startCall(){
+    btn.textContent="…";
+    Promise.resolve()
+      .then(function(){ return vapi.start("513f3f93-fc44-45ed-9a5a-23770a0ca78e"); })
+      .then(function(){ calling=true;btn.textContent="■";btn.style.background="#c0392b"; })
+      .catch(function(err){
+        reset();
+        var m=String((err&&(err.message||err.error||err))||"");
+        if(/permission|denied|notallowed|notfound/i.test(m)){
+          alert("Your browser is blocking microphone access, so the voice demo cannot start.\n\nAllow the microphone for helpcoai.com in your browser settings, or just call us on 941-941-9930.");
+        } else {
+          alert("The voice demo could not connect just now. Please call 941-941-9930 and we will help you right away.");
+        }
+      });
+  }
   btn.addEventListener("click",function(){
     if(calling){try{vapi.stop();}catch(e){}calling=false;btn.textContent="📞";btn.style.background="";return;}
     track('chat_open',{widget:'voice'});
@@ -698,9 +718,11 @@ wireForm('demoForm','formMsg','contact');
     import("https://esm.sh/@vapi-ai/web").then(function(m){
       var Vapi=m.default;
       vapi=new Vapi("7596ef01-8c50-49ea-9dc5-128ce409bc53");
-      vapi.on("call-end",function(){calling=false;btn.textContent="📞";btn.style.background="";});
+      vapi.on("call-end",reset);
+      // Without this an error AFTER the call starts leaves the button stuck red.
+      vapi.on("error",function(e){ reset(); console.warn("vapi error",e); });
       startCall();
-    }).catch(function(){location.href="tel:+19419419930";}).finally(function(){loading=false;if(!calling&&btn.textContent==="…")btn.textContent="📞";});
+    }).catch(function(){location.href="tel:+19419419930";}).finally(function(){loading=false;});
   });
 })();
 </script>
