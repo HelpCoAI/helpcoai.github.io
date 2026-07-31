@@ -93,7 +93,7 @@ footer.site .bot{border-top:1px solid rgba(255,255,255,.1);margin-top:26px;paddi
 <a class="cta" href="index.html#book">Plug the leaks - book a free demo →</a></div>
 <small class="dis">Quick self-assessment, not a guarantee. Book a demo for a real walkthrough.</small></div>
 <script>
-var Q=["When you miss a call, does the caller automatically get a text back within seconds?","Can customers book you online 24/7 without calling?","Does someone answer your phone after hours and on weekends?","Do you automatically ask every happy customer for a Google review?","Does your website (or Facebook) capture leads when you're closed?","Do you follow up on every quote until they book or say no?","Do you re-contact past customers to rebook them?"];
+var Q=["When you miss a call, does the caller automatically get a text back within seconds?","Can customers book you online 24/7 without calling?","Does someone answer your phone after hours and on weekends?","Do you automatically ask every customer for a Google review?","Does your website (or Facebook) capture leads when you're closed?","Do you follow up on every quote until they book or say no?","Do you re-contact past customers to rebook them?"];
 var qz=document.getElementById('quiz');qz.innerHTML=Q.map(function(q,i){return '<div class="qz">'+(i+1)+'. '+q+'</div><div class="opts"><label><input type="radio" name="q'+i+'" value="1"><span>Yes</span></label><label><input type="radio" name="q'+i+'" value="0" checked><span>No</span></label></div>'}).join('');
 function score(){var yes=0;for(var i=0;i<Q.length;i++){var v=document.querySelector('input[name=q'+i+']:checked').value;if(v=='1')yes++;}
 var pct=Math.round(yes/Q.length*100);var g=pct>=85?'A':pct>=70?'B':pct>=50?'C':pct>=30?'D':'F';

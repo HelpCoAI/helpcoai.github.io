@@ -127,6 +127,28 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4p
 <div class="wrap">
   <div id="app"><div class="loading">Loading your dashboard...</div></div>
 
+  <!-- TRENDS. The dashboard could only ever say "this week" and "this month", so
+       there was no way to see whether an employee was improving. No new tracking
+       was needed: every Activity Log row already carried a Timestamp and an
+       Employee link, so the history existed and was simply never read back. -->
+  <section id="trends" class="trendcard" style="display:none">
+    <div class="trendhead">
+      <div>
+        <h3>Performance over time</h3>
+        <small id="trendSub">How each AI employee is doing</small>
+      </div>
+      <div class="trendctl">
+        <select id="trendEmp" aria-label="Choose an AI employee"></select>
+        <div class="toggle trendtog">
+          <button id="tbDay" class="on" onclick="setBucket('day')">Day</button>
+          <button id="tbWeek" onclick="setBucket('week')">Week</button>
+          <button id="tbMonth" onclick="setBucket('month')">Month</button>
+        </div>
+      </div>
+    </div>
+    <div id="trendBody"><div class="loading">Loading trends...</div></div>
+  </section>
+
   <!-- Conversations Inbox, merged in so the dashboard is one stop for everything. -->
   <div id="inboxView" style="display:none">
     <div class="ib-cols">
@@ -292,15 +314,124 @@ async function load(manual){
   if(CUR==='portfolio'){ r=await fetch(WORKER_URL+'/api/owner?t='+encodeURIComponent(TOKEN),{cache:'no-store'}); }
   else { r=await fetch(WORKER_URL+'/api/client?t='+encodeURIComponent(TOKEN)+'&client='+encodeURIComponent(CUR||''),{cache:'no-store'}); }
   if(!r.ok) throw new Error(r.status===401||r.status===404 ? 'key-rejected' : 'http '+r.status);
-  DATA=await r.json(); MODE='live'; LASTERR=''; draw();
+  DATA=await r.json(); MODE='live'; LASTERR=''; draw(); loadTrends();
  }catch(e){
   LASTERR = (e&&e.message==='key-rejected')
     ? 'Your access key was rejected. Click Sign out, then enter the key again.'
     : 'Could not reach live data ('+((e&&e.message)||'network error')+').';
-  DATA=(CUR==='portfolio'?SAMPLE.portfolio:SAMPLE[CUR])||SAMPLE.gulfbreeze; MODE='sample'; draw();
+  DATA=(CUR==='portfolio'?SAMPLE.portfolio:SAMPLE[CUR])||SAMPLE.gulfbreeze; MODE='sample'; draw(); loadTrends();
  }
 }
 function setRange(r){ RANGE=r; document.getElementById('tw').classList.toggle('on',r==='w'); document.getElementById('tm').classList.toggle('on',r==='m'); draw(); }
+
+/* ---- TRENDS CHART ----------------------------------------------------
+   Plain SVG on purpose: no chart library, matching the rest of this build.
+   A dependency here would be 60kB to draw 30 rectangles.                */
+(function(){
+  var css = '.trendcard{background:#fff;border:1px solid var(--line,#e6edf4);border-radius:16px;padding:20px;margin:18px 0 26px}'
+    + '.trendhead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:14px}'
+    + '.trendhead h3{font-size:17px;color:var(--navy,#0a1f3c);margin:0}'
+    + '.trendhead small{color:var(--muted,#5d6b7c);font-size:13px}'
+    + '.trendctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap}'
+    + '#trendEmp{padding:8px 10px;border:1px solid var(--line,#e6edf4);border-radius:9px;font:inherit;font-size:13px;font-weight:600;color:var(--ink,#16202e);background:#fff;cursor:pointer;max-width:230px}'
+    + '.trendtog{display:inline-flex;border:1px solid var(--line,#e6edf4);border-radius:9px;overflow:hidden}'
+    + '.trendtog button{border:0;background:#fff;padding:8px 13px;font:inherit;font-size:13px;font-weight:700;color:var(--muted,#5d6b7c);cursor:pointer}'
+    + '.trendtog button.on{background:var(--teal-d,#0fa697);color:#fff}'
+    + '.tstats{display:flex;gap:22px;flex-wrap:wrap;margin:2px 0 14px}'
+    + '.tstat b{display:block;font-size:22px;color:var(--navy,#0a1f3c);line-height:1.2}'
+    + '.tstat span{font-size:12px;color:var(--muted,#5d6b7c)}'
+    + '.tbar{transition:opacity .15s}.tbar:hover{opacity:.75}'
+    + '.tempty{padding:26px;text-align:center;color:var(--muted,#5d6b7c);font-size:14px}';
+  var s=document.createElement('style'); s.textContent=css; document.head.appendChild(s);
+})();
+
+var TBUCKET='day', TEMP='all', TLOADING=false;
+
+function setBucket(b){
+  TBUCKET=b;
+  ['day','week','month'].forEach(function(x){
+    var el=document.getElementById('tb'+x.charAt(0).toUpperCase()+x.slice(1));
+    if(el) el.classList.toggle('on', x===b);
+  });
+  loadTrends();
+}
+
+async function loadTrends(){
+  var sec=document.getElementById('trends'); if(!sec) return;
+  // Portfolio view spans every client, so a single per-employee series would be
+  // meaningless. Hide rather than show a number nobody can act on.
+  if(!WORKER_URL || MODE!=='live' || CUR==='portfolio'){ sec.style.display='none'; return; }
+  sec.style.display='';
+  if(TLOADING) return; TLOADING=true;
+  var body=document.getElementById('trendBody');
+  try{
+    var u=WORKER_URL+'/api/trends?t='+encodeURIComponent(TOKEN)
+        +'&client='+encodeURIComponent(CUR||'')
+        +'&bucket='+encodeURIComponent(TBUCKET)
+        +'&employee='+encodeURIComponent(TEMP);
+    var r=await fetch(u,{cache:'no-store'});
+    if(!r.ok) throw new Error('http '+r.status);
+    var d=await r.json();
+    fillEmpSelect(d.employees||[]);
+    renderTrends(d);
+  }catch(e){
+    body.innerHTML='<div class="tempty">Could not load trends ('+esc((e&&e.message)||'error')+').</div>';
+  }finally{ TLOADING=false; }
+}
+
+function fillEmpSelect(list){
+  var sel=document.getElementById('trendEmp'); if(!sel) return;
+  var want=TEMP;
+  sel.innerHTML='<option value="all">All employees</option>'
+    + list.map(function(e){ return '<option value="'+esc(e.id)+'">'+esc(e.name)+'</option>'; }).join('');
+  sel.value = [...sel.options].some(function(o){return o.value===want;}) ? want : 'all';
+  TEMP = sel.value;
+  sel.onchange = function(){ TEMP=sel.value; loadTrends(); };
+}
+
+function renderTrends(d){
+  var body=document.getElementById('trendBody');
+  var s=d.series||[];
+  var sub=document.getElementById('trendSub');
+  var who = TEMP==='all' ? 'All employees' : ((d.employees||[]).filter(function(e){return e.id===TEMP;})[0]||{}).name || 'Employee';
+  if(sub) sub.textContent = who + ' - by ' + (d.bucket==='day'?'day, last 30 days':d.bucket==='week'?'week, last 12 weeks':'month, last 12 months');
+
+  if(!s.length || !d.totals || !d.totals.events){
+    body.innerHTML='<div class="tempty">No activity recorded in this period yet. Once calls, chats and bookings come in, they will chart here.</div>';
+    return;
+  }
+
+  var W=820,H=250,PL=42,PR=12,PT=14,PB=34;
+  var iw=W-PL-PR, ih=H-PT-PB;
+  var max=Math.max.apply(null,s.map(function(x){return x.count;})); if(max<1) max=1;
+  var niceMax = max<=5?5:Math.ceil(max/5)*5;
+  var bw=iw/s.length, pad=Math.min(6, bw*0.22);
+
+  var g='';
+  for(var i=0;i<=4;i++){
+    var y=PT+ih-(ih*i/4), v=Math.round(niceMax*i/4);
+    g+='<line x1="'+PL+'" y1="'+y.toFixed(1)+'" x2="'+(W-PR)+'" y2="'+y.toFixed(1)+'" stroke="#eef2f7" stroke-width="1"/>'
+     + '<text x="'+(PL-7)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" font-size="11" fill="#8896a6">'+v+'</text>';
+  }
+  var bars='', labels='';
+  var every = s.length>14 ? Math.ceil(s.length/8) : 1;
+  s.forEach(function(p,i){
+    var h=(p.count/niceMax)*ih, x=PL+bw*i+pad/2, y=PT+ih-h;
+    bars+='<rect class="tbar" x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw-pad).toFixed(1)+'" height="'+Math.max(h,p.count?2:0).toFixed(1)+'" rx="3" fill="#0fa697"><title>'+esc(p.label)+': '+p.count+' event'+(p.count===1?'':'s')+(p.leads?(', '+p.leads+' lead'+(p.leads===1?'':'s')):'')+'</title></rect>';
+    if(i%every===0) labels+='<text x="'+(x+(bw-pad)/2).toFixed(1)+'" y="'+(H-12)+'" text-anchor="middle" font-size="11" fill="#8896a6">'+esc(p.label)+'</text>';
+  });
+
+  body.innerHTML =
+    '<div class="tstats">'
+    + '<div class="tstat"><b>'+d.totals.events+'</b><span>events</span></div>'
+    + '<div class="tstat"><b>'+d.totals.leads+'</b><span>leads</span></div>'
+    + (d.totals.value ? '<div class="tstat"><b>$'+Math.round(d.totals.value).toLocaleString()+'</b><span>value recorded</span></div>' : '')
+    + '</div>'
+    + '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block" role="img" aria-label="Activity chart for '+esc(who)+'">'
+    + g + bars + labels
+    + '<line x1="'+PL+'" y1="'+(PT+ih)+'" x2="'+(W-PR)+'" y2="'+(PT+ih)+'" stroke="#d8e2ec" stroke-width="1"/>'
+    + '</svg>';
+}
 
 /* ---- draw ---- */
 function draw(){
@@ -596,6 +727,9 @@ function setView(v){
   var isDash=(v==='dash');
   document.getElementById('app').style.display = isDash?'':'none';
   document.getElementById('inboxView').style.display = isDash?'none':'';
+  // Trends belong to the dashboard, not the message inbox.
+  var tr=document.getElementById('trends');
+  if(tr){ if(isDash) loadTrends(); else tr.style.display='none'; }
   document.getElementById('vDash').classList.toggle('on', isDash);
   document.getElementById('vInbox').classList.toggle('on', !isDash);
   // The week/month toggle and the location picker only mean anything on the dashboard.

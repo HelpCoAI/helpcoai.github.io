@@ -141,7 +141,7 @@ function check(){
  else{ins.push('<div class="item"><b>Volume ('+c+' reviews):</b> Thin - shoppers trust businesses with more (and more recent) reviews. You’d want ~'+target+' to look like the obvious choice.</div>');}
  var need=Math.max(0,target-c);
  if(rate>=4){score+=1;ins.push('<div class="item"><b>Freshness:</b> '+rate+'/mo is a healthy pace. Recent reviews matter most - don’t let it slow down.</div>');}
- else{var months=rate>0?Math.ceil(need/rate):'∞';ins.push('<div class="item"><b>Freshness:</b> At ~'+rate+'/mo it would take <b>'+(rate>0?months+' months':'forever')+'</b> to reach ~'+target+'. Our Review Engine asks every happy customer at the right moment - most clients hit that in a fraction of the time.</div>');}
+ else{var months=rate>0?Math.ceil(need/rate):'∞';ins.push('<div class="item"><b>Freshness:</b> At ~'+rate+'/mo it would take <b>'+(rate>0?months+' months':'forever')+'</b> to reach ~'+target+'. Our Review Engine asks every customer at the right moment - most clients hit that in a fraction of the time.</div>');}
  var g=score>=5?['A','Looking strong','#2e8b57']:score>=3?['B','Room to grow','#d59a00']:['C','Losing customers','#c0392b'];
  document.getElementById('gl').textContent=g[0];document.getElementById('gt').textContent=g[1];
  document.getElementById('grade').style.background=g[2];

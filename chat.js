@@ -134,9 +134,26 @@
     var pad = 0;
     try { pad = parseInt(window.getComputedStyle(document.body).paddingBottom, 10) || 0; } catch (e) {}
     document.documentElement.style.setProperty('--hco-lift', (pad >= 40 ? pad : 0) + 'px');
+    /* Publish where the TOP of the bubble ends up, measured rather than
+       recalculated. A host page that stacks its own buttons above ours (the
+       helpcoai.com voice button does) can then follow us at any width without
+       duplicating our breakpoints. Getting this wrong is not theoretical: the
+       first version moved the bubble and left the voice button behind, and the
+       two sat on top of each other at 1280px. */
+    try {
+      var r = fab.getBoundingClientRect();
+      document.documentElement.style.setProperty('--hco-fab-top',
+        Math.round(window.innerHeight - r.top) + 'px');
+    } catch (e) {}
   }
   place();
+  /* Re-measure after layout settles. Running only once on a deferred script can
+     latch a padding value the media queries have not applied yet, which is how
+     the desktop overlap happened. */
+  requestAnimationFrame(place);
+  window.addEventListener('load', place);
   window.addEventListener('resize', place);
+  window.addEventListener('orientationchange', place);
 
   var log  = panel.querySelector('.hco-log');
   var box  = panel.querySelector('.hco-in');

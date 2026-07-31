@@ -184,7 +184,7 @@
   /* VOICE WIDGET. The chat bubble is no longer here: it is drawn by chat.js,
      which injects its own styles and sits in the bottom-right slot. Do not add
      a #chatBtn back or there will be two chat buttons. */
-  #voiceBtn{position:fixed;bottom:90px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 10px 26px rgba(10,31,60,.45);z-index:90;display:grid;place-items:center}
+  #voiceBtn{position:fixed;bottom:calc(var(--hco-fab-top,80px) + 10px);right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--teal-d));color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 10px 26px rgba(10,31,60,.45);z-index:90;display:grid;place-items:center}
   /* COMPACT MODULES */
   .mods{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:14px;margin-top:34px}
   .mod{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;transition:.16s;display:flex;flex-direction:column}
@@ -257,9 +257,8 @@ header.site .hamb{display:none;background:none;border:0;color:#fff;font-size:26p
 @media(max-width:860px){
   .stickycta{display:flex}
   body{padding-bottom:74px}
-  /* chat.js lifts its own bubble clear of the sticky bar by reading this
-     padding, so only the voice button needs moving here. */
-  #voiceBtn{bottom:154px}
+  /* No #voiceBtn override here on purpose. It follows chat.js's --hco-fab-top
+     at every width, so a second hard-coded breakpoint would fight it. */
   .ctaband{padding:26px;text-align:center;justify-content:center}
 }
 
