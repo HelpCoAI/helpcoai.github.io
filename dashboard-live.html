@@ -814,10 +814,21 @@ function ibRenderMsgs(){
   var box=document.getElementById('ibMsgs');
   // Header shows the name when known, plus a rename control that writes to the CRM.
   var head=document.getElementById('ibTitle');
+  // AI badge doubles as the on/off switch. Replying by hand pauses the AI, so
+  // this is how it comes back; without it one manual reply would kill the AI on
+  // that thread with no way to notice or undo it.
+  var aiOn = !t.aiPaused;
   head.innerHTML = '<span>'+esc(t.name || ibPretty(t.number))
     + (t.name ? ' <span style="font-weight:400;color:#5d6b7c">'+esc(ibPretty(t.number))+'</span>' : '')
-    + '</span><button class="ib-newbtn" id="ibNameBtn">'+(t.name?'Rename':'Add name')+'</button>';
+    + '</span>'
+    + '<button class="ib-newbtn" id="ibAiBtn" title="'
+      + (aiOn ? 'The AI is answering this thread. Click to take over yourself.'
+              : 'You are handling this thread. Click to let the AI answer again.')
+      + '" style="background:'+(aiOn?'#0fa697':'#94a3b4')+';color:#fff;border-color:transparent">'
+      + (aiOn ? 'AI on' : 'AI off') + '</button>'
+    + '<button class="ib-newbtn" id="ibNameBtn">'+(t.name?'Rename':'Add name')+'</button>';
   document.getElementById('ibNameBtn').addEventListener('click', function(){ ibAskName(t); });
+  document.getElementById('ibAiBtn').addEventListener('click', function(){ ibToggleAi(t); });
 
   // Only repaint the message pane when it actually changed. A blind repaint every
   // 20s would yank the scroll position back down and wipe any text selection.
@@ -832,6 +843,28 @@ function ibRenderMsgs(){
   }
   document.getElementById('ibReply').disabled=false;
   document.getElementById('ibSend').disabled=false;
+}
+
+/* Hand the thread to the AI, or take it back. Sending a manual reply pauses the
+   AI server-side, so this button is the only way back on. Optimistic: flip the
+   local flag and repaint immediately, then reconcile from the server. */
+function ibToggleAi(t){
+  var want = !!t.aiPaused;                 // paused now -> we want it ON
+  var btn=document.getElementById('ibAiBtn');
+  if(btn){ btn.disabled=true; btn.textContent='...'; }
+  fetch(WORKER_URL+'/api/aipause?t='+encodeURIComponent(TOKEN),{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({phone:t.number, paused:!want})
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d && d.ok){
+      t.aiPaused = !!d.aiPaused;
+      IBSIG='';                            // force the pane to repaint
+      ibRenderMsgs();
+    } else {
+      alert('Could not change that: '+((d&&d.error)||'unknown error'));
+      ibLoad();
+    }
+  }).catch(function(){ alert('Could not reach the server.'); ibLoad(); });
 }
 
 /* Naming a thread writes a real Contact into the Control Plane CRM, so the name
@@ -895,7 +928,12 @@ document.getElementById('ibSend').addEventListener('click', function(){
     body: JSON.stringify({ to:target, body:text })
   }).then(function(r){ return r.json(); }).then(function(d){
     if(d.sent){
-      note.innerHTML='<span class="ib-ok">Sent.</span>'; ta.value='';
+      // Replying by hand takes the thread off the AI. Say so, or the AI going
+      // quiet on this one thread looks like a bug three days later.
+      note.innerHTML = d.aiPaused
+        ? '<span class="ib-ok">Sent.</span> You have taken this thread over, so the AI has stopped replying to it. Press <b>AI on</b> to hand it back.'
+        : '<span class="ib-ok">Sent.</span>';
+      ta.value='';
       IBCOMPOSE=null;
       document.getElementById('ibNewBox').classList.remove('open');
       document.getElementById('ibNewTo').value='';
