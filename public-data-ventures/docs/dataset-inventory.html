@@ -1,0 +1,971 @@
+<title>Public Data → Private Business</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+:root{
+  --bg:#f7f4ec;
+  --bg-raised:#ffffff;
+  --bg-sunken:#efe9db;
+  --ink:#22262f;
+  --ink-soft:#585e70;
+  --ink-faint:#8a8f9e;
+  --rule:#dcd4bf;
+  --rule-soft:#e8e1cf;
+  --accent:#33507a;
+  --accent-ink:#233a5c;
+  --accent-soft:#e4eaf3;
+  --gold:#9c7325;
+  --gold-soft:#f2e8d2;
+  --good:#3c7350;
+  --good-soft:#e2ede4;
+  --warn:#a3721f;
+  --warn-soft:#f3e7d0;
+  --bad:#a1483a;
+  --bad-soft:#f4e3df;
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body: -apple-system, "Segoe UI", ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15181e;
+    --bg-raised:#1c212a;
+    --bg-sunken:#10131a;
+    --ink:#e9e6db;
+    --ink-soft:#aeb2c1;
+    --ink-faint:#767c8d;
+    --rule:#333a49;
+    --rule-soft:#262d3a;
+    --accent:#8aa8d9;
+    --accent-ink:#c3d3ec;
+    --accent-soft:#212c3f;
+    --gold:#dcb05f;
+    --gold-soft:#332a17;
+    --good:#7fbb92;
+    --good-soft:#1c2c22;
+    --warn:#dcb05f;
+    --warn-soft:#332a17;
+    --bad:#e2897a;
+    --bad-soft:#332019;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181e; --bg-raised:#1c212a; --bg-sunken:#10131a;
+  --ink:#e9e6db; --ink-soft:#aeb2c1; --ink-faint:#767c8d;
+  --rule:#333a49; --rule-soft:#262d3a;
+  --accent:#8aa8d9; --accent-ink:#c3d3ec; --accent-soft:#212c3f;
+  --gold:#dcb05f; --gold-soft:#332a17;
+  --good:#7fbb92; --good-soft:#1c2c22;
+  --warn:#dcb05f; --warn-soft:#332a17;
+  --bad:#e2897a; --bad-soft:#332019;
+}
+:root[data-theme="light"]{
+  --bg:#f7f4ec; --bg-raised:#ffffff; --bg-sunken:#efe9db;
+  --ink:#22262f; --ink-soft:#585e70; --ink-faint:#8a8f9e;
+  --rule:#dcd4bf; --rule-soft:#e8e1cf;
+  --accent:#33507a; --accent-ink:#233a5c; --accent-soft:#e4eaf3;
+  --gold:#9c7325; --gold-soft:#f2e8d2;
+  --good:#3c7350; --good-soft:#e2ede4;
+  --warn:#a3721f; --warn-soft:#f3e7d0;
+  --bad:#a1483a; --bad-soft:#f4e3df;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent-soft);color:var(--accent-ink);}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 24px 120px;}
+
+/* ---------- Header ---------- */
+header.hero{
+  border-bottom:1px solid var(--rule);
+  padding:56px 0 32px;
+  margin-bottom:40px;
+}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);display:inline-block;}
+h1.title{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(32px,5vw,46px);
+  line-height:1.12;
+  margin:0 0 16px;
+  text-wrap:balance;
+  color:var(--ink);
+}
+h1.title em{font-style:italic;color:var(--accent);}
+p.dek{
+  font-size:17.5px;
+  color:var(--ink-soft);
+  max-width:640px;
+  margin:0 0 22px;
+  text-wrap:pretty;
+}
+.meta-row{
+  display:flex;flex-wrap:wrap;gap:10px 22px;
+  font-family:var(--font-mono);font-size:12.5px;color:var(--ink-faint);
+}
+.meta-row b{color:var(--ink-soft);font-weight:600;}
+
+/* ---------- Nav ---------- */
+nav.jump{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-bottom:56px;
+}
+nav.jump a{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-soft);
+  text-decoration:none;
+  padding:6px 12px;
+  border:1px solid var(--rule);
+  border-radius:3px;
+  background:var(--bg-raised);
+  transition:border-color .15s, color .15s;
+}
+nav.jump a:hover, nav.jump a:focus-visible{border-color:var(--accent);color:var(--accent-ink);outline:none;}
+
+/* ---------- Section scaffolding ---------- */
+section.block{margin-bottom:64px;}
+.part-head{
+  display:flex;align-items:baseline;gap:16px;
+  margin-bottom:8px;
+}
+.part-num{
+  font-family:var(--font-mono);font-size:13px;color:var(--gold);
+  letter-spacing:.06em;
+}
+h2.part-title{
+  font-family:var(--font-display);font-weight:400;
+  font-size:30px;margin:0;color:var(--ink);
+}
+p.part-intro{color:var(--ink-soft);max-width:680px;margin:14px 0 36px;}
+
+.domain{
+  margin-bottom:44px;
+  padding-top:8px;
+  border-top:1px solid var(--rule-soft);
+}
+.domain-head{
+  display:flex;align-items:baseline;gap:10px;margin:22px 0 14px;
+}
+.domain-letter{
+  font-family:var(--font-display);font-style:italic;font-size:22px;color:var(--accent);
+}
+h3.domain-title{
+  font-family:var(--font-body);font-weight:650;font-size:17px;
+  margin:0;color:var(--ink);letter-spacing:.01em;
+}
+
+/* ---------- Dataset cards ---------- */
+.dataset{
+  background:var(--bg-raised);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  padding:20px 22px;
+  margin-bottom:14px;
+}
+.dataset-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.dataset-name{font-weight:650;font-size:15.5px;color:var(--ink);}
+.pill{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.03em;
+  padding:3px 9px;border-radius:20px;white-space:nowrap;font-weight:600;
+}
+.pill.open{background:var(--good-soft);color:var(--good);}
+.pill.mixed{background:var(--warn-soft);color:var(--warn);}
+.pill.crowded{background:var(--bad-soft);color:var(--bad);}
+.pill.restricted{background:var(--bad-soft);color:var(--bad);}
+
+.ds-grid{
+  display:grid;
+  grid-template-columns:100px 1fr;
+  gap:6px 14px;
+  font-size:14px;
+}
+.ds-grid dt{
+  font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);
+  text-transform:uppercase;letter-spacing:.04em;padding-top:2px;
+}
+.ds-grid dd{margin:0;color:var(--ink-soft);}
+.ds-grid dd.access code{
+  font-family:var(--font-mono);font-size:12.5px;background:var(--bg-sunken);
+  padding:1px 6px;border-radius:3px;color:var(--accent-ink);word-break:break-all;
+}
+.ds-grid dd.monetize b{color:var(--ink);font-weight:600;}
+.ds-grid dd.gotcha{color:var(--ink-soft);font-style:italic;}
+
+/* ---------- Part 2 idea cards ---------- */
+.top5-strip{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;
+}
+.rank-badge{
+  font-family:var(--font-mono);font-size:12px;color:var(--gold);font-weight:700;
+}
+
+.idea{
+  background:var(--bg-raised);
+  border:1px solid var(--rule);
+  border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0;
+  padding:22px 24px;
+  margin-bottom:18px;
+}
+.idea.top{border-left-color:var(--gold);}
+.idea.flag{border-left-color:var(--bad);}
+.idea-head{
+  display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;
+  margin-bottom:6px;
+}
+h4.idea-title{
+  font-family:var(--font-display);font-size:19.5px;font-weight:400;margin:0;color:var(--ink);
+}
+.idea-title .num{color:var(--ink-faint);font-family:var(--font-mono);font-size:13px;margin-right:8px;}
+.idea-datasets{
+  font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);margin:2px 0 14px;
+  text-transform:uppercase;letter-spacing:.03em;
+}
+.idea-body{display:grid;grid-template-columns:1fr;gap:10px;font-size:14.5px;}
+.idea-row{display:grid;grid-template-columns:120px 1fr;gap:12px;}
+.idea-row .label{
+  font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);
+  text-transform:uppercase;letter-spacing:.04em;padding-top:2px;
+}
+.idea-row .val{color:var(--ink-soft);}
+.idea-row .val b{color:var(--ink);font-weight:600;}
+.idea-foot{
+  display:flex;gap:18px;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule-soft);
+  font-size:13px;flex-wrap:wrap;
+}
+.idea-foot .chip{
+  font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);
+}
+.idea-foot .chip b{color:var(--ink-soft);}
+
+.flag-box{
+  background:var(--bad-soft);border:1px solid var(--bad);border-radius:6px;
+  padding:16px 20px;margin-top:14px;font-size:14px;color:var(--ink);
+}
+.flag-box b{color:var(--bad);}
+
+/* ---------- table utility ---------- */
+.tbl-wrap{overflow-x:auto;margin:16px 0 28px;border:1px solid var(--rule);border-radius:6px;}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:600px;}
+th{
+  font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--ink-faint);text-align:left;padding:10px 14px;background:var(--bg-sunken);
+  border-bottom:1px solid var(--rule);position:sticky;top:0;
+}
+td{padding:10px 14px;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;}
+
+/* ---------- misc ---------- */
+.divider{height:1px;background:var(--rule);margin:60px 0 40px;}
+.note{
+  background:var(--accent-soft);border-radius:6px;padding:18px 22px;
+  font-size:14px;color:var(--ink-soft);margin:20px 0;
+}
+.note b{color:var(--accent-ink);}
+footer{
+  border-top:1px solid var(--rule);padding-top:24px;margin-top:60px;
+  font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);
+}
+a{color:var(--accent-ink);}
+strong{color:var(--ink);}
+
+@media (max-width:600px){
+  .ds-grid{grid-template-columns:1fr;}
+  .ds-grid dt{padding-top:8px;}
+  .idea-row{grid-template-columns:1fr;}
+}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Venture Research Memo · 6 Aug 2026</div>
+  <h1 class="title">Public data, <em>privatized</em>.</h1>
+  <p class="dek">An inventory of free, bulk-accessible federal datasets nobody has productized well, and eighteen concrete businesses a two- or three-person team could build on top of them — modeled on one proof: pulling 1.97M nonprofits out of GivingTuesday's public 990 S3 lake in ten seconds to find the small local funders that Candid and Instrumentl structurally miss.</p>
+  <div class="meta-row">
+    <span><b>Scope</b> 35 datasets, 9 domains</span>
+    <span><b>Output</b> 18 business ideas, ranked</span>
+    <span><b>Seed comp</b> GivingTuesday 990 Data Lake → local scholarship/grant finder</span>
+  </div>
+</header>
+
+<nav class="jump">
+  <a href="#part1">Part 1 — Inventory</a>
+  <a href="#dom-a">Business/Corporate</a>
+  <a href="#dom-b">Property/Geospatial</a>
+  <a href="#dom-c">Health</a>
+  <a href="#dom-d">Labor/Economic</a>
+  <a href="#dom-e">Legal/Regulatory</a>
+  <a href="#dom-f">Transport/Infra</a>
+  <a href="#dom-g">Education</a>
+  <a href="#dom-h">Ag/Energy</a>
+  <a href="#dom-i">Nonprofit (comp)</a>
+  <a href="#part2">Part 2 — Ideas</a>
+  <a href="#top5">Top 5</a>
+  <a href="#flags">Flagged/restricted</a>
+</nav>
+
+<section class="block" id="part1">
+  <div class="part-head"><span class="part-num">PART 1</span><h2 class="part-title">The dataset inventory</h2></div>
+  <p class="part-intro">Each entry answers the question that actually determines whether this is a business: is it free, is it fresh, and — most important — <strong>who already sells it, and to whom.</strong> A dataset with no commercial layer on top of it is raw material. One with three funded competitors is a research citation, not an opening.</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Pill key</th><th></th></tr>
+    <tr><td><span class="pill open">GREENFIELD</span></td><td>No dominant commercial layer — genuine opening</td></tr>
+    <tr><td><span class="pill mixed">PARTIAL</span></td><td>Thin/enterprise-only competition — room at a lower price point or narrower niche</td></tr>
+    <tr><td><span class="pill crowded">CROWDED</span></td><td>Mature, funded incumbents already own this at national scope</td></tr>
+    <tr><td><span class="pill restricted">RESTRICTED</span></td><td>Not actually free/unrestricted despite appearing to be — read the fine print</td></tr>
+  </table>
+  </div>
+
+  <!-- A. Business / Corporate -->
+  <div class="domain" id="dom-a">
+    <div class="domain-head"><span class="domain-letter">A</span><h3 class="domain-title">Business &amp; corporate data</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">SEC EDGAR — full-text search + XBRL company facts</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every XBRL-tagged financial fact for every US public filer since 2009; full-text search across 20M+ filings back to 2001. JSON.</dd>
+        <dt>Access</dt><dd class="access">Free, no key. <code>data.sec.gov/api/xbrl/companyfacts/CIK##########.json</code>; bulk <code>companyfacts.zip</code>. 10 req/sec, requires a descriptive User-Agent header.</dd>
+        <dt>License</dt><dd>Fully public domain, unrestricted commercial use.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>sec-api.io, Intrinio, AlphaSense, Bamboo, EDGAR Online</b> (acquired, historic) already repackage this at $50–500/mo.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Company-specific "extension" XBRL tags break cross-company comparability; pre-2009 filings have no XBRL at all; full-text search needs real NLP to be useful beyond keyword matching.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">USPTO PatentsView + Trademark bulk data (TSDR)</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every US patent grant/application with inventor, assignee, citation, and classification data since 1976; full trademark case history and prosecution documents.</dd>
+        <dt>Access</dt><dd class="access">Free. PatentsView API needs no key; TSDR bulk data requires a free API key (<code>developer.uspto.gov</code>).</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>Clarivate/IFI Claims, PatSnap, Anaqua</b> at $10k+/yr enterprise contracts sold to Fortune 500 IP departments.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Assignee name disambiguation is the field's classic hard problem — subsidiaries, spelling variants, and M&A renaming all break naive joins. This is the actual moat, not the data itself.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">SAM.gov entity registrations + exclusions</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>~2M active federal-vendor entity registrations: UEI, NAICS, POC, size status, exclusions/debarments.</dd>
+        <dt>Access</dt><dd class="access">Free API key required (rate-limited). Entity Extracts API returns up to 1M records/call as CSV/JSON. <code>open.gsa.gov/api/entity-api</code>.</dd>
+        <dt>License</dt><dd>Public, FOIA-releasable extract explicitly designed for reuse.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>GovTribe, HigherGov, Deltek GovWin</b> — $100s–$1,000s/mo aimed at large primes.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">2022's DUNS→UEI migration broke joins with every pre-2022 dataset; NAICS codes are self-reported and frequently stale; registration lapses (entities that let SAM registration expire) are an underused churn signal.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">State business registries (Secretary of State filings, 50 states)</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>LLC/corp formation, officers, registered agents, status. No federal registry exists — fully fragmented by state.</dd>
+        <dt>Access</dt><dd class="access">Varies wildly. CO, OR, CT, IA publish real open bulk data; most states charge for bulk or offer search-only.</dd>
+        <dt>License</dt><dd>Public record, but several states license bulk resale for a fee.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>OpenCorporates, Middesk, Cobalt Intelligence, Bizapedia, Dun &amp; Bradstreet, LexisNexis</b> at $300–500+/mo. Already saturated at national scope.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">No canonical cross-state entity ID; dissolved/inactive status lags by months; this category is genuinely crowded — skip it as a primary bet.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">FCC ULS (Universal Licensing System)</span><span class="pill open">GREENFIELD</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every wireless, broadcast, and spectrum license: callsign, licensee, frequency, coordinates, expiration.</dd>
+        <dt>Access</dt><dd class="access">Free, no key. Daily pipe-delimited bulk downloads plus weekly full-database dump. <code>fcc.gov/wireless/data/public-access-files-database-downloads</code>.</dd>
+        <dt>License</dt><dd>Fully public, no restriction.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Only small scraper-repackagers on marketplaces like Apify — no dominant player at the tower-leasing/spectrum-broker layer.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Linking a callsign/FRN to the real corporate owner behind a shell licensee requires cross-referencing SEC/state filings — real but tractable work.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- B. Property / Geospatial -->
+  <div class="domain" id="dom-b">
+    <div class="domain-head"><span class="domain-letter">B</span><h3 class="domain-title">Property &amp; geospatial</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">County property assessor &amp; deed records</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Parcel ownership, assessed value, sales history, deed transfers — 3,000+ county jurisdictions, no federal aggregator.</dd>
+        <dt>Access</dt><dd class="access">County-by-county; formats range from clean GIS shapefile to PDF-only, some in-person only.</dd>
+        <dt>License</dt><dd>Public record, terms vary by county.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>ATTOM</b> (160M properties), <b>CoreLogic</b> (152M), <b>Regrid</b> (150M parcels), <b>Black Knight</b> — mature, enterprise-licensed at $10k–$1M+/yr.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">National-scope parcel data is a solved, saturated market. The remaining opening is narrow verticals — code-violation-to-assessor joins, specific under-covered rural counties — not "build another nationwide parcel database."</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">FEMA National Flood Hazard Layer</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Effective flood zone geometry covering &gt;90% of the US population, continuously revised.</dd>
+        <dt>Access</dt><dd class="access">Free ArcGIS REST API + full geodatabase bulk download. <code>fema.gov/flood-maps/national-flood-hazard-layer</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>National Flood Data, LightBox, First American</b> sell parcel-level flood-zone lookups to insurers and mortgage lenders.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Map panels are different vintages county to county (some decades old); preliminary vs. effective maps disagree; address→parcel→flood-zone matching is the actual hard part.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">EPA ECHO (Enforcement &amp; Compliance History Online)</span><span class="pill open">GREENFIELD</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>1.5M+ regulated facilities, 130+ fields: inspections, violations, penalties under Clean Air/Water/RCRA/SDWA.</dd>
+        <dt>Access</dt><dd class="access">Free, no key. ECHO Exporter full bulk ZIP updated weekly, plus REST web services. <code>echo.epa.gov/tools/data-downloads</code>.</dd>
+        <dt>License</dt><dd>Fully public.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Thin — a few ESG-adjacent research shops, no dominant mid-market player despite rising supply-chain-diligence demand.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">No clean facility→parent-company linkage (EPA's Facility Registry Service doesn't map to corporate ownership) — that linkage is the moat.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">National Address Database (NAD) + NOAA/USGS reference layers</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>~80M address points contributed voluntarily by state/local GIS offices; NOAA climate/storm archives; USGS elevation/LiDAR and water-gauge data.</dd>
+        <dt>Access</dt><dd class="access">Free bulk download, DOT-maintained. <code>transportation.gov/gis/national-address-database</code>. NOAA via <code>api.weather.gov</code> + NCEI bulk archives.</dd>
+        <dt>License</dt><dd>Public domain — but coverage is voluntary and patchy (whole regions of some states are missing).</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>Smarty, Melissa Data, Loqate</b> dominate proprietary address verification — but they don't rely on NAD; they build their own. NAD's specific gaps remain unaddressed.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">The real USPS address database is not public — it's licensed only through CASS-certified vendors. NAD is the free-but-incomplete alternative; filling its gaps is the opportunity, not reselling it as-is.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- C. Health -->
+  <div class="domain" id="dom-c">
+    <div class="domain-head"><span class="domain-letter">C</span><h3 class="domain-title">Health</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">CMS Open Payments ("Sunshine Act")</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>15M+ general-payment records/yr + 750k+ research-payment records: every pharma/device dollar to a covered physician, back to 2013.</dd>
+        <dt>Access</dt><dd class="access">Free, no key. Full bulk CSV + REST API. <code>openpaymentsdata.cms.gov</code>.</dd>
+        <dt>License</dt><dd>No restrictions on the underlying data.</dd>
+        <dt>Monetized by</dt><dd class="monetize">ProPublica's free "Dollars for Docs" covers the nonprofit layer; commercially, <b>Definitive Healthcare</b> and IQVIA-style vendors sell KOL mapping to pharma HQ. Regional/mid-size med-affairs teams remain underserved by enterprise pricing.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Physician name-matching to NPI requires fuzzy joins; payment categorization taxonomy changes across publication years.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">NPPES / NPI Registry</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>8M+ National Provider Identifiers: name, taxonomy, address, deactivation status.</dd>
+        <dt>Access</dt><dd class="access">Free. Weekly/monthly bulk ZIP (V2 format as of March 2026) + real-time lookup API.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>Definitive Healthcare, HealthLink Dimensions</b> and various "provider-data-as-a-service" vendors sell enriched feeds.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Raw NPPES has no Medicare enrollment (PECOS), exclusion (LEIE), or license-board status — enrichment across those four sources is where the value actually sits.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">Hospital price-transparency machine-readable files</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Legally mandated gross charges, payer-negotiated rates, and cash prices for ~6,000 hospitals plus payer MRFs.</dd>
+        <dt>Access</dt><dd class="access">Free — posted by each hospital/payer on their own site, no central bulk source. Must be crawled.</dd>
+        <dt>License</dt><dd>Public by federal mandate.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>Turquoise Health</b> ($40M Series C, March 2026), <b>Serif Health</b> — this category is now well-funded and actively competitive at the platform level.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Arguably the messiest dataset on this list: generic "Payer 1/Payer 2" labels, non-standard schemas, and files that don't match their own hospital's chargemaster. Turquoise reported a 96.6% de-duplication rate cleaning a single payer's files — that gives you a sense of the mess.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">openFDA (recalls, adverse events, device/drug labeling)</span><span class="pill open">GREENFIELD</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>MAUDE device adverse events, FAERS drug adverse events, all recall classes, structured product labeling.</dd>
+        <dt>Access</dt><dd class="access">Free, Elasticsearch-backed REST API, no key required for low volume. <code>open.fda.gov/apis</code>. Updates ~weekly.</dd>
+        <dt>License</dt><dd>Explicitly built for reuse, commercial use allowed.</dd>
+        <dt>Monetized by</dt><dd class="monetize">No dominant commercial platform — genuinely underexploited relative to its size and the legal/compliance demand around it.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Reports are voluntary/manufacturer-submitted and often duplicated or delayed; raw text fields need real NLP to extract a clean "what happened."</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">CMS provider utilization PUFs + PECOS enrollment</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Annual Medicare Part B/D utilization and payment by provider/procedure; PECOS enrollment, opt-out, and ordering/referring authority.</dd>
+        <dt>Access</dt><dd class="access">Utilization PUFs: free annual bulk CSV. <b>PECOS itself has no public API</b> — status must be reconstructed via the NPI Registry API's PECOS flags or FOIA.</dd>
+        <dt>License</dt><dd>Public.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Bundled into $50k+/yr enterprise platforms (Definitive Healthcare-class vendors); no low-cost, narrow-vertical option exists.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">The PECOS API gap is precisely the kind of "annoying to assemble" problem that creates a real moat for a small, patient team.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- D. Labor / Economic -->
+  <div class="domain" id="dom-d">
+    <div class="domain-head"><span class="domain-letter">D</span><h3 class="domain-title">Labor &amp; economic</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">BLS (CPI, employment, OEWS wages)</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Monthly employment, CPI by region/category, occupational wage estimates by metro and industry.</dd>
+        <dt>Access</dt><dd class="access">Free API (registration recommended for higher rate limit) + flat-file bulk. <code>bls.gov/developers</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Payscale-class comp-benchmarking vendors at the aggregate level; hyper-local/niche-occupation cuts remain underserved.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Small-area estimates get suppressed for statistical reliability; methodology changes across years complicate long time series.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">Census ACS + County Business Patterns + Building Permits Survey</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Demographic/economic estimates (ACS), establishment counts by NAICS/county (CBP), and monthly/annual permit activity by jurisdiction (BPS).</dd>
+        <dt>Access</dt><dd class="access">Free API (needs a free key) + bulk CSV. <code>api.census.gov/data.html</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">ESRI Business Analyst wraps this into enterprise site-selection tooling; Placer.ai and demographic resellers sit on top too.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">CBP suppresses small county/industry cells for disclosure avoidance; BPS coverage has gaps in permit offices that don't report.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">USASpending.gov / FPDS federal contracts &amp; grants</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every federal contract, grant, and loan award — recipient, amount, agency, NAICS/CFDA, place of performance.</dd>
+        <dt>Access</dt><dd class="access">Free, no key. <code>api.usaspending.gov</code> plus a full bulk Award Data Archive.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>GovTribe, HigherGov, Vistant, Deltek GovWin</b> — a proven, growing market priced for large primes ($1,000s/mo).</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Recipient entity resolution across the 2022 UEI/DUNS transition; subcontract data (FSRS) is far less complete than prime-award data.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">DOL/OSHA enforcement + Wage &amp; Hour Division violations</span><span class="pill open">GREENFIELD</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>4M+ OSHA inspection/violation/penalty records since 1973; WHD wage-theft case outcomes.</dd>
+        <dt>Access</dt><dd class="access">Free bulk CSV (<code>enforcedata.dol.gov</code>, daily updates) plus a newer free-key API at <code>dataportal.dol.gov</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Almost nobody at the dedicated-product level — a genuinely thin commercial layer given how directly it maps to insurance underwriting.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Establishment name/address needs fuzzy matching to the actual insured legal entity — employers file under DBAs, subsidiaries, and job-site addresses inconsistently.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- E. Legal / Regulatory -->
+  <div class="domain" id="dom-e">
+    <div class="domain-head"><span class="domain-letter">E</span><h3 class="domain-title">Legal &amp; regulatory</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">PACER/RECAP via CourtListener (Free Law Project)</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Federal docket metadata and a growing share of the actual documents behind PACER's paywall — PACER generates ~$150M/yr charging $0.10/page; RECAP gives away whatever anyone has already paid for.</dd>
+        <dt>Access</dt><dd class="access">Free REST API v4. <code>courtlistener.com</code> / <code>free.law/recap</code>.</dd>
+        <dt>License</dt><dd>Nonprofit-operated, built explicitly for reuse and downstream products.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Free Law Project itself is a nonprofit, but the category it feeds — <b>Lex Machina (LexisNexis), Docket Alarm (Fastcase), Trellis</b> for state courts — is a proven $100M+ business category.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">RECAP coverage is inherently incomplete — only documents someone already paid for and shared exist for free; true completeness still costs PACER fees.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">State court records (no RECAP equivalent)</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>State civil/criminal dockets — fragmented per state/county, most with no bulk export at all.</dd>
+        <dt>Access</dt><dd class="access">Scraping required in most states; a handful (e.g. some state judiciary open-data portals) offer real bulk files.</dd>
+        <dt>License</dt><dd>Public record, but access mechanics vary and some states restrict bulk scraping in their terms.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>Trellis, UniCourt</b> already cover the big states (CA, TX, FL) well. Smaller/rural counties remain genuinely open.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Court-to-court schema drift is severe; entity resolution of party names across cases is a real, ongoing project, not a one-time script.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">Federal Register + Regulations.gov</span><span class="pill open">GREENFIELD</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every proposed/final rule, notice, and public comment across all federal agencies, daily.</dd>
+        <dt>Access</dt><dd class="access">Free APIs, no key for Federal Register; free key for regulations.gov. <code>federalregister.gov/developers/documentation/api/v1</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Thin outside enterprise regulatory-intelligence suites (Thomson Reuters) — vertical-specific alerting is largely unbuilt.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Volume is enormous and mostly noise for any one company; the value is entirely in filtering + summarization, which favors an AI-native small team.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">State lobbying &amp; campaign finance</span><span class="pill restricted">RESTRICTED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>State-level donations, lobbying registrations and spend. Federal-level (FEC) is clean and free.</dd>
+        <dt>Access</dt><dd class="access">FEC: free, <code>api.open.fec.gov</code>. State-level: FollowTheMoney/OpenSecrets bulk data, or individual state portals of wildly varying quality.</dd>
+        <dt>License</dt><dd><b>Not unrestricted</b> — FollowTheMoney/OpenSecrets bulk data is free for non-commercial/research/journalism use; commercial reuse requires separate licensing. Several states have no machine-readable export at all.</dd>
+        <dt>Monetized by</dt><dd class="monetize">OpenSecrets and FollowTheMoney are themselves nonprofit-run; no major commercial reseller at state-lobbying granularity.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Check licensing before building a commercial product directly on FollowTheMoney/OpenSecrets bulk exports — the free tier is explicitly framed for non-commercial use.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- F. Transport / Infra -->
+  <div class="domain" id="dom-f">
+    <div class="domain-head"><span class="domain-letter">F</span><h3 class="domain-title">Transport &amp; infrastructure</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">FAA Aircraft Registry</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every US-registered civil aircraft: N-number, owner, make/model, airworthiness, address.</dd>
+        <dt>Access</dt><dd class="access">Free daily bulk flat file (~60MB CSV/TXT), refreshed nightly. No official API, but trivial to wrap one. <code>faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>FlightAware, JetNet, AMSTAT</b> own business-aviation valuation/ownership intelligence at enterprise pricing; small/experimental-aircraft owner marketing lists remain underexploited.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Ownership is frequently held in trusts/LLCs specifically to obscure the beneficial owner — real entity resolution problem for anyone doing outreach.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">FMCSA SAFER / motor carrier census</span><span class="pill crowded">CROWDED</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>~2M trucking carriers/brokers/forwarders: DOT number, safety rating, insurance on file, power units.</dd>
+        <dt>Access</dt><dd class="access">Free. SAFER Company Snapshot + QCMobile API, no key for basic queries; full census bulk file available.</dd>
+        <dt>License</dt><dd>Public, explicitly built to "encourage development of products, tools, or services."</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>DAT, Highway, Carrier411, MyCarrierPortal</b> — a proven, crowded category among large freight brokerages.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">MCS-150 filings only happen every two years, so the official data is often badly stale — the freshness gap between filing and reality is the wedge, since incumbents don't fully close it either.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">NHTSA recalls, complaints, VIN decoder, FARS crash data</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>Every safety recall/complaint by VIN/make/model, plus fatal-crash records (FARS).</dd>
+        <dt>Access</dt><dd class="access">Free API, no key. <code>nhtsa.gov/nhtsa-datasets-and-apis</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">CARFAX/AutoCheck dominate vehicle-history but rely on separate proprietary sources (insurance, repair shops) — recall-compliance monitoring specifically for fleets/dealers is a smaller, less contested niche.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Complaint text is free-form and needs NLP triage to separate signal from noise.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- G. Education -->
+  <div class="domain" id="dom-g">
+    <div class="domain-head"><span class="domain-letter">G</span><h3 class="domain-title">Education</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">IPEDS + College Scorecard</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>~6,000 institutions; College Scorecard adds 1,900+ data points per school including field-of-study-level earnings/debt from Treasury and NSLDS.</dd>
+        <dt>Access</dt><dd class="access">IPEDS: free bulk CSV/Access DB, no REST API from NCES itself. College Scorecard: free REST API (needs a free api.data.gov key). <code>collegescorecard.ed.gov/data/api</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">EAB and education consultancies at the institution level; program-level (not just institution-level) benchmarking is underused.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Field-of-study earnings data has meaningful lag and small-cohort suppression at less-common programs.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">State school report cards</span><span class="pill open">GREENFIELD</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>District/school-level test scores, funding, and demographic breakdowns, mandated by each state.</dd>
+        <dt>Access</dt><dd class="access">Fragmented — each state publishes its own portal/format; NCES's Common Core of Data aggregates a lagged subset.</dd>
+        <dt>License</dt><dd>Public record.</dd>
+        <dt>Monetized by</dt><dd class="monetize">GreatSchools covers consumer-facing scores; no strong B2B layer for, e.g., real-estate agents or employer relocation packages.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Genuinely messy — matching district/school IDs across state and federal systems is a real, unsolved entity-resolution problem.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- H. Agriculture / Energy -->
+  <div class="domain" id="dom-h">
+    <div class="domain-head"><span class="domain-letter">H</span><h3 class="domain-title">Agriculture &amp; energy</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">USDA NASS Quick Stats + Census of Agriculture</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>County-level crop yields, acreage, and prices; full farm census every 5 years.</dd>
+        <dt>Access</dt><dd class="access">Free API, generous rate limits. <code>quickstats.nass.usda.gov/api</code>.</dd>
+        <dt>License</dt><dd>Public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Crop-insurance underwriting already uses this; county-crop-level targeting finer than commodity-broker publications remains a smaller niche.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Small-county/small-crop combinations are suppressed for disclosure; survey vs. census years have different coverage.</dd>
+      </dl>
+    </div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">EIA Open Data API + FERC eLibrary</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>EIA: near-real-time grid balancing (EIA-930 hourly), petroleum, and generation data. FERC eLibrary: every regulatory docket/filing for interstate gas, oil, and electricity.</dd>
+        <dt>Access</dt><dd class="access">EIA: free API, instant free key, <code>eia.gov/opendata</code>. FERC: eLibrary has no clean bulk API — requires scraping a poor search UI.</dd>
+        <dt>License</dt><dd>Both public domain.</dd>
+        <dt>Monetized by</dt><dd class="monetize">Commodity-data vendors resell curated EIA feeds with better UI for real money — proof this exact free data sells if repackaged well. FERC docket alerting is largely done manually by expensive regulatory consultants.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">Cross-referencing FERC interconnection dockets against ISO-specific queue data is a real, unautomated entity-resolution gap.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- I. Nonprofit / Philanthropic -->
+  <div class="domain" id="dom-i">
+    <div class="domain-head"><span class="domain-letter">I</span><h3 class="domain-title">Nonprofit &amp; philanthropic — the proven comp</h3></div>
+
+    <div class="dataset">
+      <div class="dataset-top"><span class="dataset-name">IRS Business Master File + e-file 990 XML (GivingTuesday S3 Data Lake)</span><span class="pill mixed">PARTIAL</span></div>
+      <dl class="ds-grid">
+        <dt>Contains</dt><dd>1.97M nonprofit entities (BMF) + full e-filed 990/990-EZ/990-PF XML, ~324MB compact, back to 2011.</dd>
+        <dt>Access</dt><dd class="access">Free, no key. S3 bucket <code>gt990datalake-rawdata</code> (us-east-1), accessible via AWS console or CLI. <code>990data.givingtuesday.org</code>.</dd>
+        <dt>License</dt><dd>Public domain (IRS-published under FOIA).</dd>
+        <dt>Monetized by</dt><dd class="monetize"><b>Candid/Foundation Directory</b> ($35–127/mo), <b>Instrumentl</b> ($179–499/mo), <b>GrantStation</b> ($219/qtr) — all priced and curated for well-known, larger foundations, which structurally excludes small local funders. This is exactly the gap the seed business exploits.</dd>
+        <dt>Gotchas</dt><dd class="gotcha">990 filings lag actual fiscal years by 12–18 months on average; small-org XML often has inconsistent schema versions; entity resolution across a funder's name variants is nontrivial at scale.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="block" id="part2">
+  <div class="part-head"><span class="part-num">PART 2</span><h2 class="part-title">Eighteen businesses</h2></div>
+  <p class="part-intro">Biased toward: buyer is a business, not a consumer; the dataset is messy enough that cleaning it <em>is</em> the product; freshness or entity resolution is the hard part; and the need repeats monthly rather than satisfying one-time curiosity.</p>
+
+  <div class="note"><b>Note on the seed pattern.</b> The team's proven business — filter the IRS BMF geographically to surface small local funders Candid/Instrumentl miss — is not re-listed as idea #1 below since it already exists. Idea #2 is the most direct next step built on the exact same pipeline.</div>
+
+  <h3 id="top5" style="font-family:var(--font-display);font-weight:400;font-size:24px;margin:40px 0 6px;">Top 5, ranked</h3>
+  <p style="color:var(--ink-soft);font-size:14.5px;margin:0 0 24px;max-width:680px;">Ranked by willingness-to-pay (is there an existing budget line this replaces or beats?) crossed with feasibility for a 1–3 person AI-capable team in the next two quarters.</p>
+
+  <div class="idea top">
+    <div class="idea-head"><h4 class="idea-title"><span class="rank-badge">#1</span> Local Funder Warm-Intro Engine</h4></div>
+    <div class="idea-datasets">Dataset: IRS BMF + 990 XML (existing pipeline) — board/officer name graph</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Development directors and grant writers at small nonprofits (&lt;$2M budget) already paying for the scholarship/grant-finder tool.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">A list of funders is table stakes; a <b>warm introduction path</b> — "your board chair's spouse sits on this foundation's board" — is the thing that actually moves a cold application into a funded one.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$49–99/mo add-on tier to the existing product; undercuts Instrumentl's $179–499/mo outright.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Officer/director name-matching across 990 filings is a real NLP dedup problem (name variants, common names, title changes) — not a database lookup.</div></div>
+      <div class="idea-row"><div class="label">Why it's open</div><div class="val">Candid and Instrumentl don't build relationship graphs; they're search-and-filter tools by design, priced for large-org research teams, not warm-intro workflows.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low — extends existing pipeline</span><span class="chip"><b>Team:</b> 1–2</span><span class="chip"><b>Time to revenue:</b> 4–8 weeks</span></div>
+  </div>
+
+  <div class="idea top">
+    <div class="idea-head"><h4 class="idea-title"><span class="rank-badge">#2</span> Recall &amp; Adverse-Event Intake Radar</h4></div>
+    <div class="idea-datasets">Dataset: openFDA (MAUDE, FAERS, recalls)</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Plaintiff-side mass-tort/product-liability law firms doing case intake; hospital supply-chain/risk managers.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Mass-tort firms already spend heavily on lead generation; being first to flag a new device-recall pattern with real case volume is directly worth client acquisition dollars to them.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$299–799/mo per practice area tracked, or a per-qualified-lead fee for the legal-intake variant.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">openFDA's raw text is legalese and duplicated; an LLM-native summarizer that turns it into "severity, affected population, likely claim value" is squarely an AI-engineering moat, not a data moat.</div></div>
+      <div class="idea-row"><div class="label">Why it's open</div><div class="val">No dominant commercial platform exists at this exact intersection — enterprise-side regulatory trackers exist, but nothing purpose-built for legal intake teams.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low-medium</span><span class="chip"><b>Team:</b> 1–2</span><span class="chip"><b>Time to revenue:</b> 6–10 weeks</span></div>
+  </div>
+
+  <div class="idea top">
+    <div class="idea-head"><h4 class="idea-title"><span class="rank-badge">#3</span> OSHA/WHD Underwriting Feed</h4></div>
+    <div class="idea-datasets">Dataset: DOL OSHA enforcement + Wage &amp; Hour Division violations</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Workers' comp and general-liability MGAs (managing general agents) and construction surety underwriters — the small/mid-size ones, not the carriers with in-house LexisNexis Risk feeds.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">A prospective insured's OSHA violation history directly prices risk; small MGAs currently either skip this check entirely or do it by hand per submission.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$0.50–2/lookup API, or $500–2,000/mo flat feed for higher-volume underwriters.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Fuzzy-matching an establishment's OSHA record to the actual named-insured legal entity (DBAs, job-site addresses, subsidiary structures) — genuinely hard, daily-refreshed.</div></div>
+      <div class="idea-row"><div class="label">Why it's open</div><div class="val">Verisk/LexisNexis Risk bundle this into platforms priced for large carriers; nothing purpose-built and affordable exists for small MGAs.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium</span><span class="chip"><b>Team:</b> 2–3</span><span class="chip"><b>Time to revenue:</b> 3–4 months</span></div>
+  </div>
+
+  <div class="idea top">
+    <div class="idea-head"><h4 class="idea-title"><span class="rank-badge">#4</span> Credentialing Cross-Check (PECOS + NPI + License Boards)</h4></div>
+    <div class="idea-datasets">Dataset: NPPES/NPI Registry + reconstructed CMS PECOS status + state license boards</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Locum tenens/travel-nurse staffing agencies and hospital medical-staff/credentialing offices doing primary-source verification.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Every day a provider isn't credentialed is a day of lost billing for a hospital and lost placement fee for a staffing agency — this is an urgent, revenue-linked pain point, not a nice-to-have.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$2–5 per provider verified, or $500+/mo subscription for agencies verifying in volume.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">CMS PECOS has <b>no public API</b> — status must be reconstructed by cross-referencing NPI Registry PECOS flags against enrollment records. That reconstruction work is the entire defensibility.</div></div>
+      <div class="idea-row"><div class="label">Why it's open</div><div class="val">Enterprise CVO (credential-verification-organization) vendors exist but are priced and built for large health systems, not staffing agencies or small clinics.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium-high</span><span class="chip"><b>Team:</b> 2–3</span><span class="chip"><b>Time to revenue:</b> 4–6 months</span></div>
+  </div>
+
+  <div class="idea top">
+    <div class="idea-head"><h4 class="idea-title"><span class="rank-badge">#5</span> Vertical Regulatory Alert Line</h4></div>
+    <div class="idea-datasets">Dataset: Federal Register + Regulations.gov, one vertical at a time</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Compliance officers at small/mid companies in one specific regulated vertical (start with cannabis, PFAS/chemicals, or BSA-AML fintech).</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">They currently either miss relevant rulemakings entirely or pay for Thomson Reuters Regulatory Intelligence at enterprise rates far beyond what a 20-person company can justify.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$199–499/mo per vertical.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Vertical-specific taxonomy and LLM-quality summarization of dense rulemaking text into "does this affect you, and what do you need to do" — an AI-engineering moat that compounds as a reusable pipeline.</div></div>
+      <div class="idea-row"><div class="label">Why it's open</div><div class="val">The category is real (compliance officers already buy this) but nobody has built the narrow, cheap, vertical-specific version — and this idea is a product line: the same pipeline repeats across verticals.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low-medium</span><span class="chip"><b>Team:</b> 1–2</span><span class="chip"><b>Time to revenue:</b> 6–8 weeks per vertical</span></div>
+  </div>
+
+  <h3 style="font-family:var(--font-display);font-weight:400;font-size:22px;margin:52px 0 20px;">The remaining 13</h3>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">06</span>GovCon Micro-Prime Radar</h4></div>
+    <div class="idea-datasets">Dataset: USASpending.gov + FPDS + SAM.gov entity extracts</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Business-development leads at $5–50M-revenue government contractors.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">HigherGov/GovWin price for large primes; this segment currently tracks opportunities in spreadsheets.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$199–499/mo.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">UEI/DUNS entity resolution + expiring-SAM-registration churn alerts incumbents don't surface.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Incumbents chase enterprise ACV, ignoring the long tail of small primes.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium</span><span class="chip"><b>Team:</b> 2–3</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">07</span>Mid-Market IP Docket Watch</h4></div>
+    <div class="idea-datasets">Dataset: PatentsView + TSDR bulk + SEC XBRL for parent-company cross-reference</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">In-house IP counsel and competitive-intel leads at mid-size manufacturers not big enough for Clarivate.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Missing a competitor's new patent filing or continuation is a real strategic risk; they currently rely on manual quarterly searches.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$299–999/mo per competitor portfolio tracked.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Assignee disambiguation across subsidiaries, name changes, and M&amp;A — the field's classic hard problem.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Clarivate/IFI Claims are priced at $10k+/yr — a real mid-market gap below that.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium-high</span><span class="chip"><b>Team:</b> 2–3</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">08</span>Supply-Chain Environmental Screener</h4></div>
+    <div class="idea-datasets">Dataset: EPA ECHO + SEC/SAM parent-company linking</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Procurement/supply-chain risk teams at mid-market manufacturers doing supplier ESG diligence.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Customer and regulatory pressure now requires supplier environmental screening; Sustainalytics/EcoVadis serve the Fortune 500, not mid-market procurement teams.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$299–799/mo.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Facility→parent-company linkage (EPA's Facility Registry Service doesn't map to corporate ownership on its own).</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">No mid-market-priced competitor exists at this exact layer.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium-high</span><span class="chip"><b>Team:</b> 2–3</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">09</span>Self-Insured Employer Price-Shopping Basket</h4></div>
+    <div class="idea-datasets">Dataset: Hospital price-transparency MRFs, narrowed to a procedure basket</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Benefits consultants and TPAs serving self-insured employers with 200–2,000 employees.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Turquoise Health targets health systems and large payers; the self-insured-employer segment is underserved by its enterprise focus.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$500–2,000/mo per client book.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Continued MRF cleaning quality plus a narrower, cheaper procedure-basket product Turquoise doesn't optimize for.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Hard — flagged below as the most crowded idea in this list. Enter only with a genuinely narrower wedge.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> High</span><span class="chip"><b>Team:</b> 3</span><span class="chip" style="color:var(--bad)"><b>Risk: crowded</b></span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">10</span>Spectrum &amp; Tower Ownership-Change Alerts</h4></div>
+    <div class="idea-datasets">Dataset: FCC ULS + FAA Antenna Structure Registrations</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Cell-tower leasing brokers and rural wireless ISPs hunting for license/spectrum acquisition opportunities.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">License expirations and ownership changes are acquisition triggers they currently monitor manually or miss.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$199–499/mo.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Nobody dominant tracks this specific ownership-change signal — small but genuinely open field.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Too niche for large data vendors to bother with; perfect small-team size.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low-medium</span><span class="chip"><b>Team:</b> 1–2</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">11</span>BEAD Broadband Address Gap-Filler</h4></div>
+    <div class="idea-datasets">Dataset: National Address Database + county parcel/GIS layers</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Rural ISPs and utility cooperatives applying for BEAD/RDOF federal broadband grants; engineering firms doing buildout planning.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">The ~$42B BEAD program requires exact address-level serviceable-location data through roughly 2028 — a live, funded, deadline-driven federal mandate creates urgent recurring demand.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$5k–50k project-based, or $500/mo per service area for ongoing updates.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">NAD is known to be incomplete; filling its gaps by cross-referencing county GIS and delivery-point proxies is real, valuable, time-bound work.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Timing-driven opportunity tied to a specific federal program window, not yet consolidated by an incumbent.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium</span><span class="chip"><b>Team:</b> 2–3</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">12</span>SMB Site-Selection Reports</h4></div>
+    <div class="idea-datasets">Dataset: Census CBP + Building Permits Survey + ACS</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Franchise development teams and independent retail/restaurant operators with 5–50 locations.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">ESRI Business Analyst is priced for enterprise; small operators currently guess or hire a one-off consultant.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$99–299/mo self-serve, or $500 per one-off report.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Weak — mostly packaging speed and a fresher permit-data refresh cycle than ESRI's.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Good starter cash-flow idea, but rank it low on defensibility.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low</span><span class="chip"><b>Team:</b> 1</span><span class="chip" style="color:var(--warn)"><b>Weak moat</b></span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">13</span>Niche Docket Alerts</h4></div>
+    <div class="idea-datasets">Dataset: CourtListener/RECAP, filtered to one case type</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Small litigation boutiques wanting competitor/plaintiff monitoring in one practice area (e.g., trademark litigation).</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Lex Machina/Docket Alarm are priced well above what a 5-partner firm will spend.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$99–299/mo.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Weak — the underlying data is already free and public via a nonprofit; differentiation is entirely curation and UX.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Competitive category (Lex Machina, Trellis already exist) — enter only with a genuinely narrow vertical focus.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low-medium</span><span class="chip"><b>Team:</b> 1–2</span><span class="chip" style="color:var(--warn)"><b>Competitive category</b></span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">14</span>Crop-Level Input Sales Targeting</h4></div>
+    <div class="idea-datasets">Dataset: USDA NASS Quick Stats</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Ag-input retailers (seed/fertilizer dealers) and crop-insurance agents.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">County-crop-level targeting finer than commodity-broker publications helps focus sales territory planning.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$199–499/mo regional license.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Modest — mostly packaging of clean, already-free API data.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Small TAM; treat as a side product, not a primary bet.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low</span><span class="chip"><b>Team:</b> 1</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">15</span>Interconnection Queue Intelligence</h4></div>
+    <div class="idea-datasets">Dataset: EIA-930 grid data + FERC eLibrary dockets</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Distributed-energy and demand-response developers doing interconnection/market analysis.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Interconnection queue position directly determines project timelines and financing viability — currently tracked manually across disconnected ISO portals and FERC dockets.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$500–2,000/mo.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Cross-referencing FERC docket status with each ISO's own queue data — a real, unautomated entity-resolution problem.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Energy-transition tailwind and no clean incumbent at this specific cross-reference layer.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Medium-high</span><span class="chip"><b>Team:</b> 2–3</span></div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">16</span>Vehicle Recall Fleet-Compliance Monitor</h4></div>
+    <div class="idea-datasets">Dataset: NHTSA recalls + VIN decoder</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Fleet managers and small/mid dealer groups tracking open recalls across their inventory.</div></div>
+      <div class="idea-row"><div class="label">Why they pay</div><div class="val">Open recalls are a liability and resale-value issue; CARFAX doesn't serve this fleet-operations use case directly.</div></div>
+      <div class="idea-row"><div class="label">Price</div><div class="val">$99–299/mo per fleet.</div></div>
+      <div class="idea-row"><div class="label">Moat</div><div class="val">Modest — mostly a well-built alerting workflow on top of free, clean data.</div></div>
+      <div class="idea-row"><div class="label">Why beatable</div><div class="val">Smaller, less contested niche than consumer vehicle history.</div></div>
+    </div>
+    <div class="idea-foot"><span class="chip"><b>Build:</b> Low</span><span class="chip"><b>Team:</b> 1</span></div>
+  </div>
+
+  <h3 id="flags" style="font-family:var(--font-display);font-weight:400;font-size:22px;margin:52px 0 20px;color:var(--bad);">Flagged: don't build these as described</h3>
+
+  <div class="idea flag">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">17</span>County Judgment Data for Debt Collection / Skip Tracing</h4></div>
+    <div class="idea-datasets">Dataset: County civil court judgment records</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Debt collectors, skip tracers, process servers.</div></div>
+    </div>
+    <div class="flag-box"><b>Flag: privacy-sensitive, regulated.</b> This sits directly in FCRA/FDCPA territory and reputationally overlaps with the people-search industry (Spokeo, PeopleFinders) that has drawn sustained regulatory and litigation attention. Do not build without dedicated compliance counsel, and even then, treat as a much harder, higher-liability business than anything else on this list.</div>
+    <div class="idea-foot"><span class="chip" style="color:var(--bad)"><b>Legally risky</b></span></div>
+  </div>
+
+  <div class="idea flag">
+    <div class="idea-head"><h4 class="idea-title"><span class="num">18</span>DMV Vehicle History / Salvage-Title Consumer Product</h4></div>
+    <div class="idea-datasets">Dataset: State DMV title/salvage/lien records</div>
+    <div class="idea-body">
+      <div class="idea-row"><div class="label">Buyer</div><div class="val">Would-be car buyers, resellers.</div></div>
+    </div>
+    <div class="flag-box"><b>Flag: not actually free.</b> State DMV records look like public government data but are federally restricted from resale under the Driver's Privacy Protection Act (DPPA) except to permissible-use holders — insurers, employers doing background checks, not general marketers or consumer apps. This is the exact trap the prompt warns about: government-adjacent data that appears open but isn't. Confirm DPPA permissible-use status before building anything on DMV records.</div>
+    <div class="idea-foot"><span class="chip" style="color:var(--bad)"><b>Restricted by federal law</b></span></div>
+  </div>
+
+</section>
+
+<footer>
+  <p><b>Methodology.</b> Compiled 6 Aug 2026 via web search — this session's direct HTTPS access to government and vendor domains (sec.gov, api.usaspending.gov, echo.epa.gov, etc.) was blocked at the network layer by the organization's egress proxy allowlist (403 on every tested host), so every access URL, format, and pricing figure above is drawn from indexed documentation and vendor pages rather than a live re-verification of each endpoint. Recommend re-confirming exact endpoint behavior, rate limits, and current competitor pricing directly before committing engineering time.</p>
+</footer>
+
+</div>
