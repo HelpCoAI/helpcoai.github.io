@@ -232,3 +232,41 @@ Blended P&L at $99/yr, auto-renew off, 5% conversion, 20 local sponsors:
 | 200,000 | 10,000 | $1,040,000 | $775,300 |
 
 Sponsor revenue moves break-even from ~50k free users to ~30k.
+
+
+## Should this be a nonprofit? (docs/nonprofit-structure-assessment.md)
+
+**Not as the starting structure.** The path swaps an acquisition problem (inside your control) for
+a fundraising problem (mostly outside it).
+
+The precedents mislead: **Common App** runs on application fees, not philanthropy. **Scholarship
+America's** $259.9M is 91.2% pass-through donor money. **ScholarSnapp** has been foundation-funded
+for 15+ years without reaching scale. **Benefits Data Trust closed in 2024** despite Gates, Ballmer,
+CZI and a $20M MacKenzie Scott gift. **Beyond12** runs a deficit with a real tech product. Nobody has
+made small, diversified-grant-funded, tech-first scholarship discovery work.
+
+Funding math at this stage: realistic first-year grants are **$5-50K** from local and family
+foundations. The operation needs **$200-400K/yr**. National funders (Lumina $50K-1.8M, Kresge
+$50K-5M, ECMC ~$40M/yr) fund solicited, established grantees — 2-4 years of relationship-building
+away.
+
+**Correction on local money:** the $4.59B in Sarasota/Manatee foundation assets is mostly earmarked
+as *student scholarship dollars*, not operating capital for a nonprofit. A pitch must target their
+much smaller capacity-building bucket.
+
+**Government money survived but is closed:** TRIO ($1.2B) and GEAR UP ($388M) were preserved in the
+FY2026 budget fight. But GEAR UP legally requires an LEA or IHE as lead applicant, and TRIO funds
+direct-service caseload programs, not software.
+
+**The real killer is founder time** — 40-60% on fundraising in years 1-3, taken directly from the
+990 pipeline that is the actual edge. Founder salary caps at $50-70K. No equity, no exit, ever.
+
+**Ads:** UBIT is 21%, but *qualified sponsorship acknowledgments are not taxed*. The local
+sponsored-scholarship model therefore works **better** inside a nonprofit — sponsors get a
+charitable deduction. Programmatic ad networks get taxed and invite scrutiny.
+
+**The cheap test — weeks, not months.** Don't file Form 1023. Get a **fiscal sponsor** (~10% fee,
+live in weeks), then make one narrow ask of 3-5 local funders: *"$15,000 to surface and pre-fill
+every Sarasota-County-eligible scholarship for 200 graduating seniors this spring."* Use the 47
+verified local awards as the proof point. If 5-10 warm local asks all decline, that's a fast signal
+the fundraising motion is harder than the product motion.
