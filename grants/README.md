@@ -50,6 +50,7 @@ source anyway.
 | `scripts/02_funders_for_nonprofits.py` | Same source, opposite grant direction — local foundations that fund *organizations*. Seed data for the nonprofit-facing version of the product. |
 | `scripts/03_compare_metros.py` | Re-runs both scans against median metros (Toledo, Wichita, Chattanooga) and normalizes per capita, to test whether the Sarasota result generalizes. |
 | `scripts/04_unit_economics.py` | Consumer unit-economics model including CAC. Run with `[price] [lifetime] [conversion]` to pressure-test assumptions. |
+| `scripts/05_revenue_scenarios.py` | Tests three pricing/revenue questions: auto-renew off, advertising as a second stream, and free/paid tiering. |
 
 ```bash
 # Fetch the master file (~10s)
@@ -185,3 +186,49 @@ IRS Form 990 filings are public records. Factual data (organization name, assets
 grant amounts) is not copyrightable under *Feist v. Rural Telephone*. This project
 does not scrape competitor databases — Fastweb and Scholarships.com are checked
 only via public search results, never fetched directly.
+
+
+## Revenue model decisions (scripts/05_revenue_scenarios.py)
+
+**Auto-renew OFF by default — affordable, and a real differentiator.** At $99/yr it cuts LTV
+from $126 to $84 and the CAC ceiling from $42 to $28. Organic CAC is $3-23, so it still clears
+comfortably. It also removes the single biggest complaint pattern against ScholarshipOwl
+(surprise charges, hard cancellation) and sidesteps ROSCA, FTC click-to-cancel, CA AB 2863, and
+NY GOL 5-903 entirely. **Only affordable because acquisition is organic** — if the plan ever
+depends on paid ads, auto-renew-off becomes unaffordable.
+
+**Advertising: display ads are not worth it; local sponsorships are.**
+
+| Option | At realistic scale | Verdict |
+|---|---|---|
+| Display ads in-app | $2.5-31K/yr at 10-50k users | Rounding error; cheapens the product |
+| Ads on public content pages | $12-30K/yr at 100k monthly visits | Secondary at best |
+| **Local sponsored scholarships** | **$50K/yr at 20 sponsors × $2,500** | **The model that works** |
+
+Sponsored scholarships replicate ScholarshipOwl's actual engine at local scale: a sponsor pays to
+host an award, which simultaneously produces revenue, a real scholarship for users, and an
+indexable long-tail SEO page. Aligned incentives, no conflict.
+
+**The trap to avoid:** student-loan ads pay the highest RPMs in this vertical — and that is
+precisely the conflict. Fastweb sold student leads to lenders. Scholly was bought by Sallie Mae
+and converted to lender matching; its founder is now suing over broken data promises. Taking
+lender money while claiming to reduce student debt destroys the trust the product runs on.
+
+**Free + paid tiers: required, not optional.** Organic acquisition needs a free entry point —
+SEO traffic lands, signs up free, converts later. The split that matters:
+
+- **Free gives the WOW** — "here are 14 local scholarships you'd never have found." Drives word
+  of mouth and SEO value, and serves the low-income families the mission targets.
+- **Paid gives the TIME** — autofill, document vault, application tracking, expected-value
+  ranking, renewal reminders.
+
+Blended P&L at $99/yr, auto-renew off, 5% conversion, 20 local sponsors:
+
+| Free users | Paid | Total revenue | Net |
+|---|---|---|---|
+| 10,000 | 500 | $99,500 | −$22,985 |
+| 50,000 | 2,500 | $297,500 | $145,075 |
+| 100,000 | 5,000 | $545,000 | $355,150 |
+| 200,000 | 10,000 | $1,040,000 | $775,300 |
+
+Sponsor revenue moves break-even from ~50k free users to ~30k.
