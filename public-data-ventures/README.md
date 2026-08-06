@@ -51,10 +51,35 @@ irs.gov, grants.gov, propublica.org). The GivingTuesday S3 data lake is reachabl
 990 pipeline works here. **Endpoint behavior, rate limits, and current pricing all need
 re-verification from an unrestricted network before committing engineering time.**
 
-## Status
+## Viability: five of six ideas died
 
-Dataset inventory complete. Eighteen business ideas generated and currently being adversarially
-stress-tested — the ideas were produced by an optimistic research pass and have not yet survived a
-skeptical one. Results to follow in `docs/viability-assessment.md`.
+Full teardown in **`docs/viability-assessment.md`**.
 
-**Nothing here is validated. Do not build on it yet.**
+The top six ideas were adversarially stress-tested. **Five of six "no dominant incumbent" claims
+were false** — in each case the first pass had searched the wrong category.
+
+| Idea | Killed by |
+|---|---|
+| openFDA mass-tort radar | **Darrow.ai**: $63M raised, $26M revenue, 80 firms. Plus PharmaIntel, Pattern Data, LexGenius. |
+| Credentialing cross-check | **Verisys and CertifyOS** already ship real-time PECOS. Plus near-certain FCRA exposure. **Refuse to build.** |
+| OSHA/WHD underwriting feed | **ParseData** already sells this to workers-comp underwriters. FCRA live wire via sole proprietors. |
+| BEAD broadband gap-filler | **CostQuest built the FCC's Location Fabric.** Timing window mostly closed as of mid-2026. |
+| Funder warm-intro engine | **DonorSearch** ships "Inner Circle" board mapping — but bundled in $3-15K/yr suites. **Survives, narrowed.** |
+| Vertical regulatory alerts | Enhesa PFAS Tracker, Metrc, mature AML RegTech — and free Federal Register alerts. **Survives, second.** |
+
+### The lesson worth keeping
+
+**Every one of these dies on distribution and incumbent trust, not data access.** "Strong AI
+engineering, no domain expertise, no relationships" is a losing hand against trust-gated,
+relationship-driven buyers — insurance underwriters, hospital credentialing offices, mass-tort
+firms, telecom-infrastructure consultants.
+
+### Verdict
+
+**None of these beats the scholarship/grant business in `../grants/`, and it isn't close.** That
+project already has the thing all six of these lack: a validated pipeline, real verified data, and
+a distribution story. The funder warm-intro engine is the only genuine adjacent extension — same
+990 pipeline, same nonprofit-facing distribution, same unregulated risk profile — and even it is a
+*maybe*.
+
+**Nothing here is validated. Do not build on it.**
