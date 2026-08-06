@@ -56,13 +56,17 @@ def matching_cost():
 
 # ---------------------------------------------------------------- fixed costs
 
-def verification_cost(records):
+def verification_cost(records, extractions_per_year=3):
     """
-    The cron that keeps data from rotting. Weekly liveness is HTTP-only.
-    Monthly re-extraction is the real spend, batch-priced.
+    The cron that keeps data from rotting.
+
+    Key optimization: do NOT re-extract on a fixed schedule. Hash the page weekly
+    and only re-extract when the content actually changed. Scholarship pages change
+    1-2x/year, so hash-gating cuts extraction from 12x/record/year to ~3x
+    (2 real changes + 1 annual safety pass) -- a 4x cost reduction.
     """
-    liveness = records * 52 * 0.0000_5                       # compute only
-    reextract = records * 12 * tok(3_000, 600, HAIKU_IN, HAIKU_OUT, batch=True)
+    liveness = records * 52 * 0.0000_5   # HTTP HEAD + SHA-256, compute only
+    reextract = records * extractions_per_year * tok(3_000, 600, HAIKU_IN, HAIKU_OUT, batch=True)
     return liveness, reextract, liveness + reextract
 
 
@@ -137,7 +141,7 @@ def main(records=20_000, paid_users=10_000, apps_per_user=15):
     print("-" * 78)
     print(f"  Data verification cron ({records:,} records)")
     print(f"    weekly liveness checks{money(live):>34}")
-    print(f"    monthly LLM re-extraction (batch){money(reext):>23}")
+    print(f"    hash-gated LLM re-extraction (~3x/yr){money(reext):>19}")
     print(f"    {'subtotal':<44}{money(verify_total):>12}")
     print(f"  Infrastructure ({money(sum(infra.values()))}/mo)")
     for k, v in infra.items():

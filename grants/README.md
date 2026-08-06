@@ -359,3 +359,42 @@ student to hit a given AwardSpring instance replays the first student's explorat
 | 50,000 | $175,685 | $14,640 | $3.51 |
 
 Excludes marketing. The ~$60K/yr content budget in script 04 is founder time, not cash.
+
+
+## Data schema (docs/data-schema.md)
+
+The eligibility fields **are** the product — every page type (state, county, high school, major)
+is a query against them. Real awards restrict at four geographic levels simultaneously:
+
+- *"Lemon Bay HS seniors"* — single high school
+- *"Booker/North Port/Riverview/Sarasota/Venice HS"* — named list of five schools
+- *"Manatee County public HS senior"* — county + school type
+- *"Sarasota/Manatee seniors + Lemon Bay HS"* — two counties plus one extra school
+
+So geography needs `states[]`, `counties[]`, `cities[]`, **and `high_schools[]`** as separate
+arrays. A single location string cannot represent any of the above.
+
+**Page surface from one dataset:** ~24,000 high-school pages, ~3,000 county pages, ~19,000 city
+pages, 50 state pages, ~200 major pages. High-school pages match eligibility most precisely and
+outnumber county pages 8:1.
+
+**Verification is hash-gated, not scheduled.** Daily deadline expiry (free), weekly HTTP liveness
+plus SHA-256 content hash (free), and LLM re-extraction **only when the hash changes** — roughly
+3x/record/year instead of 12x. A **4x cost reduction** over naive monthly re-extraction.
+
+## Ramsey partnership: structurally closed
+
+**RamseyTrusted only accepts licensed individual service professionals** — real estate agents,
+insurance agents, tax pros, coaches, investing pros. There is **no category for software,
+websites, or apps**, and no tier for unproven products. Vetting is track-record based (e.g. real
+estate requires 10 closed transactions in 12 months, 50 lifetime), and it is pay-to-play
+(~$3K upfront, $400-900/mo, plus 28% of referred commission).
+
+**Ramsey endorses zero scholarship-search tools.** Their own "How to Find Scholarships" article
+names no third-party product at all. They run their own closed-loop scholarship (5 × $1,000/yr)
+tied to their curriculum. Anthony O'Neal, their former student-debt personality, left in 2020.
+
+**Realistic channel instead: individual personal-finance creators, 10K-500K followers.** Finance
+sponsorships are pitchable from ~5,000 subscribers; 68% of Gen Z already uses TikTok to search for
+scholarships. Institutional partners (Jump$tart, NEFE, credit union leagues, HSLDA) are all
+month-12+ activities gated on existing traffic and outcomes.
