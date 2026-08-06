@@ -182,3 +182,81 @@ Data sources: [Grants.gov API](https://grants.gov/api) · [USASpending API](http
 **Method caveat:** `WebFetch` returned 403 for every host during this session, so all findings
 derive from search-index snippets rather than direct page reads. Pricing tier names conflicted
 across sources (likely a 2026 repricing); verify directly before relying on exact figures.
+
+
+---
+
+# Addendum: market sizing and the IEC disqualification (2026-08-06)
+
+## The IEC channel is disqualified for a local-scholarship product
+
+**Finding: IECs do not value small local scholarships.** Every IEC service description surveyed
+frames scholarship help as an add-on oriented toward **national merit aid** — CSS Profile
+guidance, major- or identity-specific awards, merit-vs-need education. None referenced local or
+community awards. No dedicated scholarship tool is sold to IECs anywhere.
+
+The economics explain it: an IEC bills $140-400/hr, clients pay $5,000-7,000 for admissions
+strategy toward schools costing $70K+/year, and a $1,000 local award is immaterial to both the
+consultant's billable hour and the family's cost of attendance.
+
+**Structural point:** local-scholarship search is a *school counselor* concern, serving lower-
+and middle-income and first-gen families (NACAC-adjacent). It is not a fee-for-service IEC
+concern serving affluent ones. These are different markets that both happen to involve college.
+Earlier notes in this project conflated them.
+
+**Consequence: the student product has now lost its buyer twice.** Students won't pay (25 years
+of category evidence). IECs don't want it. Remaining candidates are school counselors and
+districts — real need, no discretionary budget, 6-12 month procurement. The validated data edge
+has no proven buyer standing next to it.
+
+## Market sizing
+
+| | Freelance grant writers | IECs |
+|---|---|---|
+| Association floor | GPA ~2,500-3,100 members | IECA 2,800 + HECA ~1,000-1,100 |
+| National estimate | **8,000-20,000** (point ~12-15K) | **8,000-20,000** (point ~10-15K) |
+| Confidence | LOW-MODERATE | LOW-MODERATE |
+| Current tool spend | $400-2,000/yr | $500-3,000/yr |
+| Client billing | $40-150/hr; $1,000-8,000/project | $140-400/hr; $5,000-7,000/package |
+
+Neither has an authoritative count — BLS has no SOC code for "grant writer," and the
+widely-repeated "21,000 IECs" figure could not be traced to a primary source. Both estimates
+rest on association membership floors inflated by loosely-sourced multipliers.
+
+**Grant writers are the better market for this product** — not because they're bigger or richer
+(they aren't) but because discovering and tracking funding opportunities *is their job*, and
+they already pay $400-2,000/yr for exactly that class of tool. Willingness to pay is proven.
+
+## Realistic outcomes for a bootstrapped newcomer
+
+| Year | Grant writers | IECs (local-scholarship product) |
+|---|---|---|
+| 1 | 10-50 customers | 0-10, weak PMF signal surfaces here |
+| 2 | 75-200 | 10-40, plateauing |
+| 3 | **200-500** | 20-75, likely stalls |
+
+**Year 3 ceiling: $50K-$300K ARR.** A viable solo or two-person business; not venture scale.
+
+### Benchmarks that set expectations
+
+- **TutorCruncher** (tutoring-business software): ~11 years to $3.1M revenue
+- **GrantHub** (grant tracking, 900+ orgs): **discontinued/rebranded in early 2026** — real
+  traction in this niche still got consolidated
+- **VoiceScript** (court-reporting software): $690K → $3M+ projected over ~2-3 years — the
+  optimistic case
+- **GEMS** — the only grant-consultant-specific tool found; metrics entirely opaque, which is
+  itself ambiguous evidence about whether the niche supports a dedicated vendor
+- Base rate: ~42% of SaaS startups fail from "no market need," compounding when the addressable
+  population is under 20,000
+
+## Where this leaves the project
+
+**A validated data asset with no proven buyer.** The 990 pipeline works, costs almost nothing,
+and reaches what national databases structurally cannot. Every candidate buyer has now been
+examined: students won't pay, IECs don't want it, small nonprofits can't pay, districts can't
+move fast, and the one segment with proven willingness to pay for this product shape caps out
+near $300K/year.
+
+**Next step is not engineering.** It is 15-20 conversations with working freelance grant writers
+before any product code. That is the cheapest remaining way to be wrong, and it is the one test
+no amount of desk research substitutes for.

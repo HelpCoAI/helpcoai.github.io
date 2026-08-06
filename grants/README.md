@@ -117,6 +117,25 @@ Build effort: 3-4 months to first paying customer on a narrow MVP; 9-12+ months 
 The first hire is data/research ops, not an engineer — RFP freshness QA is the binding
 constraint.
 
+### Market sizing addendum — the IEC channel is disqualified
+
+**IECs do not value small local scholarships.** Their service descriptions frame scholarship
+help as a national-merit-aid add-on; none reference local awards. An IEC bills $140-400/hr and
+clients pay $5,000-7,000 toward $70K/year schools — a $1,000 local award is immaterial to both.
+Local-scholarship search is a *school counselor* concern serving lower/middle-income families,
+not a fee-for-service IEC concern. **The student product has now lost its buyer twice.**
+
+Market populations (both LOW-MODERATE confidence, no authoritative count exists):
+freelance grant writers **8,000-20,000**; IECs **8,000-20,000**. Grant writers are the better
+fit — finding funding *is* their job and they already pay $400-2,000/yr for that class of tool.
+
+**Realistic year-3 outcome: 200-500 customers, $50K-$300K ARR.** A solid two-person business,
+not venture scale. Benchmarks: TutorCruncher took ~11 years to $3.1M; GrantHub had 900+ orgs
+and was discontinued in early 2026.
+
+**Net position: a validated data asset with no proven buyer.** Next step is 15-20 conversations
+with working grant writers — not engineering.
+
 ## Data files
 
 | File | Contents |
