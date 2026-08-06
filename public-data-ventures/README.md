@@ -83,3 +83,36 @@ a distribution story. The funder warm-intro engine is the only genuine adjacent 
 *maybe*.
 
 **Nothing here is validated. Do not build on it.**
+
+
+## Deep dive: hospital price transparency
+
+Requested follow-up on the dataset flagged CROWDED in the inventory. Full analysis in
+**`docs/hospital-price-transparency.md`**.
+
+**Verdict: one narrow lane is open; it is not better than the scholarship business.**
+
+**Proactive price shopping is definitively dead.** CalPERS found 12.3% of people offered a price
+tool used it once, 2.4% used it three times. Aetna: 3.5% utilization. JAMA found tool access was
+*not* associated with reduced spending. Castlight Health IPO'd on this exact thesis, peaked near
+$1.7B, and sold for **$370M** at $0.65/share. Do not build this.
+
+**Reactive post-bill review is where behavior exists** — but 8-9 near-identical AI bill-checkers
+already occupy it (Bill Shield, BillScan AI, MedBillAI, OvrCharged, ClearBill, Defensive Health,
+TheBillCheck, BillReliefAI), and **MedBillAI has raised $16.3M**. Pricing has converged on
+$9 one-time / $19 per month / 20% success fee.
+
+**The underexploited mechanism:** *"did this hospital bill more than its own publicly posted rate?"*
+A single hospital's CSV is megabytes, not terabytes — so it sidesteps the payer-MRF moat entirely
+(Cigna files exceed 200GB; Excellus's is ~2.5TB). None of the current competitors leads with this.
+
+**But only 36% of hospitals are fully compliant**, so roughly two-thirds of bills have no usable
+file to check against. Hard coverage ceiling.
+
+**Useful legal findings:** HIPAA does *not* bind a consumer app receiving data the patient uploaded
+themselves. No unauthorized-practice-of-law barrier for reviewing a bill and drafting a letter the
+patient sends. No mandatory patient-advocate licensing.
+
+**Strongest signal against:** Claimable — the best AI-native consumer play in the adjacent
+prior-auth space, Mark Cuban-backed — charges $50/case, and their own investor says the
+direct-to-consumer model doesn't work at scale.
