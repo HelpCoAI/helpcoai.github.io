@@ -51,6 +51,7 @@ source anyway.
 | `scripts/03_compare_metros.py` | Re-runs both scans against median metros (Toledo, Wichita, Chattanooga) and normalizes per capita, to test whether the Sarasota result generalizes. |
 | `scripts/04_unit_economics.py` | Consumer unit-economics model including CAC. Run with `[price] [lifetime] [conversion]` to pressure-test assumptions. |
 | `scripts/05_revenue_scenarios.py` | Tests three pricing/revenue questions: auto-renew off, advertising as a second stream, and free/paid tiering. |
+| `scripts/06_operating_costs.py` | Full operating cost model excluding marketing — autofill agent, matching, verification cron, infrastructure. Run with `[records] [users]`. |
 
 ```bash
 # Fetch the master file (~10s)
@@ -319,3 +320,42 @@ A good outcome for a side project.
 Ten to twenty static local landing pages from `data/03_verified_scholarships.csv` — no app, no
 login, just real awards with an email capture. Wait 60-90 days, measure ranking. Cost: a domain and
 a few evenings. That single test validates the only available channel before any product work.
+
+
+## Operating costs (scripts/06_operating_costs.py)
+
+**Correction: earlier scripts assumed $12/user/yr COGS. The real figure is ~$3.31** — about 3.6x
+too pessimistic. Gross margin at $99/yr is **97%**, not 88%.
+
+| Metric | Value |
+|---|---|
+| **Floor — running the site with zero users** | **$161/month** ($1,932/yr) |
+| Per paid user, all-in at 10k users | $3.67/yr |
+| Paying users needed to cover fixed costs | **21** |
+| Gross margin at $99/yr | 97% |
+
+### The autofill agent is the dominant variable — and it gets cheaper as you grow
+
+| Replay-cache hit rate | $/application | $/user/yr |
+|---|---|---|
+| 0% (day one) | $0.54 | $8.10 |
+| 50% | $0.28 | $4.13 |
+| 70% | $0.17 | $2.54 |
+| 90% (mature) | $0.06 | $0.95 |
+
+A portal seen before replays a stored field-map for **$0.01**. A novel portal needs vision-guided
+exploration at **$0.54** — **51x more expensive**. The cache is shared across all users: the second
+student to hit a given AwardSpring instance replays the first student's exploration.
+
+**This is why the portal field-map library is the real asset, not the scholarship database.**
+
+### Cost at scale
+
+| Paid users | Total/yr | Total/mo | $/user |
+|---|---|---|---|
+| 100 | $2,263 | $189 | $22.63 |
+| 1,000 | $5,246 | $437 | $5.25 |
+| 10,000 | $36,706 | $3,059 | $3.67 |
+| 50,000 | $175,685 | $14,640 | $3.51 |
+
+Excludes marketing. The ~$60K/yr content budget in script 04 is founder time, not cash.
