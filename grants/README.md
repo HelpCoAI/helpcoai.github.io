@@ -270,3 +270,52 @@ live in weeks), then make one narrow ask of 3-5 local funders: *"$15,000 to surf
 every Sarasota-County-eligible scholarship for 200 graduating seniors this spring."* Use the 47
 verified local awards as the proof point. If 5-10 warm local asks all decline, that's a fast signal
 the fundraising motion is harder than the product motion.
+
+
+## Solo operator plan (docs/solo-operator-plan.md)
+
+Founder constraints clarified: **full-time job, no industry relationships, no time for cold
+outreach, open to selling the business.** This invalidates several earlier recommendations.
+
+**Ruled out:** local sponsor sales (relationship work), the nonprofit route (fundraising is 40-60%
+of a founder's time), the grant-writer business (relationship sale), customer interviews at scale,
+and paid acquisition (already dead on unit economics).
+
+**What survives:** build once, publish, let organic search compound. The only model that fits — and
+independently the one the economics already pointed to.
+
+### Corrected sponsor economics
+
+The earlier $2,500-5,000 sponsorship with $1,000-2,000 reaching the student is a **40-60% admin
+fee** — above what charity watchdogs tolerate (~25-35%) and well above Scholarship America's 12-20%.
+Defensible version: *"You fund the award, $1,000 minimum. We charge a flat $750 admin fee."*
+**Revised: 20 sponsors = $15,000/yr, not $50,000.**
+
+### Three changes to the plan
+
+1. **Automate data freshness before building anything pretty.** The earlier $40K/yr human
+   verification line isn't available to a part-time operator. Daily deadline expiry, weekly liveness
+   checks, monthly LLM re-extraction, confidence decay — roughly $75-90/mo in API cost at 20k
+   records. A stale database is a dead product.
+2. **Ship the free tier alone first.** Autofill is the most fragile, highest-maintenance piece, and
+   26% of local awards are paper/counselor-only anyway. Confirm traffic and conversion first.
+3. **Know the exit math.** Micro-SaaS sells at 2.5-4x annual profit. $50K profit → $125-200K;
+   $100K → $250-400K. Buyers pay more for automated operations and clean books — start both at
+   month one.
+
+### Timeline
+
+Build 3-6 months part-time → **6-12 month SEO dead zone** (this is where side projects die) →
+compounding months 12-24 → meaningful revenue months 18-30. Seasonality: local deadlines cluster
+December-March, so **build over summer, launch by September**.
+
+### Realistic ceiling
+
+**$30-100K/yr profit by year 2-3, sellable for $75-400K.** Not a salary replacement for years.
+A good outcome for a side project.
+
+### First action
+
+Ten to twenty static local landing pages from `data/03_verified_scholarships.csv` — no app, no
+login, just real awards with an email capture. Wait 60-90 days, measure ranking. Cost: a domain and
+a few evenings. That single test validates the only available channel before any product work.
