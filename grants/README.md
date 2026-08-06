@@ -72,8 +72,13 @@ python3 scripts/02_funders_for_nonprofits.py /tmp/bmf.csv data/02_local_funders.
 | Local grantmaking foundations (nonprofit route) | 412 |
 | Their combined assets | $4.59B |
 
-Web verification of actual application details, and the aggregator coverage check
-that decides the test, are in progress.
+**Test 1 verdict: PASS.** 47 verified local scholarship programs covering 260+ named
+awards; 45 of 47 absent from Fastweb, Scholarships.com, and Bold.org. Zero of ten named
+local scholarships appeared on any national database. The gap is structural — all three
+major databases filter no finer than state level.
+
+See `docs/test-1-results.md` for the full verdict, including the three findings that
+complicate the autofill half of the product.
 
 ## Data files
 
@@ -81,6 +86,7 @@ that decides the test, are in progress.
 |---|---|
 | `data/01_candidates.csv` | Scored scholarship-grantmaker candidates. Columns: score, ein, name, city, county, zip, ntee, files_990pf, foundation_cd, assets, income, revenue, signals |
 | `data/02_local_funders.csv` | Local grantmaking foundations for the nonprofit route. Columns: name, ein, city, county, type, ntee, files_990pf, assets, income, revenue |
+| `data/03_verified_scholarships.csv` | 47 web-verified local scholarship programs. Columns: name, sponsor, county, amount, deadline, eligibility, apply_via, platform, essay, on_national_dbs, notes |
 
 Raw BMF files are not committed — they're 324MB each and re-downloadable in seconds.
 
