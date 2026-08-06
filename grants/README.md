@@ -49,6 +49,7 @@ source anyway.
 | `scripts/01_filter_bmf.py` | Filters the BMF to Sarasota/Manatee counties and scores organizations by likelihood of running a scholarship program (name patterns, NTEE codes, 990-PF filing status, foundation classification). |
 | `scripts/02_funders_for_nonprofits.py` | Same source, opposite grant direction — local foundations that fund *organizations*. Seed data for the nonprofit-facing version of the product. |
 | `scripts/03_compare_metros.py` | Re-runs both scans against median metros (Toledo, Wichita, Chattanooga) and normalizes per capita, to test whether the Sarasota result generalizes. |
+| `scripts/04_unit_economics.py` | Consumer unit-economics model including CAC. Run with `[price] [lifetime] [conversion]` to pressure-test assumptions. |
 
 ```bash
 # Fetch the master file (~10s)
@@ -133,8 +134,39 @@ fit — finding funding *is* their job and they already pay $400-2,000/yr for th
 not venture scale. Benchmarks: TutorCruncher took ~11 years to $3.1M; GrantHub had 900+ orgs
 and was discontinued in early 2026.
 
-**Net position: a validated data asset with no proven buyer.** Next step is 15-20 conversations
-with working grant writers — not engineering.
+**Net position on the nonprofit route:** a validated data asset, a small addressable market, and
+a modest ceiling. Next step there is 15-20 conversations with working grant writers.
+
+## Student route economics — reopened
+
+Two earlier claims in this project were wrong and are corrected in
+`docs/student-route-economics.md`:
+
+1. **"Students won't pay" was wrong.** ScholarshipOwl does ~$10.3M/yr from ~22,000 paying
+   subscribers, self-funded. The dead competitors (Scholly, Going Merry, Fastweb) were *free*
+   products that died from acquirer decisions. Scholly was reportedly profitable at $2.99/mo.
+2. **The earlier P&L omitted customer acquisition cost entirely** — usually the largest line in
+   a consumer model. Corrected in `scripts/04_unit_economics.py`.
+
+**The real constraint is acquisition, not demand.** At $69/yr: LTV $82, healthy CAC ceiling $27,
+break-even 2,094 paying users. Paid acquisition loses money under every assumption tested (Meta
+~$120-818/customer, Google ~$233-1,591) because education keywords are among the most expensive
+on the platform. Organic channels clear easily at $3-23.
+
+**At 10,000 paying users: $690K revenue, $434K net, 63% margin** — a higher ceiling than the
+nonprofit route. Realistic organic-only trajectory: year 3 at 3,000-8,000 users, $200-550K.
+
+**Key competitive finding:** ScholarshipOwl is 56% *paid* search. It works because their B2B arm
+is the acquisition engine — brands pay them to host sponsored scholarships, and each one becomes
+an indexable long-tail SEO page. Their $120-240/yr pricing is roughly the minimum that makes paid
+acquisition pencil at all; $69 is priced below that floor.
+
+**Pricing headroom is real:** parents spend $3,000-15,000 on college prep, and essay coaching
+alone runs $500-3,000/season. Nobody sells a one-time seasonal pass — likely white space.
+
+**Cheapest next test (<$1,000, no product):** stand up 10-20 hyper-local landing pages from
+`data/03_verified_scholarships.csv` with email capture and a $69 pre-sale. Measure ranking at
+60-90 days and waitlist-to-paid conversion.
 
 ## Data files
 

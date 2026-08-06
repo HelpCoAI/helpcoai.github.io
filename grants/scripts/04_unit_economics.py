@@ -40,7 +40,11 @@ CHANNEL_COST_PER_SIGNUP = {
     "Google Ads (scholarship keywords)": 35.00,
 }
 
-FREE_TO_PAID = 0.05           # 5% of signups convert to paying -- typical freemium consumer
+# RevenueCat 2026 State of Subscription Apps: freemium converts at 2.1-2.2%;
+# hard paywalls ~12.1%; TRIAL-based flows 8-25% (this is ScholarshipOwl's model).
+# The earlier 5% guess sat between the two and matched neither.
+FREE_TO_PAID = 0.022          # freemium baseline -- override via argv[3]
+FREE_TO_PAID_TRIAL = 0.15     # trial-based flow, midpoint of the 8-25% band
 
 
 def money(x):
@@ -126,5 +130,13 @@ def price_sensitivity(lifetime):
 if __name__ == "__main__":
     price = float(sys.argv[1]) if len(sys.argv) > 1 else PRICE_PER_YEAR
     lifetime = float(sys.argv[2]) if len(sys.argv) > 2 else LIFETIME_YEARS
+    if len(sys.argv) > 3:
+        FREE_TO_PAID = float(sys.argv[3])
     report(price, lifetime)
     price_sensitivity(lifetime)
+
+    print("=" * 74)
+    print("SAME MODEL WITH A TRIAL-BASED FLOW (ScholarshipOwl's approach)")
+    print("=" * 74)
+    globals()["FREE_TO_PAID"] = FREE_TO_PAID_TRIAL
+    report(price, lifetime)
