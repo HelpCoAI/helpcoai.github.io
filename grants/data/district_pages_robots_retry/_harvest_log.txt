@@ -1,0 +1,127 @@
+91/82 pages harvested
+------------------------------------------------------------------------------
+[   thin] Faithfirst Foundation                      107 chars  https://www.faithfirstfoundation.org
+[     ok] Andrew Red Harris Foundation Inc           2,255 chars -> --andrew-red-harris-foundation-inc.txt
+[  error] It Women Foundation Inc                    HTTP 403  https://www.itwomen.org
+[  error] Grove Bay Foundation Inc                   HTTP 403  https://grovebaygroup.com/grove-bay-foundation
+[  error] Hbs Club Of South Florida Foundation Inc   The read operation timed out  https://www.hbssouthflorida.org
+[     ok] Junior League Of Miami Foundation Inc      3,487 chars -> --junior-league-of-miami-foundation-inc.txt
+[     ok] .. Scholarly Awards                        7,906 chars -> --junior-league-of-miami-foundation-inc-scholarly-awards.txt
+[     ok] .. Awards                                  3,376 chars -> --junior-league-of-miami-foundation-inc-awards.txt
+[     ok] College For Kids Inc                       4,530 chars -> --college-for-kids-inc.txt
+[     ok] Matanyas Hope                              2,452 chars -> --matanyas-hope.txt
+[     ok] Alliance Of Women Executives Inc           4,452 chars -> --alliance-of-women-executives-inc.txt
+[     ok] .. Register Now! 2026 Annual Scholarship A 1,806 chars -> --alliance-of-women-executives-inc-register-now-2026-annual-sc.txt
+[     ok] .. Scholarship                             1,731 chars -> --alliance-of-women-executives-inc-scholarship.txt
+[     ok] Microscholarships Inc                      1,715 chars -> --microscholarships-inc.txt
+[     ok] .. MICROscholarships                       1,715 chars -> --microscholarships-inc-microscholarships.txt
+[     ok] .. Home                                    1,715 chars -> --microscholarships-inc-home.txt
+[     ok] Sunrise Community Foundation Inc           1,568 chars -> --sunrise-community-foundation-inc.txt
+[     ok] Pop Warner Little Scholars Inc             4,353 chars -> --pop-warner-little-scholars-inc.txt
+[     ok] Pop Warner Little Scholar Inc              5,361 chars -> --pop-warner-little-scholar-inc.txt
+[     ok] Junior League Of The Palm Beaches Inc      2,967 chars -> --junior-league-of-the-palm-beaches-inc.txt
+[     ok] .. Scholarships                            3,111 chars -> --junior-league-of-the-palm-beaches-inc-scholarships.txt
+[     ok] Junior League Of Boca Raton Inc            4,231 chars -> --junior-league-of-boca-raton-inc.txt
+[     ok] .. 2025-2026 Annual Award Winners          4,937 chars -> --junior-league-of-boca-raton-inc-2025-2026-annual-award-winne.txt
+[     ok] Boca Raton Rotary Fund Inc                 4,430 chars -> --boca-raton-rotary-fund-inc.txt
+[     ok] .. Scholarships                            2,362 chars -> --boca-raton-rotary-fund-inc-scholarships.txt
+[     ok] .. OPAL Awards                             7,737 chars -> --boca-raton-rotary-fund-inc-opal-awards.txt
+[   thin] Weston Fl Rotary Club                      27 chars  https://www.westonrotary.org
+[     ok] Rotary Club Of Miami                       2,133 chars -> --rotary-club-of-miami.txt
+[     ok] .. History of TBM                          2,235 chars -> --rotary-club-of-miami-history-of-tbm.txt
+[     ok] .. Griffitts, Paul Harris and Distinguishe 4,401 chars -> --rotary-club-of-miami-griffitts-paul-harris-and-distinguished.txt
+[     ok] Kiwanis Club Of Jupiter-Tequesta           2,891 chars -> --kiwanis-club-of-jupiter-tequesta.txt
+[     ok] .. Scholarship Application                 2,601 chars -> --kiwanis-club-of-jupiter-tequesta-scholarship-application.txt
+[  error] Cats Baseball Booster Inc                  HTTP 403  https://leaguelineup.com/catsbaseball
+[  error] The Frederick A Deluca Foundation Inc      HTTP 403  https://www.delucafdn.org
+[     ok] Bravo Family Charitable Foundation         3,160 chars -> --bravo-family-charitable-foundation.txt
+[     ok] Charles Lafitte Foundation                 2,553 chars -> --charles-lafitte-foundation.txt
+[     ok] Queally Foundation Inc                     3,175 chars -> --queally-foundation-inc.txt
+[     ok] Karen Toffler Charitable Trust             5,102 chars -> --karen-toffler-charitable-trust.txt
+[     ok] Castro Family Foundation Inc               3,095 chars -> --castro-family-foundation-inc.txt
+[     ok] Lois Pope Life Foundation Inc              3,516 chars -> --lois-pope-life-foundation-inc.txt
+[     ok] Gordon Family Foundation Inc               10,384 chars -> --gordon-family-foundation-inc.txt
+[     ok] S&B World Foundation Inc                   11,763 chars -> --s-b-world-foundation-inc.txt
+[  error] Mcnamara Family Foundation Inc             HTTP 403  https://www.sunbiz.org
+[  error] The Joseph And Winifred Amaturo Education  HTTP 403  https://www.guidestar.org
+[  error] Cv Americas Inc                            The read operation timed out  https://www.cvclavoz.com
+[     ok] Pulte Family Charitable Foundation Inc     9,209 chars -> --pulte-family-charitable-foundation-inc.txt
+[     ok] The Batchelor Foundation Inc               1,267 chars -> --the-batchelor-foundation-inc.txt
+[   thin] The Mary Alice Fortin Foundation           82 chars  https://mafortinfoundation.org
+[     ok] Scaife Family Foundation                   2,001 chars -> --scaife-family-foundation.txt
+[     ok] Dr John T Macdonald Foundation Inc         4,303 chars -> --dr-john-t-macdonald-foundation-inc.txt
+[     ok] .. Grants & Scholarships                   2,941 chars -> --dr-john-t-macdonald-foundation-inc-grants-scholarships.txt
+[     ok] .. Learn More                              2,941 chars -> --dr-john-t-macdonald-foundation-inc-learn-more.txt
+[  error] Bbx Capital Foundation Inc                 HTTP 403  https://bbxcapital.com/ABOUT-US/BBX-CAPITAL-FOUNDATIO
+[   thin] Floyd L Wray Memorial Foundation           82 chars  https://www.flamingogardens.org
+[     ok] Broward College Foundation Inc             5,013 chars -> --broward-college-foundation-inc.txt
+[     ok] .. Broward College Memorial Endowed Schola 4,121 chars -> --broward-college-foundation-inc-broward-college-memorial-endo.txt
+[     ok] .. Establish a Named Scholarship           3,728 chars -> --broward-college-foundation-inc-establish-a-named-scholarship.txt
+[     ok] Nicklaus Childrens Health Care Foundation  2,973 chars -> --nicklaus-childrens-health-care-foundation.txt
+[     ok] Wiener Museum Of Decorative Arts Inc       3,043 chars -> --wiener-museum-of-decorative-arts-inc.txt
+[     ok] El Espacio 23 Inc                          4,602 chars -> --el-espacio-23-inc.txt
+[  error] Gamma Mu Foundation Inc                    HTTP 403  https://www.gammamufoundation.org
+[     ok] Nicks Kids Foundation Inc                  5,673 chars -> --nicks-kids-foundation-inc.txt
+[     ok] Florida Panthers Foundation Inc            1,548 chars -> --florida-panthers-foundation-inc.txt
+[     ok] Admirals Cove Foundation Inc               2,245 chars -> --admirals-cove-foundation-inc.txt
+[  error] Mater Academy Foundation Inc               HTTP 403  https://guidestar.org
+[     ok] Alternative Education Foundation Inc       8,842 chars -> --alternative-education-foundation-inc.txt
+[     ok] .. Scholarships & Funding                  1,580 chars -> --alternative-education-foundation-inc-scholarships-funding.txt
+[     ok] .. Donate to AEF General Scholarship Fund  1,350 chars -> --alternative-education-foundation-inc-donate-to-aef-general-s.txt
+[  error] Miami Heart Research Institute Inc         HTTP 403  https://www.floridaheart.org
+[     ok] Closehaul Capital Charitable               5,242 chars -> --closehaul-capital-charitable.txt
+[  error] Miami Jackson Senior High                  timed out  https://jacksonshs.org/apps/pages/index.jsp?uREC_ID=279137&type=d
+[  error] Cutler Bay Senior High                     timed out  https://www.cutlerbayhigh.org/apps/pages/index.jsp?uREC_ID=280151&type=d
+[  error] G. Holmes Braddock Senior High             timed out  https://www.braddockbulldogs.org/apps/pages/index.jsp?uREC_ID=324425&type=d&pREC_ID=681269
+[  error] John A. Ferguson Senior High               timed out  https://www.fergusonhs.org/apps/pages/index.jsp?uREC_ID=249989&type=d
+[  error] Miami Northwestern Senior High             timed out  https://www.northwesternbulls.org/apps/pages/index.jsp?uREC_ID=294296&type=d
+[  error] Miami Norland Senior High                  timed out  https://www.miaminorlandshs.org/apps/pages/index.jsp?uREC_ID=318382&type=d
+[  error] Hialeah Senior High                        timed out  https://www.hialeahhigh.org/apps/pages/?uREC_ID=123043&type=d&pREC_ID=243238
+[  error] Hialeah-Miami Lakes Senior High            timed out  https://www.hmltrojans.org/apps/pages/index.jsp?uREC_ID=264903&type=d
+[     ok] Hialeah Gardens High                       2,678 chars -> --hialeah-gardens-high.txt
+[     ok] .. Scholarship Bulletin                    2,715 chars -> --hialeah-gardens-high-scholarship-bulletin.txt
+[     ok] .. Silver Knight Awards                    4,676 chars -> --hialeah-gardens-high-silver-knight-awards.txt
+[  error] Barbara Goleman Senior High                timed out  https://www.barbaragolemansenior.com/apps/pages/index.jsp?uREC_ID=573396&type=d&pREC_ID=1139551
+[  error] Westland Hialeah Senior High               timed out  https://westlandwildcats.net/apps/pages/index.jsp?uREC_ID=401152&type=d
+[  error] Dr. Michael M. Krop Senior High            timed out  https://kropseniorhigh.org/apps/pages/index.jsp?uREC_ID=216571&type=d&pREC_ID=477736
+[  error] Miami Lakes Educational Center             timed out  https://www.mlecshs.com/apps/pages/index.jsp?uREC_ID=397619&type=d
+[  error] TERRA Environmental Research Institute     timed out  https://www.terrawolves.com/apps/pages/index.jsp?uREC_ID=241582&type=d&pREC_ID=468925
+[     ok] William H. Turner Technical Arts High      6,505 chars -> --william-h-turner-technical-arts-high.txt
+[  error] Arthur and Polly Mays Conservatory of the  timed out  https://www.apmays.org/apps/pages/index.jsp?uREC_ID=562936&type=d
+[  error] Miami Senior High                          timed out  https://www.miamiseniorhigh.org/m/pages/index.jsp?uREC_ID=339275&type=d&pREC_ID=660976
+[     ok] Christopher Columbus High School           7,968 chars -> --christopher-columbus-high-school.txt
+[     ok] .. Scholarships                            7,495 chars -> --christopher-columbus-high-school-scholarships.txt
+[     ok] .. Financial Aid                           6,236 chars -> --christopher-columbus-high-school-financial-aid.txt
+[     ok] Saint Brendan High School                  9,538 chars -> --saint-brendan-high-school.txt
+[     ok] .. Florida Bright Futures Scholarship      3,422 chars -> --saint-brendan-high-school-florida-bright-futures-scholarship.txt
+[     ok] Carrollton School of the Sacred Heart      12,843 chars -> --carrollton-school-of-the-sacred-heart.txt
+[     ok] .. Financial Aid                           11,022 chars -> --carrollton-school-of-the-sacred-heart-financial-aid.txt
+[     ok] .. Cor Unum Award                          7,495 chars -> --carrollton-school-of-the-sacred-heart-cor-unum-award.txt
+[     ok] Women at the Well Broward scholarships     5,960 chars -> --women-at-the-well-broward-scholarships.txt
+[     ok] .. Scholarships                            5,960 chars -> --women-at-the-well-broward-scholarships-scholarships.txt
+[     ok] .. Garden Club Scholarship                 5,350 chars -> --women-at-the-well-broward-scholarships-garden-club-scholarsh.txt
+[     ok] St Thomas Aquinas HS college advising      60,000 chars -> --st-thomas-aquinas-hs-college-advising.txt
+[     ok] .. Scholarships                            5,097 chars -> --st-thomas-aquinas-hs-college-advising-scholarships.txt
+[     ok] .. Scholarships4Students.com               2,320 chars -> --st-thomas-aquinas-hs-college-advising-scholarships4students-.txt
+[     ok] Cardinal Gibbons HS counseling             7,034 chars -> --cardinal-gibbons-hs-counseling.txt
+[     ok] .. Tuition & Financial Aid                 8,453 chars -> --cardinal-gibbons-hs-counseling-tuition-financial-aid.txt
+[     ok] .. Alumni Awards                           6,501 chars -> --cardinal-gibbons-hs-counseling-alumni-awards.txt
+[  error] Park Vista Community High School bulletin  HTTP 403  https://pvhs.palmbeachschools.org/cms/One.aspx?portalId=1933645&pageId=5545222
+[     ok] Education Foundation of Palm Beach County  5,577 chars -> --education-foundation-of-palm-beach-county.txt
+[     ok] .. Scholarships                            5,577 chars -> --education-foundation-of-palm-beach-county-scholarships.txt
+[     ok] Viner Scholars                             12,747 chars -> --viner-scholars.txt
+[     ok] .. Scholarship Program                     12,747 chars -> --viner-scholars-scholarship-program.txt
+[     ok] .. Four Year Scholarship                   12,747 chars -> --viner-scholars-four-year-scholarship.txt
+[     ok] Hillsborough Education Foundation          5,930 chars -> --hillsborough-education-foundation.txt
+[     ok] .. Senior Scholarships                     5,930 chars -> --hillsborough-education-foundation-senior-scholarships.txt
+[   thin] .. HERE                                    30 chars
+[     ok] LEAP Tampa Bay College Access Network      5,488 chars -> --leap-tampa-bay-college-access-network.txt
+[     ok] .. Scholarships                            5,488 chars -> --leap-tampa-bay-college-access-network-scholarships.txt
+[     ok] .. Community Foundation Tampa Bay          7,536 chars -> --leap-tampa-bay-college-access-network-community-foundation-t.txt
+[     ok] Pinellas Education Foundation              4,989 chars -> --pinellas-education-foundation.txt
+[     ok] Pasco Education Foundation                 5,928 chars -> --pasco-education-foundation.txt
+[     ok] .. Access Scholarship Funds                1,509 chars -> --pasco-education-foundation-access-scholarship-funds.txt
+[     ok] .. Employee Scholarships                   1,949 chars -> --pasco-education-foundation-employee-scholarships.txt
+[     ok] Florida College Access Network             5,514 chars -> --florida-college-access-network.txt
+[  error] .. Community Foundation of Sarasota County timed out
+[     ok] .. Florida Department of Education Office  11,296 chars -> --florida-college-access-network-florida-department-of-educati.txt
