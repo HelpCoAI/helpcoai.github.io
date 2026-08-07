@@ -80,14 +80,19 @@ jobs:
       fail-fast: false
       matrix:
         set:
-          - { file: "district_seeds.json",                     dir: "tampa-bay" }
-          - { file: "district_seeds_south_florida.json",        dir: "south_florida" }
-          - { file: "district_seeds_schools_pb_broward.json",   dir: "schools_pb_broward" }
-          - { file: "district_seeds_schools_miami_dade.json",   dir: "schools_miami_dade" }
-          - { file: "district_seeds_bmf_orgs.json",             dir: "bmf_orgs" }
-          - { file: "district_seeds_bmf_tier_bc.json",          dir: "bmf_tier_bc" }
-          - { file: "district_seeds_discovered.json",           dir: "discovered" }
-          - { file: "district_seeds_platforms.json",            dir: "platforms" }
+          - { file: "district_seeds.json",                     dir: "tampa-bay", flags: "", follow: 3 }
+          - { file: "district_seeds_south_florida.json",        dir: "south_florida", flags: "", follow: 3 }
+          - { file: "district_seeds_schools_pb_broward.json",   dir: "schools_pb_broward", flags: "", follow: 3 }
+          - { file: "district_seeds_schools_miami_dade.json",   dir: "schools_miami_dade", flags: "", follow: 3 }
+          - { file: "district_seeds_bmf_orgs.json",             dir: "bmf_orgs", flags: "", follow: 3 }
+          - { file: "district_seeds_bmf_tier_bc.json",          dir: "bmf_tier_bc", flags: "", follow: 3 }
+          - { file: "district_seeds_discovered.json",           dir: "discovered", flags: "", follow: 3 }
+          - { file: "district_seeds_platforms.json",            dir: "platforms", flags: "", follow: 3 }
+          # Only this set bypasses robots, and only because the operator asked.
+          # follow is 2 rather than 3: 82 unique hosts with no robots fetch to
+          # amortise means dead hosts dominate the runtime.
+          - { file: "district_seeds_robots_retry.json",         dir: "robots_retry",
+              flags: "--ignore-robots", follow: 2 }
     steps:
       # branch head, not the triggering SHA -- the discover job commits a seed
       # file that this job must be able to see
@@ -118,7 +123,7 @@ jobs:
           fi
           python3 scripts/10_district_crawl.py harvest \
             --seeds "data/${{ matrix.set.file }}" --pages "$OUT" \
-            --follow 3 | tee /tmp/h.log
+            --follow ${{ matrix.set.follow }} ${{ matrix.set.flags }} | tee /tmp/h.log
 
       - name: Summary
         if: always()

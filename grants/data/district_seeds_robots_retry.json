@@ -1,0 +1,589 @@
+{
+  "_comment": [
+    "The 82 seeds previously skipped on a robots.txt disallow.",
+    "Run with --ignore-robots. The User-Agent still identifies the crawler",
+    "honestly and the politeness delay is unchanged, so this bypasses the",
+    "directive, not the identification.",
+    "",
+    "Expect partial success. Python's robotparser reports disallow-all when",
+    "robots.txt itself returns 401/403 -- which is what a WAF does to an unknown",
+    "bot -- so some of these were never a stated preference, just bot detection,",
+    "which an honest User-Agent walks straight into."
+  ],
+  "seeds": [
+    {
+      "county": "",
+      "org": "Faithfirst Foundation",
+      "url": "https://www.faithfirstfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.faithfirstfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Andrew Red Harris Foundation Inc",
+      "url": "https://andrewredharrisfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on andrewredharrisfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "It Women Foundation Inc",
+      "url": "https://www.itwomen.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.itwomen.org"
+    },
+    {
+      "county": "",
+      "org": "Grove Bay Foundation Inc",
+      "url": "https://grovebaygroup.com/grove-bay-foundation",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on grovebaygroup.com"
+    },
+    {
+      "county": "",
+      "org": "Hbs Club Of South Florida Foundation Inc",
+      "url": "https://www.hbssouthflorida.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.hbssouthflorida.org"
+    },
+    {
+      "county": "",
+      "org": "Junior League Of Miami Foundation Inc",
+      "url": "https://www.jlmiami.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.jlmiami.org"
+    },
+    {
+      "county": "",
+      "org": "College For Kids Inc",
+      "url": "https://www.takestockpalmbeach.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.takestockpalmbeach.org"
+    },
+    {
+      "county": "",
+      "org": "Matanyas Hope",
+      "url": "https://matanyashope.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on matanyashope.org"
+    },
+    {
+      "county": "",
+      "org": "Alliance Of Women Executives Inc",
+      "url": "https://www.aweinc.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.aweinc.org"
+    },
+    {
+      "county": "",
+      "org": "Microscholarships Inc",
+      "url": "https://www.microscholarships.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.microscholarships.org"
+    },
+    {
+      "county": "",
+      "org": "Sunrise Community Foundation Inc",
+      "url": "https://www.sunrisegroup.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.sunrisegroup.org"
+    },
+    {
+      "county": "",
+      "org": "Pop Warner Little Scholars Inc",
+      "url": "https://www.parklandrangers.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.parklandrangers.com"
+    },
+    {
+      "county": "",
+      "org": "Pop Warner Little Scholar Inc",
+      "url": "https://www.westonwarriorssports.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.westonwarriorssports.com"
+    },
+    {
+      "county": "",
+      "org": "Junior League Of The Palm Beaches Inc",
+      "url": "https://jlpb.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on jlpb.org"
+    },
+    {
+      "county": "",
+      "org": "Junior League Of Boca Raton Inc",
+      "url": "https://www.jlbr.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.jlbr.org"
+    },
+    {
+      "county": "",
+      "org": "Boca Raton Rotary Fund Inc",
+      "url": "https://rotaryclubbocaraton.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on rotaryclubbocaraton.com"
+    },
+    {
+      "county": "",
+      "org": "Weston Fl Rotary Club",
+      "url": "https://www.westonrotary.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.westonrotary.org"
+    },
+    {
+      "county": "",
+      "org": "Rotary Club Of Miami",
+      "url": "https://miamirotary.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on miamirotary.org"
+    },
+    {
+      "county": "",
+      "org": "Kiwanis Club Of Jupiter-Tequesta",
+      "url": "https://www.kiwanisjupiter.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.kiwanisjupiter.org"
+    },
+    {
+      "county": "",
+      "org": "Cats Baseball Booster Inc",
+      "url": "https://leaguelineup.com/catsbaseball",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on leaguelineup.com"
+    },
+    {
+      "county": "",
+      "org": "The Frederick A Deluca Foundation Inc",
+      "url": "https://www.delucafdn.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.delucafdn.org"
+    },
+    {
+      "county": "",
+      "org": "Bravo Family Charitable Foundation",
+      "url": "https://www.bravofamilyfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.bravofamilyfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Charles Lafitte Foundation",
+      "url": "https://www.charleslafitte.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.charleslafitte.org"
+    },
+    {
+      "county": "",
+      "org": "Queally Foundation Inc",
+      "url": "https://thequeallyfoundation.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on thequeallyfoundation.com"
+    },
+    {
+      "county": "",
+      "org": "Karen Toffler Charitable Trust",
+      "url": "https://tofflertrust.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on tofflertrust.org"
+    },
+    {
+      "county": "",
+      "org": "Castro Family Foundation Inc",
+      "url": "https://www.mv4k.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.mv4k.org"
+    },
+    {
+      "county": "",
+      "org": "Lois Pope Life Foundation Inc",
+      "url": "https://www.life-edu.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.life-edu.org"
+    },
+    {
+      "county": "",
+      "org": "Gordon Family Foundation Inc",
+      "url": "https://www.gordonfamilyfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.gordonfamilyfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "S&B World Foundation Inc",
+      "url": "https://sbworldfoundation.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on sbworldfoundation.com"
+    },
+    {
+      "county": "",
+      "org": "Mcnamara Family Foundation Inc",
+      "url": "https://www.sunbiz.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.sunbiz.org"
+    },
+    {
+      "county": "",
+      "org": "The Joseph And Winifred Amaturo Education",
+      "url": "https://www.guidestar.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.guidestar.org"
+    },
+    {
+      "county": "",
+      "org": "Cv Americas Inc",
+      "url": "https://www.cvclavoz.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.cvclavoz.com"
+    },
+    {
+      "county": "",
+      "org": "Pulte Family Charitable Foundation Inc",
+      "url": "https://www.pultefamilyfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.pultefamilyfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "The Batchelor Foundation Inc",
+      "url": "https://tbfinc.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on tbfinc.org"
+    },
+    {
+      "county": "",
+      "org": "The Mary Alice Fortin Foundation",
+      "url": "https://mafortinfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on mafortinfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Scaife Family Foundation",
+      "url": "https://www.scaifefamily.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.scaifefamily.org"
+    },
+    {
+      "county": "",
+      "org": "Dr John T Macdonald Foundation Inc",
+      "url": "https://www.jtmacdonaldfdn.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.jtmacdonaldfdn.org"
+    },
+    {
+      "county": "",
+      "org": "Bbx Capital Foundation Inc",
+      "url": "https://bbxcapital.com/ABOUT-US/BBX-CAPITAL-FOUNDATIO",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on bbxcapital.com"
+    },
+    {
+      "county": "",
+      "org": "Floyd L Wray Memorial Foundation",
+      "url": "https://www.flamingogardens.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.flamingogardens.org"
+    },
+    {
+      "county": "",
+      "org": "Broward College Foundation Inc",
+      "url": "https://www.browardcollegefoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.browardcollegefoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Nicklaus Childrens Health Care Foundation",
+      "url": "https://www.nchcf.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.nchcf.org"
+    },
+    {
+      "county": "",
+      "org": "Wiener Museum Of Decorative Arts Inc",
+      "url": "https://www.wmoda.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.wmoda.com"
+    },
+    {
+      "county": "",
+      "org": "El Espacio 23 Inc",
+      "url": "https://www.elespacio23.com",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.elespacio23.com"
+    },
+    {
+      "county": "",
+      "org": "Gamma Mu Foundation Inc",
+      "url": "https://www.gammamufoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.gammamufoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Nicks Kids Foundation Inc",
+      "url": "https://www.nickskidsfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.nickskidsfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Florida Panthers Foundation Inc",
+      "url": "https://www.nhl.com/COMMUNITY/PANTHERS/FOUNDATION",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.nhl.com"
+    },
+    {
+      "county": "",
+      "org": "Admirals Cove Foundation Inc",
+      "url": "https://www.admiralscovefoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.admiralscovefoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Mater Academy Foundation Inc",
+      "url": "https://guidestar.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on guidestar.org"
+    },
+    {
+      "county": "",
+      "org": "Alternative Education Foundation Inc",
+      "url": "https://alternativeeducationfoundation.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on alternativeeducationfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Miami Heart Research Institute Inc",
+      "url": "https://www.floridaheart.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.floridaheart.org"
+    },
+    {
+      "county": "",
+      "org": "Closehaul Capital Charitable",
+      "url": "https://www.closehaulcharitable.org",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.closehaulcharitable.org"
+    },
+    {
+      "county": "",
+      "org": "Miami Jackson Senior High",
+      "url": "https://jacksonshs.org/apps/pages/index.jsp?uREC_ID=279137&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on jacksonshs.org"
+    },
+    {
+      "county": "",
+      "org": "Cutler Bay Senior High",
+      "url": "https://www.cutlerbayhigh.org/apps/pages/index.jsp?uREC_ID=280151&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.cutlerbayhigh.org"
+    },
+    {
+      "county": "",
+      "org": "G. Holmes Braddock Senior High",
+      "url": "https://www.braddockbulldogs.org/apps/pages/index.jsp?uREC_ID=324425&type=d&pREC_ID=681269",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.braddockbulldogs.org"
+    },
+    {
+      "county": "",
+      "org": "John A. Ferguson Senior High",
+      "url": "https://www.fergusonhs.org/apps/pages/index.jsp?uREC_ID=249989&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.fergusonhs.org"
+    },
+    {
+      "county": "",
+      "org": "Miami Northwestern Senior High",
+      "url": "https://www.northwesternbulls.org/apps/pages/index.jsp?uREC_ID=294296&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.northwesternbulls.org"
+    },
+    {
+      "county": "",
+      "org": "Miami Norland Senior High",
+      "url": "https://www.miaminorlandshs.org/apps/pages/index.jsp?uREC_ID=318382&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.miaminorlandshs.org"
+    },
+    {
+      "county": "",
+      "org": "Hialeah Senior High",
+      "url": "https://www.hialeahhigh.org/apps/pages/?uREC_ID=123043&type=d&pREC_ID=243238",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.hialeahhigh.org"
+    },
+    {
+      "county": "",
+      "org": "Hialeah-Miami Lakes Senior High",
+      "url": "https://www.hmltrojans.org/apps/pages/index.jsp?uREC_ID=264903&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.hmltrojans.org"
+    },
+    {
+      "county": "",
+      "org": "Hialeah Gardens High",
+      "url": "https://www.hghsgladiators.com/apps/pages/index.jsp?uREC_ID=421224&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.hghsgladiators.com"
+    },
+    {
+      "county": "",
+      "org": "Barbara Goleman Senior High",
+      "url": "https://www.barbaragolemansenior.com/apps/pages/index.jsp?uREC_ID=573396&type=d&pREC_ID=1139551",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.barbaragolemansenior.com"
+    },
+    {
+      "county": "",
+      "org": "Westland Hialeah Senior High",
+      "url": "https://westlandwildcats.net/apps/pages/index.jsp?uREC_ID=401152&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on westlandwildcats.net"
+    },
+    {
+      "county": "",
+      "org": "Dr. Michael M. Krop Senior High",
+      "url": "https://kropseniorhigh.org/apps/pages/index.jsp?uREC_ID=216571&type=d&pREC_ID=477736",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on kropseniorhigh.org"
+    },
+    {
+      "county": "",
+      "org": "Miami Lakes Educational Center",
+      "url": "https://www.mlecshs.com/apps/pages/index.jsp?uREC_ID=397619&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.mlecshs.com"
+    },
+    {
+      "county": "",
+      "org": "TERRA Environmental Research Institute",
+      "url": "https://www.terrawolves.com/apps/pages/index.jsp?uREC_ID=241582&type=d&pREC_ID=468925",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.terrawolves.com"
+    },
+    {
+      "county": "",
+      "org": "William H. Turner Technical Arts High",
+      "url": "https://www.turnertech-eagles.com/college-advising-program",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.turnertech-eagles.com"
+    },
+    {
+      "county": "",
+      "org": "Arthur and Polly Mays Conservatory of the",
+      "url": "https://www.apmays.org/apps/pages/index.jsp?uREC_ID=562936&type=d",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.apmays.org"
+    },
+    {
+      "county": "",
+      "org": "Miami Senior High",
+      "url": "https://www.miamiseniorhigh.org/m/pages/index.jsp?uREC_ID=339275&type=d&pREC_ID=660976",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.miamiseniorhigh.org"
+    },
+    {
+      "county": "",
+      "org": "Christopher Columbus High School",
+      "url": "https://www.columbushs.com/college-counseling",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.columbushs.com"
+    },
+    {
+      "county": "",
+      "org": "Saint Brendan High School",
+      "url": "https://www.stbrendanhigh.org/academics/guidance-and-college-advising",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.stbrendanhigh.org"
+    },
+    {
+      "county": "",
+      "org": "Carrollton School of the Sacred Heart",
+      "url": "https://www.carrollton.org/academics/collegecounseling",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.carrollton.org"
+    },
+    {
+      "county": "",
+      "org": "Women at the Well Broward scholarships",
+      "url": "https://watwbroward.org/scholarships/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on watwbroward.org"
+    },
+    {
+      "county": "",
+      "org": "St Thomas Aquinas HS college advising",
+      "url": "https://www.aquinas-sta.org/academics/college-advising",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.aquinas-sta.org"
+    },
+    {
+      "county": "",
+      "org": "Cardinal Gibbons HS counseling",
+      "url": "https://www.cghsfl.org/academics/guidance",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.cghsfl.org"
+    },
+    {
+      "county": "",
+      "org": "Park Vista Community High School bulletin",
+      "url": "https://pvhs.palmbeachschools.org/cms/One.aspx?portalId=1933645&pageId=5545222",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on pvhs.palmbeachschools.org"
+    },
+    {
+      "county": "",
+      "org": "Education Foundation of Palm Beach County",
+      "url": "https://educationfoundationpbc.org/Scholarships/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on educationfoundationpbc.org"
+    },
+    {
+      "county": "",
+      "org": "Viner Scholars",
+      "url": "https://vinerscholars.org/scholarship-program/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on vinerscholars.org"
+    },
+    {
+      "county": "",
+      "org": "Hillsborough Education Foundation",
+      "url": "https://educationfoundation.com/resource/senior-scholarships/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on educationfoundation.com"
+    },
+    {
+      "county": "",
+      "org": "LEAP Tampa Bay College Access Network",
+      "url": "https://leaptampabay.org/scholarships/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on leaptampabay.org"
+    },
+    {
+      "county": "",
+      "org": "Pinellas Education Foundation",
+      "url": "https://pinellaseducation.org/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on pinellaseducation.org"
+    },
+    {
+      "county": "",
+      "org": "Pasco Education Foundation",
+      "url": "https://www.pascoeducationfoundation.org/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on www.pascoeducationfoundation.org"
+    },
+    {
+      "county": "",
+      "org": "Florida College Access Network",
+      "url": "https://floridacollegeaccess.org/initiatives/local-scholarship-resources/",
+      "kind": "list",
+      "note": "previously blocked by robots.txt on floridacollegeaccess.org"
+    }
+  ]
+}
