@@ -17,8 +17,12 @@ This is public infrastructure metadata, not scraping: no origin server is touche
 and nothing is bypassed. It is the difference between guessing which Florida
 foundations use AwardSpring and simply reading the list.
 
-Tenants are filtered to Florida-relevant names, then emitted as harvester seeds
-pointed at each platform's conventional public opportunity listing.
+KNOWN LIMITATION: this only works when a platform issues per-tenant certificates.
+A platform using a single wildcard cert (*.example.com) publishes nothing
+per-tenant to CT, so enumeration returns empty and no amount of retrying helps.
+The first run returned 0 for academicworks, awardspring, communityforce, smapply
+and submittable -- consistent with wildcard certs, though a crt.sh outage would
+look identical, which is why query failures are now logged loudly.
 
 Usage:
     python3 18_platform_enum.py --out data/district_seeds_platforms.json
@@ -62,7 +66,11 @@ FL = re.compile(
     r"lee|charlotte|polk|lakeland|pensacola|escambia|florida|\bfl\b|fla",
     re.I)
 
-SKIP = re.compile(r"^\*|test|staging|demo|dev\.|sandbox|preview", re.I)
+# `dev\.` required a literal dot, so dev1..dev10, qad1..qad11 and devazure all
+# slipped through and became seeds pointed at a vendor's QA infrastructure.
+SKIP = re.compile(
+    r"^\*|test|staging|demo|sandbox|preview|^dev\d*\.|^dev[a-z]*\.|^qa[a-z]*\d*\.|^uat",
+    re.I)
 
 
 def crtsh(domain):
@@ -74,7 +82,10 @@ def crtsh(domain):
         with urllib.request.urlopen(req, timeout=90) as r:
             rows = json.loads(r.read(60_000_000))
     except Exception as e:
-        print(f"  ! crt.sh failed for {domain}: {e}", file=sys.stderr)
+        # Distinguish a failed query from a genuinely empty result -- a silent 0
+        # was indistinguishable from "wildcard cert, nothing to enumerate".
+        print(f"  !! crt.sh QUERY FAILED for {domain}: {type(e).__name__}: {e}",
+              file=sys.stderr)
         return set()
     finally:
         time.sleep(DELAY)
