@@ -44,7 +44,8 @@ socket.setdefaulttimeout(30)
 CDX = "http://web.archive.org/cdx/search/cdx"
 UA = ("ScholarshipFinderBot/0.1 (+https://example.org/bot; research; "
       "contact: hello@example.org)")
-DELAY = 1.5          # the Archive is a nonprofit -- stay well under its limits
+DELAY = 0.8          # the Archive is a nonprofit; CDX itself takes 5-15s, so
+                     # the real rate is far gentler than this number suggests
 
 # [ status] Org name    detail  URL
 LOG_LINE = re.compile(r"^\[\s*(\w+)\]\s+(.{1,42}?)\s{2,}(.*?)\s*(https?://\S+)\s*$")
@@ -111,6 +112,24 @@ def main(logs, pages_dir, report_path, limit):
     pages_dir.mkdir(parents=True, exist_ok=True)
     rows, recovered = [], 0
 
+    # Highest value first. The Archive's CDX API takes 5-15s per query, so a run
+    # WILL be cut off by the job timeout -- the first attempt died at 25 minutes
+    # having written nothing. Order by worth so a partial run is still useful:
+    # WAF/thin pages (SouthTech's bulletin PDFs) beat dead domains, which beat
+    # robots entries that are only being counted.
+    order = {"thin": 0, "error": 1, "robots": 2}
+    failures.sort(key=lambda f: order.get(f[0], 3))
+
+    fieldnames = ["status", "org", "url", "snapshots", "latest", "action", "chars"]
+
+    def flush():
+        """Write after every record so a timeout cannot discard the whole run."""
+        Path(report_path).parent.mkdir(parents=True, exist_ok=True)
+        with open(report_path, "w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=fieldnames)
+            w.writeheader()
+            w.writerows(rows)
+
     for i, (status, org, url) in enumerate(failures[:limit], 1):
         snaps = snapshots(url)
         row = {"status": status, "org": org, "url": url,
@@ -138,14 +157,11 @@ def main(logs, pages_dir, report_path, limit):
             else:
                 row["action"] = "snapshot empty"
         rows.append(row)
+        flush()
         print(f"  [{i:>3}/{min(len(failures), limit)}] {status:<7} "
               f"{row['action'][:44]:<44} {url[:56]}", file=sys.stderr, flush=True)
 
-    Path(report_path).parent.mkdir(parents=True, exist_ok=True)
-    with open(report_path, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
-        w.writeheader()
-        w.writerows(rows)
+    flush()
 
     avail = sum(1 for r in rows if r["action"].startswith("AVAILABLE"))
     none_ = sum(1 for r in rows if r["action"] == "not archived")
