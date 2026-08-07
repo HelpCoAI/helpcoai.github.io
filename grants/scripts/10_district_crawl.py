@@ -228,6 +228,43 @@ def cmd_extract(seeds_path: Path, out_path: Path):
     print(f"\n{len(rows)} awards -> {out_path}  ({skipped} seeds skipped)")
 
 
+def slugify(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")[:60]
+
+
+def cmd_harvest(seeds_path: Path, out_dir: Path):
+    """
+    fetch + flatten to plain text, committed to the repo.
+
+    Splitting this out of `extract` means the pages can be harvested by a machine
+    that HAS network (a GitHub runner) and read by one that does not, with no API
+    key anywhere in the loop.
+    """
+    seeds = json.loads(seeds_path.read_text())["seeds"]
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ok = 0
+
+    for s in seeds:
+        status, detail = fetch_one(s["url"])
+        if status not in {"ok", "cached"}:
+            print(f"[{status:>6}] {s['org'][:44]:<44} {detail}")
+            continue
+
+        text = to_text(cache_path(s["url"]).read_bytes())
+        if len(text) < 300:
+            print(f"[  thin] {s['org'][:44]:<44} {len(text)} chars")
+            continue
+
+        name = f"{slugify(s['county'])}--{slugify(s['org'])}.txt"
+        (out_dir / name).write_text(
+            f"URL: {s['url']}\nORG: {s['org']}\nCOUNTY: {s['county']}\n"
+            f"KIND: {s['kind']}\n{'-' * 70}\n{text}\n", encoding="utf-8")
+        ok += 1
+        print(f"[    ok] {s['org'][:44]:<44} {len(text):,} chars -> {name}")
+
+    print(f"\n{ok}/{len(seeds)} pages harvested into {out_dir}")
+
+
 def cmd_status(seeds_path: Path):
     seeds = json.loads(seeds_path.read_text())["seeds"]
     have = sum(1 for s in seeds if cache_path(s["url"]).exists())
@@ -239,10 +276,12 @@ def cmd_status(seeds_path: Path):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("command", choices=["fetch", "extract", "status"])
+    p.add_argument("command", choices=["fetch", "harvest", "extract", "status"])
     p.add_argument("--seeds", type=Path, default=SEEDS)
     p.add_argument("--out", type=Path, default=ROOT / "data" / "07_district_awards.csv")
+    p.add_argument("--pages", type=Path, default=ROOT / "data" / "district_pages")
     a = p.parse_args()
     {"fetch": lambda: cmd_fetch(a.seeds),
+     "harvest": lambda: cmd_harvest(a.seeds, a.pages),
      "extract": lambda: cmd_extract(a.seeds, a.out),
      "status": lambda: cmd_status(a.seeds)}[a.command]()
