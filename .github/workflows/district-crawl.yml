@@ -166,3 +166,42 @@ jobs:
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
+
+  wayback:
+    needs: collect
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      # branch head so the harvest logs committed by `collect` are present
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pypdf
+
+      - name: Recover failed seeds from the Internet Archive
+        working-directory: grants
+        run: |
+          if [ -d data/district_pages_wayback ]; then
+            echo "already recovered - skipping"; exit 0
+          fi
+          python3 scripts/17_wayback.py \
+            --logs data/district_pages_*/_harvest_log.txt \
+            --pages data/district_pages_wayback \
+            --report data/13_wayback_report.csv 2>&1 | tail -60
+
+      - name: Commit recovered pages
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add grants/data/district_pages_wayback/ grants/data/13_wayback_report.csv 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "nothing recovered"
+          else
+            git commit -m "Recover failed seeds from the Internet Archive (automated)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
