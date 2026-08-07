@@ -89,7 +89,7 @@ reveal: **"We found 14 scholarships worth $23,500 for you"** (free, shareable). 
 
 | Free | Paid $99/yr (one-time, auto-renew off) |
 |---|---|
-| Top 10 matches by EV/effort, fully detailed | ALL matches, full ranked list |
+| Top **3** matches by EV/effort, fully detailed (founder decision; A/B test 3/5/10 once traffic exists) | ALL matches, full ranked list |
 | Count + total $ of what's behind the line ("9 more worth $8,750") | EV-per-hour scores with visible inputs |
 | Public deadline data | Deadline + renewal reminders |
 | 1 profile | Up to 5 profiles (family) |
@@ -227,3 +227,30 @@ or a consultant (workspace with 10 nonprofit clients) without rewrite.
 - Phase 1: first Stripe payment; conversion rate measured against the 3% assumption.
 - All numbers in this plan are reproducible: `grants/scripts/01…07` + the pilot scan run this
   session.
+
+
+---
+
+## Decisions locked 2026-08-07 (founder Q&A round)
+
+1. **Free tier = top 3 personalized matches**, not 10. Safe because the public county pages already
+   list every award free and unranked (SEO requires it; never cloak) — the paid product is
+   personalization and ranking, not the data. A/B test 3/5/10 later.
+2. **Account-holder minimum age 16** (not 13, not 17): COPPA hard-blocks under-13; 16 keeps
+   juniors, who are the keenest families. Parent can be the account holder with the student as a
+   profile — purchases are made by adults.
+3. **Analytics: Plausible (~$9/mo) or Cloudflare free** — no Google tracker on a site for teens.
+4. **Breach prevention checklist** (mostly free): collect minimum (no SSN, income band optional,
+   sensitive fields opt-in); Supabase RLS; magic-link auth (no password DB); 2FA on all admin
+   accounts (Supabase/Cloudflare/Stripe/GitHub/Mercury); no secrets client-side; no PII in logs;
+   Dependabot; vault = private bucket + short-lived signed URLs; retention purge for lapsed
+   accounts; one-page breach plan (FL 501.171 = 30-day notification).
+5. **Entity: run under the existing HelpCo LLC as umbrella.** File a FL fictitious name/DBA (~$50)
+   for the new brand; separate Stripe account + Mercury sub-account under the same entity; books
+   split per project from dollar one. Accepted trade-offs: shared liability across the umbrella,
+   and a future sale becomes an asset sale (fine — spin out to its own LLC when revenue is real).
+   No new LLC filing needed now.
+6. **SEO-penalty playbook confirmed as build-script rules**: ≥3 scholarships + real data block per
+   indexed page, noindex below threshold, computed facts not spun text, hand-written intros for
+   top-20 pages, tiered sitemap rollout, /methodology + named founder for E-E-A-T, a few earned
+   local links (district/education-foundation resource pages), weekly GSC review.
