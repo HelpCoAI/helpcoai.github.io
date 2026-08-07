@@ -63,15 +63,24 @@ def meta_path(url: str) -> Path:
     return cache_path(url).with_suffix(".json")
 
 
+IGNORE_ROBOTS = False       # set by --ignore-robots
+
 _robots: dict[str, urllib.robotparser.RobotFileParser | None] = {}
 
 
 def robots_allows(url: str) -> bool:
     """
-    Respect robots.txt. This is not optional for a business that intends to crawl
-    thousands of school and nonprofit sites -- it is the difference between a data
-    pipeline and a liability.
+    Respect robots.txt by default.
+
+    --ignore-robots disables this gate. It bypasses the DIRECTIVE only: the
+    User-Agent still identifies the crawler honestly and the per-host politeness
+    delay is unchanged, so this is not detection evasion and will not get past a
+    WAF. Note also that Python's robotparser reports disallow-all when robots.txt
+    itself returns 401/403, so a share of "robots" failures were never a stated
+    preference at all -- just bot detection, which this flag does not defeat.
     """
+    if IGNORE_ROBOTS:
+        return True
     parts = urllib.parse.urlsplit(url)
     origin = f"{parts.scheme}://{parts.netloc}"
     if origin not in _robots:
@@ -442,7 +451,14 @@ if __name__ == "__main__":
     p.add_argument("--pages", type=Path, default=ROOT / "data" / "district_pages")
     p.add_argument("--follow", type=int, default=0,
                    help="also fetch up to N ranked links from each harvested page")
+    p.add_argument("--ignore-robots", action="store_true",
+                   help="skip the robots.txt gate. User-Agent stays honest and the "
+                        "politeness delay is unchanged; this bypasses the directive, "
+                        "not the identification, and will not get past a WAF.")
     a = p.parse_args()
+    if a.ignore_robots:
+        globals()["IGNORE_ROBOTS"] = True
+        print("robots.txt gate DISABLED for this run", file=sys.stderr)
     {"fetch": lambda: cmd_fetch(a.seeds),
      "harvest": lambda: cmd_harvest(a.seeds, a.pages, a.follow),
      "extract": lambda: cmd_extract(a.seeds, a.out),
