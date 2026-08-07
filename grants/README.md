@@ -52,6 +52,7 @@ source anyway.
 | `scripts/04_unit_economics.py` | Consumer unit-economics model including CAC. Run with `[price] [lifetime] [conversion]` to pressure-test assumptions. |
 | `scripts/05_revenue_scenarios.py` | Tests three pricing/revenue questions: auto-renew off, advertising as a second stream, and free/paid tiering. |
 | `scripts/06_operating_costs.py` | Full operating cost model excluding marketing — autofill agent, matching, verification cron, infrastructure. Run with `[records] [users]`. |
+| `scripts/07_florida_scenario.py` | Statewide Florida build + operating scenario, using candidate counts measured directly from the BMF. |
 
 ```bash
 # Fetch the master file (~10s)
@@ -398,3 +399,44 @@ tied to their curriculum. Anthony O'Neal, their former student-debt personality,
 sponsorships are pitchable from ~5,000 subscribers; 68% of Gen Z already uses TikTok to search for
 scholarships. Institutional partners (Jump$tart, NEFE, credit union leagues, HSLDA) are all
 month-12+ activities gated on existing traffic and outcomes.
+
+
+## Florida scenario (scripts/07_florida_scenario.py)
+
+Measured directly from the BMF, not extrapolated: **113,644 registered FL nonprofits → 15,423
+scored scholarship candidates.** At the 45% true-positive rate observed in Sarasota/Manatee, that's
+**~6,940 real programs** statewide.
+
+| | |
+|---|---|
+| **One-time build, entire state** | **$298** |
+| — extract 15,423 candidates @ $0.016 | $247 |
+| — district/education-foundation lists, platform field-maps, domain | $51 |
+| **Monthly floor, zero users** | **$87** |
+| — verification cron (flat, scales with records not users) | $7 |
+| — hosting/DB/email/storage | $80 |
+| **Break-even** | **11 paying users** (~374 free at 3% conversion) |
+| **Payback on the build** | 3 paying users |
+
+**1,218 static pages** generated from that one dataset: 67 county + 100 city + 1,000 high school +
+1 state + ~50 major/identity. Page generation itself costs nothing — it's templated from the
+database.
+
+### Annual P&L at $99/yr, 3% conversion, no sponsors, no ads
+
+| Free users | Paid | Revenue | Costs | Net | Margin |
+|---|---|---|---|---|---|
+| 1,000 | 30 | $2,970 | $1,229 | $1,741 | 59% |
+| 10,000 | 300 | $29,700 | $4,557 | $25,143 | 85% |
+| 25,000 | 750 | $74,250 | $7,383 | $66,867 | 90% |
+| 50,000 | 1,500 | $148,500 | $18,501 | $129,999 | 88% |
+
+**Reality check on the top rows:** Florida graduates ~200,000 high schoolers a year, so 50,000 free
+users is 25% of a graduating class and 150,000 is 75% — not realistic for a single state. A
+credible FL-only ceiling is **10,000-25,000 free users**, or $25-67K/yr net.
+
+**The financial barrier is effectively zero.** $298 to build, $87/month to run, break-even at 11
+customers. Every remaining risk is traffic and time, not money.
+
+Excluded: founder time, content production, marketing. The 45% true-positive rate comes from a
+22-org sample and the 3% conversion is unproven — both need real data.
