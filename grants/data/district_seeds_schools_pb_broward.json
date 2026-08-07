@@ -1,0 +1,161 @@
+{
+  "_comment": [
+    "School counselor pages and local aggregators for Palm Beach and Broward.",
+    "This is the seed set that replaces hand-verifying BMF organizations: counselors",
+    "list only awards their students can actually apply to, with current deadlines,",
+    "so the verification is already done.",
+    "",
+    "Two things learned building it. Palm Beach Google Sites is a THIN vein -- after",
+    "~10 query formulations only Jupiter and Wellington are true bulletins; the rest",
+    "are counseling hubs that merely link onward. And Broward has NO school-level",
+    "bulletins off browardschools.com, which is robots-blocked, so the Broward",
+    "substitute is the Education Foundation's searchable award database.",
+    "",
+    "SouthTech Academy is the richest new target: a numbered PDF bulletin series in",
+    "structured NAME | AWARD | DEADLINE tables. PDF support was added to the crawler",
+    "for these -- without it a PDF decodes to garbage and reads as 'thin'."
+  ],
+
+  "seeds": [
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy scholarship bulletin #15",
+      "url": "https://www.southtechschools.org/wp-content/uploads/2024/05/Scholarship-Bulletin-15.pdf",
+      "kind": "list",
+      "note": "Structured table: scholarship name, award, deadline. Boynton Beach charter serving all of Palm Beach County."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy scholarship bulletin #14",
+      "url": "https://www.southtechschools.org/wp-content/uploads/2024/04/Scholarship-Bulletin-14.pdf",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy scholarship bulletin #10",
+      "url": "https://www.southtechschools.org/wp-content/uploads/2024/02/Scholarship-Bulletin-10.pdf",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy scholarship bulletin #7",
+      "url": "https://www.southtechschools.org/wp-content/uploads/2023/12/Scholarship-Bulletin-7.pdf",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy scholarship bulletin #4",
+      "url": "https://www.southtechschools.org/wp-content/uploads/2023/10/Scholarship-Bulletin-4.pdf",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy scholarship bulletin #1",
+      "url": "https://www.southtechschools.org/wp-content/uploads/2024/09/Scholarship-Bulletin-1.pdf",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "SouthTech Academy counseling department",
+      "url": "https://www.southtechschools.org/counseling-department/",
+      "kind": "meta",
+      "note": "Index page -- should enumerate the current year's bulletin set so the series can be followed forward."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Wellington High School scholarships",
+      "url": "https://sites.google.com/a/palmbeachschools.org/scholarshipswhs/",
+      "kind": "list",
+      "note": "Legacy /a/ Google Sites path -- these are often abandoned or permission-locked. Expect a possible 401."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Forest Hill Community HS guidance",
+      "url": "https://sites.google.com/palmbeachschools.org/fhhs-guidance-department/home",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Boca Raton Community HS college & career center",
+      "url": "https://sites.google.com/palmbeachschools.org/collegecareercenter/home",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Palm Beach County Commissioner District 7 scholarships database",
+      "url": "https://discover.pbc.gov/countycommissioners/district7/Pages/High-School-Scholarships-Database.aspx",
+      "kind": "hub",
+      "note": ".gov -- unlikely to be robots-blocked, and carries named local awards."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Palm Beach County Property Appraiser scholarship awards",
+      "url": "https://pbcpao.gov/scholarship-awards.htm",
+      "kind": "list",
+      "note": ".gov. Six $1,500 awards plus a paid summer internship."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "School of the Arts Foundation (Dreyfoos) scholarship resources",
+      "url": "https://soafi.org/scholarship-resources",
+      "kind": "list"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "American Association of Caregiving Youth scholarships",
+      "url": "https://aacy.org/what-we-do/caregiving-youth-project/scholarships-and-opportunities/",
+      "kind": "list",
+      "note": "Serves student caregivers -- a population filter no national database expresses."
+    },
+    {
+      "county": "Broward",
+      "org": "Broward Education Foundation scholarship search",
+      "url": "https://broward.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "The highest-value Broward URL: a searchable database of individual named local awards. Broward has no crawlable school-level bulletins, so this is the substitute."
+    },
+    {
+      "county": "Broward",
+      "org": "Broward County PTSA scholarships",
+      "url": "https://www.browardptsa.org/scholarships",
+      "kind": "list"
+    },
+    {
+      "county": "Broward",
+      "org": "George Snow Broward scholarships",
+      "url": "https://scholarship.org/browardscholarships/",
+      "kind": "hub"
+    },
+    {
+      "county": "Broward",
+      "org": "Women at the Well Broward scholarships",
+      "url": "https://watwbroward.org/scholarships/",
+      "kind": "list"
+    },
+    {
+      "county": "Broward",
+      "org": "City of Sunrise outstanding citizenship scholarship",
+      "url": "https://www.sunrisefl.gov/our-city/schools-school-programs/outstanding-citizenship-scholarship",
+      "kind": "list",
+      "note": "Municipal award -- city-level restriction."
+    },
+    {
+      "county": "Broward",
+      "org": "St Thomas Aquinas HS college advising",
+      "url": "https://www.aquinas-sta.org/academics/college-advising",
+      "kind": "list"
+    },
+    {
+      "county": "Broward",
+      "org": "Cardinal Gibbons HS counseling",
+      "url": "https://www.cghsfl.org/academics/guidance",
+      "kind": "list"
+    },
+    {
+      "county": "Broward",
+      "org": "American Heritage Schools Plantation scholarships",
+      "url": "https://www.ahschool.com/broward-campus/academics/scholarship",
+      "kind": "list"
+    }
+  ]
+}

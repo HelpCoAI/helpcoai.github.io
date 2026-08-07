@@ -168,9 +168,30 @@ TAG_STRIP = re.compile(rb"<(script|style)[^>]*>.*?</\1>", re.S | re.I)
 TAGS = re.compile(rb"<[^>]+>")
 
 
+def pdf_to_text(raw: bytes) -> str:
+    """
+    Counselor bulletins are frequently PDFs (SouthTech publishes a numbered series),
+    and they are among the densest sources of named local awards. Without this the
+    HTML path decodes a PDF to binary garbage and the page silently reads as 'thin'.
+    """
+    try:
+        from pypdf import PdfReader
+    except ImportError:
+        return ""
+    import io
+    try:
+        reader = PdfReader(io.BytesIO(raw))
+        return "\n".join((p.extract_text() or "") for p in reader.pages)
+    except Exception:
+        return ""
+
+
 def to_text(raw: bytes, limit: int = 60_000) -> str:
-    body = TAGS.sub(b" ", TAG_STRIP.sub(b" ", raw))
-    text = body.decode("utf-8", errors="replace")
+    if raw[:5] == b"%PDF-":
+        text = pdf_to_text(raw)
+    else:
+        body = TAGS.sub(b" ", TAG_STRIP.sub(b" ", raw))
+        text = body.decode("utf-8", errors="replace")
     text = re.sub(r"&nbsp;?", " ", text)
     text = re.sub(r"\s+", " ", text)
     return text[:limit]
