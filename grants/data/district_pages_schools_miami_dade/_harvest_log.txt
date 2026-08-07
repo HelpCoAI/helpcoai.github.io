@@ -1,0 +1,116 @@
+65/52 pages harvested
+------------------------------------------------------------------------------
+[     ok] Coral Reef Senior High                     11,776 chars -> miami-dade--coral-reef-senior-high.txt
+[  error] .. Immigrants Rising Scholarship and Fello HTTP 403
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--coral-reef-senior-high-cap-scholarship-bulletin.txt
+[     ok] .. U Dreamers Program                      9,628 chars -> miami-dade--coral-reef-senior-high-u-dreamers-program.txt
+[     ok] North Miami Senior High                    4,931 chars -> miami-dade--north-miami-senior-high.txt
+[   thin] .. TheDream.US Scholarship Information - E 0 chars
+[   thin] .. TheDream.US Scholarship Information - S 0 chars
+[     ok] .. Scholarship Bulletin                    4,213 chars -> miami-dade--north-miami-senior-high-scholarship-bulletin.txt
+[     ok] Southwest Miami Senior High                7,788 chars -> miami-dade--southwest-miami-senior-high.txt
+[     ok] .. English                                 2,225 chars -> miami-dade--southwest-miami-senior-high-english.txt
+[     ok] .. Spanish                                 2,457 chars -> miami-dade--southwest-miami-senior-high-spanish.txt
+[     ok] .. Scholarship Websites                    9,852 chars -> miami-dade--southwest-miami-senior-high-scholarship-websites.txt
+[     ok] Miami Southridge Senior High               10,639 chars -> miami-dade--miami-southridge-senior-high.txt
+[     ok] .. Earning Scholarships Guide              6,033 chars -> miami-dade--miami-southridge-senior-high-earning-scholarships-guide.txt
+[ robots] .. Class of 2028 Scholarship List          disallowed by robots.txt
+[ robots] .. Class of 2027 Scholarship List          disallowed by robots.txt
+[     ok] Ronald W. Reagan Doral Senior High         5,594 chars -> miami-dade--ronald-w-reagan-doral-senior-high.txt
+[     ok] .. Scholarship Bulletin                    4,213 chars -> miami-dade--ronald-w-reagan-doral-senior-high-scholarship-bulletin.txt
+[   thin] .. What is Financial Aid?                  15 chars
+[     ok] .. Bright Futures Scholarship Information  2,680 chars -> miami-dade--ronald-w-reagan-doral-senior-high-bright-futures-scholarship.txt
+[ robots] Miami Jackson Senior High                  disallowed by robots.txt  https://jacksonshs.org/apps/pages/index.jsp?uREC_ID=279137&type=d
+[     ok] Miami Beach Senior High                    7,325 chars -> miami-dade--miami-beach-senior-high.txt
+[   thin] .. CAP Scholarship Bulletin                98 chars
+[     ok] Miami Sunset Senior High                   6,827 chars -> miami-dade--miami-sunset-senior-high.txt
+[  error] .. Immigrants Rising                       HTTP 403
+[   thin] .. District Scholarship Bulletin           98 chars
+[     ok] .. Scholarships Bulletin                   4,213 chars -> miami-dade--miami-sunset-senior-high-scholarships-bulletin.txt
+[     ok] Miami Carol City Senior High               5,397 chars -> miami-dade--miami-carol-city-senior-high.txt
+[ robots] .. https://scholarships360.org             disallowed by robots.txt
+[ robots] .. https://scholarshipowl.com              disallowed by robots.txt
+[     ok] .. https://www.floridastudentfinancialaids 3,422 chars -> miami-dade--miami-carol-city-senior-high-https-www-floridastudentfinanci.txt
+[     ok] American Senior High                       6,236 chars -> miami-dade--american-senior-high.txt
+[   thin] .. Scholarship Bulletin                    98 chars
+[   thin] .. https://bigfuture.collegeboard.org/pay- 15 chars
+[     ok] .. https://www.floridastudentfinancialaids 2,680 chars -> miami-dade--american-senior-high-https-www-floridastudentfinancialaidsg-.txt
+[     ok] South Miami Senior High                    4,816 chars -> miami-dade--south-miami-senior-high.txt
+[ robots] .. http://www.scholarships.com/financial-a disallowed by robots.txt
+[  error] .. Bright Futures Scholarship              timed out
+[  error] .. www.floridastudentfinancialaid.org      HTTP 404
+[     ok] Coral Gables Senior High                   6,653 chars -> miami-dade--coral-gables-senior-high.txt
+[     ok] Miami Palmetto Senior High                 8,746 chars -> miami-dade--miami-palmetto-senior-high.txt
+[     ok] .. Scholarships                            1,138 chars -> miami-dade--miami-palmetto-senior-high-scholarships.txt
+[     ok] Miami Killian Senior High                  23,900 chars -> miami-dade--miami-killian-senior-high.txt
+[     ok] .. Scholarship Websites and Info           6,830 chars -> miami-dade--miami-killian-senior-high-scholarship-websites-and-info.txt
+[     ok] .. Scholarship Bulletin 2025-2026          4,213 chars -> miami-dade--miami-killian-senior-high-scholarship-bulletin-2025-2026.txt
+[  error] .. http://www.floridastudentfinancialaidsg no host given
+[     ok] South Dade Senior High                     6,606 chars -> miami-dade--south-dade-senior-high.txt
+[     ok] .. Bright Futures & Scholarship Bulletin   5,529 chars -> miami-dade--south-dade-senior-high-bright-futures-scholarship-bulletin.txt
+[  error] .. Immigrants Rising Scholarship and Fello HTTP 403
+[     ok] .. Scholarship Bulletin                    4,213 chars -> miami-dade--south-dade-senior-high-scholarship-bulletin.txt
+[     ok] Homestead Senior High                      3,507 chars -> miami-dade--homestead-senior-high.txt
+[     ok] .. Bright Futures Scholarship              5,511 chars -> miami-dade--homestead-senior-high-bright-futures-scholarship.txt
+[ robots] Cutler Bay Senior High                     disallowed by robots.txt  https://www.cutlerbayhigh.org/apps/pages/index.jsp?uREC_ID=280151&type=d
+[     ok] Felix Varela Senior High                   6,699 chars -> miami-dade--felix-varela-senior-high.txt
+[     ok] .. Scholarship Bulletin January 2026       28,480 chars -> miami-dade--felix-varela-senior-high-scholarship-bulletin-january-2026.txt
+[     ok] .. Scholarship Bulletin September 2025     6,712 chars -> miami-dade--felix-varela-senior-high-scholarship-bulletin-september-2025.txt
+[     ok] .. Scholarship Bulletin AUG 2025-2026      3,025 chars -> miami-dade--felix-varela-senior-high-scholarship-bulletin-aug-2025-2026.txt
+[ robots] G. Holmes Braddock Senior High             disallowed by robots.txt  https://www.braddockbulldogs.org/apps/pages/index.jsp?uREC_ID=324425&type=d&pREC_ID=681269
+[ robots] John A. Ferguson Senior High               disallowed by robots.txt  https://www.fergusonhs.org/apps/pages/index.jsp?uREC_ID=249989&type=d
+[     ok] Miami Coral Park Senior High               11,105 chars -> miami-dade--miami-coral-park-senior-high.txt
+[     ok] .. Bright Futures Scholarship Program Init 14,906 chars -> miami-dade--miami-coral-park-senior-high-bright-futures-scholarship-prog.txt
+[     ok] .. UF - Machen Florida Opportunity Scholar 3,563 chars -> miami-dade--miami-coral-park-senior-high-uf-machen-florida-opportunity-s.txt
+[     ok] .. Sierra Family Scholarship               1,358 chars -> miami-dade--miami-coral-park-senior-high-sierra-family-scholarship.txt
+[ robots] Miami Northwestern Senior High             disallowed by robots.txt  https://www.northwesternbulls.org/apps/pages/index.jsp?uREC_ID=294296&type=d
+[ robots] Miami Norland Senior High                  disallowed by robots.txt  https://www.miaminorlandshs.org/apps/pages/index.jsp?uREC_ID=318382&type=d
+[ robots] Hialeah Senior High                        disallowed by robots.txt  https://www.hialeahhigh.org/apps/pages/?uREC_ID=123043&type=d&pREC_ID=243238
+[ robots] Hialeah-Miami Lakes Senior High            disallowed by robots.txt  https://www.hmltrojans.org/apps/pages/index.jsp?uREC_ID=264903&type=d
+[ robots] Hialeah Gardens High                       disallowed by robots.txt  https://www.hghsgladiators.com/apps/pages/index.jsp?uREC_ID=421224&type=d
+[ robots] Barbara Goleman Senior High                disallowed by robots.txt  https://www.barbaragolemansenior.com/apps/pages/index.jsp?uREC_ID=573396&type=d&pREC_ID=1139551
+[ robots] Westland Hialeah Senior High               disallowed by robots.txt  https://westlandwildcats.net/apps/pages/index.jsp?uREC_ID=401152&type=d
+[ robots] Dr. Michael M. Krop Senior High            disallowed by robots.txt  https://kropseniorhigh.org/apps/pages/index.jsp?uREC_ID=216571&type=d&pREC_ID=477736
+[     ok] Alonzo and Tracy Mourning Senior High      12,818 chars -> miami-dade--alonzo-and-tracy-mourning-senior-high.txt
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--alonzo-and-tracy-mourning-senior-high-cap-scholarship-bullet.txt
+[  error] .. http://www.college-scholarships.com/lea HTTP 404
+[  error] .. http://www.scholarships.com/            HTTP 404
+[     ok] Miami Springs Senior High                  3,879 chars -> miami-dade--miami-springs-senior-high.txt
+[     ok] Robert Morgan Educational Center           7,512 chars -> miami-dade--robert-morgan-educational-center.txt
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--robert-morgan-educational-center-cap-scholarship-bulletin.txt
+[     ok] .. Academy Achievements, Awards and Schola 8,964 chars -> miami-dade--robert-morgan-educational-center-academy-achievements-awards.txt
+[     ok] .. Bright Futures Scholarship              5,280 chars -> miami-dade--robert-morgan-educational-center-bright-futures-scholarship.txt
+[     ok] JC Bermudez Doral Senior High              5,404 chars -> miami-dade--jc-bermudez-doral-senior-high.txt
+[     ok] .. CAP Corner                              883 chars -> miami-dade--jc-bermudez-doral-senior-high-cap-corner.txt
+[ robots] Miami Lakes Educational Center             disallowed by robots.txt  https://www.mlecshs.com/apps/pages/index.jsp?uREC_ID=397619&type=d
+[     ok] Young Women's Preparatory Academy          4,172 chars -> miami-dade--young-women-s-preparatory-academy.txt
+[     ok] .. Florida Bright Futures Scholars - Acade 3,219 chars -> miami-dade--young-women-s-preparatory-academy-florida-bright-futures-sch.txt
+[     ok] .. Florida Bright Futures Scholars - CAPE  2,360 chars -> miami-dade--young-women-s-preparatory-academy-florida-bright-futures-sch.txt
+[     ok] .. Florida Bright Futures Scholars - Vocat 2,887 chars -> miami-dade--young-women-s-preparatory-academy-florida-bright-futures-sch.txt
+[  error] Design and Architecture Senior High (DASH) HTTP 404  http://dashcap.dadeschools.net/html/index.html
+[     ok] MAST Academy                               34,261 chars -> miami-dade--mast-academy.txt
+[  error] .. Immigrants Rising Scholarship and Fello HTTP 403
+[ robots] .. Additional Scholarships (LINK)          disallowed by robots.txt
+[     ok] .. CAP Scholarships Bulletin Deadlines by  10,284 chars -> miami-dade--mast-academy-cap-scholarships-bulletin-deadlines-by-month-li.txt
+[     ok] Jose Marti MAST 6-12 Academy               6,015 chars -> miami-dade--jose-marti-mast-6-12-academy.txt
+[   thin] .. Awards & Honor Roll Criteria            0 chars
+[   thin] .. Big Future Guide to Financial Aid       15 chars
+[     ok] .. Florida Bright Futures Information      2,680 chars -> miami-dade--jose-marti-mast-6-12-academy-florida-bright-futures-informat.txt
+[ robots] TERRA Environmental Research Institute     disallowed by robots.txt  https://www.terrawolves.com/apps/pages/index.jsp?uREC_ID=241582&type=d&pREC_ID=468925
+[ robots] William H. Turner Technical Arts High      disallowed by robots.txt  https://www.turnertech-eagles.com/college-advising-program
+[ robots] Arthur and Polly Mays Conservatory of the  disallowed by robots.txt  https://www.apmays.org/apps/pages/index.jsp?uREC_ID=562936&type=d
+[ robots] Miami Senior High                          disallowed by robots.txt  https://www.miamiseniorhigh.org/m/pages/index.jsp?uREC_ID=339275&type=d&pREC_ID=660976
+[     ok] International Studies Preparatory Academy  11,126 chars -> miami-dade--international-studies-preparatory-academy.txt
+[     ok] .. CAP Scholarship Bulletin-April 2026     53,011 chars -> miami-dade--international-studies-preparatory-academy-cap-scholarship-bu.txt
+[     ok] .. CAP Scholarship Bulletin- May 2026      22,457 chars -> miami-dade--international-studies-preparatory-academy-cap-scholarship-bu.txt
+[     ok] .. CAP Scholarship Bulletin-March 2026     58,988 chars -> miami-dade--international-studies-preparatory-academy-cap-scholarship-bu.txt
+[   thin] Miami Edison Senior High                   1 chars  https://miamiedisonshs.net/student-support/
+[ robots] Christopher Columbus High School           disallowed by robots.txt  https://www.columbushs.com/college-counseling
+[  error] Belen Jesuit Preparatory School            HTTP 403  https://www.belenjesuit.org/student-life/college-counseling
+[     ok] Immaculata-La Salle High School            5,916 chars -> miami-dade--immaculata-la-salle-high-school.txt
+[  error] Archbishop Coleman F. Carroll High School  HTTP 400  https://www.colemancarroll.org/CatholicSchool.php?pg=College+Counseling
+[  error] Monsignor Edward Pace High School          HTTP 418  https://www.pacehs.com/scholarships.php
+[ robots] Saint Brendan High School                  disallowed by robots.txt  https://www.stbrendanhigh.org/academics/guidance-and-college-advising
+[ robots] Carrollton School of the Sacred Heart      disallowed by robots.txt  https://www.carrollton.org/academics/collegecounseling
+[     ok] Ransom Everglades School                   15,137 chars -> miami-dade--ransom-everglades-school.txt
+[     ok] .. Seven RE seniors win National Merit Sch 5,035 chars -> miami-dade--ransom-everglades-school-seven-re-seniors-win-national-merit.txt
