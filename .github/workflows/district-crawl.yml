@@ -182,6 +182,64 @@ jobs:
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
+  # Clean + structure the harvested text. Runs on every harvest, and is the step
+  # that replaces hand-review: it reads only the extracted blocks, not the pages,
+  # so the whole corpus is about a dollar and can be re-run on each refresh.
+  extract:
+    needs: collect
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Strip navigation chrome
+        working-directory: grants
+        run: python3 scripts/19_declutter.py --pages 'data/district_pages_*' --out data/clean
+
+      - name: Extract awards with the full filter schema
+        working-directory: grants
+        run: python3 scripts/20_extract_awards.py --pages 'data/clean/*' --out data/15_awards.csv
+
+      # Skipped, loudly, until the key exists -- a missing key must not fail the
+      # run, but it must also never look like the pass ran and found nothing.
+      - name: Enrich with the model
+        working-directory: grants
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY not set - skipping enrichment."
+            echo "15_awards.csv is the regex output: a candidate set, not publishable."
+            python3 scripts/21_enrich.py --dry-run || true
+            exit 0
+          fi
+          pip install --quiet anthropic
+          python3 scripts/21_enrich.py \
+            --in data/15_awards.csv --out data/16_awards_enriched.csv --only-awards
+
+      - name: Commit extracted awards
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # The response cache is a build artifact keyed by content hash; it is
+          # regenerated for free and would add thousands of files to the tree.
+          git add grants/data/clean grants/data/15_awards.csv \
+                  grants/data/16_awards_enriched.csv 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "no change in extracted awards"
+          else
+            git commit -m "Extract and enrich awards (automated)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
   wayback:
     needs: collect
     if: always()

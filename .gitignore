@@ -1,3 +1,4 @@
 
 # crawler page cache
 grants/cache/
+grants/data/.enrich_cache/
