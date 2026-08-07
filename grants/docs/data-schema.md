@@ -74,6 +74,7 @@ several simultaneously.
       "military_affiliation": null,
       "disability": null
     },
+    "beneficiary_scope": "open",
     "other_criteria": "Must have participated in a school activity",
     "raw_text": "verbatim eligibility text as published"
   },
@@ -109,6 +110,30 @@ several simultaneously.
   "risk": { "scam_score": 2, "fee_required": false, "flags": [] }
 }
 ```
+
+---
+
+## `beneficiary_scope` — the field that keeps the product honest
+
+Added after the n=15 verification sample, where **5 of 15 organizations ran a real, well-funded
+award that no ordinary student could apply to.** Without this field they all render as "apply now,"
+which is the trust failure the build plan treats as business-ending.
+
+| Value | Meaning | Example from the sample |
+|---|---|---|
+| `open` | Anyone meeting the stated eligibility may apply | Kiwanis Club of St. Petersburg — any city HS senior |
+| `nomination_only` | A counselor, principal, or member must put the student forward | Ye Mystic Krewe of Gasparilla — principals nominate 1 per 100 seniors |
+| `members_only` | Requires family membership in the sponsoring order | Moose lodges — parent/grandparent must be a member |
+| `employees_only` | Restricted to a company's staff or their dependents | Ann & Lars Lewander; Freedom Village (staff) |
+| `closed` | No public application path at all | — |
+
+Only `open` and `nomination_only` belong in a student's match list, and `nomination_only` must
+display *how* to get nominated rather than an apply button. `members_only` is worth showing when the
+profile indicates the affiliation, and is otherwise noise.
+
+**This field is also a discovery signal.** A high BMF score combined with `employees_only` is the
+single most common false positive in the pipeline — corporate and family foundations name themselves
+"… Scholarship Foundation" and score at the very top.
 
 ---
 

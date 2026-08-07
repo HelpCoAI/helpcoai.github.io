@@ -19,6 +19,7 @@ from importlib import import_module
 
 sys.path.insert(0, str(Path(__file__).parent))
 _f = import_module("01_filter_bmf")
+import orgnames
 
 # ---------------------------------------------------------------- region
 
@@ -98,10 +99,15 @@ def main(bmf_path: str, out_path: str, min_score: int = 20):
                 return int(v) if v.lstrip("-").isdigit() else 0
 
             assets = num("ASSET_AMT")
+            sort_name = (r.get("SORT_NAME") or "").strip()
+            display, _, resolved = orgnames.resolve(name, sort_name, city)
             rows.append({
                 "priority": review_priority(pts, why, assets),
                 "score": pts,
                 "name": name,
+                "display_name": display,
+                "chapter_resolved": "Y" if resolved else "",
+                "search_query": orgnames.search_query(display, city),
                 "city": city.title(),
                 "county": county_for(city),
                 "ein": (r.get("EIN") or "").strip(),
@@ -127,6 +133,7 @@ def main(bmf_path: str, out_path: str, min_score: int = 20):
     from collections import Counter
     by_pri = Counter(r["priority"] for r in rows)
     by_cty = Counter(r["county"] for r in rows)
+    n_resolved = sum(1 for r in rows if r["chapter_resolved"])
 
     print(f"Scanned {scanned:,} BMF rows · {in_region:,} nonprofits in pilot region")
     print(f"Candidates (score >= {min_score}): {len(rows):,}")
@@ -140,6 +147,8 @@ def main(bmf_path: str, out_path: str, min_score: int = 20):
     for c, n in by_cty.most_common():
         print(f"  {c:<16}{n:>6,}")
     print()
+    print(f"Chapter names resolved from SORT_NAME: {n_resolved:,} "
+          f"({n_resolved/len(rows):.0%} of candidates)")
     print(f"Written to {out_path}")
 
 

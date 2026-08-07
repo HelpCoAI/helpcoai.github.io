@@ -1,0 +1,110 @@
+{
+  "_comment": [
+    "Seed URLs for the district / education-foundation crawl.",
+    "These enumerate AWARDS STUDENTS CAN APPLY TO, already filtered for open,",
+    "local, and current -- the three criteria that cost ~60% of the BMF funnel.",
+    "Every URL here was surfaced by search on 2026-08-07 and is real, but none",
+    "could be fetched from the build sandbox (egress proxy denies CONNECT), so",
+    "none has been content-verified. Treat 'status' as unconfirmed until a run",
+    "with real egress fills it in.",
+    "kind: hub = one application covers many named awards (highest value);",
+    "       list = enumerated links/PDF; meta = a list of other lists."
+  ],
+
+  "seeds": [
+    {
+      "county": "Hillsborough",
+      "org": "Hillsborough Education Foundation",
+      "url": "https://educationfoundation.com/resource/senior-scholarships/",
+      "kind": "hub",
+      "note": "Hundreds of awards, $500-$20,000, ONE online application. Opens Oct 1, deadline ~Jan 31. Grades 11-12, Hillsborough County."
+    },
+    {
+      "county": "Hillsborough",
+      "org": "LEAP Tampa Bay College Access Network",
+      "url": "https://leaptampabay.org/scholarships/",
+      "kind": "list"
+    },
+    {
+      "county": "Hillsborough",
+      "org": "Brooks DeBartolo Collegiate HS student services",
+      "url": "https://bdchsstudentservices.weebly.com/scholarship-list.html",
+      "kind": "list",
+      "note": "Single-school counselor list. Pattern to replicate across every high school."
+    },
+    {
+      "county": "Pinellas",
+      "org": "Pinellas Education Foundation",
+      "url": "https://pinellaseducation.org/",
+      "kind": "hub",
+      "note": "Publishes an annual scholarship FAQ + catalog PDF; locate the current year's catalog at crawl time."
+    },
+    {
+      "county": "Pasco",
+      "org": "Pasco Schools - Zephyrhills HS college & career centre",
+      "url": "https://connectplus.pasco.k12.fl.us/asimons/local-and-degree-specific-scholarships/",
+      "kind": "list",
+      "note": "Counselor-maintained list of local + degree-specific awards."
+    },
+    {
+      "county": "Pasco",
+      "org": "River Ridge High School",
+      "url": "https://rrhs.pasco.k12.fl.us/scholarships/",
+      "kind": "list"
+    },
+    {
+      "county": "Pasco",
+      "org": "Pasco Education Foundation",
+      "url": "https://www.pascoeducationfoundation.org/",
+      "kind": "hub",
+      "note": "Publishes per-school scholarship opportunity PDFs (e.g. Land O' Lakes HS)."
+    },
+    {
+      "county": "Sarasota",
+      "org": "Education Foundation of Sarasota County",
+      "url": "https://edfoundationsrq.org/scholarships/",
+      "kind": "hub",
+      "note": "Explicitly labelled 'Sarasota County Scholarships Database'. Highest-value single target in the pilot."
+    },
+    {
+      "county": "Sarasota",
+      "org": "LaunchYourPlan (Ed Foundation Sarasota portal)",
+      "url": "https://launchyourplan.com/scholarships/",
+      "kind": "hub"
+    },
+    {
+      "county": "Sarasota",
+      "org": "Community Foundation of Sarasota County",
+      "url": "https://www.cfsarasota.org/students",
+      "kind": "hub",
+      "note": "Known from earlier research to run many named funds behind a common application."
+    },
+    {
+      "county": "Manatee",
+      "org": "Manatee Education Foundation",
+      "url": "https://mefinfo.org/the-scholarship-source/",
+      "kind": "hub",
+      "note": "Named 'The Scholarship Source'."
+    },
+    {
+      "county": "Manatee",
+      "org": "Public Education Foundation of Manatee County",
+      "url": "https://pefmc.org/scholarships/",
+      "kind": "hub"
+    },
+    {
+      "county": "Manatee,Sarasota",
+      "org": "Women's Resource Center",
+      "url": "https://www.mywrc.org/fundingopportunities/",
+      "kind": "list",
+      "note": "Serves Manatee, Sarasota and Venice."
+    },
+    {
+      "county": "*",
+      "org": "Florida College Access Network",
+      "url": "https://floridacollegeaccess.org/initiatives/local-scholarship-resources/",
+      "kind": "meta",
+      "note": "A list of local scholarship resources BY COUNTY, statewide. This is the single highest-leverage URL for scaling the pilot to all 67 Florida counties -- crawl it first and it generates the seed list for everywhere else."
+    }
+  ]
+}
