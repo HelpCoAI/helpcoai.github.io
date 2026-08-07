@@ -100,6 +100,27 @@
       "note": "Serves Manatee, Sarasota and Venice."
     },
     {
+      "county": "Pasco",
+      "org": "Pasco County Schools scholarship database",
+      "url": "https://www.pasco.k12.fl.us/scholarship_database",
+      "kind": "hub",
+      "note": "Found ON the Zephyrhills HS page during the first harvest -- the district's own database, which the counselor page merely links to. Higher-value than the school page that pointed at it."
+    },
+    {
+      "county": "Pasco",
+      "org": "Pasco-Hernando State College Foundation",
+      "url": "https://phsc.academicworks.com/",
+      "kind": "hub",
+      "note": "220+ endowed and 50+ annual scholarships, one online application, matched to donor criteria. Surfaced by the first harvest. AcademicWorks platform."
+    },
+    {
+      "county": "Manatee",
+      "org": "Manatee Community Foundation",
+      "url": "https://www.manateecf.org/scholarships",
+      "kind": "hub",
+      "note": "Referenced repeatedly by the Manatee Education Foundation directory as the place where several named funds actually live."
+    },
+    {
       "county": "*",
       "org": "Florida College Access Network",
       "url": "https://floridacollegeaccess.org/initiatives/local-scholarship-resources/",

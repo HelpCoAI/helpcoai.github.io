@@ -243,16 +243,21 @@ def cmd_harvest(seeds_path: Path, out_dir: Path):
     seeds = json.loads(seeds_path.read_text())["seeds"]
     out_dir.mkdir(parents=True, exist_ok=True)
     ok = 0
+    log = []
 
     for s in seeds:
         status, detail = fetch_one(s["url"])
         if status not in {"ok", "cached"}:
-            print(f"[{status:>6}] {s['org'][:44]:<44} {detail}")
+            line = f"[{status:>7}] {s['org'][:42]:<42} {detail}  {s['url']}"
+            log.append(line)
+            print(line)
             continue
 
         text = to_text(cache_path(s["url"]).read_bytes())
         if len(text) < 300:
-            print(f"[  thin] {s['org'][:44]:<44} {len(text)} chars")
+            line = f"[   thin] {s['org'][:42]:<42} {len(text)} chars  {s['url']}"
+            log.append(line)
+            print(line)
             continue
 
         name = f"{slugify(s['county'])}--{slugify(s['org'])}.txt"
@@ -260,8 +265,14 @@ def cmd_harvest(seeds_path: Path, out_dir: Path):
             f"URL: {s['url']}\nORG: {s['org']}\nCOUNTY: {s['county']}\n"
             f"KIND: {s['kind']}\n{'-' * 70}\n{text}\n", encoding="utf-8")
         ok += 1
-        print(f"[    ok] {s['org'][:44]:<44} {len(text):,} chars -> {name}")
+        line = f"[     ok] {s['org'][:42]:<42} {len(text):,} chars -> {name}"
+        log.append(line)
+        print(line)
 
+    # Committed so failures are diagnosable from anywhere, without runner logs
+    (out_dir / "_harvest_log.txt").write_text(
+        f"{ok}/{len(seeds)} pages harvested\n" + "-" * 78 + "\n"
+        + "\n".join(log) + "\n", encoding="utf-8")
     print(f"\n{ok}/{len(seeds)} pages harvested into {out_dir}")
 
 
