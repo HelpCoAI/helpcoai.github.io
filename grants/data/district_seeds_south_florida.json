@@ -1,0 +1,129 @@
+{
+  "_comment": [
+    "South Florida seed set -- Miami-Dade, Broward, Palm Beach.",
+    "Purpose is as much a CRAWLABILITY TEST as a data pull. Tampa Bay died on",
+    "robots.txt: 6 of its best sources were disallowed, and that was only",
+    "discovered by running the harvest. Nobody can read robots.txt from the dev",
+    "sandbox, so this seed set exists to let the GitHub runner answer the",
+    "question with evidence instead of inference.",
+    "",
+    "The structural bet: Miami-Dade high schools run INDEPENDENT vanity domains",
+    "(coralreefhighschool.net, nmshpioneers.org) rather than dadeschools.net",
+    "subdomains, so a restrictive district robots.txt would govern none of them.",
+    "Palm Beach has pushed bulletins onto Google Sites, which is crawler-friendly.",
+    "Both claims are untested until this runs."
+  ],
+
+  "seeds": [
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High CAP Corner",
+      "url": "https://coralreefhighschool.net/cap-corner/",
+      "kind": "list",
+      "note": "Reported to link 300+ postsecondary scholarship opportunities. Highest award-density single URL found in the region. Independent domain, not dadeschools.net."
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Gables Community Foundation scholarships",
+      "url": "https://gablesfoundation.org/scholarships/",
+      "kind": "hub",
+      "note": "24 named funds, $3.26M awarded 2025 across students from 76 high schools."
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Gables Community Foundation 2025 awards list",
+      "url": "https://gablesfoundation.org/2025/05/05/scholarship-awards-list-2025/",
+      "kind": "list",
+      "note": "Publishes actual award/recipient lists -- unusually good structured data, and a rare source of num_awards."
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Miami Foundation scholarships",
+      "url": "https://miamifoundation.org/scholarships/",
+      "kind": "hub",
+      "note": "$2M+, ~9 public funds. Deadlines cluster Mar 15-29."
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Achieve Miami scholars portal",
+      "url": "https://sites.google.com/achievemiami.org/scholars/scholarshipsresources",
+      "kind": "list",
+      "note": "Google Site, free, no login. Hand-maintained, mixed local/national."
+    },
+    {
+      "county": "Broward",
+      "org": "Broward BRACE monthly scholarship bulletin",
+      "url": "https://www.browardschools.com/domain/20543",
+      "kind": "list",
+      "note": "District-wide monthly bulletin."
+    },
+    {
+      "county": "Broward",
+      "org": "Community Foundation of Broward administered scholarships",
+      "url": "https://www.cfbroward.org/receive/community-foundation-administered-scholarships",
+      "kind": "hub",
+      "note": "Named funds, $1,000 one-year up to $20,000 four-year."
+    },
+    {
+      "county": "Broward",
+      "org": "Broward Education Foundation apply",
+      "url": "https://browardedfoundation.org/apply/",
+      "kind": "hub",
+      "note": "Nov 1 - Apr 1. Also administers Community Foundation of Broward's awards, making it a single door for two funders."
+    },
+    {
+      "county": "Broward",
+      "org": "Broward League of Cities scholarship program",
+      "url": "https://browardleague.org/students/scholarship-program/",
+      "kind": "list"
+    },
+    {
+      "county": "Broward,Palm Beach",
+      "org": "George Snow Scholarship Fund",
+      "url": "https://scholarship.org/scholarships/",
+      "kind": "hub",
+      "note": "$7.5M to 400+ students. Restricted to seniors who both RESIDE and ATTEND SCHOOL in Broward or Palm Beach -- exactly the bi-county restriction a national database cannot express."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Palm Beach County district scholarship bulletin hub",
+      "url": "https://www.palmbeachschools.org/Page/9270",
+      "kind": "meta",
+      "note": "The only one of the three districts that centralizes per-school bulletins. Best single entry point in the tri-county area."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Park Vista Community High School bulletin",
+      "url": "https://pvhs.palmbeachschools.org/cms/One.aspx?portalId=1933645&pageId=5545222",
+      "kind": "list",
+      "note": "Named awards with amounts. Tests whether school SUBDOMAINS serve their own robots.txt separately from the district."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Palm Beach per-school bulletin on Google Sites",
+      "url": "https://sites.google.com/palmbeachschools.org/jhs-scholarship-bulletin/home",
+      "kind": "list",
+      "note": "Google Sites sidesteps district robots.txt entirely. If this works it is the template for per-school coverage."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Community Foundation for Palm Beach & Martin Counties",
+      "url": "https://yourcommunityfoundation.org/scholarship-seekers/",
+      "kind": "hub",
+      "note": "140+ awards, ~$12,000 average, $1.7M cycle. ONE general application auto-considers for 120+. Window Feb 2 - Mar 4."
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Education Foundation of Palm Beach County",
+      "url": "https://educationfoundationpbc.org/Scholarships/",
+      "kind": "hub"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Viner Scholars",
+      "url": "https://vinerscholars.org/scholarship-program/",
+      "kind": "list",
+      "note": "Boca Raton and Delray Beach high schools only. 25-30 seniors/yr, up to $10k/yr for 4 years."
+    }
+  ]
+}
