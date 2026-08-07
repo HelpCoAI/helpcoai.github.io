@@ -1,13 +1,14 @@
-# Harvests the district / education-foundation pages on a GitHub runner, which has
-# the open network access the dev sandbox does not.
+# Harvests school-counselor and foundation scholarship pages on a GitHub runner,
+# which has the open network access the dev sandbox does not.
 #
-# Runs AUTOMATICALLY on any push that touches the crawler or its seed list -- there
-# is nothing to click and no secret to configure. It fetches each seed page, flattens
-# it to plain text, and commits the text into grants/data/district_pages*/ so the
-# extraction can happen anywhere afterwards.
+# Each seed set runs as its own parallel job, because harvesting all of them in one
+# sequential job exceeded the timeout once the Miami-Dade set (52 schools) was added.
+# Jobs upload artifacts; a single collect job commits, so parallel pushes cannot race.
 #
-# Deliberately no API key: harvesting and extracting are separate jobs so the network
-# step needs no credentials at all.
+# Already-harvested sets are SKIPPED by default. These pages change once or twice a
+# year, and re-crawling them repeatedly is what tripped the WAFs on
+# gablesfoundation.org and miamifoundation.org -- sites that returned 14KB on the
+# first pass and 1 byte on the fourth. Use the `force` input to re-harvest anyway.
 
 name: District crawl
 
@@ -20,20 +21,27 @@ on:
       - "grants/scripts/10_district_crawl.py"
       - ".github/workflows/district-crawl.yml"
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Re-harvest sets that already have pages committed"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
 
-concurrency:
-  group: district-crawl-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   harvest:
     runs-on: ubuntu-latest
-    # A hung fetch once ran this step past 15 minutes. Bound it so a bad host
-    # costs a failed run, not hours of runner time.
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        set:
+          - { file: "district_seeds.json",                     dir: "tampa-bay" }
+          - { file: "district_seeds_south_florida.json",        dir: "south_florida" }
+          - { file: "district_seeds_schools_pb_broward.json",   dir: "schools_pb_broward" }
+          - { file: "district_seeds_schools_miami_dade.json",   dir: "schools_miami_dade" }
     steps:
       - uses: actions/checkout@v4
 
@@ -44,44 +52,65 @@ jobs:
       - name: Install PDF reader
         run: pip install --quiet pypdf
 
-      - name: Harvest seed pages
+      - name: Harvest ${{ matrix.set.dir }}
         working-directory: grants
+        env:
+          FORCE: ${{ inputs.force }}
         run: |
-          : > /tmp/harvest.log
-          for f in data/district_seeds*.json; do
-            region=$(basename "$f" .json | sed 's/^district_seeds_*//')
-            region=${region:-tampa-bay}
-            echo "### $region ($f)" | tee -a /tmp/harvest.log
-            python3 scripts/10_district_crawl.py harvest \
-              --seeds "$f" --pages "data/district_pages_$region" \
-              | tee -a /tmp/harvest.log
-            echo | tee -a /tmp/harvest.log
-          done
+          OUT="data/district_pages_${{ matrix.set.dir }}"
+          if [ -d "$OUT" ] && [ "$FORCE" != "true" ]; then
+            echo "$OUT already harvested - skipping. Re-run with force to refresh."
+            exit 0
+          fi
+          python3 scripts/10_district_crawl.py harvest \
+            --seeds "data/${{ matrix.set.file }}" --pages "$OUT" | tee /tmp/h.log
 
       - name: Summary
         if: always()
         run: |
           {
-            echo "## District crawl"
+            echo "### ${{ matrix.set.dir }}"
             echo '```'
-            cat /tmp/harvest.log 2>/dev/null || echo "(harvest did not run)"
+            cat /tmp/h.log 2>/dev/null || echo "(skipped - already harvested)"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload harvested text
+      - name: Upload pages
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: district-pages
-          path: grants/data/district_pages*/
+          name: pages-${{ matrix.set.dir }}
+          path: grants/data/district_pages_${{ matrix.set.dir }}/
           retention-days: 14
           if-no-files-found: ignore
 
-      - name: Commit harvested pages
+  collect:
+    needs: harvest
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: /tmp/harvested
+          pattern: pages-*
+
+      - name: Move harvested pages into the tree
+        run: |
+          shopt -s nullglob
+          for d in /tmp/harvested/pages-*/; do
+            name=$(basename "$d" | sed 's/^pages-//')
+            mkdir -p "grants/data/district_pages_$name"
+            cp -r "$d". "grants/data/district_pages_$name/" 2>/dev/null || true
+          done
+          find grants/data -name '_harvest_log.txt' -exec head -1 {} \; || true
+
+      - name: Commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add grants/data/district_pages*/
+          git add grants/data/district_pages_*/
           if git diff --staged --quiet; then
             echo "No new page content."
           else
