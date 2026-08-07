@@ -20,6 +20,7 @@ non-empty website wins.
 """
 
 import csv
+import re
 import sys
 from pathlib import Path
 
@@ -28,6 +29,37 @@ csv.field_size_limit(10_000_000)
 
 def norm_ein(e: str) -> str:
     return (e or "").strip().replace("-", "").lstrip("0")
+
+
+def norm_url(site: str) -> str:
+    """
+    Filers type this field by hand, so it arrives as "WWW.EXAMPLE.ORG",
+    "HTTPS://WWW.Q81.ORG/", "example.org" and worse. A naive lowercase
+    startswith("https://") check misses the uppercase scheme and produces
+    "https://HTTPS://WWW.Q81.ORG/", which fetches nothing.
+
+    Returns "" for values that cannot be a hostname.
+    """
+    s = (site or "").strip().strip('"').strip()
+    if not s:
+        return ""
+    # strip any number of leading schemes, case-insensitively
+    while True:
+        m = re.match(r"^\s*[a-zA-Z][a-zA-Z0-9+.\-]*://", s)
+        if not m:
+            break
+        s = s[m.end():]
+    s = s.strip().strip("/")
+    if not s:
+        return ""
+    host = s.split("/")[0].split("?")[0]
+    # must look like a hostname with a plausible TLD
+    if "." not in host or not re.match(r"^[A-Za-z0-9.\-]+$", host):
+        return ""
+    if not re.search(r"\.[A-Za-z]{2,}$", host):
+        return ""
+    rest = s[len(host):]
+    return "https://" + host.lower() + rest
 
 
 def main(cand_path: str, out_path: str):
@@ -68,9 +100,9 @@ def main(cand_path: str, out_path: str):
         b = best.get(k)
         if not b:
             continue
-        site = b[1]
-        if not site.startswith(("http://", "https://")):
-            site = "https://" + site.lstrip("/")
+        site = norm_url(b[1])
+        if not site:
+            continue
         rows.append({
             "ein": cand.get("ein", ""),
             "display_name": cand.get("display_name") or cand.get("name", ""),

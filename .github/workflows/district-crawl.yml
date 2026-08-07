@@ -42,6 +42,7 @@ jobs:
           - { file: "district_seeds_south_florida.json",        dir: "south_florida" }
           - { file: "district_seeds_schools_pb_broward.json",   dir: "schools_pb_broward" }
           - { file: "district_seeds_schools_miami_dade.json",   dir: "schools_miami_dade" }
+          - { file: "district_seeds_bmf_orgs.json",             dir: "bmf_orgs" }
     steps:
       - uses: actions/checkout@v4
 

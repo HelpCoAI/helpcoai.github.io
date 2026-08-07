@@ -1,0 +1,1030 @@
+{
+  "_comment": [
+    "BMF priority-A organizations with a website, from the 990 e-file index.",
+    "",
+    "This is the DIFFERENTIATION channel. Counselor bulletins carry regional, state",
+    "and national programmes; across 222KB of them Rotary, Kiwanis and Elks appeared",
+    "ZERO times. These orgs are those awards -- the hyperlocal, best-odds ones that",
+    "make expected-value ranking worth paying for, and they exist in no other source.",
+    "",
+    "48 of these are service clubs. Crawled with --follow so a club homepage reaches",
+    "its scholarship page."
+  ],
+  "seeds": [
+    {
+      "county": "Broward",
+      "org": "Rotary Club Of Fort Lauderdale North Beach Scholarship Fund Inc",
+      "url": "https://www.fortlauderdalenorthrotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 163, Ft Lauderdale. Signals: name:scholarship;ntee:B82;name:service-club;files-990PF;private-foundation:04;ntee-educati"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Martha C Day Scholarship Foundation Inc",
+      "url": "https://www.mdsfi.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 143, Miami. Signals: name:scholarship;ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Mas Family Scholarships Inc",
+      "url": "https://masfamilyscholarships.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 133, Coral Gables. Signals: name:scholarship;ntee:B82;files-990PF;private-foundation:04;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Hallandale Scholarship Fund Inc",
+      "url": "https://hallandalescholarshipfund.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 133, Hallandale. Signals: name:scholarship;ntee:B82;files-990PF;private-foundation:04;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Eda And Cliff Viner Community Scholars Foundation Inc",
+      "url": "https://vinerscholars.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 113, Boca Raton. Signals: name:scholarship;ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Five Star Scholarship Foundation",
+      "url": "https://www.fivestar",
+      "kind": "list",
+      "note": "BMF priority-A, score 113, Lake Worth. Signals: name:scholarship;ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Common Knowledge Scholarship Foundation Inc",
+      "url": "https://www.cksf.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 113, Davie. Signals: name:scholarship;ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Chris Hixon Athletic Scholarship Fund",
+      "url": "https://chrishixonathleticscholarship.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 103, Hollywood. Signals: name:scholarship;ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Fountain Endowed Legacy Scholarship Fund",
+      "url": "https://www.felsf.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 103, Miramar. Signals: name:scholarship;ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "I Think Community Foundation Inc",
+      "url": "https://ithinkfi.org/foundation",
+      "kind": "list",
+      "note": "BMF priority-A, score 103, Delray Beach. Signals: ntee:B82;name:community-foundation;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Louie Bing Athletic Scholarship Fund Inc",
+      "url": "https://www.bingscholarshipfund.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 103, Miami. Signals: name:scholarship;ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Scholars Today Leaders Of Tomorrow Inc",
+      "url": "https://www.stlt.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 103, North Miami. Signals: name:scholarship;ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Miramar-Pembroke Pines Regional Chamber Of Commerce Scholarship Fd",
+      "url": "https://www.southbrowardfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 103, Pembroke Pines. Signals: name:scholarship;ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Anquan And Dionne Boldin Scholarship Fund Inc",
+      "url": "https://www.q81.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 100, Boca Raton. Signals: name:scholarship;ntee-grantmaker:T20;files-990PF;private-foundation:04"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Wilkes-Desmond Educational Foundation",
+      "url": "https://www.desmondfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 98, West Palm Beach. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82;name:educati"
+    },
+    {
+      "county": "Broward",
+      "org": "Alex Schachter Scholarship Fund Foundation",
+      "url": "https://www.alexschachter.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 98, Coral Springs. Signals: name:scholarship;files-990PF;private-foundation:04;name:foundation;ntee-education:B12"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Rico S Scholarship Foundation",
+      "url": "https://ricosscholarshipfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 98, Wellington. Signals: name:scholarship;files-990PF;private-foundation:03;name:foundation;ntee-education:B99"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "John S And James L Knight Foundation Inc",
+      "url": "https://www.kf.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Miami. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Friezo Family Foundation",
+      "url": "https://www.friezofamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Ft Lauderdale. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Rotary Club Of Boca Raton Sunrise Foundation Inc",
+      "url": "https://bocasunriserotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Boca Raton. Signals: ntee:B82;name:service-club;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Optimal Health Medicine Foundation Inc",
+      "url": "https://optimalhealthmedicinefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Coconut Creek. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Echo Foundation Inc",
+      "url": "https://www.foundationcenter.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Boca Raton. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Kiwanis Club Of Lauderdale Lakes Foundation Inc",
+      "url": "https://www.kcllws.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Ft Lauderdale. Signals: ntee:B82;name:service-club;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Cuban American Cpa Association Foundation Inc",
+      "url": "https://www.cacpa.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Coral Gables. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Peter Wang Foundation Inc",
+      "url": "https://www.peterwangfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Parkland. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "The Mckelvey Entrepreneurial Foundation",
+      "url": "https://www.mckelveyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Ft Lauderdale. Signals: ntee:B82;files-990PF;private-foundation:04;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Kiwanis Club Of Biscayne Bay Youth Foundation Inc",
+      "url": "https://biscaynebaykiwanis.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Palmetto Bay. Signals: ntee:B82;name:service-club;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Homestead South Date Kiwanis Foundation Inc",
+      "url": "https://www.homesteadkiwanis.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 93, Homestead. Signals: ntee:B82;name:service-club;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Jcx2 Stewardship Family And Scholarship Foundation",
+      "url": "https://jc2stewardshipfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 90, Miami. Signals: name:scholarship;files-990PF;private-foundation:04;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "African Students Education Fund Inc",
+      "url": "https://www.asefrwanda.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 88, Miami. Signals: ntee:B82;files-990PF;private-foundation:04;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Dias Fellowship",
+      "url": "https://thediasfellows.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 83, Miami. Signals: ntee:B82;files-990PF;private-foundation:03;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Gmaa-Batchelor Aviation Scholarship Fund Inc",
+      "url": "https://www.miamiaviation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 80, Miami Springs. Signals: name:scholarship;files-990PF;private-foundation:03"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Greg Richards Larry Polatsch And Scott Weingard Memorial Fund Inc",
+      "url": "https://www.glsmemorialfund.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 78, Boca Raton. Signals: ntee:B82;name:memorial-fund;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Community Foundation Of Broward Inc",
+      "url": "https://www.cfbroward.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 70, Fort Lauderdale. Signals: name:community-foundation;ntee-grantmaker:T310;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Key Biscayne Community Foundation Inc",
+      "url": "https://www.keybiscaynefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 70, Key Biscayne. Signals: name:community-foundation;ntee-grantmaker:T31;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Coral Gables Community Foundation",
+      "url": "https://www.gablesfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 70, Coral Gables. Signals: name:community-foundation;ntee-grantmaker:T31;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Educational Foundation Inc",
+      "url": "https://www.northmiamifl.gov/residents/NM",
+      "kind": "list",
+      "note": "BMF priority-A, score 68, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Eta Nu Education Foundation Inc",
+      "url": "https://omegaa4education.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 68, Boca Raton. Signals: ntee:B82;name:foundation;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Broward",
+      "org": "Hollywood Florida Scholarship Foundation Inc",
+      "url": "https://hollywoodscholarship.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 68, Ft Lauderdale. Signals: name:scholarship;name:foundation;ntee-education:B82Z"
+    },
+    {
+      "county": "Broward",
+      "org": "Coral Springs Chamber Of Commerce Education Foundation Corporation",
+      "url": "https://www.cschamber.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 68, Coral Springs. Signals: ntee:B82;name:foundation;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Bayside Foundation Inc",
+      "url": "https://www.miamibaysidefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Popeyes Foundation Inc",
+      "url": "https://www.popeyes.com/FOUNDATION",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Andres Bello Catholic University Foundation Inc",
+      "url": "https://abcufoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Faithfirst Foundation",
+      "url": "https://www.faithfirstfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Jupiter. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Gina Rose Montalto Memorial Foundation Inc",
+      "url": "https://ginarosemontaltomemorialfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Coral Springs. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Abc Cares Foundation Inc",
+      "url": "https://www.abccaresfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Coconut Creek. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Kid Rock Foundation",
+      "url": "https://www.kidrock-foundation.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Tequesta. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Lucy Fernandez Foundation Inc",
+      "url": "https://www.lucyfernandezfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Caribbean Hotel Foundation Inc",
+      "url": "https://www.caribbeanhotelandtourism.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Fort Lauderdale. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Darrelle Revis Foundation Inc",
+      "url": "https://www.darrellerevisfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Plantation. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Andrew Red Harris Foundation Inc",
+      "url": "https://andrewredharrisfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Jupiter. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "It Women Foundation Inc",
+      "url": "https://www.itwomen.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Weston. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Bryant Peney Schloarship Foundation Inc",
+      "url": "https://bryantpeney.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Wellington. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Jorge Nation Foundation Inc",
+      "url": "https://jorgenation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Boca Raton. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Kennys Dream Foundation Inc",
+      "url": "https://www.kennysdreamfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Wellington. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Uslaw Network Foundation",
+      "url": "https://www.uslaw.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Coral Springs. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Dorsainvil Foundation",
+      "url": "https://www.dorsainvilfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Delray Beach. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Hem Foundation Inc",
+      "url": "https://www.hemfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miramar. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Grove Bay Foundation Inc",
+      "url": "https://grovebaygroup.com/grove-bay-foundation",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Forza Stefano Charitable Foundation Inc",
+      "url": "https://www.forzastefano.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Pembroke Pines. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Piasecki Foundation Inc",
+      "url": "https://www.thepiaseckifoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Pompano Beach. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Cesar Presbott Foundation Inc",
+      "url": "https://cesarpresbottfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Weston. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Hbs Club Of South Florida Foundation Inc",
+      "url": "https://www.hbssouthflorida.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Hallandale Beach. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Help Bainet Foundation",
+      "url": "https://www.helpbainet.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Boynton Beach. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Perry J Cohen Foundation",
+      "url": "https://www.pjcf.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Tequesta. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "E V Clay Prsa Miami Chapter Endowment Fund Inc",
+      "url": "https://www.evclayprsa.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 63, Miami. Signals: ntee:B82;name:foundation;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Junior League Of Miami Foundation Inc",
+      "url": "https://www.jlmiami.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 60, Coral Gables. Signals: name:service-club;ntee-grantmaker:T30;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Rotary Club Of Coralsprings-Parkland Foundation Inc",
+      "url": "https://www.coralspringsparklandrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 60, Ft Lauderdale. Signals: name:service-club;ntee-grantmaker:T30;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Miami Airport Inc",
+      "url": "https://www.rotarymiamiairport.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 60, Palmetto Bay. Signals: name:service-club;files-990PF;private-foundation:04"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "College For Kids Inc",
+      "url": "https://www.takestockpalmbeach.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, West Palm Beach. Signals: ntee:B82;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Friends Of 440 Scholarship Fund Inc",
+      "url": "https://440scholarship.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, Miami. Signals: name:scholarship;ntee-education:B82Z"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Brazilian Student Association Inc",
+      "url": "https://home.gobrasa.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, Miami. Signals: ntee:B82;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Scholar Career Coaching Inc",
+      "url": "https://www.scholarcc.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, Boca Raton. Signals: name:scholarship;ntee-education:B80"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Security Traders Association Of Chicago Scholarship Fund Inc",
+      "url": "https://www.stachicago.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, Delray Beach. Signals: name:scholarship;ntee-education:B82Z"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "American Higher Education Alliance Inc",
+      "url": "https://www.ahealliance.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, Boca Raton. Signals: ntee:B82;ntee-education:B82;name:education"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Kevin Garcia Scholarship Fund Inc",
+      "url": "https://www.kevingarciafoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 58, Miami. Signals: name:scholarship;ntee-education:B40"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Hearing The Ovarian Cancer Whisper Inc",
+      "url": "https://www.howflorida.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Jupiter. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Visitor Industry Human Resource Development Council Inc",
+      "url": "https://www.blackhospitalitymiami.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Miami. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Orange Blossom Football Classic Association Inc",
+      "url": "https://www.orangeblossomclassic.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Miami Lakes. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Matanyas Hope",
+      "url": "https://matanyashope.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Pompano Beach. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Fort Lauderdale Womans Club Inc",
+      "url": "https://www.fortlauderdalewomansclub.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Ft Lauderdale. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Friends Of The Israel Heart Society Inc",
+      "url": "https://friendsihs.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Ft Lauderdale. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Alliance Of Women Executives Inc",
+      "url": "https://www.aweinc.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Boynton Beach. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Beca A Un Pana Corporation",
+      "url": "https://becaunpana.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Aventura. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Harvard Club Of The Palm Beaches Inc",
+      "url": "https://hcpalmbeaches.clubs.harvard.edu",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Palm Beach. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Champion Charity Inc",
+      "url": "https://www.championcharity.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Tamarac. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Microscholarships Inc",
+      "url": "https://www.microscholarships.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Coral Gables. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Living Water Community Inc",
+      "url": "https://www.lwc-tt.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Coconut Creek. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Broward",
+      "org": "Give Her Camp Inc",
+      "url": "https://www.campowerment.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Hollywood. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Wmbm Cares Inc",
+      "url": "https://wmbmcares.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 53, Miami. Signals: ntee:B82;ntee-education:B82"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Sunrise Community Foundation Inc",
+      "url": "https://www.sunrisegroup.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Miami. Signals: name:community-foundation;name:foundation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "George Snow Scholarship Fund Inc",
+      "url": "https://www.scholarship.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Boca Raton. Signals: name:scholarship"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Women Of Tomorrow Mentor And Scholarship Program Inc",
+      "url": "https://www.womenoftomorrow.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Miami. Signals: name:scholarship"
+    },
+    {
+      "county": "Broward",
+      "org": "Sunshine Community Foundation Inc",
+      "url": "https://www.sunfound.net",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Ft Lauderdale. Signals: name:community-foundation;name:foundation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Intellectually Developmentally Disabled Community Foundation Inc",
+      "url": "https://www.iddealplace.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Boca Raton. Signals: name:community-foundation;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Blue Scholars Initiative Inc",
+      "url": "https://bluescholars.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Pinecrest. Signals: name:scholarship"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Wellington Community Foundation Inc",
+      "url": "https://wellingtoncommunityfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Wellington. Signals: name:community-foundation;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Pop Warner Little Scholars Inc",
+      "url": "https://www.parklandrangers.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Coral Springs. Signals: name:scholarship"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Marie Louise Community Foundation Inc Mlcf",
+      "url": "https://mlcancerfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Boynton Beach. Signals: name:community-foundation;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Coral Springs Rotary Charities Inc",
+      "url": "https://www.coralspringsrotaryclub.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Coconut Creek. Signals: name:service-club;ntee-grantmaker:T30"
+    },
+    {
+      "county": "Broward",
+      "org": "Pop Warner Little Scholar Inc",
+      "url": "https://www.westonwarriorssports.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 50, Weston. Signals: name:scholarship"
+    },
+    {
+      "county": "Broward",
+      "org": "Hollywood Rotary Foundation Inc",
+      "url": "https://rotaryhollywood.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Hollywood. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Fort Lauderdale Rotary 1090 Foundation Inc",
+      "url": "https://www.rotaryfortlauderdale.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Fort Lauderdale. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Rotary Club Of Miami Florida Foundation Inc",
+      "url": "https://miamirotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Miami. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Palm Beach Rotary Foundation",
+      "url": "https://www.palmbeachrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Palm Beach. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Of Homestead Charitable Foundation Inc",
+      "url": "https://www.homesteadrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Homestead. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Jupiter-Tequesta Kiwanis Foundation Inc",
+      "url": "https://www.kiwanisjupiter.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Tequesta. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Weston Rotary Charitable Foundation Inc",
+      "url": "https://westonrotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Weston. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Zonta Club Of Miami Lakes Foundation Inc",
+      "url": "https://www.zontamiamilakesclub.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Weston. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Little Haiti Optimist Foundation Inc",
+      "url": "https://www.littlehaitioptimist.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Miami Gardens. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Kiwanis Club Delray Beach Foundation Inc",
+      "url": "https://www.delraybeachkiwanis.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Delray Beach. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Broward",
+      "org": "Rotary Club Of Sunrise Fl Foundation Inc",
+      "url": "https://www.rotaryclubsunriseflfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 40, Sunrise. Signals: name:service-club;name:foundation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Junior League Of The Palm Beaches Inc",
+      "url": "https://jlpb.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, West Palm Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Junior League Of Boca Raton Inc",
+      "url": "https://www.jlbr.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Boca Raton. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Elks Lodge Of Jupiter",
+      "url": "https://www.jupiterelks.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Jupiter. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Junior League Of Greater Fort Lauderdale Inc",
+      "url": "https://www.juniorleagueftl.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Fort Lauderdale. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Elks Lodge Of South Miami Coral Gables",
+      "url": "https://www.elks1676.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, South Miami. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Boca Raton Rotary Fund Inc",
+      "url": "https://rotaryclubbocaraton.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Boca Raton. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Exchange Club Dick Webber Center For The Prevention Of Childabuse F",
+      "url": "https://www.childrenshealinginstitute.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, West Palm Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Junior League Of Miami Inc",
+      "url": "https://www.jlmiami.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Coral Gables. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Weston Fl Rotary Club",
+      "url": "https://www.westonrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Weston. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Optimist Club Of Westchester",
+      "url": "https://www.westchesteroptimist.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Miami. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Bay Oaks Miami Soroptimist Home For The Aged Inc",
+      "url": "https://www.bayoakshome.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Miami. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Delray Beach Rotary Fund Inc",
+      "url": "https://www.delraybeachrotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Delray Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Elks Lodge Of Hollywood West",
+      "url": "https://www.elkslodge2365.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Hollywood. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Disaster Network Of Assistance Rotary Action Group Inc",
+      "url": "https://dna-rag.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Boynton Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Of Miami",
+      "url": "https://miamirotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Miami. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Rotary Club Of Pompano Beach",
+      "url": "https://pompanobeachrotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Pompano Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Fort Lauderdale Rotary Club",
+      "url": "https://www.rotaryfortlauderdale.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Fort Lauderdale. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Rotary Club Of Boca Raton Inc",
+      "url": "https://rotaryclubbocaraton.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Boca Raton. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Of Coral Gables",
+      "url": "https://www.coralgablesrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Coral Gables. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Of Homestead",
+      "url": "https://www.homesteadrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Homestead. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Rotary Club Of Hollywood",
+      "url": "https://www.rotaryhollywood.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Hollywood. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Rotary Club Of Boca Raton Sunrise",
+      "url": "https://www.rotarybocasunrise.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Boca Raton. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Rotary Club Of Jupiter-Tequesta",
+      "url": "https://www.jupiter-tequesta-rotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Tequesta. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Kiwanis Club Of Lauderdale Lakes In",
+      "url": "https://www.kcllws.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Ft Lauderdale. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Wellington Rotary Club",
+      "url": "https://wellingtonrotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Loxahatchee. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Kiwanis Club Of Jupiter-Tequesta",
+      "url": "https://www.kiwanisjupiter.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Tequesta. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Delray Beach Rotary Club",
+      "url": "https://www.delraybeachrotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Delray Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Kiwanis Club Of Of Daytona Beach",
+      "url": "https://daytonabeachkiwanis.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Dania Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Broward",
+      "org": "Rotary Club Of Boca Raton West",
+      "url": "https://www.rotarybocaratonwest.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Pompano Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Of South Miami",
+      "url": "https://www.southmiamirotary.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Miami. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Rotary Club Of Palm Beach",
+      "url": "https://www.rotarypalmbeach.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Palm Beach. Signals: name:service-club"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Rotary Club Of Perrine Cutler Ridge Palmetto Bay",
+      "url": "https://www.pcrpbrotary.com",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Miami. Signals: name:service-club"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Soroptimist International Of The Americas Inc",
+      "url": "https://www.soroptimist4women.org",
+      "kind": "list",
+      "note": "BMF priority-A, score 30, Boca Raton. Signals: name:service-club"
+    }
+  ]
+}
