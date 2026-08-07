@@ -1,0 +1,183 @@
+67/145 pages harvested
+------------------------------------------------------------------------------
+[  error] Rotary Club Of Fort Lauderdale North Beach [Errno -2] Name or service not known  https://www.fortlauderdalenorthrotary.com
+[  error] Martha C Day Scholarship Foundation Inc    HTTP 406  https://www.mdsfi.com
+[     ok] Mas Family Scholarships Inc                2,560 chars -> miami-dade--mas-family-scholarships-inc.txt
+[     ok] .. 0                                       836 chars -> miami-dade--mas-family-scholarships-inc-0.txt
+[     ok] .. https://masfamilyscholarships.org/      2,560 chars -> miami-dade--mas-family-scholarships-inc-linked-doc.txt
+[     ok] .. Our Mission                             6,312 chars -> miami-dade--mas-family-scholarships-inc-our-mission.txt
+[   thin] Hallandale Scholarship Fund Inc            75 chars  https://hallandalescholarshipfund.org
+[ robots] Eda And Cliff Viner Community Scholars Fou disallowed by robots.txt  https://vinerscholars.org
+[  error] Five Star Scholarship Foundation           [Errno -2] Name or service not known  https://www.fivestar
+[     ok] Common Knowledge Scholarship Foundation In 4,973 chars -> broward--common-knowledge-scholarship-foundation-inc.txt
+[     ok] Chris Hixon Athletic Scholarship Fund      665 chars -> broward--chris-hixon-athletic-scholarship-fund.txt
+[  error] Fountain Endowed Legacy Scholarship Fund   [Errno 101] Network is unreachable  https://www.felsf.org
+[     ok] I Think Community Foundation Inc           4,233 chars -> palm-beach--i-think-community-foundation-inc.txt
+[     ok] .. Scholarship Program                     4,072 chars -> palm-beach--i-think-community-foundation-inc-scholarship-program.txt
+[     ok] .. https://ithinkfi.org/community/foundati 4,792 chars -> palm-beach--i-think-community-foundation-inc-linked-doc.txt
+[     ok] .. https://ithinkfi.org/community/foundati 4,744 chars -> palm-beach--i-think-community-foundation-inc-linked-doc.txt
+[   thin] The Louie Bing Athletic Scholarship Fund I 82 chars  https://www.bingscholarshipfund.org
+[     ok] Scholars Today Leaders Of Tomorrow Inc     3,073 chars -> miami-dade--scholars-today-leaders-of-tomorrow-inc.txt
+[  error] .. APRIL L. SIMMONS STEM SCHOLARSHIP       HTTP 429
+[  error] .. ESSENCE OF A HAITIAN WOMAN SCHOLARSHIP  HTTP 429
+[     ok] Miramar-Pembroke Pines Regional Chamber Of 1,213 chars -> broward--miramar-pembroke-pines-regional-chamber-of-commerce-scholars.txt
+[     ok] .. Scholarships                            1,317 chars -> broward--miramar-pembroke-pines-regional-chamber-of-commerce-scholars.txt
+[  error] Anquan And Dionne Boldin Scholarship Fund  HTTP 429  https://www.q81.org
+[     ok] Wilkes-Desmond Educational Foundation      1,249 chars -> palm-beach--wilkes-desmond-educational-foundation.txt
+[  error] Alex Schachter Scholarship Fund Foundation HTTP 406  https://www.alexschachter.org
+[  error] Rico S Scholarship Foundation              [Errno -2] Name or service not known  https://ricosscholarshipfoundation.org
+[  error] John S And James L Knight Foundation Inc   [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.kf.org'. (_ssl.c:1010)  https://www.kf.org
+[  error] Friezo Family Foundation                   [Errno -2] Name or service not known  https://www.friezofamilyfoundation.org
+[  error] Rotary Club Of Boca Raton Sunrise Foundati [Errno -3] Temporary failure in name resolution  https://bocasunriserotary.org
+[   thin] Optimal Health Medicine Foundation Inc     1 chars  https://optimalhealthmedicinefoundation.org
+[  error] Echo Foundation Inc                        [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1010)  https://www.foundationcenter.org
+[  error] Kiwanis Club Of Lauderdale Lakes Foundatio [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://www.kcllws.com
+[  error] Cuban American Cpa Association Foundation  [Errno -2] Name or service not known  https://www.cacpa.org
+[     ok] Peter Wang Foundation Inc                  1,738 chars -> broward--peter-wang-foundation-inc.txt
+[  error] The Mckelvey Entrepreneurial Foundation    [Errno -3] Temporary failure in name resolution  https://www.mckelveyfoundation.org
+[ robots] Kiwanis Club Of Biscayne Bay Youth Foundat disallowed by robots.txt  https://biscaynebaykiwanis.org
+[     ok] Homestead South Date Kiwanis Foundation In 2,534 chars -> miami-dade--homestead-south-date-kiwanis-foundation-inc.txt
+[     ok] .. Scholarships                            1,351 chars -> miami-dade--homestead-south-date-kiwanis-foundation-inc-scholarships.txt
+[     ok] .. Awards & Recognition                    3,890 chars -> miami-dade--homestead-south-date-kiwanis-foundation-inc-awards-recogniti.txt
+[  error] Jcx2 Stewardship Family And Scholarship Fo timed out  https://jc2stewardshipfoundation.com
+[   thin] African Students Education Fund Inc        60 chars  https://www.asefrwanda.org
+[   thin] Dias Fellowship                            1 chars  https://thediasfellows.org
+[   thin] Gmaa-Batchelor Aviation Scholarship Fund I 82 chars  https://www.miamiaviation.org
+[ robots] Greg Richards Larry Polatsch And Scott Wei disallowed by robots.txt  https://www.glsmemorialfund.com
+[     ok] Community Foundation Of Broward Inc        6,244 chars -> broward--community-foundation-of-broward-inc.txt
+[     ok] .. Apply for Scholarships                  6,846 chars -> broward--community-foundation-of-broward-inc-apply-for-scholarships.txt
+[  error] Key Biscayne Community Foundation Inc      [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://www.keybiscaynefoundation.org
+[   thin] The Coral Gables Community Foundation      1 chars  https://www.gablesfoundation.org
+[  error] North Miami Educational Foundation Inc     HTTP 404  https://www.northmiamifl.gov/residents/NM
+[  error] Eta Nu Education Foundation Inc            [Errno -2] Name or service not known  https://omegaa4education.org
+[  error] Hollywood Florida Scholarship Foundation I [Errno -2] Name or service not known  https://hollywoodscholarship.org
+[     ok] Coral Springs Chamber Of Commerce Educatio 2,726 chars -> broward--coral-springs-chamber-of-commerce-education-foundation-corpo.txt
+[   thin] Miami Bayside Foundation Inc               75 chars  https://www.miamibaysidefoundation.org
+[     ok] Popeyes Foundation Inc                     3,447 chars -> miami-dade--popeyes-foundation-inc.txt
+[  error] Andres Bello Catholic University Foundatio HTTP 406  https://abcufoundation.org
+[ robots] Faithfirst Foundation                      disallowed by robots.txt  https://www.faithfirstfoundation.org
+[     ok] Gina Rose Montalto Memorial Foundation Inc 1,421 chars -> broward--gina-rose-montalto-memorial-foundation-inc.txt
+[     ok] .. Scholarship Programs                    2,588 chars -> broward--gina-rose-montalto-memorial-foundation-inc-scholarship-progr.txt
+[     ok] .. Nursing Scholarship Recipients          3,795 chars -> broward--gina-rose-montalto-memorial-foundation-inc-nursing-scholarsh.txt
+[     ok] .. SCHOLARSHIP                             2,640 chars -> broward--gina-rose-montalto-memorial-foundation-inc-scholarship.txt
+[  error] Abc Cares Foundation Inc                   [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://www.abccaresfoundation.com
+[  error] Kid Rock Foundation                        [Errno -2] Name or service not known  https://www.kidrock-foundation.com
+[     ok] Lucy Fernandez Foundation Inc              4,779 chars -> miami-dade--lucy-fernandez-foundation-inc.txt
+[     ok] .. Scholarship                             5,194 chars -> miami-dade--lucy-fernandez-foundation-inc-scholarship.txt
+[     ok] Caribbean Hotel Foundation Inc             10,119 chars -> broward--caribbean-hotel-foundation-inc.txt
+[     ok] .. Our Awards                              6,951 chars -> broward--caribbean-hotel-foundation-inc-our-awards.txt
+[     ok] Darrelle Revis Foundation Inc              3,106 chars -> broward--darrelle-revis-foundation-inc.txt
+[     ok] .. Scholarships                            1,985 chars -> broward--darrelle-revis-foundation-inc-scholarships.txt
+[ robots] Andrew Red Harris Foundation Inc           disallowed by robots.txt  https://andrewredharrisfoundation.org
+[ robots] It Women Foundation Inc                    disallowed by robots.txt  https://www.itwomen.org
+[  error] Bryant Peney Schloarship Foundation Inc    HTTP 429  https://bryantpeney.com
+[  error] Jorge Nation Foundation Inc                timed out  https://jorgenation.org
+[  error] Kennys Dream Foundation Inc                HTTP 406  https://www.kennysdreamfoundation.org
+[     ok] Uslaw Network Foundation                   27,542 chars -> broward--uslaw-network-foundation.txt
+[     ok] .. https://www.uslaw.org/news/2026-uslaw-n 8,779 chars -> broward--uslaw-network-foundation-linked-doc.txt
+[     ok] .. Law School Scholarships                 14,784 chars -> broward--uslaw-network-foundation-law-school-scholarships.txt
+[     ok] .. USLAW Awards                            10,437 chars -> broward--uslaw-network-foundation-uslaw-awards.txt
+[  error] Dorsainvil Foundation                      HTTP 429  https://www.dorsainvilfoundation.org
+[  error] Hem Foundation Inc                         HTTP 429  https://www.hemfoundation.com
+[ robots] Grove Bay Foundation Inc                   disallowed by robots.txt  https://grovebaygroup.com/grove-bay-foundation
+[     ok] Forza Stefano Charitable Foundation Inc    1,361 chars -> broward--forza-stefano-charitable-foundation-inc.txt
+[  error] Piasecki Foundation Inc                    [Errno 111] Connection refused  https://www.thepiaseckifoundation.org
+[  error] Cesar Presbott Foundation Inc              timed out  https://cesarpresbottfoundation.com
+[ robots] Hbs Club Of South Florida Foundation Inc   disallowed by robots.txt  https://www.hbssouthflorida.org
+[  error] Help Bainet Foundation                     HTTP 465  https://www.helpbainet.org
+[  error] Perry J Cohen Foundation                   HTTP 429  https://www.pjcf.org
+[  error] E V Clay Prsa Miami Chapter Endowment Fund [Errno -2] Name or service not known  https://www.evclayprsa.org
+[ robots] Junior League Of Miami Foundation Inc      disallowed by robots.txt  https://www.jlmiami.org
+[  error] Rotary Club Of Coralsprings-Parkland Found [Errno -2] Name or service not known  https://www.coralspringsparklandrotary.org
+[  error] Rotary Club Miami Airport Inc              [Errno -2] Name or service not known  https://www.rotarymiamiairport.org
+[ robots] College For Kids Inc                       disallowed by robots.txt  https://www.takestockpalmbeach.org
+[  error] Friends Of 440 Scholarship Fund Inc        [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for '440scholarship.org'. (_ssl.c:1010)  https://440scholarship.org
+[  error] Brazilian Student Association Inc          [Errno -2] Name or service not known  https://home.gobrasa.org
+[  error] Scholar Career Coaching Inc                [Errno 101] Network is unreachable  https://www.scholarcc.org
+[ robots] Security Traders Association Of Chicago Sc disallowed by robots.txt  https://www.stachicago.org
+[  error] American Higher Education Alliance Inc     [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)  https://www.ahealliance.org
+[  error] Kevin Garcia Scholarship Fund Inc          HTTP 429  https://www.kevingarciafoundation.org
+[  error] Hearing The Ovarian Cancer Whisper Inc     HTTP 403  https://www.howflorida.org
+[     ok] Visitor Industry Human Resource Developmen 2,611 chars -> miami-dade--visitor-industry-human-resource-development-council-inc.txt
+[     ok] .. VIC Scholarships                        2,611 chars -> miami-dade--visitor-industry-human-resource-development-council-inc-vic-.txt
+[     ok] .. BBS Scholarship                         2,611 chars -> miami-dade--visitor-industry-human-resource-development-council-inc-bbs-.txt
+[  error] Orange Blossom Football Classic Associatio HTTP 429  https://www.orangeblossomclassic.com
+[ robots] Matanyas Hope                              disallowed by robots.txt  https://matanyashope.org
+[     ok] Fort Lauderdale Womans Club Inc            7,718 chars -> broward--fort-lauderdale-womans-club-inc.txt
+[ robots] .. Scholarship Fund                        disallowed by robots.txt
+[ robots] .. STRANAHAN SCHOLARSHIP                   disallowed by robots.txt
+[   thin] Friends Of The Israel Heart Society Inc    82 chars  https://friendsihs.org
+[ robots] Alliance Of Women Executives Inc           disallowed by robots.txt  https://www.aweinc.org
+[  error] Beca A Un Pana Corporation                 HTTP 406  https://becaunpana.org
+[     ok] The Harvard Club Of The Palm Beaches Inc   3,873 chars -> palm-beach--the-harvard-club-of-the-palm-beaches-inc.txt
+[  error] Champion Charity Inc                       [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1010)  https://www.championcharity.org
+[ robots] Microscholarships Inc                      disallowed by robots.txt  https://www.microscholarships.org
+[  error] Living Water Community Inc                 [Errno 101] Network is unreachable  https://www.lwc-tt.com
+[  error] Give Her Camp Inc                          [Errno -2] Name or service not known  https://www.campowerment.com
+[  error] Wmbm Cares Inc                             [Errno -2] Name or service not known  https://wmbmcares.org
+[ robots] Sunrise Community Foundation Inc           disallowed by robots.txt  https://www.sunrisegroup.org
+[     ok] George Snow Scholarship Fund Inc           8,807 chars -> palm-beach--george-snow-scholarship-fund-inc.txt
+[     ok] .. Unsolved Mystery: The George Snow Story 30,617 chars -> palm-beach--george-snow-scholarship-fund-inc-unsolved-mystery-the-george.txt
+[     ok] .. Benefactor Listing                      60,000 chars -> palm-beach--george-snow-scholarship-fund-inc-benefactor-listing.txt
+[     ok] .. Career Opportunities                    4,438 chars -> palm-beach--george-snow-scholarship-fund-inc-career-opportunities.txt
+[   thin] Women Of Tomorrow Mentor And Scholarship P 82 chars  https://www.womenoftomorrow.org
+[  error] Sunshine Community Foundation Inc          [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)  https://www.sunfound.net
+[     ok] The Intellectually Developmentally Disable 3,541 chars -> palm-beach--the-intellectually-developmentally-disabled-community-founda.txt
+[     ok] Blue Scholars Initiative Inc               1,670 chars -> miami-dade--blue-scholars-initiative-inc.txt
+[     ok] Wellington Community Foundation Inc        10,468 chars -> palm-beach--wellington-community-foundation-inc.txt
+[     ok] .. AKA Scholarship                         3,813 chars -> palm-beach--wellington-community-foundation-inc-aka-scholarship.txt
+[ robots] Pop Warner Little Scholars Inc             disallowed by robots.txt  https://www.parklandrangers.com
+[  error] Marie Louise Community Foundation Inc Mlcf [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://mlcancerfoundation.org
+[  error] Coral Springs Rotary Charities Inc         [Errno -2] Name or service not known  https://www.coralspringsrotaryclub.com
+[ robots] Pop Warner Little Scholar Inc              disallowed by robots.txt  https://www.westonwarriorssports.com
+[     ok] Hollywood Rotary Foundation Inc            1,474 chars -> broward--hollywood-rotary-foundation-inc.txt
+[     ok] Fort Lauderdale Rotary 1090 Foundation Inc 46,729 chars -> broward--fort-lauderdale-rotary-1090-foundation-inc.txt
+[ robots] The Rotary Club Of Miami Florida Foundatio disallowed by robots.txt  https://miamirotary.org
+[  error] Palm Beach Rotary Foundation               HTTP 429  https://www.palmbeachrotary.org
+[     ok] Rotary Club Of Homestead Charitable Founda 2,039 chars -> miami-dade--rotary-club-of-homestead-charitable-foundation-inc.txt
+[  error] .. 2026 Homestead Rotary Scholarship Appli URL can't contain control characters. '/Rotary/Accounts/6990/Downloads/4451/2026 Scholarship Application word.pdf' (found at least ' ')
+[ robots] The Jupiter-Tequesta Kiwanis Foundation In disallowed by robots.txt  https://www.kiwanisjupiter.org
+[     ok] Weston Rotary Charitable Foundation Inc    4,869 chars -> broward--weston-rotary-charitable-foundation-inc.txt
+[  error] Zonta Club Of Miami Lakes Foundation Inc   HTTP 429  https://www.zontamiamilakesclub.org
+[  error] Little Haiti Optimist Foundation Inc       [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1010)  https://www.littlehaitioptimist.org
+[  error] Kiwanis Club Delray Beach Foundation Inc   HTTP 403  https://www.delraybeachkiwanis.org
+[  error] Rotary Club Of Sunrise Fl Foundation Inc   timed out  https://www.rotaryclubsunriseflfoundation.org
+[ robots] Junior League Of The Palm Beaches Inc      disallowed by robots.txt  https://jlpb.org
+[ robots] Junior League Of Boca Raton Inc            disallowed by robots.txt  https://www.jlbr.org
+[     ok] Elks Lodge Of Jupiter                      6,337 chars -> palm-beach--elks-lodge-of-jupiter.txt
+[ robots] Junior League Of Greater Fort Lauderdale I disallowed by robots.txt  https://www.juniorleagueftl.org
+[  error] Elks Lodge Of South Miami Coral Gables     [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1010)  https://www.elks1676.com
+[ robots] Boca Raton Rotary Fund Inc                 disallowed by robots.txt  https://rotaryclubbocaraton.com
+[ robots] Exchange Club Dick Webber Center For The P disallowed by robots.txt  https://www.childrenshealinginstitute.org
+[ robots] Junior League Of Miami Inc                 disallowed by robots.txt  https://www.jlmiami.org
+[ robots] Weston Fl Rotary Club                      disallowed by robots.txt  https://www.westonrotary.org
+[     ok] Optimist Club Of Westchester               2,881 chars -> miami-dade--optimist-club-of-westchester.txt
+[  error] Bay Oaks Miami Soroptimist Home For The Ag [Errno -2] Name or service not known  https://www.bayoakshome.com
+[  error] Delray Beach Rotary Fund Inc               [Errno -2] Name or service not known  https://www.delraybeachrotary.com
+[     ok] Elks Lodge Of Hollywood West               3,614 chars -> broward--elks-lodge-of-hollywood-west.txt
+[  error] .. Scholarship Winners                     HTTP 404
+[  error] .. Scholarships College financial aid      HTTP 404
+[  error] .. Scholarships MVS, Legacy & More         HTTP 404
+[     ok] Disaster Network Of Assistance Rotary Acti 4,598 chars -> palm-beach--disaster-network-of-assistance-rotary-action-group-inc.txt
+[ robots] Rotary Club Of Miami                       disallowed by robots.txt  https://miamirotary.org
+[     ok] Rotary Club Of Pompano Beach               1,425 chars -> broward--rotary-club-of-pompano-beach.txt
+[     ok] Fort Lauderdale Rotary Club                46,729 chars -> broward--fort-lauderdale-rotary-club.txt
+[ robots] The Rotary Club Of Boca Raton Inc          disallowed by robots.txt  https://rotaryclubbocaraton.com
+[   thin] Rotary Club Of Coral Gables                1 chars  https://www.coralgablesrotary.org
+[     ok] Rotary Club Of Homestead                   2,039 chars -> miami-dade--rotary-club-of-homestead.txt
+[  error] .. 2026 Homestead Rotary Scholarship Appli URL can't contain control characters. '/Rotary/Accounts/6990/Downloads/4451/2026 Scholarship Application word.pdf' (found at least ' ')
+[     ok] Rotary Club Of Hollywood                   1,474 chars -> broward--rotary-club-of-hollywood.txt
+[  error] Rotary Club Of Boca Raton Sunrise          [Errno -3] Temporary failure in name resolution  https://www.rotarybocasunrise.org
+[     ok] Rotary Club Of Jupiter-Tequesta            1,461 chars -> palm-beach--rotary-club-of-jupiter-tequesta.txt
+[  error] Kiwanis Club Of Lauderdale Lakes In        [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://www.kcllws.com
+[     ok] Wellington Rotary Club                     1,290 chars -> palm-beach--wellington-rotary-club.txt
+[ robots] Kiwanis Club Of Jupiter-Tequesta           disallowed by robots.txt  https://www.kiwanisjupiter.org
+[  error] Delray Beach Rotary Club                   [Errno -2] Name or service not known  https://www.delraybeachrotary.com
+[   thin] Kiwanis Club Of Of Daytona Beach           82 chars  https://daytonabeachkiwanis.org
+[   thin] Rotary Club Of Boca Raton West             1 chars  https://www.rotarybocaratonwest.org
+[   thin] Rotary Club Of South Miami                 1 chars  https://www.southmiamirotary.org
+[  error] Rotary Club Of Palm Beach                  [Errno -2] Name or service not known  https://www.rotarypalmbeach.org
+[   thin] Rotary Club Of Perrine Cutler Ridge Palmet 1 chars  https://www.pcrpbrotary.com
+[     ok] Soroptimist International Of The Americas  5,473 chars -> palm-beach--soroptimist-international-of-the-americas-inc.txt
+[     ok] .. Live Your Dream Scholarship Program     3,060 chars -> palm-beach--soroptimist-international-of-the-americas-inc-live-your-drea.txt
+[     ok] .. Non-Profit Service Awards               4,126 chars -> palm-beach--soroptimist-international-of-the-americas-inc-non-profit-ser.txt
