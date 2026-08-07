@@ -1,0 +1,104 @@
+# Runs the district / education-foundation crawl on a GitHub runner, which has the
+# open network access the dev sandbox does not. Click "Run workflow" in the Actions
+# tab -- no local Python install needed.
+#
+# Setup, once: add a repository secret named ANTHROPIC_API_KEY
+#   Settings -> Secrets and variables -> Actions -> New repository secret
+#
+# The schedule is commented out until the pilot data is verified. Uncommenting it
+# turns this into the freshness cron the build plan calls for.
+
+name: District crawl
+
+on:
+  workflow_dispatch:
+    inputs:
+      extract:
+        description: "Run LLM extraction after fetching (needs ANTHROPIC_API_KEY)"
+        type: boolean
+        default: true
+      commit:
+        description: "Commit the results back to this branch"
+        type: boolean
+        default: true
+  # schedule:
+  #   - cron: "0 7 * * 1"          # Mondays 07:00 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch seed pages
+        working-directory: grants
+        run: python3 scripts/10_district_crawl.py fetch | tee /tmp/fetch.log
+
+      - name: Cache status
+        working-directory: grants
+        run: python3 scripts/10_district_crawl.py status
+
+      - name: Extract awards
+        if: ${{ inputs.extract }}
+        working-directory: grants
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set - add it in Settings > Secrets and variables > Actions"
+            exit 1
+          fi
+          pip install --quiet anthropic
+          python3 scripts/10_district_crawl.py extract | tee /tmp/extract.log
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## District crawl"
+            echo '```'
+            cat /tmp/fetch.log 2>/dev/null || echo "(fetch did not run)"
+            echo '```'
+            if [ -f grants/data/07_district_awards.csv ]; then
+              echo "**Awards extracted:** $(( $(wc -l < grants/data/07_district_awards.csv) - 1 ))"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Raw pages are gitignored, so keep them as an artifact for debugging a bad extract
+      - name: Upload raw pages
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crawl-cache
+          path: grants/cache/district/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload awards CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: district-awards
+          path: grants/data/07_district_awards.csv
+          if-no-files-found: ignore
+
+      - name: Commit results
+        if: ${{ inputs.commit }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add grants/data/07_district_awards.csv
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add district crawl results (automated)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
