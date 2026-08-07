@@ -1,0 +1,331 @@
+{
+  "_comment": [
+    "Miami-Dade high school CAP (College Assistance Program) advisor pages.",
+    "This is the core of the counselor-page strategy: every MDCPS senior high has a",
+    "full-time CAP advisor who publishes a scholarship bulletin, and Miami-Dade",
+    "schools run INDEPENDENT vanity domains rather than dadeschools.net subdomains,",
+    "so district robots policy governs almost none of them.",
+    "",
+    "Two CMS patterns dominate: WordPress vanity domains with /cap/, /cap-corner/,",
+    "/cap-advisor/ style slugs, and Edlio sites with /apps/pages/index.jsp?uREC_ID=.",
+    "The WordPress slugs are worth brute-forcing against any MDCPS vanity domain to",
+    "widen coverage later.",
+    "",
+    "All URLs appeared verbatim in search results; none were pattern-guessed. None",
+    "are load-verified -- this harvest is the verification."
+  ],
+  "seeds": [
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High",
+      "url": "https://coralreefhighschool.net/cap-corner/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High",
+      "url": "https://nmshpioneers.org/cap-college-assistance-program/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High",
+      "url": "https://southwestmiamieagles.net/college-assistance-program-cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Southridge Senior High",
+      "url": "https://miamisouthridgeshs.com/college-assistance-program-cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Ronald W. Reagan Doral Senior High",
+      "url": "https://ronaldwreagandoralshs.net/college-assistance-program-cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Jackson Senior High",
+      "url": "https://jacksonshs.org/apps/pages/index.jsp?uREC_ID=279137&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High",
+      "url": "https://miamibeachseniorhigh.net/college-assistance-program-cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High",
+      "url": "https://miamisunsetsenior.com/cap-college-assistance-program/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Carol City Senior High",
+      "url": "https://miamicarolcityshs.net/cap-college-assistance-program/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High",
+      "url": "https://americanshs.net/college-career/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Miami Senior High",
+      "url": "https://smsh.dadeschools.net/studentservices/capcorner.htm",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Gables Senior High",
+      "url": "https://sites.google.com/view/coralgablesseniorhigh/college-assistance-program",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Palmetto Senior High",
+      "url": "https://cap.mpshs.net/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High",
+      "url": "https://www.miamikillianhs.net/c-a-p/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Dade Senior High",
+      "url": "https://sdshs.net/c-a-p/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Homestead Senior High",
+      "url": "https://www.homesteadshs.net/cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Cutler Bay Senior High",
+      "url": "https://www.cutlerbayhigh.org/apps/pages/index.jsp?uREC_ID=280151&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Felix Varela Senior High",
+      "url": "https://varelahighschool.net/cap-advisor/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "G. Holmes Braddock Senior High",
+      "url": "https://www.braddockbulldogs.org/apps/pages/index.jsp?uREC_ID=324425&type=d&pREC_ID=681269",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "John A. Ferguson Senior High",
+      "url": "https://www.fergusonhs.org/apps/pages/index.jsp?uREC_ID=249989&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Coral Park Senior High",
+      "url": "https://www.mcpshs.com/cap-advisor/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Northwestern Senior High",
+      "url": "https://www.northwesternbulls.org/apps/pages/index.jsp?uREC_ID=294296&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Norland Senior High",
+      "url": "https://www.miaminorlandshs.org/apps/pages/index.jsp?uREC_ID=318382&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Hialeah Senior High",
+      "url": "https://www.hialeahhigh.org/apps/pages/?uREC_ID=123043&type=d&pREC_ID=243238",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Hialeah-Miami Lakes Senior High",
+      "url": "https://www.hmltrojans.org/apps/pages/index.jsp?uREC_ID=264903&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Hialeah Gardens High",
+      "url": "https://www.hghsgladiators.com/apps/pages/index.jsp?uREC_ID=421224&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Barbara Goleman Senior High",
+      "url": "https://www.barbaragolemansenior.com/apps/pages/index.jsp?uREC_ID=573396&type=d&pREC_ID=1139551",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Westland Hialeah Senior High",
+      "url": "https://westlandwildcats.net/apps/pages/index.jsp?uREC_ID=401152&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Dr. Michael M. Krop Senior High",
+      "url": "https://kropseniorhigh.org/apps/pages/index.jsp?uREC_ID=216571&type=d&pREC_ID=477736",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Alonzo and Tracy Mourning Senior High",
+      "url": "https://www.atmourningsharks.net/cap-corner/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High",
+      "url": "https://miamispringshawks.net/cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center",
+      "url": "https://robertmorganeducenter.com/cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "JC Bermudez Doral Senior High",
+      "url": "https://jcbdoralthunder.com/college-advisement-program/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Lakes Educational Center",
+      "url": "https://www.mlecshs.com/apps/pages/index.jsp?uREC_ID=397619&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Young Women's Preparatory Academy",
+      "url": "https://www.ywpafl.com/college-corner/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Design and Architecture Senior High (DASH)",
+      "url": "http://dashcap.dadeschools.net/html/index.html",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "MAST Academy",
+      "url": "http://www.gomakos.net/college-assistance-program/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Jose Marti MAST 6-12 Academy",
+      "url": "https://josemartimast.net/cap/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "TERRA Environmental Research Institute",
+      "url": "https://www.terrawolves.com/apps/pages/index.jsp?uREC_ID=241582&type=d&pREC_ID=468925",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "William H. Turner Technical Arts High",
+      "url": "https://www.turnertech-eagles.com/college-advising-program",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Arthur and Polly Mays Conservatory of the Arts",
+      "url": "https://www.apmays.org/apps/pages/index.jsp?uREC_ID=562936&type=d",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Senior High",
+      "url": "https://www.miamiseniorhigh.org/m/pages/index.jsp?uREC_ID=339275&type=d&pREC_ID=660976",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "International Studies Preparatory Academy",
+      "url": "https://internationalstudiesprep.net/college-corner/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Edison Senior High",
+      "url": "https://miamiedisonshs.net/student-support/",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Christopher Columbus High School",
+      "url": "https://www.columbushs.com/college-counseling",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Belen Jesuit Preparatory School",
+      "url": "https://www.belenjesuit.org/student-life/college-counseling",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Immaculata-La Salle High School",
+      "url": "https://www.ilsroyals.com/schoolcounseling",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Archbishop Coleman F. Carroll High School",
+      "url": "https://www.colemancarroll.org/CatholicSchool.php?pg=College+Counseling",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Monsignor Edward Pace High School",
+      "url": "https://www.pacehs.com/scholarships.php",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Saint Brendan High School",
+      "url": "https://www.stbrendanhigh.org/academics/guidance-and-college-advising",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Carrollton School of the Sacred Heart",
+      "url": "https://www.carrollton.org/academics/collegecounseling",
+      "kind": "list"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Ransom Everglades School",
+      "url": "https://www.ransomeverglades.org/academics/college-counseling",
+      "kind": "list"
+    }
+  ]
+}
