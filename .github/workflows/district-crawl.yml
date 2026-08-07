@@ -31,6 +31,9 @@ concurrency:
 jobs:
   harvest:
     runs-on: ubuntu-latest
+    # A hung fetch once ran this step past 15 minutes. Bound it so a bad host
+    # costs a failed run, not hours of runner time.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 

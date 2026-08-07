@@ -27,6 +27,7 @@ import hashlib
 import json
 import os
 import re
+import socket
 import sys
 import time
 import urllib.error
@@ -43,6 +44,12 @@ UA = ("ScholarshipFinderBot/0.1 (+https://example.org/bot; contact: hello@exampl
       "python-urllib")
 DELAY_SECONDS = 2.0          # per-host politeness delay
 TIMEOUT = 30
+
+# RobotFileParser.read() calls urlopen with NO timeout, so a host that accepts the
+# connection and then never responds hangs the whole crawl forever. A global socket
+# default is the only way to bound it -- passing timeout= to our own urlopen calls
+# does not reach inside robotparser.
+socket.setdefaulttimeout(TIMEOUT)
 
 
 # ------------------------------------------------------------------ fetch
