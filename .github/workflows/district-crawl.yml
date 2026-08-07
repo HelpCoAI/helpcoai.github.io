@@ -202,10 +202,14 @@ jobs:
           mkdir -p data/district_pages_wayback
           python3 scripts/17_wayback.py \
             --logs data/district_pages_*/_harvest_log.txt \
+            --limit 60 \
             --pages data/district_pages_wayback \
             --report data/13_wayback_report.csv 2>&1 | tail -60
 
+      # MUST be always(): a cancelled step skips everything after it, so the
+      # incremental report written to disk was discarded when the job hit its cap.
       - name: Commit recovered pages
+        if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
