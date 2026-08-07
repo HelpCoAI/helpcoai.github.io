@@ -1,0 +1,176 @@
+{
+  "_comment": [
+    "Scholarship-platform tenants found via certificate transparency logs.",
+    "Every TLS certificate is published to public CT logs by design, so",
+    "querying crt.sh for %.academicworks.com returns the tenant list outright.",
+    "No origin server is touched to build this list and nothing is bypassed --",
+    "it is public infrastructure metadata.",
+    "Every place-name match is kept, plus a capped fill of acronym tenants --",
+    "phsc.academicworks.com (Pasco-Hernando State College, 220+ scholarships)",
+    "matches no Florida keyword, so name filtering alone loses real targets.",
+    "Tenant counts per platform: academicworks.com: 0/0, awardspring.com: 0/0, communityforce.com: 0/0, scholarships.ngwebsolutions.com: 23/23, smapply.io: 0/0, submittable.com: 0/0"
+  ],
+  "seeds": [
+    {
+      "county": "",
+      "org": "dev1 (scholarships)",
+      "url": "https://dev1.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev10 (scholarships)",
+      "url": "https://dev10.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev2 (scholarships)",
+      "url": "https://dev2.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev3 (scholarships)",
+      "url": "https://dev3.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev4 (scholarships)",
+      "url": "https://dev4.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev5 (scholarships)",
+      "url": "https://dev5.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev6 (scholarships)",
+      "url": "https://dev6.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev7 (scholarships)",
+      "url": "https://dev7.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev8 (scholarships)",
+      "url": "https://dev8.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "dev9 (scholarships)",
+      "url": "https://dev9.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "devazure (scholarships)",
+      "url": "https://devazure.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad1 (scholarships)",
+      "url": "https://qad1.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad10 (scholarships)",
+      "url": "https://qad10.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad11 (scholarships)",
+      "url": "https://qad11.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad12 (scholarships)",
+      "url": "https://qad12.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad2 (scholarships)",
+      "url": "https://qad2.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad3 (scholarships)",
+      "url": "https://qad3.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad4 (scholarships)",
+      "url": "https://qad4.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad5 (scholarships)",
+      "url": "https://qad5.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad6 (scholarships)",
+      "url": "https://qad6.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad7 (scholarships)",
+      "url": "https://qad7.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad8 (scholarships)",
+      "url": "https://qad8.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    },
+    {
+      "county": "",
+      "org": "qad9 (scholarships)",
+      "url": "https://qad9.scholarships.ngwebsolutions.com/Scholarships/Search",
+      "kind": "hub",
+      "note": "tenant of scholarships.ngwebsolutions.com, found via certificate transparency"
+    }
+  ]
+}
