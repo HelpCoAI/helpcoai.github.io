@@ -102,8 +102,11 @@ def parse_logs(paths):
     return [(v[0], v[1], k) for k, v in best.items()]
 
 
-def main(logs, pages_dir, report_path, limit):
+def main(logs, pages_dir, report_path, limit, only=None):
     failures = parse_logs(logs)
+    if only:
+        failures = [f for f in failures if f[0] == only]
+        print(f"filtered to status={only!r}", file=sys.stderr)
     by_status = Counter(s for s, _, _ in failures)
     print(f"{len(failures)} failed seeds across {len(logs)} logs: {dict(by_status)}",
           file=sys.stderr)
@@ -178,5 +181,7 @@ if __name__ == "__main__":
     ap.add_argument("--pages", default="data/district_pages_wayback")
     ap.add_argument("--report", default="data/13_wayback_report.csv")
     ap.add_argument("--limit", type=int, default=250)
+    ap.add_argument("--only", choices=["error", "thin", "robots"],
+                    help="restrict to one failure class; robots is availability-only")
     a = ap.parse_args()
-    main(a.logs, a.pages, a.report, a.limit)
+    main(a.logs, a.pages, a.report, a.limit, a.only)

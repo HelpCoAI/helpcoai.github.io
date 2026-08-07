@@ -208,12 +208,26 @@ jobs:
 
       # MUST be always(): a cancelled step skips everything after it, so the
       # incremental report written to disk was discarded when the job hit its cap.
+      - name: Snapshot availability for robots-disallowed pages
+        if: always()
+        working-directory: grants
+        run: |
+          if [ -f data/14_wayback_robots.csv ]; then
+            echo "already surveyed - skipping"; exit 0
+          fi
+          # Availability ONLY -- the script never fetches content for this class.
+          python3 scripts/17_wayback.py \
+            --logs data/district_pages_*/_harvest_log.txt \
+            --only robots --limit 90 \
+            --pages /tmp/unused_robots_pages \
+            --report data/14_wayback_robots.csv 2>&1 | tail -30
+
       - name: Commit recovered pages
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add grants/data/district_pages_wayback/ grants/data/13_wayback_report.csv 2>/dev/null || true
+          git add grants/data/district_pages_wayback/ grants/data/13_wayback_report.csv grants/data/14_wayback_robots.csv 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "nothing recovered"
           else

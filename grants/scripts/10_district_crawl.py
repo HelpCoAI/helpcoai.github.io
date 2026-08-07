@@ -259,9 +259,25 @@ def pdf_to_text(raw: bytes) -> str:
     import io
     try:
         reader = PdfReader(io.BytesIO(raw))
-        return "\n".join((p.extract_text() or "") for p in reader.pages)
     except Exception:
         return ""
+
+    # pypdf's default mode reconstructs text from glyph draw order and routinely
+    # drops inter-word spaces, yielding "Raise.meMicro-Scholarship" and
+    # "ThisHighSchoolScholarshipProgramisopento...". Layout mode uses glyph
+    # positions instead and preserves the gaps, which matters because these
+    # bulletins are TABLES -- name, award, eligibility, deadline -- and a run-on
+    # column is unparseable. Fall back if the installed pypdf is too old.
+    for kwargs in ({"extraction_mode": "layout"}, {}):
+        try:
+            out = "\n".join((p.extract_text(**kwargs) or "") for p in reader.pages)
+        except TypeError:
+            continue
+        except Exception:
+            return ""
+        if out.strip():
+            return out
+    return ""
 
 
 def to_text(raw: bytes, limit: int = 60_000) -> str:
