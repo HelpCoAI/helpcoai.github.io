@@ -1,0 +1,69 @@
+49/19 pages harvested
+------------------------------------------------------------------------------
+[     ok] Coral Reef Senior High — /cap-corner/      11,776 chars -> miami-dade--coral-reef-senior-high-cap-corner.txt
+[  error] .. Immigrants Rising Scholarship and Fello HTTP 403
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--coral-reef-senior-high-cap-corner-cap-scholarship-bulletin.txt
+[     ok] .. U Dreamers Program                      9,628 chars -> miami-dade--coral-reef-senior-high-cap-corner-u-dreamers-program.txt
+[     ok] North Miami Senior High — /financial-aid/  7,388 chars -> miami-dade--north-miami-senior-high-financial-aid.txt
+[  error] .. Common Questions and Answers for Financ [Errno -2] Name or service not known
+[  error] .. Florida Immigration Coalition(Scholarsh HTTP 404
+[     ok] .. www.southernscholarship.org             3,903 chars -> miami-dade--north-miami-senior-high-financial-aid-www-southernscholarshi.txt
+[     ok] North Miami Senior High — /cap-college-ass 4,931 chars -> miami-dade--north-miami-senior-high-cap-college-assistance-program.txt
+[   thin] .. TheDream.US Scholarship Information - E 0 chars
+[   thin] .. TheDream.US Scholarship Information - S 0 chars
+[     ok] .. Scholarship Bulletin                    4,213 chars -> miami-dade--north-miami-senior-high-cap-college-assistance-program-schol.txt
+[     ok] Southwest Miami Senior High — /scholarship 11,514 chars -> miami-dade--southwest-miami-senior-high-scholarships.txt
+[     ok] .. English                                 2,225 chars -> miami-dade--southwest-miami-senior-high-scholarships-english.txt
+[     ok] .. Spanish                                 2,457 chars -> miami-dade--southwest-miami-senior-high-scholarships-spanish.txt
+[  error] .. ScienceNet Scholarship Listing          [Errno -2] Name or service not known
+[     ok] Southwest Miami Senior High — /scholarship 9,852 chars -> miami-dade--southwest-miami-senior-high-scholarship-websites.txt
+[     ok] .. English                                 2,225 chars -> miami-dade--southwest-miami-senior-high-scholarship-websites-english.txt
+[     ok] .. Spanish                                 2,457 chars -> miami-dade--southwest-miami-senior-high-scholarship-websites-spanish.txt
+[     ok] .. Scholarship and Fellowship Opportunitie 3,886 chars -> miami-dade--southwest-miami-senior-high-scholarship-websites-scholarship.txt
+[     ok] Southwest Miami Senior High — /college-ass 7,788 chars -> miami-dade--southwest-miami-senior-high-college-assistance-program-cap.txt
+[     ok] .. English                                 2,225 chars -> miami-dade--southwest-miami-senior-high-college-assistance-program-cap-e.txt
+[     ok] .. Spanish                                 2,457 chars -> miami-dade--southwest-miami-senior-high-college-assistance-program-cap-s.txt
+[     ok] .. Scholarship Websites                    9,852 chars -> miami-dade--southwest-miami-senior-high-college-assistance-program-cap-s.txt
+[     ok] Miami Southridge Senior High — /college-as 10,639 chars -> miami-dade--miami-southridge-senior-high-college-assistance-program-cap.txt
+[     ok] .. Earning Scholarships Guide              6,033 chars -> miami-dade--miami-southridge-senior-high-college-assistance-program-cap-.txt
+[ robots] .. Class of 2028 Scholarship List          disallowed by robots.txt
+[ robots] .. Class of 2027 Scholarship List          disallowed by robots.txt
+[     ok] Ronald W. Reagan Doral Senior High — /coll 5,594 chars -> miami-dade--ronald-w-reagan-doral-senior-high-college-assistance-program.txt
+[     ok] .. Scholarship Bulletin                    4,213 chars -> miami-dade--ronald-w-reagan-doral-senior-high-college-assistance-program.txt
+[   thin] .. What is Financial Aid?                  15 chars
+[     ok] .. Bright Futures Scholarship Information  2,680 chars -> miami-dade--ronald-w-reagan-doral-senior-high-college-assistance-program.txt
+[     ok] Miami Carol City Senior High — /cap-colleg 5,397 chars -> miami-dade--miami-carol-city-senior-high-cap-college-assistance-program.txt
+[ robots] .. https://scholarships360.org             disallowed by robots.txt
+[ robots] .. https://scholarshipowl.com              disallowed by robots.txt
+[     ok] .. https://www.floridastudentfinancialaids 3,422 chars -> miami-dade--miami-carol-city-senior-high-cap-college-assistance-program-.txt
+[     ok] American Senior High — /entrepreneurship-a 8,006 chars -> miami-dade--american-senior-high-entrepreneurship-academy-ayes-automotiv.txt
+[   thin] .. Scholarship Bulletin                    98 chars
+[     ok] Miami Palmetto Senior High — /scholarships 1,138 chars -> miami-dade--miami-palmetto-senior-high-scholarships.txt
+[     ok] .. Scholarships                            1,138 chars -> miami-dade--miami-palmetto-senior-high-scholarships-scholarships.txt
+[   thin] .. bigfuture.collegboard.org/scholarships  113 chars
+[     ok] .. www.scholarshipamerica.org              5,240 chars -> miami-dade--miami-palmetto-senior-high-scholarships-www-scholarshipameri.txt
+[     ok] Miami Killian Senior High — /bright-future 2,966 chars -> miami-dade--miami-killian-senior-high-bright-futures-scholarship-bulleti.txt
+[  error] .. Bright Future Information and Applicati timed out
+[     ok] South Dade Senior High — /bright-futures-s 5,529 chars -> miami-dade--south-dade-senior-high-bright-futures-scholarship-bulletin.txt
+[     ok] .. Bright Futures & Scholarship Bulletin   5,529 chars -> miami-dade--south-dade-senior-high-bright-futures-scholarship-bulletin-b.txt
+[     ok] .. Student Scholarship & Grant Programs    3,422 chars -> miami-dade--south-dade-senior-high-bright-futures-scholarship-bulletin-s.txt
+[     ok] .. Support the Silver Knight Awards​ Endow 1,845 chars -> miami-dade--south-dade-senior-high-bright-futures-scholarship-bulletin-s.txt
+[     ok] Miami Coral Park Senior High — /curriculum 4,239 chars -> miami-dade--miami-coral-park-senior-high-curriculum-bulletin.txt
+[     ok] Alonzo and Tracy Mourning Senior High — /c 12,818 chars -> miami-dade--alonzo-and-tracy-mourning-senior-high-cap-corner.txt
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--alonzo-and-tracy-mourning-senior-high-cap-corner-cap-scholar.txt
+[  error] .. http://www.college-scholarships.com/lea HTTP 404
+[  error] .. http://www.scholarships.com/            HTTP 404
+[     ok] Miami Springs Senior High — /cap-logo-scho 3,900 chars -> miami-dade--miami-springs-senior-high-cap-logo-scholarship.txt
+[  error] .. https://i0.wp.com/miamispringshawks.net HTTP 404
+[     ok] Robert Morgan Educational Center — /entrep 8,964 chars -> miami-dade--robert-morgan-educational-center-entrepreneurship-academy-ay.txt
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--robert-morgan-educational-center-entrepreneurship-academy-ay.txt
+[     ok] .. Academy Achievements, Awards and Schola 8,964 chars -> miami-dade--robert-morgan-educational-center-entrepreneurship-academy-ay.txt
+[     ok] .. Bright Futures Scholarship              5,280 chars -> miami-dade--robert-morgan-educational-center-entrepreneurship-academy-ay.txt
+[     ok] Robert Morgan Educational Center — /bright 5,280 chars -> miami-dade--robert-morgan-educational-center-bright-futures-scholarship.txt
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--robert-morgan-educational-center-bright-futures-scholarship-.txt
+[     ok] .. 2024-2025 Bright Futures Initial Eligib 3,219 chars -> miami-dade--robert-morgan-educational-center-bright-futures-scholarship-.txt
+[     ok] .. Academy Achievements, Awards and Schola 8,964 chars -> miami-dade--robert-morgan-educational-center-bright-futures-scholarship-.txt
+[     ok] Robert Morgan Educational Center — /financ 5,170 chars -> miami-dade--robert-morgan-educational-center-financial-aid-resources.txt
+[     ok] .. CAP Scholarship Bulletin                4,213 chars -> miami-dade--robert-morgan-educational-center-financial-aid-resources-cap.txt
+[  error] .. Financial Aid Overview                  HTTP 404
+[     ok] .. Academy Achievements, Awards and Schola 8,964 chars -> miami-dade--robert-morgan-educational-center-financial-aid-resources-aca.txt
