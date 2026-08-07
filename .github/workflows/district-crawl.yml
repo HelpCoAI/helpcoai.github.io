@@ -63,7 +63,8 @@ jobs:
             exit 0
           fi
           python3 scripts/10_district_crawl.py harvest \
-            --seeds "data/${{ matrix.set.file }}" --pages "$OUT" | tee /tmp/h.log
+            --seeds "data/${{ matrix.set.file }}" --pages "$OUT" \
+            --follow 3 | tee /tmp/h.log
 
       - name: Summary
         if: always()

@@ -34,6 +34,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import urllib.robotparser
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -168,6 +169,83 @@ TAG_STRIP = re.compile(rb"<(script|style)[^>]*>.*?</\1>", re.S | re.I)
 TAGS = re.compile(rb"<[^>]+>")
 
 
+class _LinkGrab(HTMLParser):
+    """Collect (href, anchor text) pairs. Anchor text is what makes a link scoreable:
+    the useful ones say 'Download CAP Scholarship Bulletin', not 'click here'."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links = []
+        self._href = None
+        self._text = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self._href = dict(attrs).get("href")
+            self._text = []
+
+    def handle_data(self, data):
+        if self._href is not None:
+            self._text.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self._href:
+            self.links.append((self._href, " ".join(self._text).split() and
+                               " ".join(" ".join(self._text).split())[:120] or ""))
+            self._href = None
+
+
+# What we are looking for
+WANT = re.compile(r"scholarship|bursary|award|financial[-_ ]?aid|cap[-_ ]?corner", re.I)
+# What looks like it but is not. "Curriculum Bulletin" is on nearly every MDCPS page.
+AVOID = re.compile(
+    r"curriculum|code of student conduct|handbook|calendar|lunch|menu|athletics|"
+    r"immuniz|volunteer|climate survey|reading plan|dress code|transcript request|"
+    r"facebook|twitter|instagram|youtube|login|privacy|accessibility", re.I)
+
+
+def score_link(href: str, text: str) -> int:
+    blob = f"{href} {text}"
+    if AVOID.search(blob):
+        return 0
+    if not WANT.search(blob):
+        return 0
+    pts = 1
+    if re.search(r"bulletin|list|opportunit", blob, re.I):
+        pts += 3
+    if href.lower().endswith((".pdf", ".doc", ".docx", ".xlsx")):
+        pts += 3
+    if re.search(r"scholarship", href, re.I):
+        pts += 2
+    return pts
+
+
+def candidate_links(raw: bytes, base_url: str, limit: int = 3):
+    """Rank the links on a page and return the most likely award documents."""
+    if raw[:5] == b"%PDF-":
+        return []
+    try:
+        p = _LinkGrab()
+        p.feed(raw.decode("utf-8", errors="replace"))
+    except Exception:
+        return []
+
+    seen, scored = set(), []
+    for href, text in p.links:
+        if not href or href.startswith(("#", "mailto:", "tel:", "javascript:")):
+            continue
+        full = urllib.parse.urljoin(base_url, href)
+        if not full.startswith("http") or full in seen:
+            continue
+        seen.add(full)
+        s = score_link(full, text)
+        if s:
+            scored.append((s, full, text))
+
+    scored.sort(key=lambda t: -t[0])
+    return [(u, t) for _, u, t in scored[:limit]]
+
+
 def pdf_to_text(raw: bytes) -> str:
     """
     Counselor bulletins are frequently PDFs (SouthTech publishes a numbered series),
@@ -260,7 +338,15 @@ def slugify(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")[:60]
 
 
-def cmd_harvest(seeds_path: Path, out_dir: Path):
+def _write_page(out_dir: Path, county, org, kind, url, text) -> str:
+    name = f"{slugify(county)}--{slugify(org)}.txt"
+    (out_dir / name).write_text(
+        f"URL: {url}\nORG: {org}\nCOUNTY: {county}\nKIND: {kind}\n"
+        f"{'-' * 70}\n{text}\n", encoding="utf-8")
+    return name
+
+
+def cmd_harvest(seeds_path: Path, out_dir: Path, follow: int = 0):
     """
     fetch + flatten to plain text, committed to the repo.
 
@@ -288,14 +374,33 @@ def cmd_harvest(seeds_path: Path, out_dir: Path):
             print(line)
             continue
 
-        name = f"{slugify(s['county'])}--{slugify(s['org'])}.txt"
-        (out_dir / name).write_text(
-            f"URL: {s['url']}\nORG: {s['org']}\nCOUNTY: {s['county']}\n"
-            f"KIND: {s['kind']}\n{'-' * 70}\n{text}\n", encoding="utf-8")
+        name = _write_page(out_dir, s["county"], s["org"], s["kind"], s["url"], text)
         ok += 1
         line = f"[     ok] {s['org'][:42]:<42} {len(text):,} chars -> {name}"
         log.append(line)
         print(line)
+
+        # Second hop. CAP landing pages almost never carry the awards -- they link
+        # to a bulletin. Only 4 of 27 Miami-Dade pages held a single dollar amount,
+        # while 5 said "Download CAP Scholarship Bulletin". The awards are one click
+        # further in, so follow the most promising links from each page.
+        if follow:
+            for url2, anchor in candidate_links(cache_path(s["url"]).read_bytes(),
+                                                s["url"], follow):
+                st2, det2 = fetch_one(url2)
+                if st2 not in {"ok", "cached"}:
+                    log.append(f"[{st2:>7}] .. {(anchor or url2)[:39]:<39} {det2}")
+                    continue
+                text2 = to_text(cache_path(url2).read_bytes())
+                if len(text2) < 300:
+                    log.append(f"[   thin] .. {(anchor or url2)[:39]:<39} {len(text2)} chars")
+                    continue
+                label = f"{s['org']} - {anchor or 'linked doc'}"
+                n2 = _write_page(out_dir, s["county"], label, "linked", url2, text2)
+                ok += 1
+                l2 = f"[     ok] .. {(anchor or url2)[:39]:<39} {len(text2):,} chars -> {n2}"
+                log.append(l2)
+                print(l2)
 
     # Committed so failures are diagnosable from anywhere, without runner logs
     (out_dir / "_harvest_log.txt").write_text(
@@ -319,8 +424,10 @@ if __name__ == "__main__":
     p.add_argument("--seeds", type=Path, default=SEEDS)
     p.add_argument("--out", type=Path, default=ROOT / "data" / "07_district_awards.csv")
     p.add_argument("--pages", type=Path, default=ROOT / "data" / "district_pages")
+    p.add_argument("--follow", type=int, default=0,
+                   help="also fetch up to N ranked links from each harvested page")
     a = p.parse_args()
     {"fetch": lambda: cmd_fetch(a.seeds),
-     "harvest": lambda: cmd_harvest(a.seeds, a.pages),
+     "harvest": lambda: cmd_harvest(a.seeds, a.pages, a.follow),
      "extract": lambda: cmd_extract(a.seeds, a.out),
      "status": lambda: cmd_status(a.seeds)}[a.command]()
