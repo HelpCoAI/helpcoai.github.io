@@ -1,9 +1,9 @@
-10/16 pages harvested
+7/16 pages harvested
 ------------------------------------------------------------------------------
 [     ok] Coral Reef Senior High CAP Corner          11,776 chars -> miami-dade--coral-reef-senior-high-cap-corner.txt
-[     ok] Coral Gables Community Foundation scholars 14,459 chars -> miami-dade--coral-gables-community-foundation-scholarships.txt
-[     ok] Coral Gables Community Foundation 2025 awa 14,009 chars -> miami-dade--coral-gables-community-foundation-2025-awards-list.txt
-[     ok] The Miami Foundation scholarships          15,995 chars -> miami-dade--the-miami-foundation-scholarships.txt
+[   thin] Coral Gables Community Foundation scholars 1 chars  https://gablesfoundation.org/scholarships/
+[   thin] Coral Gables Community Foundation 2025 awa 1 chars  https://gablesfoundation.org/2025/05/05/scholarship-awards-list-2025/
+[   thin] The Miami Foundation scholarships          1 chars  https://miamifoundation.org/scholarships/
 [     ok] Achieve Miami scholars portal              8,480 chars -> miami-dade--achieve-miami-scholars-portal.txt
 [ robots] Broward BRACE monthly scholarship bulletin disallowed by robots.txt  https://www.browardschools.com/domain/20543
 [     ok] Community Foundation of Broward administer 3,253 chars -> broward--community-foundation-of-broward-administered-scholarships.txt

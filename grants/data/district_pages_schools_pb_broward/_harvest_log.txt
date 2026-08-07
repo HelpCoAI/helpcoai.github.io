@@ -1,0 +1,24 @@
+8/22 pages harvested
+------------------------------------------------------------------------------
+[   thin] SouthTech Academy scholarship bulletin #15 82 chars  https://www.southtechschools.org/wp-content/uploads/2024/05/Scholarship-Bulletin-15.pdf
+[   thin] SouthTech Academy scholarship bulletin #14 82 chars  https://www.southtechschools.org/wp-content/uploads/2024/04/Scholarship-Bulletin-14.pdf
+[   thin] SouthTech Academy scholarship bulletin #10 82 chars  https://www.southtechschools.org/wp-content/uploads/2024/02/Scholarship-Bulletin-10.pdf
+[   thin] SouthTech Academy scholarship bulletin #7  82 chars  https://www.southtechschools.org/wp-content/uploads/2023/12/Scholarship-Bulletin-7.pdf
+[   thin] SouthTech Academy scholarship bulletin #4  82 chars  https://www.southtechschools.org/wp-content/uploads/2023/10/Scholarship-Bulletin-4.pdf
+[   thin] SouthTech Academy scholarship bulletin #1  82 chars  https://www.southtechschools.org/wp-content/uploads/2024/09/Scholarship-Bulletin-1.pdf
+[   thin] SouthTech Academy counseling department    82 chars  https://www.southtechschools.org/counseling-department/
+[     ok] Wellington High School scholarships        993 chars -> palm-beach--wellington-high-school-scholarships.txt
+[     ok] Forest Hill Community HS guidance          993 chars -> palm-beach--forest-hill-community-hs-guidance.txt
+[     ok] Boca Raton Community HS college & career c 993 chars -> palm-beach--boca-raton-community-hs-college-career-center.txt
+[     ok] Palm Beach County Commissioner District 7  5,527 chars -> palm-beach--palm-beach-county-commissioner-district-7-scholarships-datab.txt
+[     ok] Palm Beach County Property Appraiser schol 5,595 chars -> palm-beach--palm-beach-county-property-appraiser-scholarship-awards.txt
+[     ok] School of the Arts Foundation (Dreyfoos) s 11,914 chars -> palm-beach--school-of-the-arts-foundation-dreyfoos-scholarship-resources.txt
+[   thin] American Association of Caregiving Youth s 1 chars  https://aacy.org/what-we-do/caregiving-youth-project/scholarships-and-opportunities/
+[  error] Broward Education Foundation scholarship s [Errno -2] Name or service not known  https://broward.scholarships.ngwebsolutions.com/Scholarships/Search
+[     ok] Broward County PTSA scholarships           6,906 chars -> broward--broward-county-ptsa-scholarships.txt
+[     ok] George Snow Broward scholarships           8,246 chars -> broward--george-snow-broward-scholarships.txt
+[ robots] Women at the Well Broward scholarships     disallowed by robots.txt  https://watwbroward.org/scholarships/
+[ robots] City of Sunrise outstanding citizenship sc disallowed by robots.txt  https://www.sunrisefl.gov/our-city/schools-school-programs/outstanding-citizenship-scholarship
+[ robots] St Thomas Aquinas HS college advising      disallowed by robots.txt  https://www.aquinas-sta.org/academics/college-advising
+[ robots] Cardinal Gibbons HS counseling             disallowed by robots.txt  https://www.cghsfl.org/academics/guidance
+[ robots] American Heritage Schools Plantation schol disallowed by robots.txt  https://www.ahschool.com/broward-campus/academics/scholarship
