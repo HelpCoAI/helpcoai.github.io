@@ -1,0 +1,187 @@
+96/160 pages harvested
+------------------------------------------------------------------------------
+[ robots] Cats Baseball Booster Inc                  disallowed by robots.txt  https://leaguelineup.com/catsbaseball
+[  error] Theodore Roosevelt Gibson Memorial Fund In [Errno -2] Name or service not known  https://www.thelmagibsonhealthinitiative.org
+[     ok] Nicholas Dworet Memorial Fund Inc          4,758 chars -> broward--nicholas-dworet-memorial-fund-inc.txt
+[     ok] Davy Jones Equine Memorial Fund Inc        1,730 chars -> palm-beach--davy-jones-equine-memorial-fund-inc.txt
+[     ok] Harvard Asian American Alumni Alliance Edu 3,101 chars -> palm-beach--harvard-asian-american-alumni-alliance-educational-and-chari.txt
+[     ok] Cornwall College Alumni Association Inc    8,277 chars -> broward--cornwall-college-alumni-association-inc.txt
+[     ok] .. Fund a Scholarship                      3,323 chars -> broward--cornwall-college-alumni-association-inc-fund-a-scholarship.txt
+[     ok] .. Scholarships                            7,981 chars -> broward--cornwall-college-alumni-association-inc-scholarships.txt
+[     ok] .. https://www.ccalumni-florida.com/announ 2,316 chars -> broward--cornwall-college-alumni-association-inc-linked-doc.txt
+[ robots] Fbi Citizens Academy Alumni Association In disallowed by robots.txt  https://www.fbicaaamiami.org
+[ robots] The Frederick A Deluca Foundation Inc      disallowed by robots.txt  https://www.delucafdn.org
+[     ok] The Invisible Hand Foundation              443 chars -> miami-dade--the-invisible-hand-foundation.txt
+[     ok] .. Barry Scholars                          60,000 chars -> miami-dade--the-invisible-hand-foundation-barry-scholars.txt
+[  error] Carl Angus Desantis Foundation Inc         The read operation timed out  https://www.carldesantis.org
+[     ok] Kovner Foundation                          2,769 chars -> palm-beach--kovner-foundation.txt
+[     ok] .. Scholarships                            2,653 chars -> palm-beach--kovner-foundation-scholarships.txt
+[     ok] .. https://thekovnerfoundation.org/program 2,653 chars -> palm-beach--kovner-foundation-linked-doc.txt
+[     ok] Taft Foundation                            1,754 chars -> broward--taft-foundation.txt
+[  error] Desai Sethi Foundation Inc                 [Errno -2] Name or service not known  https://www.thedsfoundation.org
+[ robots] Bravo Family Charitable Foundation         disallowed by robots.txt  https://www.bravofamilyfoundation.org
+[     ok] Lattner Family Foundation Inc              733 chars -> palm-beach--lattner-family-foundation-inc.txt
+[     ok] James And Beatrice Salah Charitable Trust  1,345 chars -> broward--james-and-beatrice-salah-charitable-trust.txt
+[  error] The Leandro P Rizzuto Foundation           [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)  https://alsfindingacure.org
+[     ok] The Thiel Foundation                       398 chars -> miami-dade--the-thiel-foundation.txt
+[  error] Stoops Family Foundation Inc               HTTP 404  https://nonprofitlocator.org/ORGANIZATIONS/FL
+[ robots] Charles Lafitte Foundation                 disallowed by robots.txt  https://www.charleslafitte.org
+[ robots] Queally Foundation Inc                     disallowed by robots.txt  https://thequeallyfoundation.com
+[  error] Hanley Foundation                          HTTP 406  https://www.hanleyfdn.org
+[ robots] Karen Toffler Charitable Trust             disallowed by robots.txt  https://tofflertrust.org
+[     ok] The Kirk Foundation Inc                    661 chars -> miami-dade--the-kirk-foundation-inc.txt
+[ robots] National School Choice Awareness Foundatio disallowed by robots.txt  https://schoolchoiceawareness.org
+[  error] Eugene Ewan Mori Foundation Inc            HTTP 429  https://eemorifoundation.org
+[     ok] Linda Ye And Robin Ren Family Foundation   475 chars -> miami-dade--linda-ye-and-robin-ren-family-foundation.txt
+[ robots] Castro Family Foundation Inc               disallowed by robots.txt  https://www.mv4k.org
+[  error] Robert C And Veronica Atkins Foundation    [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.atkinsfoundation.org'. (_ssl.c:1010)  https://www.atkinsfoundation.org
+[     ok] Harpo Foundation Inc                       6,154 chars -> miami-dade--harpo-foundation-inc.txt
+[     ok] .. The Impact Award                        9,868 chars -> miami-dade--harpo-foundation-inc-the-impact-award.txt
+[     ok] Strachan Foundation                        3,521 chars -> miami-dade--strachan-foundation.txt
+[  error] Michael And Annie Falk Foundation          [Errno -2] Name or service not known  https://www.anniefalk.comourfoundation
+[   thin] Geo Global Foundation                      35 chars  https://www.jaimedavidovichfoundation.org
+[     ok] Manes Peace Prize Foundation               8,429 chars -> palm-beach--manes-peace-prize-foundation.txt
+[  error] Sqa Foundation Inc                         timed out  https://www.sqafoundation.org
+[     ok] Paul Palank Memorial Foundation Inc        459 chars -> broward--paul-palank-memorial-foundation-inc.txt
+[     ok] Marvin H Weiner Foundation Inc             985 chars -> broward--marvin-h-weiner-foundation-inc.txt
+[  error] Jrp Family Foundation Inc                  HTTP 404  https://www.jrpfoundation.org
+[  error] John O Ounjian Foundation Inc              [Errno -2] Name or service not known  https://ounjiandoundation.org
+[     ok] Bill Kent Family Foundation Inc            4,967 chars -> broward--bill-kent-family-foundation-inc.txt
+[ robots] Lois Pope Life Foundation Inc              disallowed by robots.txt  https://www.life-edu.org
+[     ok] Levitetz Family Foundation Inc             4,491 chars -> palm-beach--levitetz-family-foundation-inc.txt
+[     ok] Ross And Carol Nese Foundation             419 chars -> palm-beach--ross-and-carol-nese-foundation.txt
+[     ok] Miami Marlins Foundation Inc               1,167 chars -> miami-dade--miami-marlins-foundation-inc.txt
+[ robots] Gordon Family Foundation Inc               disallowed by robots.txt  https://www.gordonfamilyfoundation.org
+[     ok] Pfeifler Family Foundation                 993 chars -> palm-beach--pfeifler-family-foundation.txt
+[     ok] Annette Urso Rickel Foundation Inc         3,884 chars -> palm-beach--annette-urso-rickel-foundation-inc.txt
+[  error] The Ark Foundation                         HTTP 404  https://www.the-ark-foundation.org
+[   thin] Donald A Burns Foundation Inc              89 chars  https://www.dabfoundation.org
+[  error] Embrace Foundation                         HTTP 404  https://www.embraceusa.org
+[ robots] S&B World Foundation Inc                   disallowed by robots.txt  https://sbworldfoundation.com
+[     ok] Verena Foundation                          2,144 chars -> broward--verena-foundation.txt
+[ robots] Mcnamara Family Foundation Inc             disallowed by robots.txt  https://www.sunbiz.org
+[  error] Peter@Degeorge Family Foundation Inc       HTTP 404  https://www.nonprofitlocator.org/ORGANIZATIONS/FL
+[     ok] I Could Do Great Things Foundation         6,489 chars -> palm-beach--i-could-do-great-things-foundation.txt
+[     ok] .. Beau Biden Memorial Scholarship         12,473 chars -> palm-beach--i-could-do-great-things-foundation-beau-biden-memorial-schol.txt
+[     ok] .. 2024 Beau Biden Scholarship Application 1,711 chars -> palm-beach--i-could-do-great-things-foundation-2024-beau-biden-scholarsh.txt
+[     ok] .. Scholarship Application                 1,668 chars -> palm-beach--i-could-do-great-things-foundation-scholarship-application.txt
+[     ok] Charles And Joan Hermanowski Family Founda 760 chars -> palm-beach--charles-and-joan-hermanowski-family-foundation-inc.txt
+[     ok] Elevate Prize Foundation Inc               5,391 chars -> miami-dade--elevate-prize-foundation-inc.txt
+[     ok] .. FOUNDER'S AWARD                         4,414 chars -> miami-dade--elevate-prize-foundation-inc-founder-s-award.txt
+[     ok] .. THE ELEVATE PRIZE CATALYST AWARD        8,829 chars -> miami-dade--elevate-prize-foundation-inc-the-elevate-prize-catalyst-awar.txt
+[     ok] .. THE ELEVATE PRIZE GET LOUD AWARD        4,871 chars -> miami-dade--elevate-prize-foundation-inc-the-elevate-prize-get-loud-awar.txt
+[  error] Hagen Family Foundation                    [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1010)  https://www.hagenfamilyfoundation.org
+[  error] Wynne Charitable Foundation                [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://wynnefoundation.org
+[  error] Atlantis Blue Project Foundation Inc       timed out  https://blueprojectatlantis.com
+[ robots] The Joseph And Winifred Amaturo Education  disallowed by robots.txt  https://www.guidestar.org
+[  error] Iris And Junming Le Foundationtrust Dated  [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1010)  https://thelefoundation.org
+[     ok] Pels Tzedek Tirdof Inc                     1,074 chars -> miami-dade--pels-tzedek-tirdof-inc.txt
+[     ok] Childrens Wellness Fund Inc                4,589 chars -> miami-dade--childrens-wellness-fund-inc.txt
+[ robots] Cv Americas Inc                            disallowed by robots.txt  https://www.cvclavoz.com
+[     ok] Thyras Sanctuary Inc                       2,432 chars -> broward--thyras-sanctuary-inc.txt
+[     ok] Psalms Of Life Inc                         680 chars -> miami-dade--psalms-of-life-inc.txt
+[  error] D-C Family Foundation Inc                  [Errno -2] Name or service not known  https://dcfamilyfoudnation.com
+[ robots] Pulte Family Charitable Foundation Inc     disallowed by robots.txt  https://www.pultefamilyfoundation.org
+[ robots] The Batchelor Foundation Inc               disallowed by robots.txt  https://tbfinc.org
+[ robots] The Mary Alice Fortin Foundation           disallowed by robots.txt  https://mafortinfoundation.org
+[     ok] Kislak Family Foundation Inc               2,838 chars -> miami-dade--kislak-family-foundation-inc.txt
+[   thin] Whitehall Foundation Inc                   282 chars  https://www.whitehall.org
+[     ok] Barker Welfare Foundation                  4,338 chars -> palm-beach--barker-welfare-foundation.txt
+[ robots] Scaife Family Foundation                   disallowed by robots.txt  https://www.scaifefamily.org
+[     ok] Laura & Isaac Perlmutter Foundation Inc    1,690 chars -> palm-beach--laura-isaac-perlmutter-foundation-inc.txt
+[     ok] The Stiles-Nicholson Foundation            3,535 chars -> palm-beach--the-stiles-nicholson-foundation.txt
+[     ok] Peacock Foundation Inc                     3,178 chars -> miami-dade--peacock-foundation-inc.txt
+[  error] A D Henderson Foundation Inc               HTTP 429  https://www.hendersonfdn.org
+[     ok] Marion And Richard Graham Foundation       530 chars -> broward--marion-and-richard-graham-foundation.txt
+[     ok] Dunspaugh-Dalton Foundation Inc            1,129 chars -> miami-dade--dunspaugh-dalton-foundation-inc.txt
+[     ok] Contemporary Arts Foundation Inc           2,164 chars -> miami-dade--contemporary-arts-foundation-inc.txt
+[     ok] Martin Z Margulies Foundation Inc          1,088 chars -> miami-dade--martin-z-margulies-foundation-inc.txt
+[     ok] Anthony R Abraham Foundation Inc           9,443 chars -> miami-dade--anthony-r-abraham-foundation-inc.txt
+[     ok] Blank Family Foundation Inc                1,992 chars -> miami-dade--blank-family-foundation-inc.txt
+[ robots] Dr John T Macdonald Foundation Inc         disallowed by robots.txt  https://www.jtmacdonaldfdn.org
+[  error] Iris & B Gerald Cantor Foundation          HTTP 406  https://www.cantorfoundation.org
+[  error] The Carrie Meek Foundation Inc             HTTP 406  https://www.carriemeekfoundation.org
+[  error] Green Family Foundation Trust              [Errno -2] Name or service not known  https://www.greenff.com
+[ robots] Amaturo Family Foundation Inc              disallowed by robots.txt  https://www.guidestar.org
+[     ok] Robert Craft Igor Stravinsky Foundation    622 chars -> palm-beach--robert-craft-igor-stravinsky-foundation.txt
+[     ok] Irvin Stern Foundation                     1,064 chars -> palm-beach--irvin-stern-foundation.txt
+[     ok] Kantner Foundation Inc                     3,152 chars -> palm-beach--kantner-foundation-inc.txt
+[ robots] Edward H Richard Foundation                disallowed by robots.txt  https://www.guidestar.org
+[ robots] Bbx Capital Foundation Inc                 disallowed by robots.txt  https://bbxcapital.com/ABOUT-US/BBX-CAPITAL-FOUNDATIO
+[  error] America 3 Foundation                       [Errno -2] Name or service not known  https://www.a3.org
+[     ok] The Campbell Foundation                    2,337 chars -> broward--the-campbell-foundation.txt
+[     ok] Figgers Foundation                         6,528 chars -> broward--figgers-foundation.txt
+[     ok] .. The Hidden Figgers Scholarships         4,839 chars -> broward--figgers-foundation-the-hidden-figgers-scholarships.txt
+[     ok] Simeon And Jean H Locke Charitable Foundat 1,403 chars -> palm-beach--simeon-and-jean-h-locke-charitable-foundation.txt
+[  error] Mustakis Charitable Network Foundation Inc [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)  https://www.fundacionmustakis.com
+[   thin] Targum Shlishi Inc Aryeh & Raquel Rubin Fo 173 chars  https://targumshlishi.org
+[  error] Arquitectonica Foundation Inc              HTTP 307  https://arquitectonica.com
+[     ok] The Tonkinson Foundation Inc               2,285 chars -> miami-dade--the-tonkinson-foundation-inc.txt
+[  error] Fop Jim Fogleman Lodge 50 Foundation Incor [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'five0foundation.unionactive.com'. (_ssl.c:1010)  https://five0foundation.unionactive.com
+[ robots] Floyd L Wray Memorial Foundation           disallowed by robots.txt  https://www.flamingogardens.org
+[     ok] Sanford F And Gabrielle T Kuvin Foundation 734 chars -> palm-beach--sanford-f-and-gabrielle-t-kuvin-foundation.txt
+[     ok] .. Award Recipients                        404 chars -> palm-beach--sanford-f-and-gabrielle-t-kuvin-foundation-award-recipients.txt
+[ robots] Hamilton M & Blanche C Forman Christian Fo disallowed by robots.txt  https://www.guidestar.org
+[  error] The Chingos Foundation                     timed out  https://chingosfoundation.org
+[  error] Tisi Family Foundation                     HTTP 404  https://nonprofitlocator.org/ORGANIZATIONS/FL
+[  error] Strive Foundation Inc                      HTTP 403  https://www.stampsscholars.org
+[     ok] Bennie & Martha Benjamin Foundation Inc    1,811 chars -> palm-beach--bennie-martha-benjamin-foundation-inc.txt
+[     ok] .. Scholarships Awarded                    2,611 chars -> palm-beach--bennie-martha-benjamin-foundation-inc-scholarships-awarded.txt
+[     ok] .. Grants Awarded                          3,904 chars -> palm-beach--bennie-martha-benjamin-foundation-inc-grants-awarded.txt
+[     ok] Skate Free Inc                             729 chars -> broward--skate-free-inc.txt
+[ robots] Broward College Foundation Inc             disallowed by robots.txt  https://www.browardcollegefoundation.org
+[     ok] Jupiter Medical Center Foundation Inc      4,796 chars -> palm-beach--jupiter-medical-center-foundation-inc.txt
+[     ok] Fundacion Carvajal                         3,434 chars -> miami-dade--fundacion-carvajal.txt
+[ robots] Nicklaus Childrens Health Care Foundation  disallowed by robots.txt  https://www.nchcf.org
+[ robots] Flight Attendant Medical Research Institut disallowed by robots.txt  https://www.famri.org
+[     ok] Montgomery Botanical Center Inc            4,714 chars -> miami-dade--montgomery-botanical-center-inc.txt
+[ robots] Community Child Care Center Of Delray Beac disallowed by robots.txt  https://www.achievementcentersfl.org
+[  error] He Hill Founadation In C                   HTTP 429  https://hehill.org
+[ robots] Wiener Museum Of Decorative Arts Inc       disallowed by robots.txt  https://www.wmoda.com
+[     ok] Senior Citizens Housing Development Corpor 13,938 chars -> broward--senior-citizens-housing-development-corporation-of-fontana.txt
+[     ok] .. Learn more                              5,243 chars -> broward--senior-citizens-housing-development-corporation-of-fontana-l.txt
+[     ok] .. https://ehdoc.org/2024/01/30/ehdoc-rece 5,182 chars -> broward--senior-citizens-housing-development-corporation-of-fontana-l.txt
+[     ok] .. https://ehdoc.org/2023/12/05/clyde-f-si 5,199 chars -> broward--senior-citizens-housing-development-corporation-of-fontana-l.txt
+[     ok] Bougainvilla House Inc                     3,793 chars -> broward--bougainvilla-house-inc.txt
+[ robots] El Espacio 23 Inc                          disallowed by robots.txt  https://www.elespacio23.com
+[ robots] Turkish Friends Of Chabad Inc              disallowed by robots.txt  https://www.guidestar.org
+[     ok] West Palm Beach Library Foundation Inc     4,275 chars -> palm-beach--west-palm-beach-library-foundation-inc.txt
+[ robots] Gamma Mu Foundation Inc                    disallowed by robots.txt  https://www.gammamufoundation.org
+[     ok] Mapet International Foundation Inc         4,372 chars -> miami-dade--mapet-international-foundation-inc.txt
+[   thin] Joseph R Narot Endowment Fund Inc          141 chars  https://www.templeisrael.net
+[  error] Dauer Museum Of Classic Cars Inc           [Errno -2] Name or service not known  https://www.dauerclassiccars.com
+[     ok] Anthony Rizzo Family Foundation            1,329 chars -> broward--anthony-rizzo-family-foundation.txt
+[  error] Peaceful Mind Peaceful Life Inc            [Errno -2] Name or service not known  https://www.peacefulmindpeacefulllife.org
+[     ok] Arriving Home Inc                          7,838 chars -> broward--arriving-home-inc.txt
+[  error] Stand Strong International Inc             [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)  https://standstrong.org
+[  error] The Battier Take Charge Foundation Inc     [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)  https://battiertakecharge.org
+[ robots] Nicks Kids Foundation Inc                  disallowed by robots.txt  https://www.nickskidsfoundation.org
+[     ok] Center For Social Change Inc               2,646 chars -> miami-dade--center-for-social-change-inc.txt
+[  error] Community Police Relations Foundation      [Errno -2] Name or service not known  https://www.communitypolicerelationsfoundation
+[   thin] Gratitude House Inc                        1 chars  https://www.gratitudehouse.org
+[     ok] Sheriffs Foundation Of Broward County Inc  7,477 chars -> broward--sheriffs-foundation-of-broward-county-inc.txt
+[     ok] .. At-Risk Scholarship Fund                3,801 chars -> broward--sheriffs-foundation-of-broward-county-inc-at-risk-scholarshi.txt
+[  error] Sandals Foundation Inc                     HTTP 403  https://www.sandalsfoundation.org
+[ robots] Florida Panthers Foundation Inc            disallowed by robots.txt  https://www.nhl.com/COMMUNITY/PANTHERS/FOUNDATION
+[ robots] Admirals Cove Foundation Inc               disallowed by robots.txt  https://www.admiralscovefoundation.org
+[     ok] Leadership Broward Foundation Inc          7,356 chars -> broward--leadership-broward-foundation-inc.txt
+[  error] Heartsprings International Ministries Inc  [Errno -2] Name or service not known  https://www.heartspringsinternational.org
+[ robots] Mater Academy Foundation Inc               disallowed by robots.txt  https://guidestar.org
+[  error] Miami Dade College Foundation Inc          [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'mdcfoundation.com'. (_ssl.c:1010)  https://mdcfoundation.com
+[     ok] Avant Garde Academy Foundation Inc         3,500 chars -> broward--avant-garde-academy-foundation-inc.txt
+[ robots] Learning Excellence Foundation Of West Bro disallowed by robots.txt  https://imagineweston.org
+[     ok] Learning Excellence Foundation Of South Pa 2,038 chars -> palm-beach--learning-excellence-foundation-of-south-palm-beach-inc.txt
+[ robots] Miami-Dade Foundation For Educational Inno disallowed by robots.txt  https://www.aiecharterschool.org
+[ robots] Alternative Education Foundation Inc       disallowed by robots.txt  https://alternativeeducationfoundation.org
+[     ok] Seminole Coconut Creek Education Foundatio 6,117 chars -> palm-beach--seminole-coconut-creek-education-foundation-inc.txt
+[ robots] Miami Heart Research Institute Inc         disallowed by robots.txt  https://www.floridaheart.org
+[ robots] Closehaul Capital Charitable               disallowed by robots.txt  https://www.closehaulcharitable.org
+[     ok] Our Fund Inc                               910 chars -> broward--our-fund-inc.txt
+[     ok] .. Philanthropy Awards                     2,099 chars -> broward--our-fund-inc-philanthropy-awards.txt
+[     ok] Gene Spotlight Inc                         1,779 chars -> miami-dade--gene-spotlight-inc.txt
+[     ok] Impact 100 Palm Beach County Inc           4,705 chars -> palm-beach--impact-100-palm-beach-county-inc.txt
+[     ok] .. Grand Awards Celebration                2,559 chars -> palm-beach--impact-100-palm-beach-county-inc-grand-awards-celebration.txt
+[     ok] .. Grants Awarded by Year                  2,555 chars -> palm-beach--impact-100-palm-beach-county-inc-grants-awarded-by-year.txt
+[     ok] .. Grants Awarded by Name                  2,555 chars -> palm-beach--impact-100-palm-beach-county-inc-grants-awarded-by-name.txt
+[     ok] Sweet Dream Makers Inc                     9,283 chars -> palm-beach--sweet-dream-makers-inc.txt
+[  error] Mcdavid Group Charities Inc                HTTP 403  https://themcdavidgroupcharities.com
