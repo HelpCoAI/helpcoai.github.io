@@ -48,7 +48,7 @@ jobs:
           python3 scripts/16_discover_urls.py \
             --seeds data/district_seeds_schools_miami_dade.json \
                     data/district_seeds_bmf_orgs.json \
-            --out data/district_seeds_discovered.json --limit 70 --slugs
+            --out data/district_seeds_discovered.json --limit 35 --slugs
       - name: Commit discovered seeds
         run: |
           git config user.name  "github-actions[bot]"

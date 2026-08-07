@@ -9,15 +9,15 @@ Two techniques, both cheap and both robots-respecting:
             read a single one. Discovered via robots.txt's Sitemap: directive first,
             then the conventional locations.
 
-  slugs     MDCPS schools run two CMS patterns with predictable scholarship paths
-            (/cap/, /cap-corner/, /cap-advisor/...). Probing four slugs against a
-            known domain is far cheaper than searching for each school by name.
+  slugs     MDCPS schools run two CMS patterns with predictable scholarship paths.
+            Probing three slugs against a known domain is far cheaper than
+            searching for each school by name.
 
 Output is a seed JSON the existing harvester consumes, so nothing downstream changes.
 
 Usage:
     python3 16_discover_urls.py --seeds data/district_seeds_schools_miami_dade.json \\
-        --out data/district_seeds_discovered.json --limit 60
+        --out data/district_seeds_discovered.json --limit 35
 """
 
 import argparse
@@ -34,8 +34,17 @@ KEYWORDS = re.compile(
     r"scholarship|cap[-_/]corner|college[-_]assistance|financial[-_]aid|"
     r"bulletin|college[-_]career|guidance|counsel|senior", re.I)
 
-SLUGS = ["/cap/", "/cap-corner/", "/cap-advisor/", "/scholarships/",
-         "/college-assistance-program-cap/", "/cap-college-assistance-program/"]
+# Trimmed from six to the three most common MDCPS patterns. Each extra slug costs
+# a request plus a politeness delay against every origin, and the long tail of
+# patterns was not worth the minutes.
+SLUGS = ["/cap-corner/", "/cap/", "/scholarships/"]
+
+# Discovery probes speculative URLs, so most misses are dead hosts. At the crawler's
+# 30s default a dead host costs 30 seconds; across ~30 dead origins that alone
+# exceeded the job timeout. 8s is ample for a host that is actually alive.
+import socket as _socket
+PROBE_TIMEOUT = 8
+_socket.setdefaulttimeout(PROBE_TIMEOUT)
 
 LOC = re.compile(rb"<loc>\s*([^<\s]+)\s*</loc>", re.I)
 
@@ -50,7 +59,7 @@ def get(url):
     import urllib.request, urllib.error, time
     req = urllib.request.Request(url, headers={"User-Agent": _c.UA})
     try:
-        with urllib.request.urlopen(req, timeout=_c.TIMEOUT) as r:
+        with urllib.request.urlopen(req, timeout=PROBE_TIMEOUT) as r:
             return r.read(5_000_000)
     except Exception:
         return None
@@ -163,7 +172,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", nargs="+", required=True)
     ap.add_argument("--out", required=True)
-    ap.add_argument("--limit", type=int, default=60)
+    ap.add_argument("--limit", type=int, default=35)
     ap.add_argument("--slugs", action="store_true")
     a = ap.parse_args()
     main(a.seeds, a.out, a.limit, a.slugs)
