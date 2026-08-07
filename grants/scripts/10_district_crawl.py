@@ -364,7 +364,12 @@ def slugify(s: str) -> str:
 
 
 def _write_page(out_dir: Path, county, org, kind, url, text) -> str:
-    name = f"{slugify(county)}--{slugify(org)}.txt"
+    # Join only the non-empty parts. Seeds with no county (the CT-enumerated
+    # platform tenants and the BMF orgs) used to produce names starting with
+    # "--", which every shell tool parses as an option: `grep pat --org.txt`
+    # dies with "unrecognized option" and a naive file count returns zero.
+    parts = [p for p in (slugify(county), slugify(org)) if p]
+    name = ("--".join(parts) or "page") + ".txt"
     (out_dir / name).write_text(
         f"URL: {url}\nORG: {org}\nCOUNTY: {county}\nKIND: {kind}\n"
         f"{'-' * 70}\n{text}\n", encoding="utf-8")
