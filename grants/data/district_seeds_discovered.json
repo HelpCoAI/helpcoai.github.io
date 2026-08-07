@@ -1,0 +1,808 @@
+{
+  "_comment": [
+    "URLs discovered from sitemaps and slug probes, not from search.",
+    "Sitemaps are published so crawlers can enumerate a site -- the most",
+    "permission-aligned discovery available, and previously unused here.",
+    "901 sitemap hits, 1 slug hits, capped at 12 per origin."
+  ],
+  "seeds": [
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /cap-corner/",
+      "url": "https://coralreefhighschool.net/cap-corner/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /senior-information/",
+      "url": "https://coralreefhighschool.net/senior-information/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /trust-counselor/",
+      "url": "https://coralreefhighschool.net/trust-counselor/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /senior-graduation-information/",
+      "url": "https://coralreefhighschool.net/senior-graduation-information/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /senior-class-of-2023/",
+      "url": "https://coralreefhighschool.net/senior-class-of-2023/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /senior-information-2/",
+      "url": "https://coralreefhighschool.net/senior-information-2/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /bwg_gallery/2023-senior-breakfast/",
+      "url": "https://coralreefhighschool.net/bwg_gallery/2023-senior-breakfast/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Coral Reef Senior High \u2014 /bwg_gallery/senior-breakfast/",
+      "url": "https://coralreefhighschool.net/bwg_gallery/senior-breakfast/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /guidance-counselors/",
+      "url": "https://nmshpioneers.org/guidance-counselors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /senior-class-of-2020/",
+      "url": "https://nmshpioneers.org/senior-class-of-2020/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /financial-aid/",
+      "url": "https://nmshpioneers.org/financial-aid/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /yearbook-and-senior-portrait-information/",
+      "url": "https://nmshpioneers.org/yearbook-and-senior-portrait-information/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /seniors-class-of-2025-important-announcements/",
+      "url": "https://nmshpioneers.org/seniors-class-of-2025-important-announcements/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /cap-college-assistance-program/",
+      "url": "https://nmshpioneers.org/cap-college-assistance-program/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "North Miami Senior High \u2014 /tag/north-miami-senior-high-school/",
+      "url": "https://nmshpioneers.org/tag/north-miami-senior-high-school/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /class-of-2019-seniors/",
+      "url": "https://southwestmiamieagles.net/class-of-2019-seniors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /scholarships/",
+      "url": "https://southwestmiamieagles.net/scholarships/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /meet-your-counselor/",
+      "url": "https://southwestmiamieagles.net/meet-your-counselor/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /scholarship-websites/",
+      "url": "https://southwestmiamieagles.net/scholarship-websites/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /college-assistance-program-cap/",
+      "url": "https://southwestmiamieagles.net/college-assistance-program-cap/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /senior-shirt-samples/",
+      "url": "https://southwestmiamieagles.net/senior-shirt-samples/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /southwest-miami-senior-high-school-class-of-198",
+      "url": "https://southwestmiamieagles.net/southwest-miami-senior-high-school-class-of-1982-40th-reunion-flyer/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /senior-name-check/",
+      "url": "https://southwestmiamieagles.net/senior-name-check/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /senior_parent_night/",
+      "url": "https://southwestmiamieagles.net/senior_parent_night/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /senior_name_check-2/",
+      "url": "https://southwestmiamieagles.net/senior_name_check-2/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /senior_spirit_week/",
+      "url": "https://southwestmiamieagles.net/senior_spirit_week/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Southwest Miami Senior High \u2014 /senior_portrait_hj/",
+      "url": "https://southwestmiamieagles.net/senior_portrait_hj/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Southridge Senior High \u2014 /contact-your-counselor/",
+      "url": "https://miamisouthridgeshs.com/contact-your-counselor/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Southridge Senior High \u2014 /college-assistance-program-cap/",
+      "url": "https://miamisouthridgeshs.com/college-assistance-program-cap/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Ronald W. Reagan Doral Senior High \u2014 /college-assistance-program-cap/",
+      "url": "https://ronaldwreagandoralshs.net/college-assistance-program-cap/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /",
+      "url": "https://miamibeachseniorhigh.net/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /contact-us/",
+      "url": "https://miamibeachseniorhigh.net/contact-us/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /mission-vision-values/",
+      "url": "https://miamibeachseniorhigh.net/mission-vision-values/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /advanced-placement/",
+      "url": "https://miamibeachseniorhigh.net/advanced-placement/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /faculty-and-staff-directory/",
+      "url": "https://miamibeachseniorhigh.net/faculty-and-staff-directory/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /calendar/",
+      "url": "https://miamibeachseniorhigh.net/calendar/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /administrative-team/",
+      "url": "https://miamibeachseniorhigh.net/administrative-team/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /principals-message/",
+      "url": "https://miamibeachseniorhigh.net/principals-message/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /anti-discrimination-harassment/",
+      "url": "https://miamibeachseniorhigh.net/anti-discrimination-harassment/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /parent-portal/",
+      "url": "https://miamibeachseniorhigh.net/parent-portal/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /student-portal/",
+      "url": "https://miamibeachseniorhigh.net/student-portal/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Beach Senior High \u2014 /web-accessibility-statement/",
+      "url": "https://miamibeachseniorhigh.net/web-accessibility-statement/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /income-survey/",
+      "url": "https://miamisunsetsenior.com/income-survey/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /how-to-access-the-family-portal-and-fast-result",
+      "url": "https://miamisunsetsenior.com/how-to-access-the-family-portal-and-fast-results/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /2026-2027-subject-selection-forms/",
+      "url": "https://miamisunsetsenior.com/2026-2027-subject-selection-forms/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /water-safety-parent-resources/",
+      "url": "https://miamisunsetsenior.com/water-safety-parent-resources/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /making-lasting-impressions/",
+      "url": "https://miamisunsetsenior.com/making-lasting-impressions/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /schoology-parent-access-information/",
+      "url": "https://miamisunsetsenior.com/schoology-parent-access-information/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /2024-2025-open-enrollment-period-for-districts-",
+      "url": "https://miamisunsetsenior.com/2024-2025-open-enrollment-period-for-districts-full-time-virtual-schools/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /school-board-policy-2370-magnet-programs/",
+      "url": "https://miamisunsetsenior.com/school-board-policy-2370-magnet-programs/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /accessing-the-parent-choice-application/",
+      "url": "https://miamisunsetsenior.com/accessing-the-parent-choice-application/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /department-of-mental-health-services-rooted-in-",
+      "url": "https://miamisunsetsenior.com/department-of-mental-health-services-rooted-in-purpose-mental-wellness/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /2026-miami-national-college-fair/",
+      "url": "https://miamisunsetsenior.com/2026-miami-national-college-fair/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Sunset Senior High \u2014 /2025-2026-parent-academy-q4-webinars/",
+      "url": "https://miamisunsetsenior.com/2025-2026-parent-academy-q4-webinars/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Carol City Senior High \u2014 /cap-college-assistance-program/",
+      "url": "https://miamicarolcityshs.net/cap-college-assistance-program/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /entrepreneurship-academy/ayes-automotive-techno",
+      "url": "https://americanshs.net/entrepreneurship-academy/ayes-automotive-technology/academy-achievements-awards-and-scholarships/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /senior-co-2018/",
+      "url": "https://americanshs.net/senior-co-2018/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /personalized-senior-parking-space-2018/",
+      "url": "https://americanshs.net/personalized-senior-parking-space-2018/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /get-to-know-your-counselors/",
+      "url": "https://americanshs.net/get-to-know-your-counselors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /senior-c-o-2020/",
+      "url": "https://americanshs.net/senior-c-o-2020/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /college-career/",
+      "url": "https://americanshs.net/college-career/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /class-of-2020-senior-financial-obligation/",
+      "url": "https://americanshs.net/class-of-2020-senior-financial-obligation/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /senior-class-of-2021/",
+      "url": "https://americanshs.net/senior-class-of-2021/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /american-senior-high-logo-clear/",
+      "url": "https://americanshs.net/american-senior-high-logo-clear/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /american-senior-high-logo-white/",
+      "url": "https://americanshs.net/american-senior-high-logo-white/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /7011-american-senior-high/",
+      "url": "https://americanshs.net/7011-american-senior-high/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "American Senior High \u2014 /_senior-orientation-6/",
+      "url": "https://americanshs.net/_senior-orientation-6/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Palmetto Senior High \u2014 /scholarships/",
+      "url": "https://cap.mpshs.net/scholarships/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /bright-futures-scholarship-bulletin/",
+      "url": "https://www.miamikillianhs.net/bright-futures-scholarship-bulletin/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /counselor-request-form/",
+      "url": "https://www.miamikillianhs.net/counselor-request-form/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /important-senior-meeting/",
+      "url": "https://www.miamikillianhs.net/important-senior-meeting/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /seniors/",
+      "url": "https://www.miamikillianhs.net/seniors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /counselor-request/",
+      "url": "https://www.miamikillianhs.net/counselor-request/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /tag/south-dade-senior-high-school/",
+      "url": "https://www.miamikillianhs.net/tag/south-dade-senior-high-school/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Killian Senior High \u2014 /tag/killian-senior-high/",
+      "url": "https://www.miamikillianhs.net/tag/killian-senior-high/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Dade Senior High \u2014 /bright-futures-scholarship-bulletin/",
+      "url": "https://sdshs.net/bright-futures-scholarship-bulletin/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Dade Senior High \u2014 /counselor-request-form/",
+      "url": "https://sdshs.net/counselor-request-form/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Dade Senior High \u2014 /important-senior-meeting/",
+      "url": "https://sdshs.net/important-senior-meeting/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Dade Senior High \u2014 /seniors/",
+      "url": "https://sdshs.net/seniors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "South Dade Senior High \u2014 /tag/south-dade-senior-high-school/",
+      "url": "https://sdshs.net/tag/south-dade-senior-high-school/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Homestead Senior High \u2014 /homestead-senior-high-school-homestead-fl-6/",
+      "url": "https://www.homesteadshs.net/homestead-senior-high-school-homestead-fl-6/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Homestead Senior High \u2014 /homestead-senior/",
+      "url": "https://www.homesteadshs.net/homestead-senior/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Homestead Senior High \u2014 /homestead-senior-1/",
+      "url": "https://www.homesteadshs.net/homestead-senior-1/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Felix Varela Senior High \u2014 /get-to-know-your-counselors/",
+      "url": "https://varelahighschool.net/get-to-know-your-counselors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Felix Varela Senior High \u2014 /counselors/",
+      "url": "https://varelahighschool.net/counselors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Felix Varela Senior High \u2014 /school-counselors/",
+      "url": "https://varelahighschool.net/school-counselors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Felix Varela Senior High \u2014 /varela-senioritis/",
+      "url": "https://varelahighschool.net/varela-senioritis/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Coral Park Senior High \u2014 /curriculum-bulletin/",
+      "url": "https://www.mcpshs.com/curriculum-bulletin/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Coral Park Senior High \u2014 /senior-class-c-o-2026/",
+      "url": "https://www.mcpshs.com/senior-class-c-o-2026/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Alonzo and Tracy Mourning Senior High \u2014 /cap-corner/",
+      "url": "https://www.atmourningsharks.net/cap-corner/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Alonzo and Tracy Mourning Senior High \u2014 /counselors-corner/",
+      "url": "https://www.atmourningsharks.net/counselors-corner/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /counselors-corner/",
+      "url": "https://miamispringshawks.net/counselors-corner/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /class-of-2025-seniors/",
+      "url": "https://miamispringshawks.net/class-of-2025-seniors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /miami-springs-senior-high-hawk-aerial/",
+      "url": "https://miamispringshawks.net/miami-springs-senior-high-hawk-aerial/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /miami-springs-senior-high-hawk-aerial-shot/",
+      "url": "https://miamispringshawks.net/miami-springs-senior-high-hawk-aerial-shot/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /2020-21-npfh-banner_miami-springs-senior-high-s",
+      "url": "https://miamispringshawks.net/2020-21-npfh-banner_miami-springs-senior-high-school/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /miami-springs-senior-programs/",
+      "url": "https://miamispringshawks.net/miami-springs-senior-programs/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /mssh-senior-parent-night-flyer-english/",
+      "url": "https://miamispringshawks.net/mssh-senior-parent-night-flyer-english/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /mssh-senior-parent-night-flyer-spanish/",
+      "url": "https://miamispringshawks.net/mssh-senior-parent-night-flyer-spanish/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /cap-logo-scholarship/",
+      "url": "https://miamispringshawks.net/cap-logo-scholarship/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Springs Senior High \u2014 /miami-springs-senior-high-school-1-1/",
+      "url": "https://miamispringshawks.net/miami-springs-senior-high-school-1-1/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center \u2014 /entrepreneurship-academy/ayes-automotive-techno",
+      "url": "https://robertmorganeducenter.com/entrepreneurship-academy/ayes-automotive-technology/academy-achievements-awards-and-scholarships/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center \u2014 /personalized-senior-parking-space-2018/",
+      "url": "https://robertmorganeducenter.com/personalized-senior-parking-space-2018/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center \u2014 /get-to-know-your-counselors/",
+      "url": "https://robertmorganeducenter.com/get-to-know-your-counselors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center \u2014 /bright-futures-scholarship/",
+      "url": "https://robertmorganeducenter.com/bright-futures-scholarship/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center \u2014 /financial-aid-resources/",
+      "url": "https://robertmorganeducenter.com/financial-aid-resources/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Robert Morgan Educational Center \u2014 /senior-class-shirts/",
+      "url": "https://robertmorganeducenter.com/senior-class-shirts/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "JC Bermudez Doral Senior High \u2014 /senior-newsletter-and-graduation-information/",
+      "url": "https://jcbdoralthunder.com/senior-newsletter-and-graduation-information/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "JC Bermudez Doral Senior High \u2014 /class-of-2023-seniors/",
+      "url": "https://jcbdoralthunder.com/class-of-2023-seniors/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "JC Bermudez Doral Senior High \u2014 /bwg_gallery/friends-of-j-c-bermudez-doral-senio",
+      "url": "https://jcbdoralthunder.com/bwg_gallery/friends-of-j-c-bermudez-doral-senior-high/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "JC Bermudez Doral Senior High \u2014 /bwg_gallery/jc-bermudez-doral-senior-building-r",
+      "url": "https://jcbdoralthunder.com/bwg_gallery/jc-bermudez-doral-senior-building-renovations/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Young Women's Preparatory Academy \u2014 /counselors-corner/",
+      "url": "https://www.ywpafl.com/counselors-corner/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Young Women's Preparatory Academy \u2014 /your-school-cap-counselor/",
+      "url": "https://www.ywpafl.com/your-school-cap-counselor/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Young Women's Preparatory Academy \u2014 /bwg_gallery/2020-seniors-tribute/",
+      "url": "https://www.ywpafl.com/bwg_gallery/2020-seniors-tribute/",
+      "kind": "list",
+      "note": "discovered via sitemap or slug probe"
+    }
+  ]
+}
