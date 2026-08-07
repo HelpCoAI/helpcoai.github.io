@@ -1,0 +1,54 @@
+27/52 pages harvested
+------------------------------------------------------------------------------
+[     ok] Coral Reef Senior High                     11,776 chars -> miami-dade--coral-reef-senior-high.txt
+[     ok] North Miami Senior High                    4,931 chars -> miami-dade--north-miami-senior-high.txt
+[     ok] Southwest Miami Senior High                7,788 chars -> miami-dade--southwest-miami-senior-high.txt
+[     ok] Miami Southridge Senior High               10,639 chars -> miami-dade--miami-southridge-senior-high.txt
+[     ok] Ronald W. Reagan Doral Senior High         5,594 chars -> miami-dade--ronald-w-reagan-doral-senior-high.txt
+[ robots] Miami Jackson Senior High                  disallowed by robots.txt  https://jacksonshs.org/apps/pages/index.jsp?uREC_ID=279137&type=d
+[     ok] Miami Beach Senior High                    7,325 chars -> miami-dade--miami-beach-senior-high.txt
+[     ok] Miami Sunset Senior High                   6,827 chars -> miami-dade--miami-sunset-senior-high.txt
+[     ok] Miami Carol City Senior High               5,397 chars -> miami-dade--miami-carol-city-senior-high.txt
+[     ok] American Senior High                       6,236 chars -> miami-dade--american-senior-high.txt
+[     ok] South Miami Senior High                    4,816 chars -> miami-dade--south-miami-senior-high.txt
+[     ok] Coral Gables Senior High                   6,653 chars -> miami-dade--coral-gables-senior-high.txt
+[     ok] Miami Palmetto Senior High                 8,746 chars -> miami-dade--miami-palmetto-senior-high.txt
+[     ok] Miami Killian Senior High                  23,900 chars -> miami-dade--miami-killian-senior-high.txt
+[     ok] South Dade Senior High                     6,606 chars -> miami-dade--south-dade-senior-high.txt
+[     ok] Homestead Senior High                      3,507 chars -> miami-dade--homestead-senior-high.txt
+[ robots] Cutler Bay Senior High                     disallowed by robots.txt  https://www.cutlerbayhigh.org/apps/pages/index.jsp?uREC_ID=280151&type=d
+[     ok] Felix Varela Senior High                   6,699 chars -> miami-dade--felix-varela-senior-high.txt
+[ robots] G. Holmes Braddock Senior High             disallowed by robots.txt  https://www.braddockbulldogs.org/apps/pages/index.jsp?uREC_ID=324425&type=d&pREC_ID=681269
+[ robots] John A. Ferguson Senior High               disallowed by robots.txt  https://www.fergusonhs.org/apps/pages/index.jsp?uREC_ID=249989&type=d
+[     ok] Miami Coral Park Senior High               11,105 chars -> miami-dade--miami-coral-park-senior-high.txt
+[ robots] Miami Northwestern Senior High             disallowed by robots.txt  https://www.northwesternbulls.org/apps/pages/index.jsp?uREC_ID=294296&type=d
+[ robots] Miami Norland Senior High                  disallowed by robots.txt  https://www.miaminorlandshs.org/apps/pages/index.jsp?uREC_ID=318382&type=d
+[ robots] Hialeah Senior High                        disallowed by robots.txt  https://www.hialeahhigh.org/apps/pages/?uREC_ID=123043&type=d&pREC_ID=243238
+[ robots] Hialeah-Miami Lakes Senior High            disallowed by robots.txt  https://www.hmltrojans.org/apps/pages/index.jsp?uREC_ID=264903&type=d
+[ robots] Hialeah Gardens High                       disallowed by robots.txt  https://www.hghsgladiators.com/apps/pages/index.jsp?uREC_ID=421224&type=d
+[ robots] Barbara Goleman Senior High                disallowed by robots.txt  https://www.barbaragolemansenior.com/apps/pages/index.jsp?uREC_ID=573396&type=d&pREC_ID=1139551
+[ robots] Westland Hialeah Senior High               disallowed by robots.txt  https://westlandwildcats.net/apps/pages/index.jsp?uREC_ID=401152&type=d
+[ robots] Dr. Michael M. Krop Senior High            disallowed by robots.txt  https://kropseniorhigh.org/apps/pages/index.jsp?uREC_ID=216571&type=d&pREC_ID=477736
+[     ok] Alonzo and Tracy Mourning Senior High      12,818 chars -> miami-dade--alonzo-and-tracy-mourning-senior-high.txt
+[     ok] Miami Springs Senior High                  3,879 chars -> miami-dade--miami-springs-senior-high.txt
+[     ok] Robert Morgan Educational Center           7,512 chars -> miami-dade--robert-morgan-educational-center.txt
+[     ok] JC Bermudez Doral Senior High              5,404 chars -> miami-dade--jc-bermudez-doral-senior-high.txt
+[ robots] Miami Lakes Educational Center             disallowed by robots.txt  https://www.mlecshs.com/apps/pages/index.jsp?uREC_ID=397619&type=d
+[     ok] Young Women's Preparatory Academy          4,172 chars -> miami-dade--young-women-s-preparatory-academy.txt
+[  error] Design and Architecture Senior High (DASH) HTTP 404  http://dashcap.dadeschools.net/html/index.html
+[     ok] MAST Academy                               34,261 chars -> miami-dade--mast-academy.txt
+[     ok] Jose Marti MAST 6-12 Academy               6,015 chars -> miami-dade--jose-marti-mast-6-12-academy.txt
+[ robots] TERRA Environmental Research Institute     disallowed by robots.txt  https://www.terrawolves.com/apps/pages/index.jsp?uREC_ID=241582&type=d&pREC_ID=468925
+[ robots] William H. Turner Technical Arts High      disallowed by robots.txt  https://www.turnertech-eagles.com/college-advising-program
+[ robots] Arthur and Polly Mays Conservatory of the  disallowed by robots.txt  https://www.apmays.org/apps/pages/index.jsp?uREC_ID=562936&type=d
+[ robots] Miami Senior High                          disallowed by robots.txt  https://www.miamiseniorhigh.org/m/pages/index.jsp?uREC_ID=339275&type=d&pREC_ID=660976
+[     ok] International Studies Preparatory Academy  11,126 chars -> miami-dade--international-studies-preparatory-academy.txt
+[   thin] Miami Edison Senior High                   1 chars  https://miamiedisonshs.net/student-support/
+[ robots] Christopher Columbus High School           disallowed by robots.txt  https://www.columbushs.com/college-counseling
+[  error] Belen Jesuit Preparatory School            HTTP 403  https://www.belenjesuit.org/student-life/college-counseling
+[     ok] Immaculata-La Salle High School            5,916 chars -> miami-dade--immaculata-la-salle-high-school.txt
+[  error] Archbishop Coleman F. Carroll High School  HTTP 429  https://www.colemancarroll.org/CatholicSchool.php?pg=College+Counseling
+[  error] Monsignor Edward Pace High School          HTTP 418  https://www.pacehs.com/scholarships.php
+[ robots] Saint Brendan High School                  disallowed by robots.txt  https://www.stbrendanhigh.org/academics/guidance-and-college-advising
+[ robots] Carrollton School of the Sacred Heart      disallowed by robots.txt  https://www.carrollton.org/academics/collegecounseling
+[     ok] Ransom Everglades School                   15,137 chars -> miami-dade--ransom-everglades-school.txt
