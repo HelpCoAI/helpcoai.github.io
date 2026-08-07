@@ -89,3 +89,29 @@ The extraction schema should change rarely; the filter schema will change consta
 what students actually filter on. Keeping them separate means a filter change costs one
 re-processing run over stored text, not a re-crawl of 300 pages against sites that already
 rate-limit us.
+
+---
+
+## Status of the enrichment pass (2026-08-07)
+
+All fields above are now extracted by `scripts/20_extract_awards.py`, which runs over
+`scripts/19_declutter.py` output. No field was dropped from the schema; the ones that are
+sparse are sparse because the source pages do not state them, which is the correct outcome
+under "absent means unknown".
+
+Measured coverage over 364 extracted records:
+
+| Band | Fields |
+|---|---|
+| >50% | deadline (68%), amount_min/max (53%) |
+| 20-50% | majors, high_schools, destination_institutions, cities, college_plan, counties, activities |
+| 5-20% | class_year, need_based, gender, beneficiary_scope, essay_required, gpa_min, opens, heritage, merit_based, transcript_required |
+| <5% | citizenship, fafsa_required, enrollment_status, residency_required, military_affiliation, clubs_organizations, disability, first_generation, renewable, employer_affiliation, recommendation_letters |
+
+`eligibility_raw` is present on 100% of records, so every sparse field can be re-derived
+later without re-crawling — which is the entire reason for the two-pass split.
+
+**Precision is the open problem, not coverage.** A 16-record hand sample read ~55% clean;
+the rest are name-boundary artifacts ("Purchase Tickets OPAL Awards"), or amounts pulled
+from the wrong sentence ($15 for Native Forward, $65,000 for "State Scholarship"). Regex
+segmentation is at its ceiling here.
