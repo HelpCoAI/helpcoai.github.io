@@ -1,0 +1,1130 @@
+{
+  "_comment": [
+    "BMF priority B and C organizations with a website.",
+    "Priority A is already crawled; this is the next tier of the same 670-org pool,",
+    "reusing the existing pipeline with no new code. Expect a lower hit rate than A --",
+    "these scored lower precisely because the signals were weaker."
+  ],
+  "seeds": [
+    {
+      "county": "Broward",
+      "org": "Cats Baseball Booster Inc",
+      "url": "https://leaguelineup.com/catsbaseball",
+      "kind": "list",
+      "note": "BMF priority-B, score 40, Weston"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Theodore Roosevelt Gibson Memorial Fund Incorporated",
+      "url": "https://www.thelmagibsonhealthinitiative.org",
+      "kind": "list",
+      "note": "BMF priority-B, score 25, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Nicholas Dworet Memorial Fund Inc",
+      "url": "https://nicholasdworetfund.org",
+      "kind": "list",
+      "note": "BMF priority-B, score 25, Cooper City"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Davy Jones Equine Memorial Fund Inc",
+      "url": "https://haveyouherd.org",
+      "kind": "list",
+      "note": "BMF priority-B, score 25, Jupiter"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Harvard Asian American Alumni Alliance Educational And Charitabl",
+      "url": "https://haaaa.sigs.harvard.edu",
+      "kind": "list",
+      "note": "BMF priority-B, score 23, Boca Raton"
+    },
+    {
+      "county": "Broward",
+      "org": "Cornwall College Alumni Association Inc",
+      "url": "https://www.ccalumni-florida.com",
+      "kind": "list",
+      "note": "BMF priority-B, score 23, Plantation"
+    },
+    {
+      "county": "Broward",
+      "org": "Fbi Citizens Academy Alumni Association Inc - South Florida",
+      "url": "https://www.fbicaaamiami.org",
+      "kind": "list",
+      "note": "BMF priority-B, score 23, Cooper City"
+    },
+    {
+      "county": "Broward",
+      "org": "The Frederick A Deluca Foundation Inc",
+      "url": "https://www.delucafdn.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Pompano Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Invisible Hand Foundation",
+      "url": "https://www.barryfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Carl Angus Desantis Foundation Inc",
+      "url": "https://www.carldesantis.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Delray Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Kovner Foundation",
+      "url": "https://thekovnerfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Jupiter"
+    },
+    {
+      "county": "Broward",
+      "org": "Taft Foundation",
+      "url": "https://thetaftfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Fort Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Desai Sethi Foundation Inc",
+      "url": "https://www.thedsfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Bravo Family Charitable Foundation",
+      "url": "https://www.bravofamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Lattner Family Foundation Inc",
+      "url": "https://www.lattnerfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Delray Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "James And Beatrice Salah Charitable Trust",
+      "url": "https://www.salahfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Ft Lauderdale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Leandro P Rizzuto Foundation",
+      "url": "https://alsfindingacure.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boynton Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Thiel Foundation",
+      "url": "https://www.thielfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Stoops Family Foundation Inc",
+      "url": "https://nonprofitlocator.org/ORGANIZATIONS/FL",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Delray Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Charles Lafitte Foundation",
+      "url": "https://www.charleslafitte.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Jupiter"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Queally Foundation Inc",
+      "url": "https://thequeallyfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Palm Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Hanley Foundation",
+      "url": "https://www.hanleyfdn.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Karen Toffler Charitable Trust",
+      "url": "https://tofflertrust.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Kirk Foundation Inc",
+      "url": "https://kirk-foundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Palmetto Bay"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "National School Choice Awareness Foundation Inc",
+      "url": "https://schoolchoiceawareness.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Aventura"
+    },
+    {
+      "county": "Broward",
+      "org": "Eugene Ewan Mori Foundation Inc",
+      "url": "https://eemorifoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Davie"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Linda Ye And Robin Ren Family Foundation",
+      "url": "https://yerenfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Aventura"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Castro Family Foundation Inc",
+      "url": "https://www.mv4k.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Robert C And Veronica Atkins Foundation",
+      "url": "https://www.atkinsfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Jupiter"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Harpo Foundation Inc",
+      "url": "https://www.harpofoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Strachan Foundation",
+      "url": "https://www.strachanfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Coral Gables"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Michael And Annie Falk Foundation",
+      "url": "https://www.anniefalk.comourfoundation",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Palm Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Geo Global Foundation",
+      "url": "https://www.jaimedavidovichfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Coral Gables"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Manes Peace Prize Foundation",
+      "url": "https://manespeaceprize.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Delray Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Sqa Foundation Inc",
+      "url": "https://www.sqafoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Coral Gables"
+    },
+    {
+      "county": "Broward",
+      "org": "Paul Palank Memorial Foundation Inc",
+      "url": "https://www.palankfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Ft Lauderdale"
+    },
+    {
+      "county": "Broward",
+      "org": "Marvin H Weiner Foundation Inc",
+      "url": "https://mhweiner.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Ft Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Jrp Family Foundation Inc",
+      "url": "https://www.jrpfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Florida City"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "John O Ounjian Foundation Inc",
+      "url": "https://ounjiandoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Broward",
+      "org": "Bill Kent Family Foundation Inc",
+      "url": "https://billkentfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Ft Lauderdale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Lois Pope Life Foundation Inc",
+      "url": "https://www.life-edu.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Lantana"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Levitetz Family Foundation Inc",
+      "url": "https://www.levitetzfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Ross And Carol Nese Foundation",
+      "url": "https://www.nesefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Riviera Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Marlins Foundation Inc",
+      "url": "https://www.mlb.com/MARLINS/COMMUNITY/FOUNDATION",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Gordon Family Foundation Inc",
+      "url": "https://www.gordonfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Hallandale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Pfeifler Family Foundation",
+      "url": "https://sites.google.com/SITE/PFEIFLERFAMILYFOUNDATION",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Palm Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Annette Urso Rickel Foundation Inc",
+      "url": "https://rickelfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Lantana"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Ark Foundation",
+      "url": "https://www.the-ark-foundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Donald A Burns Foundation Inc",
+      "url": "https://www.dabfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Palm Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "Embrace Foundation",
+      "url": "https://www.embraceusa.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Hollywood"
+    },
+    {
+      "county": "Broward",
+      "org": "S&B World Foundation Inc",
+      "url": "https://sbworldfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Ft Lauderdale"
+    },
+    {
+      "county": "Broward",
+      "org": "Verena Foundation",
+      "url": "https://www.verenafoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Plantation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Mcnamara Family Foundation Inc",
+      "url": "https://www.sunbiz.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Coral Gables"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Peter@Degeorge Family Foundation Inc",
+      "url": "https://www.nonprofitlocator.org/ORGANIZATIONS/FL",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Jupiter"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "I Could Do Great Things Foundation",
+      "url": "https://icoulddogreatthings.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Charles And Joan Hermanowski Family Foundation Inc",
+      "url": "https://www.hermanowskifoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Elevate Prize Foundation Inc",
+      "url": "https://www.elevateprize.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Hagen Family Foundation",
+      "url": "https://www.hagenfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Boca Raton"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Wynne Charitable Foundation",
+      "url": "https://wynnefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Atlantis Blue Project Foundation Inc",
+      "url": "https://blueprojectatlantis.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 60, Plantation"
+    },
+    {
+      "county": "Broward",
+      "org": "The Joseph And Winifred Amaturo Education Foundation Inc",
+      "url": "https://www.guidestar.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 53, Ft Lauderdale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Iris And Junming Le Foundationtrust Dated 3-10-06",
+      "url": "https://thelefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 50, Boca Raton"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Pels Tzedek Tirdof Inc",
+      "url": "https://www.pelsfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 50, Miami Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Childrens Wellness Fund Inc",
+      "url": "https://www.childrenswellnessfund.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 50, Coral Gables"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Cv Americas Inc",
+      "url": "https://www.cvclavoz.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 50, Miami Lakes"
+    },
+    {
+      "county": "Broward",
+      "org": "Thyras Sanctuary Inc",
+      "url": "https://www.thyrassanctuary.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 50, Ft Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Psalms Of Life Inc",
+      "url": "https://www.psalmsoflife.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 50, Miami Lakes"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "D-C Family Foundation Inc",
+      "url": "https://dcfamilyfoudnation.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 48, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Pulte Family Charitable Foundation Inc",
+      "url": "https://www.pultefamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boca Raton"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Batchelor Foundation Inc",
+      "url": "https://tbfinc.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Mary Alice Fortin Foundation",
+      "url": "https://mafortinfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Palm Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Kislak Family Foundation Inc",
+      "url": "https://kislakfamilyfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami Lakes"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Whitehall Foundation Inc",
+      "url": "https://www.whitehall.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Palm Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Barker Welfare Foundation",
+      "url": "https://www.barkerwelfare.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Palm Beach Gardens"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Scaife Family Foundation",
+      "url": "https://www.scaifefamily.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, West Palm Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Laura & Isaac Perlmutter Foundation Inc",
+      "url": "https://theperlmutterfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Lake Worth"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Stiles-Nicholson Foundation",
+      "url": "https://www.stiles-nicholson.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Jupiter"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Peacock Foundation Inc",
+      "url": "https://www.peacockfoundationinc.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Coral Gables"
+    },
+    {
+      "county": "Broward",
+      "org": "A D Henderson Foundation Inc",
+      "url": "https://www.hendersonfdn.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Ft Lauderdale"
+    },
+    {
+      "county": "Broward",
+      "org": "Marion And Richard Graham Foundation",
+      "url": "https://www.the-graham-foundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Ft Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Dunspaugh-Dalton Foundation Inc",
+      "url": "https://dunspaughdalton.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Coral Gables"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Contemporary Arts Foundation Inc",
+      "url": "https://www.rfc.museum",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Martin Z Margulies Foundation Inc",
+      "url": "https://www.margulieswarehouse.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Key Biscayne"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Anthony R Abraham Foundation Inc",
+      "url": "https://abrahamfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Coral Gables"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Blank Family Foundation Inc",
+      "url": "https://blankfamily.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami Gardens"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Dr John T Macdonald Foundation Inc",
+      "url": "https://www.jtmacdonaldfdn.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Coral Gables"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Iris & B Gerald Cantor Foundation",
+      "url": "https://www.cantorfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Palm Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Carrie Meek Foundation Inc",
+      "url": "https://www.carriemeekfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Opa Locka"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Green Family Foundation Trust",
+      "url": "https://www.greenff.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Coral Gables"
+    },
+    {
+      "county": "Broward",
+      "org": "Amaturo Family Foundation Inc",
+      "url": "https://www.guidestar.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Ft Lauderdale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Robert Craft Igor Stravinsky Foundation",
+      "url": "https://www.rcisfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, West Palm Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Irvin Stern Foundation",
+      "url": "https://www.irvinsternfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boca Raton"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Kantner Foundation Inc",
+      "url": "https://www.kantnerfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Jupiter"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Edward H Richard Foundation",
+      "url": "https://www.guidestar.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boynton Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "Bbx Capital Foundation Inc",
+      "url": "https://bbxcapital.com/ABOUT-US/BBX-CAPITAL-FOUNDATIO",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Ft Lauderdale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "America 3 Foundation",
+      "url": "https://www.a3.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, West Palm Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "The Campbell Foundation",
+      "url": "https://campbellfoundation.net",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Ft Lauderdale"
+    },
+    {
+      "county": "Broward",
+      "org": "Figgers Foundation",
+      "url": "https://figgersfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Plantation"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Simeon And Jean H Locke Charitable Foundation",
+      "url": "https://www.sjlockefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boynton Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Mustakis Charitable Network Foundation Inc",
+      "url": "https://www.fundacionmustakis.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Targum Shlishi Inc Aryeh & Raquel Rubin Foundation",
+      "url": "https://targumshlishi.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Aventura"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Arquitectonica Foundation Inc",
+      "url": "https://arquitectonica.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Tonkinson Foundation Inc",
+      "url": "https://www.tonkinsonfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Fop Jim Fogleman Lodge 50 Foundation Incorporated",
+      "url": "https://five0foundation.unionactive.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Palm Springs"
+    },
+    {
+      "county": "Broward",
+      "org": "Floyd L Wray Memorial Foundation",
+      "url": "https://www.flamingogardens.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Davie"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Sanford F And Gabrielle T Kuvin Foundation",
+      "url": "https://www.kuvinfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boca Raton"
+    },
+    {
+      "county": "Broward",
+      "org": "Hamilton M & Blanche C Forman Christian Foundation",
+      "url": "https://www.guidestar.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Davie"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "The Chingos Foundation",
+      "url": "https://chingosfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boynton Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Tisi Family Foundation",
+      "url": "https://nonprofitlocator.org/ORGANIZATIONS/FL",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Boca Raton"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Strive Foundation Inc",
+      "url": "https://www.stampsscholars.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Bennie & Martha Benjamin Foundation Inc",
+      "url": "https://benniebenjaminfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 40, Delray Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "Skate Free Inc",
+      "url": "https://www.skatefree.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 38, Plantation"
+    },
+    {
+      "county": "Broward",
+      "org": "Broward College Foundation Inc",
+      "url": "https://www.browardcollegefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 35, Fort Lauderdale"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Jupiter Medical Center Foundation Inc",
+      "url": "https://www.jmcfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Jupiter"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Fundacion Carvajal",
+      "url": "https://www.fundacioncarvajal.org.co",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Nicklaus Childrens Health Care Foundation Inc",
+      "url": "https://www.nchcf.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Juno Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Flight Attendant Medical Research Institute Inc",
+      "url": "https://www.famri.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Coral Gables"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Montgomery Botanical Center Inc",
+      "url": "https://www.montgomerybotanical.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Community Child Care Center Of Delray Beach Foundation Inc",
+      "url": "https://www.achievementcentersfl.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Delray Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "He Hill Founadation In C",
+      "url": "https://hehill.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Belle Glade"
+    },
+    {
+      "county": "Broward",
+      "org": "Wiener Museum Of Decorative Arts Inc",
+      "url": "https://www.wmoda.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Hollywood"
+    },
+    {
+      "county": "Broward",
+      "org": "Senior Citizens Housing Development Corporation Of Fontana",
+      "url": "https://www.ehdoc.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Plantation"
+    },
+    {
+      "county": "Broward",
+      "org": "Bougainvilla House Inc",
+      "url": "https://tbhcares.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Ft Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "El Espacio 23 Inc",
+      "url": "https://www.elespacio23.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Turkish Friends Of Chabad Inc",
+      "url": "https://www.guidestar.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "West Palm Beach Library Foundation Inc",
+      "url": "https://www.wpblf.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, West Palm Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "Gamma Mu Foundation Inc",
+      "url": "https://www.gammamufoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Ft Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Mapet International Foundation Inc",
+      "url": "https://www.mapetfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami Lakes"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Joseph R Narot Endowment Fund Inc",
+      "url": "https://www.templeisrael.net",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Dauer Museum Of Classic Cars Inc",
+      "url": "https://www.dauerclassiccars.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Sunrise"
+    },
+    {
+      "county": "Broward",
+      "org": "Anthony Rizzo Family Foundation",
+      "url": "https://www.rizzo44.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Parkland"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Peaceful Mind Peaceful Life Inc",
+      "url": "https://www.peacefulmindpeacefulllife.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Delray Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "Arriving Home Inc",
+      "url": "https://stjohncc.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Fort Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Stand Strong International Inc",
+      "url": "https://standstrong.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Aventura"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "The Battier Take Charge Foundation Inc",
+      "url": "https://battiertakecharge.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Nicks Kids Foundation Inc",
+      "url": "https://www.nickskidsfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Jupiter"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Center For Social Change Inc",
+      "url": "https://www.4socialchange.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Community Police Relations Foundation",
+      "url": "https://www.communitypolicerelationsfoundation",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Gratitude House Inc",
+      "url": "https://www.gratitudehouse.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Palm Beach"
+    },
+    {
+      "county": "Broward",
+      "org": "Sheriffs Foundation Of Broward County Inc",
+      "url": "https://sheriffsfoundationofbroward.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Plantation"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Sandals Foundation Inc",
+      "url": "https://www.sandalsfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Florida Panthers Foundation Inc",
+      "url": "https://www.nhl.com/COMMUNITY/PANTHERS/FOUNDATION",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Sunrise"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Admirals Cove Foundation Inc",
+      "url": "https://www.admiralscovefoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Jupiter"
+    },
+    {
+      "county": "Broward",
+      "org": "Leadership Broward Foundation Inc",
+      "url": "https://www.leadershipbroward.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Ft Lauderdale"
+    },
+    {
+      "county": "Broward",
+      "org": "Heartsprings International Ministries Inc",
+      "url": "https://www.heartspringsinternational.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 30, Fort Lauderdale"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Mater Academy Foundation Inc",
+      "url": "https://guidestar.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Dade College Foundation Inc",
+      "url": "https://mdcfoundation.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Avant Garde Academy Foundation Inc",
+      "url": "https://www.agabroward.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Hollywood"
+    },
+    {
+      "county": "Broward",
+      "org": "Learning Excellence Foundation Of West Broward County Inc",
+      "url": "https://imagineweston.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Weston"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Learning Excellence Foundation Of South Palm Beach Inc",
+      "url": "https://www.imagine-chancellor.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Lake Worth"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami-Dade Foundation For Educational Innovation",
+      "url": "https://www.aiecharterschool.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Miami Springs"
+    },
+    {
+      "county": "Broward",
+      "org": "Alternative Education Foundation Inc",
+      "url": "https://alternativeeducationfoundation.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, Davie"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Seminole Coconut Creek Education Foundation Inc",
+      "url": "https://semcocoedfund.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 23, West Palm Beach"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Miami Heart Research Institute Inc",
+      "url": "https://www.floridaheart.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Miami"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Closehaul Capital Charitable",
+      "url": "https://www.closehaulcharitable.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Miami"
+    },
+    {
+      "county": "Broward",
+      "org": "Our Fund Inc",
+      "url": "https://theourfund.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Wilton Manors"
+    },
+    {
+      "county": "Miami-Dade",
+      "org": "Gene Spotlight Inc",
+      "url": "https://www.genespotlight.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Miami Beach"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Impact 100 Palm Beach County Inc",
+      "url": "https://www.impact100pbc.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Boca Raton"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Sweet Dream Makers Inc",
+      "url": "https://www.sweetdreammakers.org",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Boca Raton"
+    },
+    {
+      "county": "Palm Beach",
+      "org": "Mcdavid Group Charities Inc",
+      "url": "https://themcdavidgroupcharities.com",
+      "kind": "list",
+      "note": "BMF priority-C, score 20, Jupiter"
+    }
+  ]
+}

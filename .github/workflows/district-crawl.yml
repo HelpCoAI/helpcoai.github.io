@@ -31,7 +31,40 @@ permissions:
   contents: write
 
 jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover URLs from sitemaps and slug probes
+        working-directory: grants
+        run: |
+          if [ -f data/district_seeds_discovered.json ]; then
+            echo "already discovered - skipping"; exit 0
+          fi
+          python3 scripts/16_discover_urls.py \
+            --seeds data/district_seeds_schools_miami_dade.json \
+                    data/district_seeds_bmf_orgs.json \
+            --out data/district_seeds_discovered.json --limit 70 --slugs
+      - name: Commit discovered seeds
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add grants/data/district_seeds_discovered.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "nothing new"
+          else
+            git commit -m "Add URLs discovered from sitemaps and slug probes (automated)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
   harvest:
+    needs: discover
+    if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 25
     strategy:
@@ -43,8 +76,14 @@ jobs:
           - { file: "district_seeds_schools_pb_broward.json",   dir: "schools_pb_broward" }
           - { file: "district_seeds_schools_miami_dade.json",   dir: "schools_miami_dade" }
           - { file: "district_seeds_bmf_orgs.json",             dir: "bmf_orgs" }
+          - { file: "district_seeds_bmf_tier_bc.json",          dir: "bmf_tier_bc" }
+          - { file: "district_seeds_discovered.json",           dir: "discovered" }
     steps:
+      # branch head, not the triggering SHA -- the discover job commits a seed
+      # file that this job must be able to see
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:
@@ -58,6 +97,10 @@ jobs:
         env:
           FORCE: ${{ inputs.force }}
         run: |
+          SEEDS="data/${{ matrix.set.file }}"
+          if [ ! -f "$SEEDS" ]; then
+            echo "$SEEDS does not exist - nothing to harvest for this set."; exit 0
+          fi
           OUT="data/district_pages_${{ matrix.set.dir }}"
           if [ -d "$OUT" ] && [ "$FORCE" != "true" ]; then
             echo "$OUT already harvested - skipping. Re-run with force to refresh."
