@@ -1,0 +1,19 @@
+9/17 pages harvested
+------------------------------------------------------------------------------
+[ robots] Hillsborough Education Foundation          disallowed by robots.txt  https://educationfoundation.com/resource/senior-scholarships/
+[ robots] LEAP Tampa Bay College Access Network      disallowed by robots.txt  https://leaptampabay.org/scholarships/
+[     ok] Brooks DeBartolo Collegiate HS student ser 15,650 chars -> hillsborough--brooks-debartolo-collegiate-hs-student-services.txt
+[ robots] Pinellas Education Foundation              disallowed by robots.txt  https://pinellaseducation.org/
+[     ok] Pasco Schools - Zephyrhills HS college & c 31,585 chars -> pasco--pasco-schools-zephyrhills-hs-college-career-centre.txt
+[     ok] River Ridge High School                    4,474 chars -> pasco--river-ridge-high-school.txt
+[ robots] Pasco Education Foundation                 disallowed by robots.txt  https://www.pascoeducationfoundation.org/
+[     ok] Education Foundation of Sarasota County    3,576 chars -> sarasota--education-foundation-of-sarasota-county.txt
+[   thin] LaunchYourPlan (Ed Foundation Sarasota por 1 chars  https://launchyourplan.com/scholarships/
+[  error] Community Foundation of Sarasota County    timed out  https://www.cfsarasota.org/students
+[     ok] Manatee Education Foundation               27,079 chars -> manatee--manatee-education-foundation.txt
+[ robots] Public Education Foundation of Manatee Cou disallowed by robots.txt  https://pefmc.org/scholarships/
+[     ok] Women's Resource Center                    9,122 chars -> manatee-sarasota--women-s-resource-center.txt
+[     ok] Pasco County Schools scholarship database  60,000 chars -> pasco--pasco-county-schools-scholarship-database.txt
+[     ok] Pasco-Hernando State College Foundation    8,615 chars -> pasco--pasco-hernando-state-college-foundation.txt
+[     ok] Manatee Community Foundation               2,321 chars -> manatee--manatee-community-foundation.txt
+[ robots] Florida College Access Network             disallowed by robots.txt  https://floridacollegeaccess.org/initiatives/local-scholarship-resources/

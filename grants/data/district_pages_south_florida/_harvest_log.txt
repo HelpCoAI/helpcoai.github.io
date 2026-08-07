@@ -1,0 +1,18 @@
+10/16 pages harvested
+------------------------------------------------------------------------------
+[     ok] Coral Reef Senior High CAP Corner          11,776 chars -> miami-dade--coral-reef-senior-high-cap-corner.txt
+[     ok] Coral Gables Community Foundation scholars 14,459 chars -> miami-dade--coral-gables-community-foundation-scholarships.txt
+[     ok] Coral Gables Community Foundation 2025 awa 14,009 chars -> miami-dade--coral-gables-community-foundation-2025-awards-list.txt
+[     ok] The Miami Foundation scholarships          15,995 chars -> miami-dade--the-miami-foundation-scholarships.txt
+[     ok] Achieve Miami scholars portal              8,480 chars -> miami-dade--achieve-miami-scholars-portal.txt
+[ robots] Broward BRACE monthly scholarship bulletin disallowed by robots.txt  https://www.browardschools.com/domain/20543
+[     ok] Community Foundation of Broward administer 3,253 chars -> broward--community-foundation-of-broward-administered-scholarships.txt
+[     ok] Broward Education Foundation apply         9,482 chars -> broward--broward-education-foundation-apply.txt
+[  error] Broward League of Cities scholarship progr timed out  https://browardleague.org/students/scholarship-program/
+[     ok] George Snow Scholarship Fund               18,389 chars -> broward-palm-beach--george-snow-scholarship-fund.txt
+[ robots] Palm Beach County district scholarship bul disallowed by robots.txt  https://www.palmbeachschools.org/Page/9270
+[ robots] Park Vista Community High School bulletin  disallowed by robots.txt  https://pvhs.palmbeachschools.org/cms/One.aspx?portalId=1933645&pageId=5545222
+[     ok] Palm Beach per-school bulletin on Google S 3,039 chars -> palm-beach--palm-beach-per-school-bulletin-on-google-sites.txt
+[     ok] Community Foundation for Palm Beach & Mart 12,468 chars -> palm-beach--community-foundation-for-palm-beach-martin-counties.txt
+[ robots] Education Foundation of Palm Beach County  disallowed by robots.txt  https://educationfoundationpbc.org/Scholarships/
+[ robots] Viner Scholars                             disallowed by robots.txt  https://vinerscholars.org/scholarship-program/
