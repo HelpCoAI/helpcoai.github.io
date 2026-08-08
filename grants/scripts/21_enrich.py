@@ -50,7 +50,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 MODEL = "claude-haiku-4-5-20251001"
-PROMPT_VERSION = "v3"          # bump to invalidate the cache deliberately
+PROMPT_VERSION = "v4"          # bump to invalidate the cache deliberately
 CACHE_DIR = Path("data/.enrich_cache")
 MAX_WORKERS = 8
 
@@ -70,7 +70,8 @@ SCALAR_FIELDS = ["name", "sponsor", "amount_min", "amount_max", "num_awards",
                  "renewal_years", "recommendation_letters", "beneficiary_scope",
                  "geo_scope", "estimated_effort_minutes"]
 
-VERDICTS = {"award", "not_an_award", "recognition_only", "aggregate_page"}
+VERDICTS = {"award", "not_an_award", "recognition_only", "aggregate_page",
+            "org_grant", "not_a_source"}
 
 SYSTEM = f"""You normalise scholarship records that a regex extractor pulled off
 school and foundation web pages. The extractor is noisy: it mis-cuts award names,
@@ -86,12 +87,33 @@ never fill a field because it is usually true of scholarships. A student filtere
 OUT by a requirement you invented loses an award they could have won, and nobody
 will ever find out. Leaving a field empty is always the safe answer.
 
-Set "verdict":
-  "award"            a scholarship/grant a student can apply for or be nominated for
+Set "verdict". Work down this list and take the FIRST that applies:
+
+  "org_grant"        THE RECIPIENT IS AN ORGANISATION, NOT A PERSON. Community
+                     foundations, Rotary and Soroptimist clubs fund nonprofits,
+                     clubs and projects, and describe it in scholarship-adjacent
+                     language. "providing grants to local non-profit
+                     organizations in need of financial support for specific
+                     projects" is an org_grant even though it is titled an
+                     "Award" and has an application deadline. Check who receives
+                     the cheque before anything else: a student sent to apply for
+                     a nonprofit's project grant wastes hours and trusts us less.
+  "not_a_source"     the text is ABOUT an award rather than the place you apply:
+                     a news story, magazine profile, press release, annual report
+                     or history page. It may name a real award, but it carries no
+                     current criteria or deadline and must not be published as a
+                     listing. A 2012 magazine article about a founder is
+                     not_a_source even though the fund is real.
   "recognition_only" an honour or prize given without an application (alumni
                      awards, hall of fame, teacher of the year)
   "aggregate_page"   describes a programme or a whole list, not one specific award
+  "award"            a scholarship a STUDENT can apply for or be nominated for,
+                     described on a page carrying its actual criteria
   "not_an_award"     anything else: event tickets, donation appeals, navigation
+
+The name must be the award's title only. "Donation Go To Scholarship" and
+"For Scholarship" are page furniture the extractor glued on; recover the real
+title from the block ("iTHINK Community Foundation Scholarship").
 
 Fields:
   name          the award's actual title, trimmed of surrounding page text.
@@ -244,6 +266,46 @@ def enrich_one(client, rec, counters, lock):
     return None
 
 
+def stratified(records, n, seed):
+    """
+    Take n records spread across source hosts, deterministically.
+
+    A plain records[:n] is not a sample, it is the head of the file -- and the
+    file is grouped by source directory, so the first 40 rows were 29 Broward
+    and 10 Palm Beach, almost all of them Rotary and community-foundation
+    "our grants programme" pages. Nothing from Pasco's 59 rows or Miami-Dade's
+    90. That slice measured 28% usable and I nearly reported it as the corpus
+    rate; it is the worst channel we have, sampled exclusively.
+
+    Round-robin over hosts so every source gets representation before any host
+    gets a second slot, and seed the shuffle so a re-run hits the same records
+    and therefore the same cache.
+    """
+    import random
+    from collections import defaultdict
+    rng = random.Random(seed)
+    by_host = defaultdict(list)
+    for r in records:
+        by_host[(r.get("source_url", "").split("/") + ["", "", "?"])[2]].append(r)
+    for group in by_host.values():
+        rng.shuffle(group)
+    hosts = sorted(by_host)
+    rng.shuffle(hosts)
+    out, i = [], 0
+    while len(out) < min(n, len(records)):
+        progressed = False
+        for h in hosts:
+            if i < len(by_host[h]):
+                out.append(by_host[h][i])
+                progressed = True
+                if len(out) == min(n, len(records)):
+                    break
+        if not progressed:
+            break
+        i += 1
+    return out
+
+
 def estimate(records):
     chars = sum(len(r["eligibility_raw"][:6000]) + len(SYSTEM) for r in records)
     in_tok = chars / 3.6
@@ -252,11 +314,11 @@ def estimate(records):
     return in_tok, out_tok, cost
 
 
-def main(in_path, out_path, limit, dry_run, workers, only_awards):
+def main(in_path, out_path, limit, dry_run, workers, only_awards, seed):
     records = list(csv.DictReader(open(in_path, encoding="utf-8")))
     records = [r for r in records if r.get("eligibility_raw")]
     if limit:
-        records = records[:limit]
+        records = stratified(records, limit, seed)
 
     in_tok, out_tok, cost = estimate(records)
     n_cached = sum(1 for r in records if cached(cache_key(r["eligibility_raw"])))
@@ -298,6 +360,25 @@ def main(in_path, out_path, limit, dry_run, workers, only_awards):
     if only_awards:
         rows = [r for r in rows if r["verdict"] == "award"]
         print(f"kept {len(rows)} with verdict=award", file=sys.stderr)
+
+    # De-duplicate AFTER enrichment, not only before it. The extractor dedupes on
+    # its own noisy names, so Wellington Community Foundation's award survived
+    # twice -- once from /aka-scholarship and once from the homepage, with byte
+    # identical eligibility text. Enrichment then normalised both to the same
+    # title and sponsor, which is the point at which they become detectably the
+    # same record. Keep the one whose source URL is deepest, since a program page
+    # outlives a homepage.
+    best = {}
+    for r in rows:
+        k = (re.sub(r"[^a-z0-9]", "", r["name"].lower()),
+             re.sub(r"[^a-z0-9]", "", str(r["sponsor"]).lower()))
+        prev = best.get(k)
+        if prev is None or r["source_url"].count("/") > prev["source_url"].count("/"):
+            best[k] = r
+    if len(best) < len(rows):
+        print(f"deduped {len(rows) - len(best)} post-enrichment duplicates",
+              file=sys.stderr)
+    rows = list(best.values())
     if not rows:
         print("nothing to write", file=sys.stderr)
         return
@@ -325,5 +406,9 @@ if __name__ == "__main__":
     ap.add_argument("--workers", type=int, default=MAX_WORKERS)
     ap.add_argument("--only-awards", action="store_true",
                     help="drop rows the model judged not to be applicable awards")
+    ap.add_argument("--seed", type=int, default=7,
+                    help="sampling seed; same seed re-selects the same records, "
+                         "so a re-run is served from cache")
     a = ap.parse_args()
-    main(a.in_path, a.out_path, a.limit, a.dry_run, a.workers, a.only_awards)
+    main(a.in_path, a.out_path, a.limit, a.dry_run, a.workers, a.only_awards,
+         a.seed)
