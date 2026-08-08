@@ -26,6 +26,10 @@ on:
         description: "Re-harvest sets that already have pages committed"
         type: boolean
         default: false
+      enrich_limit:
+        description: "Enrich only the first N awards (0 = all). Use 40 for a ~$0.11 sample."
+        type: string
+        default: "0"
 
 permissions:
   contents: write
@@ -212,6 +216,7 @@ jobs:
         working-directory: grants
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LIMIT: ${{ inputs.enrich_limit || '0' }}
         run: |
           if [ -z "$ANTHROPIC_API_KEY" ]; then
             echo "::warning::ANTHROPIC_API_KEY not set - skipping enrichment."
@@ -220,8 +225,17 @@ jobs:
             exit 0
           fi
           pip install --quiet anthropic
+          # A sample run writes its own file. Pointing it at the full output
+          # would leave a 40-row CSV looking like the finished 364-row set.
+          OUT=data/16_awards_enriched.csv
+          [ "$LIMIT" != "0" ] && OUT=data/16_awards_sample.csv
           python3 scripts/21_enrich.py \
-            --in data/15_awards.csv --out data/16_awards_enriched.csv --only-awards
+            --in data/15_awards.csv --out "$OUT" \
+            --limit "$LIMIT" --only-awards 2>&1 | tee /tmp/enrich.log
+          {
+            echo "### Enrichment (limit=$LIMIT)"
+            echo '```'; cat /tmp/enrich.log; echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit extracted awards
         if: always()
@@ -230,7 +244,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # The response cache is a build artifact keyed by content hash; it is
           # regenerated for free and would add thousands of files to the tree.
-          git add grants/data/clean grants/data/15_awards.csv \
+          git add grants/data/clean grants/data/15_awards.csv grants/data/16_awards_sample.csv \
                   grants/data/16_awards_enriched.csv 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "no change in extracted awards"
