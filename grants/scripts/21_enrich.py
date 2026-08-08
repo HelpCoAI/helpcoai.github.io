@@ -53,6 +53,11 @@ MODEL = "claude-haiku-4-5-20251001"
 PROMPT_VERSION = "v6"          # bump to invalidate the cache deliberately
 CACHE_DIR = Path("data/.enrich_cache")
 MAX_WORKERS = 8
+# A run losing more than this share of requests is a failed run, not a smaller
+# dataset. A run whose output collapses below this share of the previous file
+# is refused: the previous file is evidence, this run is only a claim.
+MAX_FAILURE_RATE = 0.15
+MIN_KEEP_RATIO   = 0.60
 
 # Rough Haiku pricing, $/million tokens. Used only for the estimate printed
 # before a run so nobody is surprised by the bill; never for billing itself.
@@ -340,7 +345,8 @@ def estimate(records):
     return in_tok, out_tok, cost
 
 
-def main(in_path, out_path, limit, dry_run, workers, only_awards, seed):
+def main(in_path, out_path, limit, dry_run, workers, only_awards, seed,
+         allow_shrink=False):
     records = list(csv.DictReader(open(in_path, encoding="utf-8")))
     records = [r for r in records if r.get("eligibility_raw")]
     if limit:
@@ -409,6 +415,40 @@ def main(in_path, out_path, limit, dry_run, workers, only_awards, seed):
         print("nothing to write", file=sys.stderr)
         return
 
+    # ------------------------------------------------------------------ guard
+    #
+    # A partial run must never overwrite a good file with its survivors.
+    #
+    # This happened. 289 of 364 requests failed with BadRequestError, almost
+    # certainly an exhausted credit balance, and the 18 records that survived
+    # were written over a 143-record file and committed by the workflow. The
+    # step exited 0 and reported success, because every failure had already been
+    # filtered out by `rows = [r for r in rows if r]`.
+    #
+    # Two rules follow. A run that lost most of its requests is a failed run and
+    # exits non-zero. And output that collapses against the previous version is
+    # refused outright, because the previous version is evidence and this run is
+    # only a claim.
+    attempted = counters["fetched"] + counters["failed"] + counters["cached"]
+    if attempted and counters["failed"] / attempted > MAX_FAILURE_RATE:
+        print(f"\nABORT: {counters['failed']} of {attempted} requests failed "
+              f"({counters['failed']/attempted:.0%}). Nothing written.\n"
+              f"Errors: {dict(counters['errors'])}\n"
+              f"A BadRequestError storm is usually an exhausted credit balance.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    prev = Path(out_path)
+    if prev.exists() and not allow_shrink:
+        with open(prev, encoding="utf-8") as fh:
+            n_prev = sum(1 for _ in csv.DictReader(fh))
+        if n_prev and len(rows) < n_prev * MIN_KEEP_RATIO:
+            print(f"\nABORT: would write {len(rows)} rows over {n_prev} existing "
+                  f"({len(rows)/n_prev:.0%}). Nothing written.\n"
+                  f"Pass --allow-shrink if the drop is genuinely intended, for "
+                  f"example after tightening the verdict rules.", file=sys.stderr)
+            sys.exit(1)
+
     cols = (["verdict", "confidence"] + SCALAR_FIELDS + BOOL_FIELDS + LIST_FIELDS
             + ["eligibility_raw", "name_before_enrichment",
                "source_url", "source_org", "source_county", "source_file"])
@@ -432,9 +472,11 @@ if __name__ == "__main__":
     ap.add_argument("--workers", type=int, default=MAX_WORKERS)
     ap.add_argument("--only-awards", action="store_true",
                     help="drop rows the model judged not to be applicable awards")
+    ap.add_argument("--allow-shrink", action="store_true",
+                    help="permit an output far smaller than the previous one")
     ap.add_argument("--seed", type=int, default=7,
                     help="sampling seed; same seed re-selects the same records, "
                          "so a re-run is served from cache")
     a = ap.parse_args()
     main(a.in_path, a.out_path, a.limit, a.dry_run, a.workers, a.only_awards,
-         a.seed)
+         a.seed, a.allow_shrink)
