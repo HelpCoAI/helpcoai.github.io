@@ -50,7 +50,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 MODEL = "claude-haiku-4-5-20251001"
-PROMPT_VERSION = "v5"          # bump to invalidate the cache deliberately
+PROMPT_VERSION = "v6"          # bump to invalidate the cache deliberately
 CACHE_DIR = Path("data/.enrich_cache")
 MAX_WORKERS = 8
 
@@ -132,7 +132,18 @@ title from the block ("iTHINK Community Foundation Scholarship").
 
 Fields:
   name          the award's actual title, trimmed of surrounding page text.
-  sponsor       the organisation that funds or administers it.
+  sponsor       the organisation that FUNDS the award, never the one that merely
+                published the page. School districts, high-school counselling
+                offices and college career centres maintain scholarship lists
+                containing hundreds of awards they have nothing to do with. The
+                "Limitless Opportunities Scholarship" appears on Pasco County
+                Schools' database and is open to any US student aged 13-19; its
+                sponsor is not Pasco County Schools. Name the funder from the
+                block, and if the block never names one, leave sponsor empty
+                rather than defaulting to the listing site. A community
+                foundation that holds the fund IS a correct sponsor -- "The
+                Miami Foundation" for a donor-advised scholarship is right,
+                because it administers the money.
   amount_min / amount_max   integer dollars for ONE award to ONE recipient.
                 Never the programme total and never a four-year value unless the
                 block says a single recipient receives it. null if unstated.
