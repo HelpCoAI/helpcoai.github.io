@@ -141,3 +141,86 @@ extraction picks one sentence and it may not be the one you were proud of.
 - [SEO Sponsorships for Educational Opportunities — RankWithLinks](https://rankwithlinks.com/seo-sponsorships-for-educational-opportunities/)
 - [The State of llms.txt in 2026 — aeo.press](https://ai.aeo.press/the-state-of-llms-txt-in-2026)
 - [MonetaryGrant — Schema.org](https://schema.org/MonetaryGrant)
+
+---
+
+# The extraction-honesty problem
+
+Optimising for extraction makes a page's worst sentence far more expensive,
+because extraction picks one sentence and strips the context around it. The rule
+that follows:
+
+> **The standalone test.** Every sentence we generate must still be true when a
+> machine lifts it out of the page and shows it to someone who will never see
+> what surrounded it. Extraction removes your caveats. If a caveat is what makes
+> a sentence honest, the sentence is not honest.
+
+## This is not hypothetical — I broke it within the hour
+
+Optimising the county pages for answer engines, I shipped:
+
+> *"27 of the 43 awards we list do not mention an essay requirement."*
+
+Of those 27, **zero** are known not to require an essay. All 27 are awards whose
+sponsor never published the detail. The extraction pass enforces "absent means
+unknown, never false". The enrichment pass enforces it in `verify()` rather than
+trusting the prompt. I violated it in the presentation layer, in a sentence
+written specifically to be extracted, because it was a genuinely good answer to a
+question students ask.
+
+Now:
+
+> *"16 of the 43 awards state that an essay is required. The other 27 do not
+> mention one, which means the sponsor did not publish that detail — not that
+> there is no essay."*
+
+Longer, less quotable, and true when lifted.
+
+## The enforcement: `scripts/copy-lint.mjs`
+
+Runs over `dist/` on every build and exits non-zero. Six rules:
+
+| rule | catches |
+|---|---|
+| `absence-as-fact` | "does not require an essay" — we only know it was not published |
+| `bare-total` | an aggregate dollar figure with no per-recipient anchor |
+| `eligibility-promise` | "you qualify", "you are eligible" — only the sponsor decides |
+| `ftc-red-flag` | "guaranteed", "can't find anywhere else", money-back-if-no-award |
+| `unscoped-superlative` | "largest scholarship" with no scope for the reader to supply |
+| `invalid-json-ld` | structured data that does not parse |
+
+It lints the **JSON-LD as well as the prose**, walking the parsed object for
+`name` / `description` / `text`. A false claim in schema is the least likely to
+ever be noticed and the most likely to be quoted verbatim by a model.
+
+It **excludes the sponsor's quoted eligibility text**, and that exclusion is the
+point rather than a loophole. Those blockquotes are the sponsor's own words,
+attributed. Rewriting them to satisfy a linter would destroy the audit trail the
+product rests on. Tampa Bay BCA writing *"awarded over $280,000 to more than 102
+students"* on their own page is their claim; repeating it unattributed would be
+ours.
+
+### What it found on the real site
+
+Three genuine classes, 11 sentences:
+
+- **The home page headline** ended *"at least $554,250 in known award value"* —
+  the sum of 137 awards to 137 different people, reading as a pot one visitor
+  could draw from. Now: *"individual awards of $500 to $15,000"*.
+- **Nine sponsor pages** said *"worth at least $90,000 in total"*. Horatio Alger's
+  is two awards to two people. Now: *"paying $25,000 to $65,000 per recipient,
+  $90,000 a year across all recipients"*.
+- **The essay FAQ**, above.
+
+### Two rounds of tuning, both instructive
+
+The first version flagged 71 sentences. Most were the sponsor's quoted text, and
+most of the rest were card grids — which carry no full stops, so twenty awards
+collapsed into one pseudo-sentence holding twenty dollar figures. Block-level
+tags now terminate sentences before the tags are stripped.
+
+The second version still flagged 47, nearly all a lone `$20,000.` in an award's
+Amount field. Correctly labelled, not a total, not misleading. `bare-total` now
+requires an aggregation cue — *total*, *together*, *combined*, *across all* —
+before it fires. **A linter that cries wolf 47 times to find 4 real problems gets
+switched off**, which would leave the real four shipped.

@@ -37,6 +37,14 @@ const site = (Astro.site ?? new URL("http://localhost:4321")).href;
 const known = awards.filter((a: any) => a.amount_max).map((a: any) => Number(a.amount_max));
 const total = known.reduce((s: number, n: number) => s + n, 0);
 const withDeadline = awards.filter((a: any) => a.deadline);
+// A bare total invites "there is $134,750 waiting for me". Pair it with what one
+// recipient actually receives so the sentence cannot be misread standing alone.
+const each = known.slice().sort((a: number, b: number) => a - b);
+const perAward = each.length
+  ? (each[0] === each[each.length - 1]
+      ? `$${each[0].toLocaleString()}`
+      : `$${each[0].toLocaleString()} to $${each[each.length - 1].toLocaleString()}`)
+  : null;
 const local = awards.filter((a: any) => ["county", "city", "school"].includes(a.geo_scope));
 // Deliberately the largest LOCAL award, not the largest award on the page. The
 // unfiltered version answered "the largest scholarship for Pasco County
@@ -46,7 +54,13 @@ const local = awards.filter((a: any) => ["county", "city", "school"].includes(a.
 const biggest = [...local].sort(
   (a: any, b: any) => Number(b.amount_max ?? 0) - Number(a.amount_max ?? 0))[0];
 const needBased = awards.filter((a: any) => a.need_based === true || a.need_based === "True");
-const noEssay = awards.filter((a: any) => !(a.essay_required === true || a.essay_required === "True"));
+// Counted as three states, never two. An award whose page never mentions an
+// essay is UNKNOWN, not essay-free -- the same invariant the extraction and
+// enrichment passes enforce. The first version of this FAQ counted 27 unknowns
+// as "no essay required", which is precisely the failure the rest of the
+// pipeline exists to prevent, reintroduced while optimising for extraction.
+const essayYes = awards.filter((a: any) => a.essay_required === true || a.essay_required === "True");
+const essayUnknown = awards.filter((a: any) => a.essay_required == null || a.essay_required === "");
 
 // Assembled from counts, never written. Statistics-dense on purpose: the one
 // piece of controlled evidence on generative-engine visibility found that
@@ -55,7 +69,7 @@ const noEssay = awards.filter((a: any) => !(a.essay_required === true || a.essay
 // on the page, so it is checkable rather than merely confident.
 const summary =
   `${awards.length} scholarship${awards.length === 1 ? "" : "s"} are open to ${county.name} County students` +
-  (total ? `, together worth at least $${total.toLocaleString()} a year` : "") +
+  (total ? `. Together they award at least $${total.toLocaleString()} a year across all recipients${perAward ? `, with individual awards of ${perAward}` : ""}` : "") +
   `. ${local.length} of them are restricted to this county, a city inside it, or a single high school — ` +
   `awards the national databases generally do not carry. ${withDeadline.length} have a published deadline.`;
 
@@ -72,9 +86,9 @@ const faqs = faqNode([
     q: `Are there need-based scholarships in ${county.name} County?`,
     a: `${needBased.length} of the ${awards.length} awards we list state that they consider financial need. Where a sponsor does not say, we leave the field blank rather than assume.`,
   },
-  noEssay.length > 0 && {
-    q: `Are there ${county.name} County scholarships that do not require an essay?`,
-    a: `${noEssay.length} of the ${awards.length} awards we list do not mention an essay requirement. Confirm with the sponsor before you rely on that — an unstated requirement is unknown, not absent.`,
+  essayYes.length > 0 && {
+    q: `Which ${county.name} County scholarships require an essay?`,
+    a: `${essayYes.length} of the ${awards.length} awards state that an essay is required. The other ${essayUnknown.length} do not mention one, which means the sponsor did not publish that detail — not that there is no essay. Check with the sponsor before assuming.`,
   },
   {
     q: `Why apply for local scholarships instead of national ones?`,

@@ -10,11 +10,21 @@ export function getStaticPaths() {
   }));
 }
 const { sponsor, awards } = Astro.props;
-const known = awards.filter((a: any) => a.amount_max).map((a: any) => Number(a.amount_max));
+const known = awards.filter((a: any) => a.amount_max)
+  .map((a: any) => Number(a.amount_max)).sort((a: number, b: number) => a - b);
 const total = known.reduce((s: number, n: number) => s + n, 0);
+// "worth at least $90,000 in total" reads, standing alone, as ninety thousand
+// dollars one applicant might receive. It is two awards of $45,000 to two
+// different people. State what one recipient gets, in the same sentence.
+const per = known.length
+  ? (known[0] === known[known.length - 1]
+      ? `$${known[0].toLocaleString()}`
+      : `$${known[0].toLocaleString()} to $${known[known.length - 1].toLocaleString()}`)
+  : null;
 const summary =
   `${sponsor.name} offers ${awards.length} scholarship${awards.length === 1 ? "" : "s"} we have found` +
-  (total ? `, worth at least $${total.toLocaleString()} in total` : "") + ".";
+  (per ? `, paying ${per} per recipient` : "") +
+  (total && awards.length > 1 ? `, ${`$${total.toLocaleString()}`} a year across all recipients` : "") + ".";
 ---
 <Base title={`${sponsor.name} scholarships`} description={summary} indexable={sponsor.indexable}>
   <h1>{sponsor.name}</h1>
