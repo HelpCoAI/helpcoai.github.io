@@ -59,3 +59,57 @@ records come from individual foundation and club pages, not from district aggreg
 
 That inverts the crawl strategy. Volume and differentiation live in different places, and the
 cheap channel is the one that produces the commodity.
+
+---
+
+## Full run, all 364 records (2026-08-08, ~$1.28)
+
+**137 kept as `verdict=award`** — 38% of blocks, well above the 22.5% the stratified sample
+predicted. The sample under-called it because round-robin across 40 distinct hosts
+deliberately over-weights one-off foundation pages and under-weights the bulletin pages that
+carry many awards each.
+
+The two prompt fixes did what they were added for. Both records the previous audit caught by
+hand are now correctly rejected:
+
+| record | before | after |
+|---|---|---|
+| Harpo Foundation "Impact Award" (artist grant) | kept, confidence 0.92 | rejected |
+| Christopher Columbus HS "Tuition Scholarships" (K-12 aid) | kept, confidence 0.85 | rejected |
+
+### Geographic reach of the 137
+
+| scope | n |
+|---|---|
+| county | 43 |
+| school | 14 |
+| city | 10 |
+| **hyperlocal subtotal** | **67 (49%)** |
+| state | 15 |
+| national | 16 |
+| unstated | 37 |
+
+**54 of the 67 hyperlocal records carry a deadline.**
+
+### Residual defects, from a 14-record hand audit
+
+- **Sponsor attribution, 13 records (9%).** The listing site is recorded as the funder:
+  "National Junior Scholarship — sponsor: Pasco County Schools". Pasco publishes the database;
+  it does not fund the award. This matters more than its size because sponsor pages are a
+  planned SEO surface, and a sponsor page for the wrong organisation is worse than none.
+- **Name truncation, 1 record.** "Year Scholarships" from "Four-Year Scholarships" — the
+  extractor cut it before the model saw it, so the model had nothing to recover from.
+- **geo_scope instability.** The Machen Florida Opportunity Scholarship came back "state" in
+  one run and "school" in another. It is a UF institutional award; both are defensible, which
+  is the problem — the field is not reproducible enough to filter on alone.
+- **Host concentration.** 137 records over 39 hosts; the top three carry 59 of them.
+
+### The number, three ways
+
+| method | estimate |
+|---|---|
+| stratified sample, hand-audited (6 of 40) | ~55 |
+| geographic regex over all 364 | 55 |
+| full enrichment: 67 hyperlocal, discounted by the ~80% audited precision | ~55 |
+
+**~55 genuinely local, usable awards.** Apply Tampa Bay publishes 73 across 8 counties.
