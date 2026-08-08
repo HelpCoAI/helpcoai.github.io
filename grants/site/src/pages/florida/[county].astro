@@ -2,13 +2,10 @@
 import Base from "../../layouts/Base.astro";
 import AwardCard from "../../components/AwardCard.astro";
 import data from "../../data/awards.json";
+import {
+  amountLabel, breadcrumbs, faqNode, money, orgNode, siteNode,
+} from "../../lib/schema";
 
-// Most local first. The unsorted Pasco page opened with the Ayn Rand Institute
-// and the College Board -- awards open to the entire country, sitting above the
-// twenty that are restricted to Pasco. That is the exact inversion of what this
-// site is for: a student scrolling a county page should hit the awards with a
-// small applicant pool before the ones every database already carries.
-//
 // The helpers live INSIDE getStaticPaths deliberately. Astro evaluates it in an
 // isolated scope, so a module-level const is not in scope there and the build
 // fails with "locality is not defined" -- at build time only, which is exactly
@@ -26,30 +23,99 @@ export function getStaticPaths() {
         .sort((a: any, b: any) =>
           locality(a) - locality(b) ||
           Number(b.amount_max ?? 0) - Number(a.amount_max ?? 0)),
+      // Nearby counties give crawlers and readers a lateral path, and stop each
+      // county page being a dead end reachable only from the index.
+      others: data.counties
+        .filter((c: any) => c.slug !== county.slug && c.indexable)
+        .sort((a: any, b: any) => b.count - a.count).slice(0, 5),
     },
   }));
 }
-const { county, awards } = Astro.props;
+const { county, awards, others } = Astro.props;
+const site = (Astro.site ?? new URL("http://localhost:4321")).href;
 
 const known = awards.filter((a: any) => a.amount_max).map((a: any) => Number(a.amount_max));
 const total = known.reduce((s: number, n: number) => s + n, 0);
 const withDeadline = awards.filter((a: any) => a.deadline);
 const local = awards.filter((a: any) => ["county", "city", "school"].includes(a.geo_scope));
+// Deliberately the largest LOCAL award, not the largest award on the page. The
+// unfiltered version answered "the largest scholarship for Pasco County
+// students" with a $65,000 Horatio Alger award open to the entire country --
+// true, useless, and exactly the national-database answer a student can already
+// get anywhere. Worse, it is the sentence an answer engine would lift.
+const biggest = [...local].sort(
+  (a: any, b: any) => Number(b.amount_max ?? 0) - Number(a.amount_max ?? 0))[0];
+const needBased = awards.filter((a: any) => a.need_based === true || a.need_based === "True");
+const noEssay = awards.filter((a: any) => !(a.essay_required === true || a.essay_required === "True"));
 
-// The summary is assembled from counts, not written. Nothing on this page is
-// generated prose, which is both the honest choice and the one that keeps a
-// templated site out of scaled-content territory.
+// Assembled from counts, never written. Statistics-dense on purpose: the one
+// piece of controlled evidence on generative-engine visibility found that
+// adding concrete statistics and citing primary sources moved the needle 30-40%,
+// while stylistic padding did not. Every number here is countable from the data
+// on the page, so it is checkable rather than merely confident.
 const summary =
-  `${awards.length} scholarship${awards.length === 1 ? "" : "s"} open to ${county.name} County students` +
+  `${awards.length} scholarship${awards.length === 1 ? "" : "s"} are open to ${county.name} County students` +
   (total ? `, together worth at least $${total.toLocaleString()} a year` : "") +
-  `. ${local.length} of them are restricted to this county, a city inside it, or a single school — ` +
-  `awards national databases generally do not carry. ${withDeadline.length} have a published deadline.`;
+  `. ${local.length} of them are restricted to this county, a city inside it, or a single high school — ` +
+  `awards the national databases generally do not carry. ${withDeadline.length} have a published deadline.`;
+
+const faqs = faqNode([
+  {
+    q: `How many scholarships are available for ${county.name} County students?`,
+    a: `${awards.length} that we have verified against the sponsor's own page, ${local.length} of which are restricted to ${county.name} County, a city inside it, or a single high school.`,
+  },
+  biggest && money(biggest.amount_max) && {
+    q: `What is the largest local scholarship in ${county.name} County?`,
+    a: `${biggest.name}${biggest.sponsor ? `, from ${biggest.sponsor}` : ""}, at ${money(biggest.amount_max)}. It is restricted to this area rather than open nationally, so the applicant pool is a fraction of the size.`,
+  },
+  needBased.length > 0 && {
+    q: `Are there need-based scholarships in ${county.name} County?`,
+    a: `${needBased.length} of the ${awards.length} awards we list state that they consider financial need. Where a sponsor does not say, we leave the field blank rather than assume.`,
+  },
+  noEssay.length > 0 && {
+    q: `Are there ${county.name} County scholarships that do not require an essay?`,
+    a: `${noEssay.length} of the ${awards.length} awards we list do not mention an essay requirement. Confirm with the sponsor before you rely on that — an unstated requirement is unknown, not absent.`,
+  },
+  {
+    q: `Why apply for local scholarships instead of national ones?`,
+    a: `The applicant pool. A national award can draw tens of thousands of applicants for a few hundred places, while an award limited to one county or one high school is competing against a graduating class. ${local.length} of the ${awards.length} awards on this page are limited that way.`,
+  },
+]);
+
+const itemList = {
+  "@type": "ItemList",
+  name: `Scholarships for ${county.name} County, Florida students`,
+  numberOfItems: awards.length,
+  itemListElement: awards.slice(0, 50).map((a: any, i: number) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: new URL(`/scholarships/${a.slug}/`, site).href,
+    name: a.name,
+  })),
+};
+
+const graph = [
+  orgNode(site), siteNode(site), itemList,
+  breadcrumbs(site, [
+    { name: "Home", path: "/" },
+    { name: "Florida counties", path: "/florida/" },
+    { name: `${county.name} County`, path: `/florida/${county.slug}/` },
+  ]),
+  faqs,
+].filter(Boolean);
 ---
 <Base
-  title={`Scholarships for ${county.name} County, Florida students`}
-  description={summary}
+  title={`${county.name} County, Florida scholarships (${awards.length} local awards)`}
+  description={summary.slice(0, 300)}
   indexable={county.indexable}
 >
+  <script type="application/ld+json" slot="head"
+          set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a> › <a href="/florida/">Florida counties</a> › {county.name} County
+  </nav>
+
   <h1>{county.name} County scholarships</h1>
   <p class="lede">{summary}</p>
 
@@ -65,4 +131,26 @@ const summary =
   <ul class="grid">
     {awards.map((a: any) => <li><AwardCard award={a} /></li>)}
   </ul>
+
+  {faqs && (
+    <section class="faq">
+      <h2>Common questions</h2>
+      <dl>
+        {faqs.mainEntity.map((q: any) => (
+          <><dt>{q.name}</dt><dd>{q.acceptedAnswer.text}</dd></>
+        ))}
+      </dl>
+    </section>
+  )}
+
+  {others.length > 0 && (
+    <section>
+      <h2>Nearby counties</h2>
+      <ul class="counties">
+        {others.map((c: any) => (
+          <li><a href={`/florida/${c.slug}/`}><strong>{c.name} County</strong><span>{c.count} awards</span></a></li>
+        ))}
+      </ul>
+    </section>
+  )}
 </Base>

@@ -1,15 +1,30 @@
 ---
 import Base from "../../layouts/Base.astro";
 import data from "../../data/awards.json";
+import {
+  amountLabel, awardFaqs, breadcrumbs, grantDescription, grantNode,
+  orgNode, siteNode,
+} from "../../lib/schema";
 
 export function getStaticPaths() {
-  return data.awards.map((award: any) => ({ params: { slug: award.slug }, props: { award } }));
+  const RANK: Record<string, number> = { school: 0, city: 1, county: 2, state: 3, national: 4 };
+  return data.awards.map((award: any) => {
+    // Related awards give every page outbound context and give crawlers a path
+    // to the deep pages that nothing else links to. Same county first, then
+    // same sponsor -- both are relationships a reader would actually follow.
+    const related = data.awards
+      .filter((a: any) =>
+        a.slug !== award.slug &&
+        (a.counties?.some((c: string) => award.counties?.includes(c)) ||
+         (a.sponsor && a.sponsor === award.sponsor)))
+      .sort((a: any, b: any) => (RANK[a.geo_scope] ?? 3.5) - (RANK[b.geo_scope] ?? 3.5))
+      .slice(0, 4);
+    return { params: { slug: award.slug }, props: { award, related } };
+  });
 }
-const { award } = Astro.props;
-
-const money = (n: any) => (n == null || n === "" ? null : `$${Number(n).toLocaleString()}`);
-const lo = money(award.amount_min), hi = money(award.amount_max);
-const amount = lo && hi ? (lo === hi ? lo : `${lo}–${hi}`) : (lo ?? hi);
+const { award, related } = Astro.props;
+const site = (Astro.site ?? new URL("http://localhost:4321")).href;
+const amount = amountLabel(award);
 
 const LABELS: Record<string, string> = {
   gpa_min: "Minimum GPA", gpa_scale: "GPA scale", income_max: "Household income cap",
@@ -47,31 +62,35 @@ const effort = award.estimated_effort_minutes
   ? `About ${award.estimated_effort_minutes} minutes of work, based on what the sponsor asks for.`
   : null;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOccupationalProgram",
-  name: award.name,
-  ...(award.sponsor && { provider: { "@type": "Organization", name: award.sponsor } }),
-  ...(award.source_url && { url: award.source_url }),
-  ...(award.deadline && { applicationDeadline: award.deadline }),
-};
+const countySlug = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+const trail = [
+  { name: "Home", path: "/" },
+  { name: "All awards", path: "/scholarships/" },
+  ...(award.counties?.[0]
+    ? [{ name: `${award.counties[0]} County`, path: `/florida/${countySlug(award.counties[0])}/` }]
+    : []),
+  { name: award.name, path: `/scholarships/${award.slug}/` },
+];
 
-const title = `${award.name}${award.sponsor ? ` — ${award.sponsor}` : ""}`;
-const description = [
-  award.name, amount && `worth ${amount}`,
-  award.deadline && `deadline ${award.deadline}`,
-  award.counties?.length ? `for ${award.counties.join(", ")} students` : null,
-].filter(Boolean).join(", ") + ".";
+const graph = [
+  orgNode(site), siteNode(site), grantNode(site, award),
+  breadcrumbs(site, trail), awardFaqs(award),
+].filter(Boolean);
+
+// Answer-first: the opening sentence answers "what is this and can I get it?"
+// before any narrative, because that sentence is what gets extracted.
+const answer = grantDescription(award);
 ---
-<Base title={title} description={description} indexable={award.indexable}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+<Base title={`${award.name}${award.sponsor ? ` — ${award.sponsor}` : ""}`}
+      description={answer.slice(0, 300)} indexable={award.indexable}>
+  <script type="application/ld+json" slot="head"
+          set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
 
   <article class="detail">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/scholarships/">All awards</a>
+      <a href="/">Home</a> › <a href="/scholarships/">All awards</a>
       {award.counties?.[0] && (
-        <> › <a href={`/florida/${award.counties[0].toLowerCase().replace(/[^a-z0-9]+/g, "-")}/`}>
-          {award.counties[0]} County</a></>
+        <> › <a href={`/florida/${countySlug(award.counties[0])}/`}>{award.counties[0]} County</a></>
       )}
     </nav>
 
@@ -81,6 +100,8 @@ const description = [
         Offered by <a href={`/sponsors/${award.sponsor.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 70)}/`}>{award.sponsor}</a>
       </p>
     )}
+
+    <p class="answer">{answer}</p>
 
     <div class="headline">
       <div><span class="k">Award</span><span class="v">{amount ?? "Not published"}</span></div>
@@ -101,10 +122,11 @@ const description = [
     )}
 
     <h2>What the sponsor says</h2>
-    <blockquote class="raw">{award.eligibility_raw}</blockquote>
+    <blockquote class="raw" cite={award.source_url}>{award.eligibility_raw}</blockquote>
     <p class="note">
-      Quoted from the sponsor's own page, unedited. Where our summary above and
-      this text disagree, this text is correct — tell us and we'll fix the summary.
+      Quoted from <a href={award.source_url} rel="nofollow noopener">the sponsor's own page</a>,
+      unedited. Where our summary above and this text disagree, this text is
+      correct — tell us and we'll fix the summary.
     </p>
 
     {award.source_url && (
@@ -119,5 +141,19 @@ const description = [
       Last checked {award.last_verified}. Deadlines change without notice —
       confirm with the sponsor before you rely on one.
     </p>
+
+    {related.length > 0 && (
+      <>
+        <h2>Other awards {award.counties?.[0] ? `in ${award.counties[0]} County` : "from this sponsor"}</h2>
+        <ul class="related">
+          {related.map((r: any) => (
+            <li>
+              <a href={`/scholarships/${r.slug}/`}>{r.name}</a>
+              {amountLabel(r) && <span> — {amountLabel(r)}</span>}
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
   </article>
 </Base>
