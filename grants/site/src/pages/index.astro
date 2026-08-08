@@ -26,6 +26,12 @@ const perAward = localAmounts.length
 // local awards carrying both an amount and a deadline.
 const featured = local.filter((a: any) => a.amount_max && a.deadline).slice(0, 6);
 
+// The hero visual is a REAL award from the index, not a mockup. If the product
+// cannot produce a good-looking record on demand, the hero should look worse.
+const showcase = local
+  .filter((a: any) => a.amount_max && a.deadline && a.counties?.length)
+  .sort((a: any, b: any) => Number(b.amount_max) - Number(a.amount_max))[0];
+
 const faqs = faqNode([
   {
     q: "Why local scholarships instead of the big national databases?",
@@ -60,8 +66,10 @@ const graph = [
           set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
 
   <section class="hero">
+    <div class="hero-copy">
     <p class="kicker">Florida local scholarship index</p>
-    <h1>The scholarships with the best odds are the ones nobody lists</h1>
+    <h1>The scholarships with the <span class="accent-teal">best odds</span>
+        are the ones <span class="accent-sun">nobody lists</span></h1>
     <p class="lede">
       A national award takes 50,000 applicants for 150 places. A county award
       takes nineteen. We index the second kind: {local.length} scholarships
@@ -75,6 +83,21 @@ const graph = [
       <a href="/florida/">browse by county</a> ·
       <a href="/alerts/">get email alerts</a>
     </p>
+    </div>
+
+    {showcase && (
+      <aside class="showcase" aria-label="Example award">
+        <p class="tag">One of the {local.length}</p>
+        <a class="s-name" href={`/scholarships/${showcase.slug}/`}>{showcase.name}</a>
+        <p class="s-sponsor">{showcase.sponsor}</p>
+        <dl class="s-facts">
+          <div><dt>Award</dt><dd>${Number(showcase.amount_max).toLocaleString()}</dd></div>
+          <div><dt>Deadline</dt><dd>{showcase.deadline}</dd></div>
+          <div><dt>Open to</dt><dd>{showcase.counties[0]} County</dd></div>
+        </dl>
+        <p class="s-note">Quoted from the sponsor's page, with a link to it.</p>
+      </aside>
+    )}
   </section>
 
   <section class="stats" aria-label="What the index holds">
