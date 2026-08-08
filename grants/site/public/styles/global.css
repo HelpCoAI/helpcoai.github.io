@@ -1,0 +1,97 @@
+/* One stylesheet, no framework. The whole site is lists of facts; a design
+   system would be more code than the thing it styles. */
+:root {
+  --ink: #16202c; --muted: #5a6674; --line: #e2e6eb; --bg: #fff;
+  --soft: #f6f8fa; --accent: #0b5cab; --accent-ink: #fff;
+  --wrap: 62rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8edf3; --muted: #9aa7b5; --line: #2a3542; --bg: #10161d;
+    --soft: #18202a; --accent: #6cb2f5; --accent-ink: #08121d;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+main { max-width: var(--wrap); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+a { color: var(--accent); }
+h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.15; margin: 0 0 .75rem; }
+h2 { font-size: 1.35rem; margin: 2.5rem 0 1rem; }
+h3 { font-size: 1.05rem; margin: 0 0 .35rem; }
+.lede { font-size: 1.1rem; color: var(--muted); max-width: 46rem; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--bg); padding: .5rem; z-index: 10; }
+
+header.site { border-bottom: 1px solid var(--line); }
+header.site nav {
+  max-width: var(--wrap); margin: 0 auto; padding: .9rem 1.25rem;
+  display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
+}
+.brand { font-weight: 700; text-decoration: none; color: var(--ink); }
+header.site ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; }
+header.site a { text-decoration: none; }
+header.site a:hover { text-decoration: underline; }
+
+.hero { padding: 1rem 0 2rem; }
+.btn {
+  display: inline-block; background: var(--accent); color: var(--accent-ink);
+  padding: .7rem 1.15rem; border-radius: .5rem; text-decoration: none; font-weight: 600;
+}
+.btn:hover { filter: brightness(1.08); }
+
+.grid, .counties { list-style: none; margin: 1.25rem 0; padding: 0; display: grid; gap: .85rem; }
+.grid { grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); }
+.counties { grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.counties a {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+  border: 1px solid var(--line); border-radius: .6rem; padding: .85rem 1rem;
+  text-decoration: none; color: var(--ink); background: var(--soft);
+}
+.counties a:hover { border-color: var(--accent); }
+.counties span { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+
+.card { border: 1px solid var(--line); border-radius: .6rem; padding: 1rem; height: 100%; }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; }
+.sponsor { color: var(--muted); font-size: .9rem; margin: 0 0 .6rem; }
+.facts { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin: 0; }
+.facts div { min-width: 0; }
+.facts dt { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; }
+.unknown, .note, .verified, .thin { color: var(--muted); font-size: .9rem; }
+.thin { background: var(--soft); border-left: 3px solid var(--line); padding: .75rem 1rem; border-radius: .3rem; }
+
+.detail { max-width: 46rem; }
+.crumbs { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+.headline {
+  display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 1rem 1.15rem;
+  background: var(--soft); border-radius: .6rem; margin: 1.25rem 0;
+}
+.headline .k { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.headline .v { font-size: 1.2rem; font-weight: 700; }
+.effort { color: var(--muted); font-size: .95rem; }
+.flags { list-style: none; padding: 0; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.flags li { background: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: .2rem .7rem; font-size: .85rem; }
+.criteria { margin: 0; }
+.criteria div { display: grid; grid-template-columns: 12rem 1fr; gap: 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.criteria dt { color: var(--muted); font-size: .9rem; }
+.criteria dd { margin: 0; }
+@media (max-width: 34rem) { .criteria div { grid-template-columns: 1fr; gap: .1rem; } }
+
+.raw {
+  margin: 1rem 0; padding: 1rem 1.15rem; background: var(--soft);
+  border-left: 3px solid var(--accent); border-radius: 0 .4rem .4rem 0;
+  font-size: .95rem; overflow-wrap: anywhere;
+}
+.apply { margin: 2rem 0 1rem; }
+.how dl { display: grid; gap: .35rem; }
+.how dt { font-weight: 700; margin-top: 1rem; }
+.how dd { margin: 0; color: var(--muted); }
+
+footer.site { border-top: 1px solid var(--line); background: var(--soft); }
+footer.site p { max-width: var(--wrap); margin: 0 auto; padding: 1rem 1.25rem; color: var(--muted); font-size: .9rem; }
+footer.site .small { padding-top: 0; }

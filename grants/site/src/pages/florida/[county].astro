@@ -1,0 +1,68 @@
+---
+import Base from "../../layouts/Base.astro";
+import AwardCard from "../../components/AwardCard.astro";
+import data from "../../data/awards.json";
+
+// Most local first. The unsorted Pasco page opened with the Ayn Rand Institute
+// and the College Board -- awards open to the entire country, sitting above the
+// twenty that are restricted to Pasco. That is the exact inversion of what this
+// site is for: a student scrolling a county page should hit the awards with a
+// small applicant pool before the ones every database already carries.
+//
+// The helpers live INSIDE getStaticPaths deliberately. Astro evaluates it in an
+// isolated scope, so a module-level const is not in scope there and the build
+// fails with "locality is not defined" -- at build time only, which is exactly
+// the kind of break that would otherwise be found in CI rather than here.
+export function getStaticPaths() {
+  const RANK: Record<string, number> = { school: 0, city: 1, county: 2, state: 3, national: 4 };
+  const locality = (a: any) => RANK[a.geo_scope] ?? 3.5;   // unstated sits mid-pack
+
+  return data.counties.map((county: any) => ({
+    params: { county: county.slug },
+    props: {
+      county,
+      awards: data.awards
+        .filter((a: any) => county.award_slugs.includes(a.slug))
+        .sort((a: any, b: any) =>
+          locality(a) - locality(b) ||
+          Number(b.amount_max ?? 0) - Number(a.amount_max ?? 0)),
+    },
+  }));
+}
+const { county, awards } = Astro.props;
+
+const known = awards.filter((a: any) => a.amount_max).map((a: any) => Number(a.amount_max));
+const total = known.reduce((s: number, n: number) => s + n, 0);
+const withDeadline = awards.filter((a: any) => a.deadline);
+const local = awards.filter((a: any) => ["county", "city", "school"].includes(a.geo_scope));
+
+// The summary is assembled from counts, not written. Nothing on this page is
+// generated prose, which is both the honest choice and the one that keeps a
+// templated site out of scaled-content territory.
+const summary =
+  `${awards.length} scholarship${awards.length === 1 ? "" : "s"} open to ${county.name} County students` +
+  (total ? `, together worth at least $${total.toLocaleString()} a year` : "") +
+  `. ${local.length} of them are restricted to this county, a city inside it, or a single school — ` +
+  `awards national databases generally do not carry. ${withDeadline.length} have a published deadline.`;
+---
+<Base
+  title={`Scholarships for ${county.name} County, Florida students`}
+  description={summary}
+  indexable={county.indexable}
+>
+  <h1>{county.name} County scholarships</h1>
+  <p class="lede">{summary}</p>
+
+  {!county.indexable && (
+    <p class="thin">
+      We have only found {awards.length} award{awards.length === 1 ? "" : "s"} here so far.
+      This page is published for anyone who needs it but is not offered to search
+      engines until it is worth finding. Know one we are missing?
+      <a href="/submit/">Tell us</a>.
+    </p>
+  )}
+
+  <ul class="grid">
+    {awards.map((a: any) => <li><AwardCard award={a} /></li>)}
+  </ul>
+</Base>

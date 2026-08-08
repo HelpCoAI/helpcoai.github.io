@@ -1,0 +1,16 @@
+{
+  "name": "local-scholarships",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "data": "python3 ../scripts/22_build_site_data.py --in ../data/16_awards_enriched.csv --out src/data/awards.json",
+    "dev": "astro dev",
+    "build": "npm run data && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.15.9",
+    "playwright": "^1.62.1"
+  }
+}

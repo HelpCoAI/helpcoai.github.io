@@ -1,0 +1,51 @@
+---
+/**
+ * One award in a list.
+ *
+ * Leads with the facts a student uses to triage -- amount, deadline, who can
+ * apply -- because that is the decision they are actually making, and because
+ * pages built out of real per-award data are what keeps a large templated site
+ * on the right side of the scaled-content line. There is no generated prose
+ * here and there should never be any.
+ */
+const { award } = Astro.props;
+
+const money = (n: unknown) =>
+  n == null || n === "" ? null : `$${Number(n).toLocaleString()}`;
+
+const lo = money(award.amount_min);
+const hi = money(award.amount_max);
+const amount = lo && hi ? (lo === hi ? lo : `${lo}–${hi}`) : (lo ?? hi);
+
+const scope: Record<string, string> = {
+  school: "One school", city: "City", county: "County",
+  state: "Statewide", national: "National",
+};
+
+// Only facts the record actually carries. An empty field means we do not know,
+// never that the requirement is absent.
+const facts = [
+  amount && { k: "Award", v: amount },
+  award.deadline && { k: "Deadline", v: award.deadline },
+  award.gpa_min && { k: "Min GPA", v: award.gpa_min },
+  award.num_awards && { k: "Given", v: `${award.num_awards}/yr` },
+  award.geo_scope && { k: "Open to", v: scope[award.geo_scope] ?? award.geo_scope },
+].filter(Boolean) as { k: string; v: string }[];
+---
+<article class="card">
+  <h3><a href={`/scholarships/${award.slug}/`}>{award.name}</a></h3>
+  {award.sponsor && <p class="sponsor">{award.sponsor}</p>}
+  {facts.length > 0 && (
+    <dl class="facts">
+      {facts.map((f) => (
+        <div><dt>{f.k}</dt><dd>{f.v}</dd></div>
+      ))}
+    </dl>
+  )}
+  {!amount && !award.deadline && (
+    <p class="unknown">
+      Amount and deadline not published by the sponsor — check the source before
+      you plan around it.
+    </p>
+  )}
+</article>

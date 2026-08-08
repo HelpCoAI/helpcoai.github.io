@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import data from "../../data/awards.json";
+const counties = [...data.counties].sort((a: any, b: any) => b.count - a.count);
+const covered = counties.filter((c: any) => c.indexable);
+---
+<Base
+  title="Florida scholarships by county"
+  description={`Local scholarships across ${covered.length} Florida counties, from ${data.stats.awards} awards we have verified against the sponsor's own page.`}
+  indexable={true}
+>
+  <h1>Browse by county</h1>
+  <p class="lede">
+    {data.stats.awards} awards across {covered.length} counties. Each one links
+    to the sponsor's own page, with the eligibility text quoted unedited.
+  </p>
+  <ul class="counties">
+    {counties.map((c: any) => (
+      <li>
+        <a href={`/florida/${c.slug}/`}>
+          <strong>{c.name} County</strong>
+          <span>{c.count} award{c.count === 1 ? "" : "s"}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

@@ -1,0 +1,67 @@
+---
+/**
+ * Every public page renders through here.
+ *
+ * `indexable` is a required prop rather than an optional one with a friendly
+ * default. Thin pages getting indexed by accident is the failure mode that can
+ * suppress a whole domain under Google's scaled-content-abuse policy, and a
+ * default of true means the accident happens silently the first time someone
+ * adds a page and forgets. Making it explicit forces the decision at every
+ * call site.
+ */
+interface Props {
+  title: string;
+  description: string;
+  indexable: boolean;
+  canonical?: string;
+}
+const { title, description, indexable, canonical } = Astro.props;
+const site = Astro.site ?? new URL("http://localhost:4321");
+const href = canonical ?? new URL(Astro.url.pathname, site).href;
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={href} />
+    {!indexable && <meta name="robots" content="noindex,follow" />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site">
+      <nav>
+        <a class="brand" href="/">Local Scholarships</a>
+        <ul>
+          <li><a href="/florida/">Counties</a></li>
+          <li><a href="/scholarships/">All awards</a></li>
+          <li><a href="/sponsors/">Sponsors</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main"><slot /></main>
+
+    <footer class="site">
+      <p>
+        Every award below links to the organisation that publishes it. We list
+        what they say; we do not decide who wins, and we are not affiliated with
+        any sponsor.
+      </p>
+      <p class="small">
+        &copy; {year} Local Scholarships &middot;
+        <a href="/about/">About</a> &middot;
+        <a href="/submit/">List an award</a>
+      </p>
+    </footer>
+  </body>
+</html>

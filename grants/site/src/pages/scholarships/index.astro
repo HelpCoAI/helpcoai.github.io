@@ -1,0 +1,22 @@
+---
+import Base from "../../layouts/Base.astro";
+import AwardCard from "../../components/AwardCard.astro";
+import data from "../../data/awards.json";
+const rank: Record<string, number> = { school: 0, city: 1, county: 2, state: 3, national: 4 };
+const awards = [...data.awards].sort(
+  (a: any, b: any) => (rank[a.geo_scope] ?? 5) - (rank[b.geo_scope] ?? 5)
+);
+---
+<Base
+  title="All local scholarships we have found"
+  description={`Every one of the ${data.stats.awards} awards in our index, most local first.`}
+  indexable={true}
+>
+  <h1>All awards</h1>
+  <p class="lede">
+    {data.stats.awards} awards, sorted most local first — a scholarship limited
+    to one high school is worth far more of your evening than one open to the
+    whole country.
+  </p>
+  <ul class="grid">{awards.map((a: any) => <li><AwardCard award={a} /></li>)}</ul>
+</Base>

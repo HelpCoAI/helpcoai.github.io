@@ -1,0 +1,123 @@
+---
+import Base from "../../layouts/Base.astro";
+import data from "../../data/awards.json";
+
+export function getStaticPaths() {
+  return data.awards.map((award: any) => ({ params: { slug: award.slug }, props: { award } }));
+}
+const { award } = Astro.props;
+
+const money = (n: any) => (n == null || n === "" ? null : `$${Number(n).toLocaleString()}`);
+const lo = money(award.amount_min), hi = money(award.amount_max);
+const amount = lo && hi ? (lo === hi ? lo : `${lo}–${hi}`) : (lo ?? hi);
+
+const LABELS: Record<string, string> = {
+  gpa_min: "Minimum GPA", gpa_scale: "GPA scale", income_max: "Household income cap",
+  num_awards: "Awards per year", renewal_years: "Renewable for (years)",
+  recommendation_letters: "Letters of recommendation", gender: "Gender",
+  military_affiliation: "Military affiliation", employer_affiliation: "Employer",
+  beneficiary_scope: "How you're selected", class_year: "Year in school",
+  enrollment_status: "Enrolment", counties: "Counties", cities: "Cities",
+  high_schools: "High schools", majors: "Fields of study", activities: "Activities",
+  clubs_organizations: "Clubs", college_plan: "Type of school",
+  citizenship: "Citizenship", heritage: "Heritage",
+  destination_institutions: "Where you can attend",
+};
+const FLAGS: Record<string, string> = {
+  need_based: "Considers financial need", merit_based: "Considers merit",
+  first_generation: "First-generation students", disability: "Disability-related",
+  residency_required: "Residency required", renewable: "Renewable",
+  essay_required: "Essay required", transcript_required: "Transcript required",
+  fafsa_required: "FAFSA required",
+};
+
+const criteria = Object.entries(LABELS)
+  .map(([k, label]) => {
+    const v = (award as any)[k];
+    if (v == null || v === "" || (Array.isArray(v) && v.length === 0)) return null;
+    return { label, value: Array.isArray(v) ? v.join(", ") : String(v) };
+  })
+  .filter(Boolean) as { label: string; value: string }[];
+
+const flags = Object.entries(FLAGS)
+  .filter(([k]) => (award as any)[k] === true || (award as any)[k] === "True")
+  .map(([, label]) => label);
+
+const effort = award.estimated_effort_minutes
+  ? `About ${award.estimated_effort_minutes} minutes of work, based on what the sponsor asks for.`
+  : null;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  name: award.name,
+  ...(award.sponsor && { provider: { "@type": "Organization", name: award.sponsor } }),
+  ...(award.source_url && { url: award.source_url }),
+  ...(award.deadline && { applicationDeadline: award.deadline }),
+};
+
+const title = `${award.name}${award.sponsor ? ` — ${award.sponsor}` : ""}`;
+const description = [
+  award.name, amount && `worth ${amount}`,
+  award.deadline && `deadline ${award.deadline}`,
+  award.counties?.length ? `for ${award.counties.join(", ")} students` : null,
+].filter(Boolean).join(", ") + ".";
+---
+<Base title={title} description={description} indexable={award.indexable}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="detail">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/scholarships/">All awards</a>
+      {award.counties?.[0] && (
+        <> › <a href={`/florida/${award.counties[0].toLowerCase().replace(/[^a-z0-9]+/g, "-")}/`}>
+          {award.counties[0]} County</a></>
+      )}
+    </nav>
+
+    <h1>{award.name}</h1>
+    {award.sponsor && (
+      <p class="sponsor">
+        Offered by <a href={`/sponsors/${award.sponsor.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 70)}/`}>{award.sponsor}</a>
+      </p>
+    )}
+
+    <div class="headline">
+      <div><span class="k">Award</span><span class="v">{amount ?? "Not published"}</span></div>
+      <div><span class="k">Deadline</span><span class="v">{award.deadline ?? "Not published"}</span></div>
+      {award.num_awards && <div><span class="k">Given each year</span><span class="v">{award.num_awards}</span></div>}
+    </div>
+
+    {effort && <p class="effort">{effort}</p>}
+    {flags.length > 0 && <ul class="flags">{flags.map((f) => <li>{f}</li>)}</ul>}
+
+    {criteria.length > 0 && (
+      <>
+        <h2>Who can apply</h2>
+        <dl class="criteria">
+          {criteria.map((c) => <div><dt>{c.label}</dt><dd>{c.value}</dd></div>)}
+        </dl>
+      </>
+    )}
+
+    <h2>What the sponsor says</h2>
+    <blockquote class="raw">{award.eligibility_raw}</blockquote>
+    <p class="note">
+      Quoted from the sponsor's own page, unedited. Where our summary above and
+      this text disagree, this text is correct — tell us and we'll fix the summary.
+    </p>
+
+    {award.source_url && (
+      <p class="apply">
+        <a class="btn" href={award.source_url} rel="nofollow noopener" target="_blank">
+          Apply at {award.source_org || "the sponsor's site"} →
+        </a>
+      </p>
+    )}
+
+    <p class="verified">
+      Last checked {award.last_verified}. Deadlines change without notice —
+      confirm with the sponsor before you rely on one.
+    </p>
+  </article>
+</Base>

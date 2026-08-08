@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import AwardCard from "../../components/AwardCard.astro";
+import data from "../../data/awards.json";
+
+export function getStaticPaths() {
+  return data.sponsors.map((sponsor: any) => ({
+    params: { slug: sponsor.slug },
+    props: { sponsor, awards: data.awards.filter((a: any) => sponsor.award_slugs.includes(a.slug)) },
+  }));
+}
+const { sponsor, awards } = Astro.props;
+const known = awards.filter((a: any) => a.amount_max).map((a: any) => Number(a.amount_max));
+const total = known.reduce((s: number, n: number) => s + n, 0);
+const summary =
+  `${sponsor.name} offers ${awards.length} scholarship${awards.length === 1 ? "" : "s"} we have found` +
+  (total ? `, worth at least $${total.toLocaleString()} in total` : "") + ".";
+---
+<Base title={`${sponsor.name} scholarships`} description={summary} indexable={sponsor.indexable}>
+  <h1>{sponsor.name}</h1>
+  <p class="lede">{summary}</p>
+  <ul class="grid">{awards.map((a: any) => <li><AwardCard award={a} /></li>)}</ul>
+  <p class="note">
+    Are you {sponsor.name}? <a href="/submit/">Claim this page</a> to correct
+    anything wrong or add an award. It is free and always will be.
+  </p>
+</Base>

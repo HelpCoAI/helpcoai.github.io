@@ -1,0 +1,71 @@
+---
+import Base from "../layouts/Base.astro";
+import AwardCard from "../components/AwardCard.astro";
+import data from "../data/awards.json";
+
+const counties = [...data.counties].filter((c: any) => c.indexable)
+  .sort((a: any, b: any) => b.count - a.count);
+const local = data.awards.filter((a: any) => ["county", "city", "school"].includes(a.geo_scope));
+// Soonest useful examples: something to look at, not a ranking claim we cannot
+// yet support. Expected-value ranking needs award counts and applicant counts,
+// and we have award counts on well under half the records.
+const featured = local.filter((a: any) => a.amount_max && a.deadline).slice(0, 6);
+const totalValue = data.stats.total_known_value;
+---
+<Base
+  title="Local Scholarships — county and school awards Florida students actually win"
+  description={`${local.length} scholarships restricted to a single Florida county, city or high school. The awards national databases do not carry.`}
+  indexable={true}
+>
+  <section class="hero">
+    <h1>The scholarships with the best odds are the ones nobody lists</h1>
+    <p class="lede">
+      A national award takes 50,000 applicants for 150 places. A county award
+      takes nineteen. We index the second kind: {local.length} scholarships
+      restricted to one Florida county, city or high school
+      {totalValue > 0 && <> — at least ${totalValue.toLocaleString()} in known award value</>}.
+    </p>
+    <p><a class="btn" href="/florida/">Find awards in your county →</a></p>
+  </section>
+
+  <section>
+    <h2>Browse by county</h2>
+    <ul class="counties">
+      {counties.map((c: any) => (
+        <li>
+          <a href={`/florida/${c.slug}/`}>
+            <strong>{c.name} County</strong><span>{c.count} awards</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {featured.length > 0 && (
+    <section>
+      <h2>A few of the local ones</h2>
+      <ul class="grid">{featured.map((a: any) => <li><AwardCard award={a} /></li>)}</ul>
+    </section>
+  )}
+
+  <section class="how">
+    <h2>How this is different</h2>
+    <dl>
+      <dt>Every award is quoted, not paraphrased</dt>
+      <dd>
+        The sponsor's own eligibility text sits on every page, unedited. If our
+        summary and their text disagree, theirs wins.
+      </dd>
+      <dt>A blank field means we don't know</dt>
+      <dd>
+        It never means "no requirement". We would rather show you an award you
+        turn out to be ineligible for than hide one you could have won.
+      </dd>
+      <dt>Finding an award is always free</dt>
+      <dd>
+        Whether a scholarship exists, and where to apply, is never behind a
+        payment. That information belongs to students.
+      </dd>
+    </dl>
+  </section>
+</Base>
