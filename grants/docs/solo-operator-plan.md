@@ -12,7 +12,7 @@ and no network. Stating them plainly so they stop being suggested:
 | Ruled out | Why |
 |---|---|
 | Local sponsor sales | Pure relationship work. High time cost per dollar. |
-| The nonprofit route | Fundraising is 40-60% of a founder's time — a second job, not a side project. |
+| The nonprofit route | Fundraising is 40-60% of a founder's time, a second job, not a side project. |
 | Grant-writer business | Relationship sale into an unfamiliar vertical. |
 | Customer-discovery interviews at scale | Requires calendar time that does not exist. |
 | Paid acquisition | Already dead on unit economics ($120-818 per paying customer vs. an $84 LTV). |
@@ -26,31 +26,31 @@ fits. It is also, independently, the model the economics already pointed to.
 
 An earlier version of this project proposed $2,500-5,000 per sponsorship with $1,000-2,000 reaching
 the student. That is a **40-60% administrative fee.** Charity watchdogs flag overhead above
-~25-35%, and Scholarship America — the professional administrator — charges roughly 12-20%.
+~25-35%, and Scholarship America, the professional administrator, charges roughly 12-20%.
 
-**Defensible structure:** *"You fund the award — $1,000 minimum, you choose the amount. We charge a
+**Defensible structure:** *"You fund the award, $1,000 minimum, you choose the amount. We charge a
 flat $750 administration fee."* Transparent, sponsor-controlled, survives scrutiny.
 
 **Revised expectation: 20 sponsors × $750 = $15,000/yr, not $50,000.** The earlier figure was
 inflated by a fee split that would not survive a thoughtful sponsor asking where the money goes.
 
-Sponsorship is also a *later* revenue line under these constraints — it requires outreach time.
+Sponsorship is also a *later* revenue line under these constraints, it requires outreach time.
 Treat it as an option once traffic exists, not a launch assumption.
 
 ---
 
 ## The product
 
-**Free tier — the wow, and the SEO engine**
+**Free tier, the wow, and the SEO engine**
 - Matched local scholarships ranked by expected value per hour of effort
 - Deadline calendar and reminders
 - Basic profile
 
-**Paid tier ($99/yr, auto-renew off by default) — the time savings**
+**Paid tier ($99/yr, auto-renew off by default), the time savings**
 - Autofill browser extension
 - Document vault (transcripts, essays, recommendation letters)
 - Application tracking
-- ROI meter — award × estimated odds ÷ effort, shown per scholarship
+- ROI meter, award × estimated odds ÷ effort, shown per scholarship
 - No ads
 - Renewal-scholarship reminders for multi-year awards
 
@@ -61,7 +61,7 @@ Treat it as an option once traffic exists, not a launch assumption.
 ### 1. Automate data freshness before building anything pretty
 
 **This is the failure mode most likely to kill the product quietly.** Scholarships expire, deadlines
-shift, programs go dormant. A stale database is a dead product — and worse, an actively harmful one
+shift, programs go dormant. A stale database is a dead product, and worse, an actively harmful one
 if a student misses a real deadline because of it.
 
 Earlier models in this project carried a **$40,000/yr human data-verification line**. That is not
@@ -77,7 +77,7 @@ At 20,000 records this runs roughly **$75-90/month in API cost.** Build it first
 
 ### 2. Ship the free tier alone
 
-The autofill extension is the hardest, most fragile, highest-maintenance component — 26% of local
+The autofill extension is the hardest, most fragile, highest-maintenance component, 26% of local
 awards are paper or counselor-mediated and can never be automated at all, and every portal UI change
 breaks a flow silently.
 
@@ -95,7 +95,7 @@ Flippa.
 | $100,000 | $250,000-400,000 |
 
 Buyers want: predictable organic traffic, low owner involvement, clean books, and documented
-processes. **Two things follow directly** — keep operations automated (a buyer pays more for
+processes. **Two things follow directly**, keep operations automated (a buyer pays more for
 something that doesn't need you), and keep clean records from month one.
 
 ---
@@ -127,7 +127,7 @@ catch the November-March peak.**
 3. **Freshness stays automated.** If verification becomes manual, a part-time operator cannot
    sustain it and the data rots.
 
-Assumption 1 is testable for under $100 without building the product — see below.
+Assumption 1 is testable for under $100 without building the product, see below.
 
 ---
 
@@ -139,7 +139,7 @@ deadlines, and links.
 
 Add an email capture. Wait 60-90 days. Measure whether they rank.
 
-That single test validates the entire thesis — the only channel available — for the cost of a domain
+That single test validates the entire thesis, the only channel available, for the cost of a domain
 and a few evenings. If those pages rank, everything else is worth building. If they don't, no amount
 of product work saves it.
 
@@ -151,5 +151,5 @@ A successful version of this is a **$30,000-100,000/year profit business by year
 sellable for **$75,000-400,000**. It is not a full-time income for years, and it may never replace a
 salary.
 
-Under these constraints that is the realistic ceiling — and it is a genuinely good outcome for a
+Under these constraints that is the realistic ceiling, and it is a genuinely good outcome for a
 side project that also happens to help families find money they didn't know existed.

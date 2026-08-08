@@ -1,6 +1,6 @@
 # Scholarship Record Schema
 
-The eligibility fields are not optional detail — **they are the product.** Every page type the
+The eligibility fields are not optional detail, **they are the product.** Every page type the
 site generates (state, county, high school, major, demographic) is a query against these fields.
 Get the schema wrong and you cannot generate the pages, cannot match students, and cannot rank by
 odds.
@@ -113,7 +113,7 @@ several simultaneously.
 
 ---
 
-## `beneficiary_scope` — the field that keeps the product honest
+## `beneficiary_scope`, the field that keeps the product honest
 
 Added after the n=15 verification sample, where **5 of 15 organizations ran a real, well-funded
 award that no ordinary student could apply to.** Without this field they all render as "apply now,"
@@ -121,18 +121,18 @@ which is the trust failure the build plan treats as business-ending.
 
 | Value | Meaning | Example from the sample |
 |---|---|---|
-| `open` | Anyone meeting the stated eligibility may apply | Kiwanis Club of St. Petersburg — any city HS senior |
-| `nomination_only` | A counselor, principal, or member must put the student forward | Ye Mystic Krewe of Gasparilla — principals nominate 1 per 100 seniors |
-| `members_only` | Requires family membership in the sponsoring order | Moose lodges — parent/grandparent must be a member |
+| `open` | Anyone meeting the stated eligibility may apply | Kiwanis Club of St. Petersburg, any city HS senior |
+| `nomination_only` | A counselor, principal, or member must put the student forward | Ye Mystic Krewe of Gasparilla, principals nominate 1 per 100 seniors |
+| `members_only` | Requires family membership in the sponsoring order | Moose lodges, parent/grandparent must be a member |
 | `employees_only` | Restricted to a company's staff or their dependents | Ann & Lars Lewander; Freedom Village (staff) |
-| `closed` | No public application path at all | — |
+| `closed` | No public application path at all | |
 
 Only `open` and `nomination_only` belong in a student's match list, and `nomination_only` must
 display *how* to get nominated rather than an apply button. `members_only` is worth showing when the
 profile indicates the affiliation, and is otherwise noise.
 
 **This field is also a discovery signal.** A high BMF score combined with `employees_only` is the
-single most common false positive in the pipeline — corporate and family foundations name themselves
+single most common false positive in the pipeline, corporate and family foundations name themselves
 "… Scholarship Foundation" and score at the very top.
 
 ---
@@ -152,8 +152,7 @@ Each generates a distinct set of SEO landing pages from the same records:
 
 **High-school pages are the most precise match to how these awards restrict eligibility, and there
 are eight times more of them than county pages.** Students also know their school name with total
-certainty, which counties cannot claim. Whether that translates to search volume is unverified —
-build both and measure.
+certainty, which counties cannot claim. Whether that translates to search volume is unverified, build both and measure.
 
 ---
 
@@ -161,15 +160,15 @@ build both and measure.
 
 `competition.win_probability` is what differentiates the product. Estimating it:
 
-- **When disclosed** — some providers publish "over 1,000 apply for 5 awards." Use it directly.
+- **When disclosed**, some providers publish "over 1,000 apply for 5 awards." Use it directly.
 - **Heuristic otherwise:** eligible pool ≈ (students at the named schools or in the county) ×
   (fraction meeting GPA and other filters). Applicants ≈ 10-30% of that pool for local awards, far
   lower for national ones. Then `win_probability ≈ num_awards / applicants_estimated`.
 - **Calibrate over time** with your own users' reported outcomes. That data is proprietary and
-  compounds — no competitor can copy it.
+  compounds, no competitor can copy it.
 
 Ranking is then `expected_value = amount × win_probability`, and the displayed sort is
-`expected_value ÷ estimated_effort_minutes`. Always show the inputs, never just a score — an
+`expected_value ÷ estimated_effort_minutes`. Always show the inputs, never just a score, an
 unexplained "73% match" destroys trust the first time it's visibly wrong.
 
 ---
@@ -187,7 +186,7 @@ or twice a year. Detect change, then extract.
 | **LLM re-extraction** | **Only when the hash changes** | $0.006/record | ~2x/year per record in practice |
 | Full re-extraction regardless | **Annually**, staggered | $0.006/record | Safety net against silent drift |
 
-Hash-gated extraction runs roughly **3 extractions per record per year** instead of 12 — a **4x
+Hash-gated extraction runs roughly **3 extractions per record per year** instead of 12, a **4x
 cost reduction** over a naive monthly schedule.
 
 **Confidence decay:** a record not verified within 60 days displays a lower confidence badge rather
@@ -207,6 +206,6 @@ a trust-based product.
 | 4 | School district and education foundation pages | awards with no independent web presence |
 | 5 | Community foundation portals (CommunityForce, AwardSpring, Scholarship America) | named funds behind a common application |
 
-**Stage 3 is the work.** There is no database of eligibility requirements — if there were, Fastweb
+**Stage 3 is the work.** There is no database of eligibility requirements, if there were, Fastweb
 would have bought it twenty years ago. Assembling stages 3-5 into structured records *is* the
 product.

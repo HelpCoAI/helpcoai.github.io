@@ -31,7 +31,7 @@ near-zero overlap by construction.
 
 | | Counselor bulletins | BMF organizations |
 |---|---|---|
-| Volume | High — 142 from one metro | Low — 13 usable pages of 65 |
+| Volume | High, 142 from one metro | Low, 13 usable pages of 65 |
 | Award type | Regional, state, national | **Hyperlocal** |
 | Odds | Poor (thousands apply) | **Best** (Rotary Hudson: 19 applicants, 5 awards) |
 | Robots / WAF exposure | High | Moderate |
@@ -43,10 +43,10 @@ near-zero overlap by construction.
 
 Best examples, none of which appear on any counselor bulletin or national database:
 
-- **Gina Rose Montalto Memorial Foundation** — $5,000 for a student in the Arts, and $2,500 annually
+- **Gina Rose Montalto Memorial Foundation**, $5,000 for a student in the Arts, and $2,500 annually
   to *one Girl Scout who achieves the Gold Award from the Southeast Florida service unit*. Three
   separate pages harvested.
-- **Wellington Community Foundation** — village-level, with a deadline.
+- **Wellington Community Foundation**, village-level, with a deadline.
 - **I Think Community Foundation**, **Miramar-Pembroke Pines Regional Chamber of Commerce**,
   **Common Knowledge Scholarship Foundation**.
 
@@ -57,7 +57,7 @@ scholarship/student/senior language cut 16 pages to **13 genuinely student-facin
 
 ## Enrichment is solved
 
-The BMF channel was blocked for weeks on a missing URL — it names organizations but not where to
+The BMF channel was blocked for weeks on a missing URL, it names organizations but not where to
 read about them, and finding 626 homepages looked like it needed a paid search API.
 
 It did not. The GivingTuesday 990 index CSV carries a `Website` column already extracted from each
@@ -71,7 +71,7 @@ and `HTTPS://WWW.Q81.ORG/`; a lowercase `startswith("https://")` check missed up
 produced `https://HTTPS://WWW.Q81.ORG/`, which fetches nothing and looks like a dead site rather
 than a mangled URL.
 
-## Collection is partial and non-deterministic — plan for it
+## Collection is partial and non-deterministic, plan for it
 
 Across every run: **~35 robots blocks, plus WAF challenges, JS-only pages, dead domains and DNS
 failures.** Sites that returned 14KB on the first pass returned 1 byte on the fourth after we

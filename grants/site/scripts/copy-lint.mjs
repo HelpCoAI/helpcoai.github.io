@@ -148,6 +148,14 @@ const RULES = [
       !/\b(local|on this page|in our index|we list|restricted|county|city|school)\b/i.test(s),
   },
   {
+    id: "em-dash",
+    why: "House rule: no em dashes, anywhere. Use a full stop, a comma, or a " +
+         "colon. Rewriting around one almost always produces a shorter sentence.",
+    // The sponsor's quoted text is already excluded upstream, so a dash of
+    // theirs cannot trip this. Only our own copy is held to the rule.
+    test: (s) => /—/.test(s),
+  },
+  {
     id: "invalid-json-ld",
     why: "Structured data that does not parse is worse than none: silently " +
          "dropped, and invisible when it breaks.",

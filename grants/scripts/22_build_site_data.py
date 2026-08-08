@@ -69,7 +69,24 @@ def detok(s):
     # entities occasionally survive double-encoded (&amp;#8217;)
     while s != prev:
         prev, s = s, html.unescape(s)
-    return s
+    return dedash(s)
+
+
+def dedash(s: str) -> str:
+    """
+    House rule: no em dashes anywhere on the site.
+
+    Enforced here rather than only in the templates because the last two the
+    linter caught came from the DATA, not from anything written by hand. Crawled
+    org names arrive as "Alonzo and Tracy Mourning Senior High — /cap-corner/",
+    so a template-only fix would have left them on the page.
+
+    Applies to our own fields. The sponsor's verbatim eligibility text is passed
+    through untouched: it is quoted and attributed, and normalising someone's
+    punctuation inside quotation marks is a small dishonesty for a style rule.
+    """
+    s = re.sub(r"\s*—\s*", ", ", s)
+    return re.sub(r",\s*,", ",", s).strip(" ,")
 
 
 def parse_list(v):
@@ -121,7 +138,12 @@ def main(in_path, out_path):
         rec["slug"] = base if seen_slugs[base] == 1 else f"{base}-{seen_slugs[base]}"
 
         rec["counties"] = counties_of(row, rec)
-        rec["eligibility_raw"] = detok(row.get("eligibility_raw", ""))
+        # NOT dedashed: this is the sponsor speaking, in quotation marks.
+        raw = row.get("eligibility_raw", "")
+        prev = None
+        while raw != prev:
+            prev, raw = raw, html.unescape(raw)
+        rec["eligibility_raw"] = raw
         rec["source_url"] = row.get("source_url", "")
         rec["source_org"] = detok(row.get("source_org", ""))
         rec["last_verified"] = date.today().isoformat()

@@ -70,8 +70,8 @@ const essayUnknown = awards.filter((a: any) => a.essay_required == null || a.ess
 const summary =
   `${awards.length} scholarship${awards.length === 1 ? "" : "s"} are open to ${county.name} County students` +
   (total ? `. Together they award at least $${total.toLocaleString()} a year across all recipients${perAward ? `, with individual awards of ${perAward}` : ""}` : "") +
-  `. ${local.length} of them are restricted to this county, a city inside it, or a single high school — ` +
-  `awards the national databases generally do not carry. ${withDeadline.length} have a published deadline.`;
+  `. ${local.length} of them are restricted to this county, a city inside it, or a single high school, ` +
+  `which is the kind of award national databases generally do not carry. ${withDeadline.length} have a published deadline.`;
 
 const faqs = faqNode([
   {
@@ -88,7 +88,7 @@ const faqs = faqNode([
   },
   essayYes.length > 0 && {
     q: `Which ${county.name} County scholarships require an essay?`,
-    a: `${essayYes.length} of the ${awards.length} awards state that an essay is required. The other ${essayUnknown.length} do not mention one, which means the sponsor did not publish that detail — not that there is no essay. Check with the sponsor before assuming.`,
+    a: `${essayYes.length} of the ${awards.length} awards state that an essay is required. The other ${essayUnknown.length} do not mention one, which means the sponsor did not publish that detail.`,
   },
   {
     q: `Why apply for local scholarships instead of national ones?`,

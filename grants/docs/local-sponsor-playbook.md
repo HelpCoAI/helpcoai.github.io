@@ -1,6 +1,6 @@
 # Local Sponsor Playbook
 
-How to sell local sponsored scholarships — the revenue line that funds the operation
+How to sell local sponsored scholarships, the revenue line that funds the operation
 *and* produces the SEO pages that acquire users.
 
 ## The pitch is not "buy an ad"
@@ -18,7 +18,7 @@ because doing it properly means: legal setup, publicizing it, collecting applica
 screening for eligibility, selecting a winner defensibly, handling the payout to the
 school, and tax handling. That is weeks of work nobody has.
 
-You already have all of it built — the data, the matching, the applicant pool, the
+You already have all of it built, the data, the matching, the applicant pool, the
 deadline tracking. Removing that burden *is* the product.
 
 ## Who buys
@@ -33,13 +33,13 @@ Ranked by likelihood, based on who already sponsors local causes:
 | **Law firms** (personal injury, family, estate) | Community goodwill is a direct marketing channel |
 | **Medical & dental practices** | Local reputation-driven, often want a giving vehicle |
 | **HVAC / plumbing / roofing / home services** | Already sponsor little league; same budget line |
-| **Chambers of commerce** | Can sponsor directly or introduce members — a multiplier |
+| **Chambers of commerce** | Can sponsor directly or introduce members, a multiplier |
 | **Local employers with 50+ staff** | Employee-dependent scholarships double as a retention benefit |
 
 ## Pricing
 
 **$2,500–5,000 per sponsorship.** Structure it as $1,000–2,000 to the actual award and
-the remainder as your administration fee. Say that split out loud — sponsors respond
+the remainder as your administration fee. Say that split out loud, sponsors respond
 well to knowing exactly how much reaches a student.
 
 Twenty sponsors at $2,500 = **$50,000/year**, twenty new scholarships that did not exist
@@ -49,16 +49,16 @@ before, and twenty pages that rank in local search.
 
 - A named scholarship ("The [Business] Community Scholarship")
 - Their logo and name on the scholarship page and in the winner announcement
-- A photo and story with the recipient — genuinely good local PR
+- A photo and story with the recipient, genuinely good local PR
 - Applicant volume and demographics, in aggregate (never individual student data)
 - Likely tax deduction (confirm treatment with an accountant; this is stronger if the
-  program sits inside a 501(c)(3) — see `nonprofit-structure-assessment.md`)
+  program sits inside a 501(c)(3), see `nonprofit-structure-assessment.md`)
 
 ## What the sponsor never gets
 
 **Individual student contact information.** This is the line that protects the entire
 business. The moment sponsors get student data, you become a lead-generation company
-and the trust evaporates — that is precisely the path Fastweb took. Aggregate reporting
+and the trust evaporates, that is precisely the path Fastweb took. Aggregate reporting
 only, and say so in the sponsor agreement.
 
 ## How to sell it
@@ -83,7 +83,7 @@ network already know. One warm introduction is worth fifty cold emails.
 
 Sponsors are easier to sell *after* you have users, and users are easier to get *after*
 you have sponsored scholarships to offer. Break the loop by selling the first two or
-three sponsorships on the strength of the data alone — the 47 verified local awards in
+three sponsorships on the strength of the data alone, the 47 verified local awards in
 `data/03_verified_scholarships.csv` are a credible artifact before a single user signs up.
 
 ## On advertising alongside this

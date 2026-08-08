@@ -81,7 +81,7 @@ const graph = [
 // before any narrative, because that sentence is what gets extracted.
 const answer = grantDescription(award);
 ---
-<Base title={`${award.name}${award.sponsor ? ` — ${award.sponsor}` : ""}`}
+<Base title={`${award.name}${award.sponsor ? ` | ${award.sponsor}` : ""}`}
       description={answer.slice(0, 300)} indexable={award.indexable}>
   <script type="application/ld+json" slot="head"
           set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
@@ -126,7 +126,7 @@ const answer = grantDescription(award);
     <p class="note">
       Quoted from <a href={award.source_url} rel="nofollow noopener">the sponsor's own page</a>,
       unedited. Where our summary above and this text disagree, this text is
-      correct — tell us and we'll fix the summary.
+      correct. Tell us and we'll fix the summary.
     </p>
 
     {award.source_url && (
@@ -138,7 +138,7 @@ const answer = grantDescription(award);
     )}
 
     <p class="verified">
-      Last checked {award.last_verified}. Deadlines change without notice —
+      Last checked {award.last_verified}. Deadlines change without notice, so
       confirm with the sponsor before you rely on one.
     </p>
 
@@ -149,7 +149,7 @@ const answer = grantDescription(award);
           {related.map((r: any) => (
             <li>
               <a href={`/scholarships/${r.slug}/`}>{r.name}</a>
-              {amountLabel(r) && <span> — {amountLabel(r)}</span>}
+              {amountLabel(r) && <span>, {amountLabel(r)}</span>}
             </li>
           ))}
         </ul>

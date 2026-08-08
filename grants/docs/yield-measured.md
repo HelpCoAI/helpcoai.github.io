@@ -2,7 +2,7 @@
 
 Two independent measurements, taken different ways, land on the same number.
 
-## Method 1 — stratified enrichment sample
+## Method 1, stratified enrichment sample
 
 40 records drawn round-robin across 40 distinct source hosts, enriched by the model.
 
@@ -13,11 +13,11 @@ Two independent measurements, taken different ways, land on the same number.
 
 Hand-audited all 9. Six are correct. Three are not:
 
-- **Harpo Foundation "Impact Award"** — a grant for *under-recognized Native American
+- **Harpo Foundation "Impact Award"**, a grant for *under-recognized Native American
   contemporary visual artists*. Not a student. Not Florida.
-- **Christopher Columbus HS "Tuition Scholarships"** — financial aid to attend that private
+- **Christopher Columbus HS "Tuition Scholarships"**, financial aid to attend that private
   high school. Students must be "ACCEPTED AND ENROLLED" there. Not a college scholarship.
-- **George Snow "Year Scholarships"** — real fund, name truncated from "Four-Year Scholarships".
+- **George Snow "Year Scholarships"**, real fund, name truncated from "Four-Year Scholarships".
 
 Both miscategorisations are the same failure: an award whose recipient is not a college-bound
 student, phrased in scholarship language. `org_grant` catches the nonprofit case; neither the
@@ -25,7 +25,7 @@ artist-grant nor the private-school-tuition case is covered yet.
 
 **6 usable of 40 blocks = 15%.**
 
-## Method 2 — geographic reach, over all 364 records
+## Method 2, geographic reach, over all 364 records
 
 Independent of the model. Regex over `eligibility_raw` asking what geography each award
 actually restricts to.
@@ -64,7 +64,7 @@ cheap channel is the one that produces the commodity.
 
 ## Full run, all 364 records (2026-08-08, ~$1.28)
 
-**137 kept as `verdict=award`** — 38% of blocks, well above the 22.5% the stratified sample
+**137 kept as `verdict=award`**, 38% of blocks, well above the 22.5% the stratified sample
 predicted. The sample under-called it because round-robin across 40 distinct hosts
 deliberately over-weights one-off foundation pages and under-weights the bulletin pages that
 carry many awards each.
@@ -94,14 +94,14 @@ hand are now correctly rejected:
 ### Residual defects, from a 14-record hand audit
 
 - **Sponsor attribution, 13 records (9%).** The listing site is recorded as the funder:
-  "National Junior Scholarship — sponsor: Pasco County Schools". Pasco publishes the database;
+  "National Junior Scholarship, sponsor: Pasco County Schools". Pasco publishes the database;
   it does not fund the award. This matters more than its size because sponsor pages are a
   planned SEO surface, and a sponsor page for the wrong organisation is worse than none.
-- **Name truncation, 1 record.** "Year Scholarships" from "Four-Year Scholarships" — the
+- **Name truncation, 1 record.** "Year Scholarships" from "Four-Year Scholarships", the
   extractor cut it before the model saw it, so the model had nothing to recover from.
 - **geo_scope instability.** The Machen Florida Opportunity Scholarship came back "state" in
   one run and "school" in another. It is a UF institutional award; both are defensible, which
-  is the problem — the field is not reproducible enough to filter on alone.
+  is the problem, the field is not reproducible enough to filter on alone.
 - **Host concentration.** 137 records over 39 hosts; the top three carry 59 of them.
 
 ### The number, three ways

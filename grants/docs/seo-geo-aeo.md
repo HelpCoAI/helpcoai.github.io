@@ -1,4 +1,4 @@
-# SEO / GEO / AEO — what the research said, and what we changed
+# SEO / GEO / AEO, what the research said, and what we changed
 
 Researched 2026-08-08. Three acronyms, three different surfaces:
 
@@ -20,9 +20,9 @@ content changes that moved AI visibility **22–41%**:
 
 | technique | effect | do we already do it? |
 |---|---|---|
-| **Cite primary sources** | up to **+115%** for pages ranked ~5th | **yes** — every award links the sponsor's page |
-| **Add statistics** | +30–40% | **yes** — every summary is assembled from counts |
-| **Add quotations** | +30–40% | **yes** — sponsor's eligibility text, verbatim |
+| **Cite primary sources** | up to **+115%** for pages ranked ~5th | **yes**, every award links the sponsor's page |
+| **Add statistics** | +30–40% | **yes**, every summary is assembled from counts |
+| **Add quotations** | +30–40% | **yes**, sponsor's eligibility text, verbatim |
 | Fluency / readability | +15–30% | partly |
 | Keyword stuffing | no effect | no |
 
@@ -31,7 +31,7 @@ already structural properties of the product**, adopted for honesty reasons rath
 than for ranking. Citing the sponsor is the audit trail. Statistics instead of prose
 is the refusal to generate filler. Quoting verbatim is the dispute-resolution rule.
 
-The citation result also cuts a specific way — it helped pages ranked around fifth
+The citation result also cuts a specific way, it helped pages ranked around fifth
 far more than pages already ranked first. A new site with no authority is exactly
 the profile that benefits.
 
@@ -45,7 +45,7 @@ topical authority and content depth, technical SEO and structured data, and auth
 signals and brand trust.
 
 Nothing exotic. The transferable part is the *ordering*: entity clarity and structured
-data before content volume — which suits a site with 137 records rather than 137,000.
+data before content volume, which suits a site with 137 records rather than 137,000.
 
 ## What we changed
 
@@ -54,7 +54,7 @@ data before content volume — which suits a site with 137 records rather than 1
 A scholarship is a grant of money to a person. `MonetaryGrant` carries `funder`,
 `amount` (as `MonetaryAmount`) and `areaServed` natively. Trade reporting on this
 vertical specifically flags `MonetaryGrant` as the type most scholarship aggregators
-are **not** using — the rare case where the semantically correct markup is also the
+are **not** using, the rare case where the semantically correct markup is also the
 uncontested one.
 
 ### 2. One `@graph` per page, not scattered script tags
@@ -70,7 +70,7 @@ deadline question.
 
 **This is a correctness rule, not a formatting one.** Schema is invisible to us and
 quotable by a model, so a fabricated answer there is worse than a fabricated answer in
-the body — nobody would ever see it to complain.
+the body, nobody would ever see it to complain.
 
 County pages answer: how many awards, largest *local* award, how many need-based, how
 many with no essay, and why local beats national. Award pages answer: how much, when
@@ -79,7 +79,7 @@ is the deadline, who can apply, how long it takes.
 ### 4. Answer-first opening sentence
 
 Every award page opens with a generated sentence stating what the award is, its amount,
-its sponsor, its deadline and its geography — assembled from fields, never written.
+its sponsor, its deadline and its geography, assembled from fields, never written.
 That sentence is what gets extracted, and it is also what a student triaging twenty
 awards wants first.
 
@@ -88,18 +88,18 @@ awards wants first.
 Not static files. A hardcoded domain in any of them is wrong the moment the domain is
 chosen and nobody notices.
 
-- **llms.txt** — the commonest audit failure is treating it as a second sitemap: every
+- **llms.txt**, the commonest audit failure is treating it as a second sitemap: every
   URL, no descriptions. Ours lists only pages worth fetching, describes each, and
   states the reading rules ("a blank field means the sponsor did not publish it; it
   never means the requirement is absent") so a model can quote us without
   misrepresenting the data. No AI vendor has publicly committed to reading llms.txt,
   so this is cheap insurance, not a strategy.
-- **robots.txt** — GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot and Google-Extended
+- **robots.txt**, GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot and Google-Extended
   are named and **allowed**. Many publishers block them. The calculation here is
   inverted: this is public information about public scholarships, students
   increasingly ask a chatbot before a search engine, and an award nobody can find
   helps nobody.
-- **sitemap.xml** — indexable URLs only (148 of 251). A sitemap advertising `noindex`
+- **sitemap.xml**, indexable URLs only (148 of 251). A sitemap advertising `noindex`
   pages sends Google two contradictory instructions about one URL.
 
 ### 6. Internal linking
@@ -112,7 +112,7 @@ link five nearby counties. Deep pages were previously reachable only from one in
 The county FAQ originally answered *"What is the largest scholarship for Pasco County
 students?"* with a **$65,000 Horatio Alger award open to the entire country**. True,
 useless, and precisely the national-database answer a student can already get
-anywhere — and it was the sentence an answer engine would have lifted as our summary
+anywhere, and it was the sentence an answer engine would have lifted as our summary
 of the page. Now restricted to local awards: Pasco returns a $2,500 Tampa Bay Business
 Coalition for the Arts scholarship.
 
@@ -123,7 +123,7 @@ extraction picks one sentence and it may not be the one you were proud of.
 
 - **No FAQ padding.** Only questions the data answers. Inventing five more per page
   would be the scaled-content failure mode wearing a schema costume.
-- **No keyword stuffing** — measured at zero effect.
+- **No keyword stuffing**, measured at zero effect.
 - **No `Review`/`AggregateRating` markup.** We have no reviews. Fabricating them is
   both a Google penalty and a lie.
 - **No author/E-E-A-T bios yet.** Real once there is a real person behind the site;
@@ -131,16 +131,16 @@ extraction picks one sentence and it may not be the one you were proud of.
 
 ## Sources
 
-- [Princeton GEO study, plain-English summary — DerivateX](https://derivatex.agency/blog/princeton-geo-paper-plain-english/)
-- [The Princeton GEO Study: Methodology, Results and Critique — Blck Alpaca](https://blckalpaca.at/en/knowledge-base/seo-geo/geo-generative-engine-optimization/the-princeton-geo-study-methodology-results-and-critique)
+- [Princeton GEO study, plain-English summary, DerivateX](https://derivatex.agency/blog/princeton-geo-paper-plain-english/)
+- [The Princeton GEO Study: Methodology, Results and Critique, Blck Alpaca](https://blckalpaca.at/en/knowledge-base/seo-geo/geo-generative-engine-optimization/the-princeton-geo-study-methodology-results-and-critique)
 - [GEO: Generative Engine Optimization (arXiv 2311.09735)](https://arxiv.org/pdf/2311.09735)
 - [Brew City Marketing](https://brewcitymarketing.com/)
-- [What is Answer Engine Optimization — Brew City Marketing](https://brewcitymarketing.com/ai/what-is-answer-engine-optimization-and-why-you-should-want-to-optimize-for-it/)
-- [The 3 Pillars of SEO Success — Brew City Marketing](https://brewcitymarketing.com/seo/3-pillars-of-seo-success-from-a-milwaukee-seo-specialist/)
-- [Structured Data for AEO and GEO: Schema Markup Guide 2026 — Kurieta](https://kurieta.com/schema-for-aeo-geo/)
-- [SEO Sponsorships for Educational Opportunities — RankWithLinks](https://rankwithlinks.com/seo-sponsorships-for-educational-opportunities/)
-- [The State of llms.txt in 2026 — aeo.press](https://ai.aeo.press/the-state-of-llms-txt-in-2026)
-- [MonetaryGrant — Schema.org](https://schema.org/MonetaryGrant)
+- [What is Answer Engine Optimization, Brew City Marketing](https://brewcitymarketing.com/ai/what-is-answer-engine-optimization-and-why-you-should-want-to-optimize-for-it/)
+- [The 3 Pillars of SEO Success, Brew City Marketing](https://brewcitymarketing.com/seo/3-pillars-of-seo-success-from-a-milwaukee-seo-specialist/)
+- [Structured Data for AEO and GEO: Schema Markup Guide 2026, Kurieta](https://kurieta.com/schema-for-aeo-geo/)
+- [SEO Sponsorships for Educational Opportunities, RankWithLinks](https://rankwithlinks.com/seo-sponsorships-for-educational-opportunities/)
+- [The State of llms.txt in 2026, aeo.press](https://ai.aeo.press/the-state-of-llms-txt-in-2026)
+- [MonetaryGrant, Schema.org](https://schema.org/MonetaryGrant)
 
 ---
 
@@ -155,7 +155,7 @@ that follows:
 > what surrounded it. Extraction removes your caveats. If a caveat is what makes
 > a sentence honest, the sentence is not honest.
 
-## This is not hypothetical — I broke it within the hour
+## This is not hypothetical, I broke it within the hour
 
 Optimising the county pages for answer engines, I shipped:
 
@@ -171,7 +171,7 @@ question students ask.
 Now:
 
 > *"16 of the 43 awards state that an essay is required. The other 27 do not
-> mention one, which means the sponsor did not publish that detail — not that
+> mention one, which means the sponsor did not publish that detail, not that
 > there is no essay."*
 
 Longer, less quotable, and true when lifted.
@@ -182,9 +182,9 @@ Runs over `dist/` on every build and exits non-zero. Six rules:
 
 | rule | catches |
 |---|---|
-| `absence-as-fact` | "does not require an essay" — we only know it was not published |
+| `absence-as-fact` | "does not require an essay", we only know it was not published |
 | `bare-total` | an aggregate dollar figure with no per-recipient anchor |
-| `eligibility-promise` | "you qualify", "you are eligible" — only the sponsor decides |
+| `eligibility-promise` | "you qualify", "you are eligible", only the sponsor decides |
 | `ftc-red-flag` | "guaranteed", "can't find anywhere else", money-back-if-no-award |
 | `unscoped-superlative` | "largest scholarship" with no scope for the reader to supply |
 | `invalid-json-ld` | structured data that does not parse |
@@ -204,8 +204,7 @@ ours.
 
 Three genuine classes, 11 sentences:
 
-- **The home page headline** ended *"at least $554,250 in known award value"* —
-  the sum of 137 awards to 137 different people, reading as a pot one visitor
+- **The home page headline** ended *"at least $554,250 in known award value"*, the sum of 137 awards to 137 different people, reading as a pot one visitor
   could draw from. Now: *"individual awards of $500 to $15,000"*.
 - **Nine sponsor pages** said *"worth at least $90,000 in total"*. Horatio Alger's
   is two awards to two people. Now: *"paying $25,000 to $65,000 per recipient,
@@ -215,12 +214,11 @@ Three genuine classes, 11 sentences:
 ### Two rounds of tuning, both instructive
 
 The first version flagged 71 sentences. Most were the sponsor's quoted text, and
-most of the rest were card grids — which carry no full stops, so twenty awards
+most of the rest were card grids, which carry no full stops, so twenty awards
 collapsed into one pseudo-sentence holding twenty dollar figures. Block-level
 tags now terminate sentences before the tags are stripped.
 
 The second version still flagged 47, nearly all a lone `$20,000.` in an award's
 Amount field. Correctly labelled, not a total, not misleading. `bare-total` now
-requires an aggregation cue — *total*, *together*, *combined*, *across all* —
-before it fires. **A linter that cries wolf 47 times to find 4 real problems gets
+requires an aggregation cue, *total*, *together*, *combined*, *across all*, before it fires. **A linter that cries wolf 47 times to find 4 real problems gets
 switched off**, which would leave the real four shipped.

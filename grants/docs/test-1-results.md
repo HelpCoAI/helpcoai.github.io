@@ -1,10 +1,10 @@
-# Test 1 Results — Does the local data edge exist?
+# Test 1 Results, Does the local data edge exist?
 
 **Run:** 2026-08-06 · **Region:** Sarasota + Manatee counties, FL · **Cost:** ~$0
 
 ---
 
-## Verdict: PASS, decisively — but the product thesis needs to change
+## Verdict: PASS, decisively, but the product thesis needs to change
 
 The question was whether real local scholarships exist that the national databases don't
 carry. The answer is yes, emphatically. The question this test *also* answered, which
@@ -22,7 +22,7 @@ mostly isn't.
 **Zero of ten** named local scholarships tested appeared on Fastweb, Scholarships.com,
 Bold.org, Niche, Appily, or Scholarships360.
 
-This is not a data gap — it's **structural**. All three major databases filter no finer
+This is not a data gap, it's **structural**. All three major databases filter no finer
 than **state level**. There is no county or city filter anywhere in their architecture.
 Searching "Sarasota County scholarships" on Fastweb returns college directory pages for
 State College of Florida, not community awards. The tier of award simply doesn't exist in
@@ -39,8 +39,8 @@ through Scholarship America). Every small single-club or family-trust award is i
 | Community Foundation of Sarasota County | 130+ | CommunityForce | $2.1M | 566 |
 | Gulf Coast Community Foundation | 62–66 | Scholarship America | $665K | 247 |
 | Manatee Community Foundation | 25+ | AwardSpring | $265K | 96 |
-| Rotary Futures SSMS | ~500 listed | Rotary Futures | — | — |
-| ~42 independent programs | 42 | mixed | — | — |
+| Rotary Futures SSMS | ~500 listed | Rotary Futures | | |
+| ~42 independent programs | 42 | mixed | | |
 
 Roughly **$3M/year to ~900 local students**, essentially none of it nationally indexed.
 
@@ -51,12 +51,12 @@ Roughly **$3M/year to ~900 local students**, essentially none of it nationally i
 ### 1. Consolidation already happened
 
 Each community foundation runs **one common application covering its entire portfolio**.
-A student doesn't fill 260 forms — they fill about 47 at the absolute maximum, and
+A student doesn't fill 260 forms, they fill about 47 at the absolute maximum, and
 realistically 15–20 that they're eligible for. The foundations already solved
 repetitive data entry inside their own portfolios.
 
 This substantially weakens "autofill saves you from form fatigue." Fifteen applications
-is annoying, not agonizing — and the pain is concentrated in a handful of portals rather
+is annoying, not agonizing, and the pain is concentrated in a handful of portals rather
 than spread across hundreds.
 
 ### 2. A quarter of local scholarships can't be automated at all
@@ -68,26 +68,26 @@ than spread across hundreds.
 
 Six of the ten live named trusts route through a **guidance counselor** or a school
 district. The Dakin Family Scholarship requires a postmarked paper application. Venice
-Lions has no portal at all — you phone them. No browser agent touches any of this.
+Lions has no portal at all, you phone them. No browser agent touches any of this.
 
-### 3. Local aggregators already exist — they're just fragmented
+### 3. Local aggregators already exist, they're just fragmented
 
 The competitor is not Fastweb. It's:
 
-- **Rotary Futures SSMS** — ~500 scholarships, staffed with in-person student coaches, free
-- **Education Foundation of Sarasota County** — its own scholarship database
-- **Manatee Education Foundation** — "The Scholarship Source" directory
-- **Manatee County Schools** — counselor-curated Scholarship Central page
-- **Sarasota County Schools** — SchooLinks portal, login-gated
-- **UnidosNow** — scholarship dashboard for Hispanic/Latinx students
-- **fun4manasotakids.com** — local listings
+- **Rotary Futures SSMS**, ~500 scholarships, staffed with in-person student coaches, free
+- **Education Foundation of Sarasota County**, its own scholarship database
+- **Manatee Education Foundation**, "The Scholarship Source" directory
+- **Manatee County Schools**, counselor-curated Scholarship Central page
+- **Sarasota County Schools**, SchooLinks portal, login-gated
+- **UnidosNow**, scholarship dashboard for Hispanic/Latinx students
+- **fun4manasotakids.com**, local listings
 
 The real gap is not "nobody aggregates this." It is "**six organizations each hold a
 partial slice and none of them connect**," plus none of them rank by a student's odds.
 
 ---
 
-## Platform concentration — the one strong signal for the build
+## Platform concentration, the one strong signal for the build
 
 Five platforms cover the large majority of automatable awards:
 
@@ -104,7 +104,7 @@ Name-based matching on the IRS Business Master File runs about a **45% true-posi
 rate**. Of 22 organizations with "SCHOLAR" in the legal name:
 
 - 10 were live, applicable scholarships
-- 12 were not — including a counseling program, a cultural-trip program, a staff-only
+- 12 were not, including a counseling program, a cultural-trip program, a staff-only
   employee benefit, a Special Olympics grantmaker, two invitation-only foundations, and
   **two Sarasota-registered trusts whose beneficiaries are in New Jersey**
 
@@ -117,7 +117,7 @@ two counties produced 47 verified programs.
 
 Every local deadline clusters **December–March** (CFSC Feb 1, Manatee CF Mar 1, Gulf Coast
 early March, Suncoast CU Feb 15, Achieva ~Mar 21). It is August. **The entire cycle is
-closed.** Test 3 — showing families their matched awards and asking for money — cannot run
+closed.** Test 3, showing families their matched awards and asking for money, cannot run
 meaningfully until November at the earliest.
 
 ---
@@ -133,7 +133,7 @@ a quarter of awards aren't online at all, and the strongest local player (Rotary
 answers the same need with free human coaching.
 
 **The nonprofit route looks better after this test than before it.** The same scan found
-**412 local grantmaking foundations holding $4.59B** in these two counties — with no
+**412 local grantmaking foundations holding $4.59B** in these two counties, with no
 common-application consolidation, no counselor gatekeeping, no seasonal cliff, and a buyer
 who has a budget. That asymmetry got wider, not narrower.
 
@@ -142,11 +142,11 @@ who has a budget. That asymmetry got wider, not narrower.
 Do **not** proceed directly to Test 2 (the 30-portal fill test) as written. It measures the
 weaker half of the product. Instead, pick one:
 
-- **A — Reframe and re-test.** Build the discovery + odds-ranking prototype against the 47
+- **A, Reframe and re-test.** Build the discovery + odds-ranking prototype against the 47
   verified awards. Test whether *that* is worth paying for, independent of autofill.
-- **B — Test the nonprofit route.** Ten conversations with small local nonprofits about
+- **B, Test the nonprofit route.** Ten conversations with small local nonprofits about
   what they use for grant discovery and what they'd pay. Cannot be skipped or automated.
-- **C — Run Test 2 narrowly.** Fill only the five hub platforms rather than 30 scattered
+- **C, Run Test 2 narrowly.** Fill only the five hub platforms rather than 30 scattered
   portals. Cheaper, and it directly measures the actual leverage point.
 
 ---

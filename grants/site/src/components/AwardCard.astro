@@ -15,7 +15,7 @@ const money = (n: unknown) =>
 
 const lo = money(award.amount_min);
 const hi = money(award.amount_max);
-const amount = lo && hi ? (lo === hi ? lo : `${lo}–${hi}`) : (lo ?? hi);
+const amount = lo && hi ? (lo === hi ? lo : `${lo} to ${hi}`) : (lo ?? hi);
 
 const scope: Record<string, string> = {
   school: "One school", city: "City", county: "County",
@@ -44,7 +44,7 @@ const facts = [
   )}
   {!amount && !award.deadline && (
     <p class="unknown">
-      Amount and deadline not published by the sponsor — check the source before
+      Amount and deadline not published by the sponsor. Check the source before
       you plan around it.
     </p>
   )}

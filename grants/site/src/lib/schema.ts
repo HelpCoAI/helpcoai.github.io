@@ -31,7 +31,8 @@ export function orgNode(site: string) {
     url: site,
     description:
       "An index of scholarships restricted to a single county, city or high " +
-      "school in Florida — the local awards national databases do not carry.",
+      "school in Florida. These are the local awards that national databases do "
+    + "not carry.",
   };
 }
 
@@ -126,14 +127,14 @@ export function money(v: unknown): string | null {
 export function amountLabel(award: any): string | null {
   const lo = money(award.amount_min);
   const hi = money(award.amount_max);
-  if (lo && hi) return lo === hi ? lo : `${lo}–${hi}`;
+  if (lo && hi) return lo === hi ? lo : `${lo} to ${hi}`;
   return lo ?? hi;
 }
 
 /**
  * A description built only from populated fields. Statistics-dense and
  * quotable, which is what the Princeton GEO work found actually moves
- * visibility — not adjectives.
+ * visibility, not adjectives.
  */
 export function grantDescription(award: any): string {
   const bits: string[] = [];

@@ -22,7 +22,7 @@ const perAward = localAmounts.length
   : null;
 ---
 <Base
-  title="Local Scholarships — county and school awards Florida students actually win"
+  title="Local Scholarships: county and school awards Florida students actually win"
   description={`${local.length} scholarships restricted to a single Florida county, city or high school. The awards national databases do not carry.`}
   indexable={true}
 >
@@ -32,7 +32,7 @@ const perAward = localAmounts.length
       A national award takes 50,000 applicants for 150 places. A county award
       takes nineteen. We index the second kind: {local.length} scholarships
       restricted to one Florida county, city or high school
-      {perAward && <> — individual awards of {perAward}</>}.
+      {perAward && <>, with individual awards of {perAward}</>}.
     </p>
     <p><a class="btn" href="/florida/">Find awards in your county →</a></p>
   </section>
