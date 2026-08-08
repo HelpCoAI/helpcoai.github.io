@@ -1,0 +1,14 @@
+8/12 pages harvested
+------------------------------------------------------------------------------
+[     ok] Princeton GEO paper (arXiv 2311.09735)     5,717 chars -> princeton-geo-paper-arxiv-2311-09735.txt
+[     ok] schema.org MonetaryGrant                   3,714 chars -> schema-org-monetarygrant.txt
+[     ok] schema.org EducationalOccupationalProgram  8,224 chars -> schema-org-educationaloccupationalprogram.txt
+[     ok] Google structured data FAQPage guidance    60,000 chars -> google-structured-data-faqpage-guidance.txt
+[     ok] Google scaled content abuse policy         30,141 chars -> google-scaled-content-abuse-policy.txt
+[ robots] Brew City Marketing, answer engine optimis disallowed by robots.txt  https://brewcitymarketing.com/ai/what-is-answer-engine-optimization-and-why-you-should-want-to-optimize-for-it/
+[ robots] Brew City Marketing, three pillars of SEO  disallowed by robots.txt  https://brewcitymarketing.com/seo/3-pillars-of-seo-success-from-a-milwaukee-seo-specialist/
+[     ok] Fastweb homepage                           9,126 chars -> fastweb-homepage.txt
+[ robots] Scholarships.com, scholarships by state    disallowed by robots.txt  https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-state/florida-scholarships
+[     ok] Bold.org homepage                          2,995 chars -> bold-org-homepage.txt
+[   thin] Apply Tampa Bay                            36 chars  https://applytampabay.org/
+[     ok] CampusReel Florida scholarships            14,038 chars -> campusreel-florida-scholarships.txt
