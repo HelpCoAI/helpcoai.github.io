@@ -107,9 +107,20 @@ here more than once.
   commit. Use `if: always()` and flush incrementally.
 - **`pkill -f "astro preview"` can kill the shell running it.** Use a distinct
   port instead of killing by pattern.
-- **Egress is proxied and many hosts are blocked**, including wikipedia,
-  schema.org, and every scholarship competitor. `WebSearch` works, `WebFetch`
-  often does not. Say which findings are second-hand.
+- **Egress: `curl` reaches almost nothing.** Measured 2026-08-08. Plain curl
+  from this sandbox reaches only the package registries and `api.github.com`.
+  Every other host answers `403 to CONNECT (policy denial)`: arxiv.org,
+  schema.org, developers.google.com, propublica.org, and every scholarship site
+  including ones `WebFetch` had reached minutes earlier.
+  **`WebFetch` has a strictly broader allowlist than curl**, so "curl it
+  yourself instead of using WebFetch" gives less access, not more. The proxy
+  README forbids retrying or routing around a policy denial.
+  The one open-egress route is the GitHub Actions runner, which is how all 400
+  committed pages were fetched. Using it for a given host is the operator's call,
+  not mine to make silently.
+- **`WebFetch` returns a model's summary, not the page.** Even a successful
+  fetch is second-hand. When a claim matters, harvest the page through the
+  crawler so the raw text lands in the repo and can be re-read.
 
 ---
 
