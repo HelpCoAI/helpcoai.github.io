@@ -3,31 +3,64 @@ import Base from "../layouts/Base.astro";
 import AwardCard from "../components/AwardCard.astro";
 import ZipSearch from "../components/ZipSearch.astro";
 import data from "../data/awards.json";
+import { breadcrumbs, faqNode, orgNode, siteNode } from "../lib/schema";
+
+const site = (Astro.site ?? new URL("http://localhost:4321")).href;
 
 const counties = [...data.counties].filter((c: any) => c.indexable)
   .sort((a: any, b: any) => b.count - a.count);
 const local = data.awards.filter((a: any) => ["county", "city", "school"].includes(a.geo_scope));
-// Soonest useful examples: something to look at, not a ranking claim we cannot
-// yet support. Expected-value ranking needs award counts and applicant counts,
-// and we have award counts on well under half the records.
-const featured = local.filter((a: any) => a.amount_max && a.deadline).slice(0, 6);
-// The headline used to end "at least $554,250 in known award value", which
-// standing alone reads as a pot a reader could draw from. It is the sum of 137
-// separate awards to 137 separate people. What a reader can actually act on is
-// what one award pays.
+const withDeadline = data.awards.filter((a: any) => a.deadline).length;
+
+// Individual award range, never a summed pot. The headline used to end with a
+// $554,250 total, which standing alone reads as money one visitor could draw
+// from. What a reader can act on is what one award pays.
 const localAmounts = local
   .map((a: any) => Number(a.amount_max)).filter((n: number) => n > 0)
   .sort((a: number, b: number) => a - b);
 const perAward = localAmounts.length
   ? `$${localAmounts[0].toLocaleString()} to $${localAmounts[localAmounts.length - 1].toLocaleString()}`
   : null;
+
+// Something to look at, not a ranking claim the data cannot support yet:
+// local awards carrying both an amount and a deadline.
+const featured = local.filter((a: any) => a.amount_max && a.deadline).slice(0, 6);
+
+const faqs = faqNode([
+  {
+    q: "Why local scholarships instead of the big national databases?",
+    a: `The applicant pool. A national award can draw tens of thousands of applications for a few hundred places, while an award limited to one county or one high school competes against a graduating class. ${local.length} of our ${data.stats.awards} awards are limited that way, and most never appear on the national databases at all.`,
+  },
+  {
+    q: "How do I find scholarships near me?",
+    a: `Enter your ZIP code and we look up your county, because county is how sponsors actually write eligibility. We cover ${counties.length} Florida counties so far, with ${data.stats.awards} verified awards.`,
+  },
+  {
+    q: "Is this free?",
+    a: "Finding an award, reading its requirements, and reaching the sponsor's application page is free and stays free. That information belongs to students.",
+  },
+  {
+    q: "Where does the data come from?",
+    a: `Every record is collected from the sponsor's own page or a school counselor's published list, and each award page quotes the sponsor's eligibility text unedited with a link to the source. ${withDeadline} of ${data.stats.awards} awards carry a published deadline.`,
+  },
+]);
+
+const graph = [
+  orgNode(site), siteNode(site),
+  breadcrumbs(site, [{ name: "Home", path: "/" }]),
+  faqs,
+].filter(Boolean);
 ---
 <Base
   title="Local Scholarships: county and school awards Florida students actually win"
   description={`${local.length} scholarships restricted to a single Florida county, city or high school. The awards national databases do not carry.`}
   indexable={true}
 >
+  <script type="application/ld+json" slot="head"
+          set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
+
   <section class="hero">
+    <p class="kicker">Florida local scholarship index</p>
     <h1>The scholarships with the best odds are the ones nobody lists</h1>
     <p class="lede">
       A national award takes 50,000 applicants for 150 places. A county award
@@ -37,7 +70,39 @@ const perAward = localAmounts.length
       )}.
     </p>
     <ZipSearch />
-    <p class="alt"><a href="/florida/">Or browse by county</a></p>
+    <p class="alt">
+      <a href="/search/">Search and filter every award</a> ·
+      <a href="/florida/">browse by county</a> ·
+      <a href="/alerts/">get email alerts</a>
+    </p>
+  </section>
+
+  <section class="stats" aria-label="What the index holds">
+    <div class="stat"><span class="n">{data.stats.awards}</span><span class="l">verified awards</span></div>
+    <div class="stat"><span class="n">{local.length}</span><span class="l">restricted to one county, city or school</span></div>
+    <div class="stat"><span class="n">{counties.length}</span><span class="l">Florida counties covered</span></div>
+    <div class="stat"><span class="n">{withDeadline}</span><span class="l">with a published deadline</span></div>
+  </section>
+
+  <section class="steps">
+    <h2>How it works</h2>
+    <ol>
+      <li>
+        <strong>Enter your ZIP code.</strong>
+        We look up your county, because county is how sponsors actually write
+        eligibility. Students know their ZIP; almost nobody knows their county.
+      </li>
+      <li>
+        <strong>Read the facts, then the sponsor's own words.</strong>
+        Every page shows what we extracted and, below it, the sponsor's
+        eligibility text quoted unedited. Where the two disagree, theirs wins.
+      </li>
+      <li>
+        <strong>Apply on the sponsor's site.</strong>
+        We never sit between you and the application. Every award links straight
+        to the organisation giving the money.
+      </li>
+    </ol>
   </section>
 
   <section>
@@ -55,20 +120,22 @@ const perAward = localAmounts.length
 
   {featured.length > 0 && (
     <section>
-      <h2>A few of the local ones</h2>
+      <h2>Local awards with open details</h2>
+      <p class="sub">Each is restricted to one Florida county, city or school, and carries both an amount and a deadline.</p>
       <ul class="grid">{featured.map((a: any) => <li><AwardCard award={a} /></li>)}</ul>
+      <p class="alt"><a href="/search/">See all {data.stats.awards} and filter them →</a></p>
     </section>
   )}
 
   <section class="how">
-    <h2>How this is different</h2>
+    <h2>Three rules we do not break</h2>
     <dl>
       <dt>Every award is quoted, not paraphrased</dt>
       <dd>
-        The sponsor's own eligibility text sits on every page, unedited. If our
-        summary and their text disagree, theirs wins.
+        The sponsor's own eligibility text sits on every page, unedited, with a
+        link to the source. If our summary and their text disagree, theirs wins.
       </dd>
-      <dt>A blank field means we don't know</dt>
+      <dt>A blank field means we do not know</dt>
       <dd>
         It never means "no requirement". We would rather show you an award you
         turn out to be ineligible for than hide one you could have won.
@@ -78,6 +145,24 @@ const perAward = localAmounts.length
         Whether a scholarship exists, and where to apply, is never behind a
         payment. That information belongs to students.
       </dd>
+    </dl>
+  </section>
+
+  <section class="cta">
+    <h2>Deadlines pass quietly. Get told first.</h2>
+    <p>
+      Pick your county, school and field of study, and we email you when we find
+      a matching award, and again before its deadline.
+    </p>
+    <p><a class="btn light" href="/alerts/">Set up scholarship alerts</a></p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <dl>
+      {faqs.mainEntity.map((q: any) => (
+        <><dt>{q.name}</dt><dd>{q.acceptedAnswer.text}</dd></>
+      ))}
     </dl>
   </section>
 </Base>

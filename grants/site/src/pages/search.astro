@@ -1,0 +1,365 @@
+---
+import Base from "../layouts/Base.astro";
+import data from "../data/awards.json";
+import zips from "../data/fl-zips.json";
+import { breadcrumbs, orgNode, siteNode } from "../lib/schema";
+
+const site = (Astro.site ?? new URL("http://localhost:4321")).href;
+
+// Filter vocabularies are derived from the data, never hand-written. A dropdown
+// offering "Veterinary science" when no award mentions it is a dead end that
+// teaches a student the site is empty. Free-text fields in the corpus are messy
+// (87 distinct majors, most appearing once), so they are grouped into buckets
+// whose members are matched against the raw eligibility text at query time.
+const t = (v: any) => v === true || v === "True";
+const aw = data.awards;
+
+const counties = data.counties.filter((c: any) => c.count > 0)
+  .sort((a: any, b: any) => b.count - a.count)
+  .map((c: any) => ({ name: c.name, count: c.count }));
+
+const FIELD_BUCKETS: Record<string, string[]> = {
+  "Health care and nursing": ["nursing", "health", "medic", "dental", "pharmac", "veterinar"],
+  "Engineering and computing": ["engineer", "comput", "technology", "cyber", "information tech", "data"],
+  "Science and maths": ["science", "biolog", "chemis", "physic", "mathematic", "ecolog", "botan"],
+  "Education and teaching": ["educat", "teach"],
+  "Business and finance": ["business", "account", "financ", "marketing", "economic"],
+  "Trades and technical": ["trade", "technical", "vocational", "welding", "automotive", "construction", "hvac", "aviation"],
+  "Arts, music and design": ["art", "music", "design", "theat", "dance", "film", "writing", "creative"],
+  "Law and public service": ["law", "legal", "criminal justice", "public service", "law enforcement"],
+  "Agriculture and environment": ["agricultur", "environment", "horticultur", "landscape", "conservation"],
+};
+
+const PLAN_BUCKETS: Record<string, string[]> = {
+  "Four year college or university": ["four year", "four-year", "4 year", "4-year", "university", "bachelor"],
+  "Two year or community college": ["two year", "two-year", "2 year", "2-year", "community college", "associate", "junior college"],
+  "Trade, technical or vocational": ["trade", "technical school", "vocational", "certificate", "career & technical"],
+  "Graduate or professional school": ["graduate", "master", "doctoral", "law school", "medical school"],
+};
+
+// Counts computed here so every option can show how many awards it would return.
+// A filter that silently yields zero is worse than one that says so up front.
+const bucketCount = (buckets: Record<string, string[]>) =>
+  Object.fromEntries(Object.entries(buckets).map(([label, terms]) => [
+    label,
+    aw.filter((a: any) => {
+      const hay = [
+        ...(a.majors ?? []), ...(a.college_plan ?? []), a.eligibility_raw ?? "",
+      ].join(" ").toLowerCase();
+      return terms.some((term) => hay.includes(term));
+    }).length,
+  ]));
+
+const fieldCounts = bucketCount(FIELD_BUCKETS);
+const planCounts = bucketCount(PLAN_BUCKETS);
+
+const flagCounts = {
+  need_based: aw.filter((a: any) => t(a.need_based)).length,
+  merit_based: aw.filter((a: any) => t(a.merit_based)).length,
+  renewable: aw.filter((a: any) => t(a.renewable)).length,
+  first_generation: aw.filter((a: any) => t(a.first_generation)).length,
+  no_essay_stated: aw.filter((a: any) => !t(a.essay_required)).length,
+  essay_required: aw.filter((a: any) => t(a.essay_required)).length,
+};
+
+const scopeCounts = {
+  school: aw.filter((a: any) => a.geo_scope === "school").length,
+  city: aw.filter((a: any) => a.geo_scope === "city").length,
+  county: aw.filter((a: any) => a.geo_scope === "county").length,
+  state: aw.filter((a: any) => a.geo_scope === "state").length,
+  national: aw.filter((a: any) => a.geo_scope === "national").length,
+};
+
+// Only the fields the client needs, so the payload stays small and nothing
+// private about the corpus ships that the pages do not already show.
+const index = aw.map((a: any) => ({
+  s: a.slug, n: a.name, sp: a.sponsor ?? "", lo: Number(a.amount_min) || 0,
+  hi: Number(a.amount_max) || 0, d: a.deadline ?? "", g: a.geo_scope ?? "",
+  c: a.counties ?? [], ci: a.cities ?? [], hs: a.high_schools ?? [],
+  gpa: Number(a.gpa_min) || 0, eff: Number(a.estimated_effort_minutes) || 0,
+  na: Number(a.num_awards) || 0,
+  f: [
+    t(a.need_based) && "need", t(a.merit_based) && "merit",
+    t(a.renewable) && "renew", t(a.first_generation) && "firstgen",
+    t(a.essay_required) && "essay",
+  ].filter(Boolean),
+  txt: `${a.name} ${a.sponsor ?? ""} ${(a.majors ?? []).join(" ")} ${(a.college_plan ?? []).join(" ")} ${a.eligibility_raw ?? ""}`.toLowerCase(),
+}));
+
+const graph = [
+  orgNode(site), siteNode(site),
+  breadcrumbs(site, [{ name: "Home", path: "/" }, { name: "Search", path: "/search/" }]),
+];
+---
+<Base
+  title="Search every local scholarship by county, field of study and requirement"
+  description={`Filter all ${aw.length} awards by ZIP code, county, field of study, GPA, award size, effort and whether an essay is required.`}
+  indexable={true}
+>
+  <script type="application/ld+json" slot="head"
+          set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
+
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Search</nav>
+  <h1>Search</h1>
+  <p class="lede">
+    All {aw.length} awards. Every filter shows how many awards it would return
+    before you apply it, so you can see where the data is thin.
+  </p>
+
+  <div class="searchwrap">
+    <aside class="filters" id="filters">
+      <div class="fhead">
+        <h2>Filters</h2>
+        <button type="button" id="clear" class="linkish">Clear all</button>
+      </div>
+
+      <details open>
+        <summary>Where</summary>
+        <label for="f-zip">ZIP code</label>
+        <input id="f-zip" type="text" inputmode="numeric" maxlength="5"
+               placeholder="34667" autocomplete="postal-code" />
+        <p class="zipnote" id="zipnote" hidden></p>
+
+        <label for="f-county">County</label>
+        <select id="f-county">
+          <option value="">Any county</option>
+          {counties.map((c) => <option value={c.name}>{c.name} ({c.count})</option>)}
+        </select>
+
+        <label>How local</label>
+        <div class="checks">
+          <label class="c"><input type="checkbox" class="scope" value="school" /> One school ({scopeCounts.school})</label>
+          <label class="c"><input type="checkbox" class="scope" value="city" /> One city ({scopeCounts.city})</label>
+          <label class="c"><input type="checkbox" class="scope" value="county" /> One county ({scopeCounts.county})</label>
+          <label class="c"><input type="checkbox" class="scope" value="state" /> Statewide ({scopeCounts.state})</label>
+          <label class="c"><input type="checkbox" class="scope" value="national" /> National ({scopeCounts.national})</label>
+        </div>
+      </details>
+
+      <details open>
+        <summary>Study</summary>
+        <label for="f-field">Field of study</label>
+        <select id="f-field">
+          <option value="">Any field</option>
+          {Object.keys(FIELD_BUCKETS).map((k) => (
+            <option value={k} disabled={fieldCounts[k] === 0}>{k} ({fieldCounts[k]})</option>
+          ))}
+        </select>
+
+        <label for="f-plan">Where you will study</label>
+        <select id="f-plan">
+          <option value="">Any type of school</option>
+          {Object.keys(PLAN_BUCKETS).map((k) => (
+            <option value={k} disabled={planCounts[k] === 0}>{k} ({planCounts[k]})</option>
+          ))}
+        </select>
+
+        <label for="f-gpa">Your GPA</label>
+        <select id="f-gpa">
+          <option value="">Do not filter on GPA</option>
+          <option value="4.0">4.0</option>
+          <option value="3.5">3.5</option>
+          <option value="3.0">3.0</option>
+          <option value="2.5">2.5</option>
+          <option value="2.0">2.0</option>
+        </select>
+        <p class="hint">
+          Shows awards whose stated minimum you meet, plus every award that does
+          not state one. A blank GPA field means the sponsor did not publish a
+          requirement, not that there is none.
+        </p>
+      </details>
+
+      <details open>
+        <summary>The award</summary>
+        <label for="f-min">Worth at least</label>
+        <select id="f-min">
+          <option value="0">Any amount</option>
+          <option value="500">$500</option>
+          <option value="1000">$1,000</option>
+          <option value="2500">$2,500</option>
+          <option value="5000">$5,000</option>
+          <option value="10000">$10,000</option>
+        </select>
+
+        <label for="f-effort">Effort</label>
+        <select id="f-effort">
+          <option value="0">Any</option>
+          <option value="60">Under an hour</option>
+          <option value="120">Under two hours</option>
+        </select>
+
+        <label>Requirements</label>
+        <div class="checks">
+          <label class="c"><input type="checkbox" class="flag" value="need" /> Considers financial need ({flagCounts.need_based})</label>
+          <label class="c"><input type="checkbox" class="flag" value="merit" /> Considers merit ({flagCounts.merit_based})</label>
+          <label class="c"><input type="checkbox" class="flag" value="renew" /> Renewable ({flagCounts.renewable})</label>
+          <label class="c"><input type="checkbox" class="flag" value="firstgen" /> First generation ({flagCounts.first_generation})</label>
+          <label class="c"><input type="checkbox" id="f-noessay" /> Hide awards that state an essay is required ({flagCounts.essay_required} state one)</label>
+        </div>
+        <p class="hint">
+          Hiding them leaves {flagCounts.no_essay_stated} results, most of which
+          did not publish an essay requirement rather than confirming there is none.
+        </p>
+      </details>
+    </aside>
+
+    <div class="results">
+      <div class="rhead">
+        <label for="f-q" class="sr">Search by keyword</label>
+        <input id="f-q" type="search" placeholder="Search award name, sponsor or eligibility text" />
+        <div class="rmeta">
+          <span id="count" aria-live="polite"></span>
+          <label for="f-sort" class="sr">Sort</label>
+          <select id="f-sort">
+            <option value="local">Most local first</option>
+            <option value="amount">Largest award</option>
+            <option value="effort">Least effort</option>
+            <option value="odds">Best odds (awards given)</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
+      </div>
+      <ul class="grid" id="out"></ul>
+      <p id="empty" class="thin" hidden></p>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ index, zips, FIELD_BUCKETS, PLAN_BUCKETS }}>
+    const $ = (s) => document.querySelector(s);
+    const out = $("#out"), countEl = $("#count"), emptyEl = $("#empty");
+    const RANK = { school: 0, city: 1, county: 2, state: 3, national: 4 };
+    const money = (n) => "$" + n.toLocaleString();
+
+    const state = { county: "", zipCounty: "" };
+
+    function readFilters() {
+      return {
+        q: $("#f-q").value.trim().toLowerCase(),
+        county: state.zipCounty || $("#f-county").value,
+        scopes: [...document.querySelectorAll(".scope:checked")].map((e) => e.value),
+        field: $("#f-field").value,
+        plan: $("#f-plan").value,
+        gpa: parseFloat($("#f-gpa").value) || 0,
+        min: parseInt($("#f-min").value, 10) || 0,
+        effort: parseInt($("#f-effort").value, 10) || 0,
+        flags: [...document.querySelectorAll(".flag:checked")].map((e) => e.value),
+        noEssay: $("#f-noessay").checked,
+        sort: $("#f-sort").value,
+      };
+    }
+
+    function matches(a, f) {
+      if (f.q && !a.txt.includes(f.q)) return false;
+      // A county filter keeps statewide and national awards: they ARE open to a
+      // student there. Filtering them out would hide money the student can win.
+      if (f.county && !(a.c.includes(f.county) || a.g === "state" || a.g === "national"))
+        return false;
+      if (f.scopes.length && !f.scopes.includes(a.g)) return false;
+      if (f.field && !FIELD_BUCKETS[f.field].some((term) => a.txt.includes(term))) return false;
+      if (f.plan && !PLAN_BUCKETS[f.plan].some((term) => a.txt.includes(term))) return false;
+      // Unstated requirements never exclude. a.gpa of 0 means the sponsor did
+      // not publish one, so the award stays in rather than being filtered out on
+      // a requirement we invented.
+      if (f.gpa && a.gpa && a.gpa > f.gpa) return false;
+      if (f.min && a.hi && a.hi < f.min) return false;
+      if (f.min && !a.hi) return false;          // no amount published, cannot assert it clears the bar
+      if (f.effort && a.eff && a.eff > f.effort) return false;
+      if (f.flags.length && !f.flags.every((x) => a.f.includes(x))) return false;
+      if (f.noEssay && a.f.includes("essay")) return false;
+      return true;
+    }
+
+    function sorter(kind) {
+      if (kind === "amount") return (x, y) => y.hi - x.hi;
+      if (kind === "effort") return (x, y) => (x.eff || 1e9) - (y.eff || 1e9);
+      if (kind === "odds")   return (x, y) => (y.na || 0) - (x.na || 0);
+      if (kind === "name")   return (x, y) => x.n.localeCompare(y.n);
+      return (x, y) => (RANK[x.g] ?? 3.5) - (RANK[y.g] ?? 3.5) || y.hi - x.hi;
+    }
+
+    const SCOPE_LABEL = { school: "One school", city: "City", county: "County",
+                          state: "Statewide", national: "National" };
+
+    function card(a) {
+      const amt = a.lo && a.hi ? (a.lo === a.hi ? money(a.hi) : money(a.lo) + " to " + money(a.hi))
+                : (a.hi ? money(a.hi) : null);
+      const facts = [
+        amt && ["Award", amt],
+        a.d && ["Deadline", a.d],
+        a.gpa && ["Min GPA", String(a.gpa)],
+        a.na && ["Given", a.na + "/yr"],
+        a.g && ["Open to", SCOPE_LABEL[a.g] || a.g],
+        a.eff && ["Effort", "~" + a.eff + " min"],
+      ].filter(Boolean);
+      const li = document.createElement("li");
+      li.innerHTML =
+        '<article class="card"><h3><a href="/scholarships/' + a.s + '/"></a></h3>' +
+        (a.sp ? '<p class="sponsor"></p>' : "") +
+        '<dl class="facts">' +
+        facts.map(([k, v]) => "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>").join("") +
+        "</dl></article>";
+      // Names and sponsors come from crawled pages, so they are set as text
+      // rather than interpolated into HTML.
+      li.querySelector("h3 a").textContent = a.n;
+      if (a.sp) li.querySelector(".sponsor").textContent = a.sp;
+      return li;
+    }
+
+    function render() {
+      const f = readFilters();
+      const hits = index.filter((a) => matches(a, f)).sort(sorter(f.sort));
+      out.replaceChildren(...hits.map(card));
+      countEl.textContent = hits.length + " of " + index.length + " awards";
+      emptyEl.hidden = hits.length > 0;
+      if (!hits.length) {
+        emptyEl.textContent =
+          "No awards match every filter. Try removing one, or set up an alert " +
+          "so we can email you when something matching turns up.";
+      }
+      const p = new URLSearchParams();
+      if (f.q) p.set("q", f.q);
+      if (f.county) p.set("county", f.county);
+      if (f.sort !== "local") p.set("sort", f.sort);
+      history.replaceState(null, "", p.toString() ? "?" + p : location.pathname);
+    }
+
+    $("#f-zip").addEventListener("input", (e) => {
+      const z = e.target.value.trim();
+      const note = $("#zipnote");
+      if (/^\d{5}$/.test(z) && zips[z]) {
+        state.zipCounty = zips[z][0];
+        note.textContent = z + " is in " + zips[z][0] + " County. Change the county below to override.";
+        note.hidden = false;
+        $("#f-county").value = zips[z][0];
+        state.zipCounty = "";
+      } else {
+        state.zipCounty = "";
+        note.hidden = !z;
+        if (z) note.textContent = /^\d{5}$/.test(z)
+          ? "Not a Florida ZIP code we hold."
+          : "Enter five digits.";
+      }
+      render();
+    });
+
+    document.querySelectorAll("#filters select, #filters input, #f-q, #f-sort")
+      .forEach((el) => el.addEventListener("input", render));
+
+    $("#clear").addEventListener("click", () => {
+      document.querySelectorAll("#filters input").forEach((e) => {
+        if (e.type === "checkbox") e.checked = false; else e.value = "";
+      });
+      document.querySelectorAll("#filters select").forEach((e) => (e.value = ""));
+      $("#f-min").value = "0"; $("#f-effort").value = "0"; $("#f-q").value = "";
+      $("#zipnote").hidden = true; state.zipCounty = "";
+      render();
+    });
+
+    const qs = new URLSearchParams(location.search);
+    if (qs.get("q")) $("#f-q").value = qs.get("q");
+    if (qs.get("county")) $("#f-county").value = qs.get("county");
+    if (qs.get("sort")) $("#f-sort").value = qs.get("sort");
+    render();
+  </script>
+</Base>

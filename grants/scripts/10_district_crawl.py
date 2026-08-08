@@ -96,6 +96,39 @@ def robots_allows(url: str) -> bool:
     return True if rp is None else rp.can_fetch(UA, url)
 
 
+def decompress(body: bytes, encoding: str) -> bytes:
+    """
+    Undo Content-Encoding before anything tries to read the bytes as text.
+
+    urllib does not do this. Most hosts only compress when asked, and we never
+    send Accept-Encoding, so this went unnoticed for 400 pages. schema.org
+    compresses regardless, and both schema.org harvests landed in the repo as
+    73% non-printable bytes: a file that looks harvested, is committed, is
+    greppable, and contains nothing. Worse than a failed fetch, which at least
+    reports itself in the log.
+
+    Unknown or absent encodings pass through untouched, and a body that fails to
+    decode is returned as-is so a mislabelled header cannot lose the page.
+    """
+    enc = (encoding or "").lower().strip()
+    try:
+        if enc == "gzip":
+            import gzip
+            return gzip.decompress(body)
+        if enc == "deflate":
+            import zlib
+            try:
+                return zlib.decompress(body)
+            except zlib.error:
+                return zlib.decompress(body, -zlib.MAX_WBITS)   # raw deflate
+        if enc == "br":
+            import brotli                                       # optional
+            return brotli.decompress(body)
+    except Exception:
+        return body
+    return body
+
+
 def fetch_one(url: str) -> tuple[str, str]:
     """-> (status, detail). status in {ok, cached, blocked, robots, error}"""
     if cache_path(url).exists():
@@ -115,6 +148,7 @@ def fetch_one(url: str) -> tuple[str, str]:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             body = r.read()
             ctype = r.headers.get("Content-Type", "")
+            body = decompress(body, r.headers.get("Content-Encoding", ""))
     except urllib.error.HTTPError as e:
         return "error", f"HTTP {e.code}"
     except urllib.error.URLError as e:

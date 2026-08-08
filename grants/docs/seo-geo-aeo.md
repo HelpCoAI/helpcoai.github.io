@@ -8,32 +8,30 @@ Researched 2026-08-08. Three acronyms, three different surfaces:
 | **AEO** | featured snippets, AI Overviews, voice | extractable question-answer pairs |
 | **GEO** | being *cited* inside ChatGPT / Perplexity / Claude answers | quotable, statistic-dense, primary-sourced text |
 
-`brewcitymarketing.com` and `schema.org` are both blocked by this sandbox's egress
-proxy, so their pages were read through search-result summaries rather than fetched
-directly. Everything below that is attributed to the Princeton study comes from
-secondary reporting on it, not the paper itself.
+**Corrected 2026-08-08 against harvested raw text.** The sources are now fetched by
+the crawler on a GitHub runner and committed to `grants/data/research_pages/`, so the
+claims below can be rechecked rather than trusted. Reading the actual pages overturned
+two of them. Where a source is still second-hand it says so.
 
 ## The one piece of controlled evidence
 
-The Princeton GEO study (Aggarwal et al., KDD 2024) tested ~10,000 queries and found
-content changes that moved AI visibility **22–41%**:
+Harvested from arXiv and read directly. **The paper's own abstract claims "GEO can
+boost visibility by up to 40%".** That is the number the authors stand behind.
 
-| technique | effect | do we already do it? |
-|---|---|---|
-| **Cite primary sources** | up to **+115%** for pages ranked ~5th | **yes**, every award links the sponsor's page |
-| **Add statistics** | +30–40% | **yes**, every summary is assembled from counts |
-| **Add quotations** | +30–40% | **yes**, sponsor's eligibility text, verbatim |
-| Fluency / readability | +15–30% | partly |
-| Keyword stuffing | no effect | no |
+I had been reporting "+115% for pages ranked around fifth" and a "22 to 41%" range as
+if they were the paper's headline. Neither appears in the abstract. They come from
+agency blog posts summarising the full PDF, which is a separate document we have not
+read. **The +115% figure is unverified and should not be repeated as fact.**
 
-This is the useful finding for us: **three of the four highest-yield GEO tactics were
-already structural properties of the product**, adopted for honesty reasons rather
-than for ranking. Citing the sponsor is the audit trail. Statistics instead of prose
-is the refusal to generate filler. Quoting verbatim is the dispute-resolution rule.
+| claim | status |
+|---|---|
+| GEO methods boost visibility up to 40% | **verified**, the paper's own abstract |
+| citations, statistics and quotations are the effective methods | plausible, from secondary reporting |
+| +115% for pages ranked around fifth | **unverified**, secondary only |
 
-The citation result also cuts a specific way, it helped pages ranked around fifth
-far more than pages already ranked first. A new site with no authority is exactly
-the profile that benefits.
+What survives is the part that mattered anyway: citing primary sources, leading with
+statistics, and quoting verbatim were already structural properties of this product,
+adopted for honesty reasons rather than ranking ones.
 
 ## What Brew City Marketing does
 
@@ -64,6 +62,16 @@ cross-referenced by `@id`. The page reads as one connected entity description ra
 than five disconnected assertions.
 
 ### 3. FAQPage, generated only from populated fields
+
+**Google stopped showing FAQ rich results on 7 May 2026.** Their structured data
+documentation, harvested and read directly, says the feature "is no longer shown in
+Google Search results". So this markup now earns nothing in Google.
+
+It stays, for a narrower and more honest reason: answer engines consume structured
+question and answer pairs regardless of what Google renders, and the schema costs
+nothing to emit because it is generated from fields the page already shows. What
+changed is the justification, not the code. Anyone citing FAQPage as an SEO win after
+May 2026 is repeating advice that expired.
 
 `faqNode()` drops any question whose answer is empty. A page with no deadline emits no
 deadline question.

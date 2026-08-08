@@ -160,14 +160,16 @@ The one controlled study (Princeton, KDD 2024) found these move AI visibility:
 
 | technique | effect |
 |---|---|
-| cite primary sources | up to +115% for pages ranked around fifth |
-| add statistics | +30 to 40% |
-| add quotations | +30 to 40% |
+| GEO methods overall | up to 40%, the paper's own abstract |
+| cite sources, statistics, quotations | the effective three, per secondary reporting |
 | fluency and readability | +15 to 30% |
 | keyword stuffing | none |
 
-Citing sources helps low-authority sites most and slightly *hurts* pages already
-ranked first, which suits a new domain exactly.
+The often-quoted "+115% for pages ranked fifth" is NOT in the paper's abstract and is
+unverified. Do not repeat it as fact.
+
+**Google stopped showing FAQ rich results on 7 May 2026** (their own docs, harvested).
+FAQPage schema now earns nothing in Google and is kept only for answer engines.
 
 Three of the four were already structural properties of this product, adopted for
 honesty reasons rather than ranking ones. Citing the sponsor is the audit trail.
