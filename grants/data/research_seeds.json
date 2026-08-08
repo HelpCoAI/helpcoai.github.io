@@ -1,0 +1,112 @@
+{
+  "_comment": [
+    "Sources whose CLAIMS the project rests on, to be harvested as raw text.",
+    "",
+    "Why this file exists. Research reached this project through WebFetch, which",
+    "returns a small model's summary of a page rather than the page. Every claim",
+    "sourced that way is second-hand, and several are load-bearing: the Princeton",
+    "GEO percentages, MonetaryGrant being the underused schema type, what the",
+    "competitors actually do. The sandbox's egress proxy denies all of these hosts",
+    "to both curl and WebFetch, and the allowlist narrowed mid-session, so four",
+    "domains that answered earlier now return 403.",
+    "",
+    "The crawler already solves this for scholarship pages: it runs on a GitHub",
+    "runner with open egress, flattens HTML to text, and COMMITS the text. That is",
+    "the property WebFetch lacks. Harvested text is permanent, greppable, and",
+    "re-readable by any future session, so a claim can be checked against the",
+    "source months later rather than trusted because I said so.",
+    "",
+    "Harvest with:",
+    "  python3 scripts/10_district_crawl.py harvest \\",
+    "    --seeds data/research_seeds.json --pages data/research_pages --follow 0",
+    "",
+    "follow is 0 deliberately. These are specific documents, not hubs to explore,",
+    "and link-following on a blog would pull in its whole archive."
+  ],
+  "seeds": [
+    {
+      "county": "",
+      "org": "Princeton GEO paper (arXiv 2311.09735)",
+      "url": "https://arxiv.org/abs/2311.09735",
+      "kind": "research",
+      "note": "THE primary source. Every percentage we cite (+115% citations, +30-40% statistics and quotations, 22-41% overall) came from secondary reporting. Verify the real figures and which of the nine methods were tested."
+    },
+    {
+      "county": "",
+      "org": "schema.org MonetaryGrant",
+      "url": "https://schema.org/MonetaryGrant",
+      "kind": "research",
+      "note": "Confirm the properties we emit are real: amount, funder, sameAs, areaServed. Invalid properties are silently dropped, so a mistake here is invisible."
+    },
+    {
+      "county": "",
+      "org": "schema.org EducationalOccupationalProgram",
+      "url": "https://schema.org/EducationalOccupationalProgram",
+      "kind": "research",
+      "note": "The type we replaced. Check whether applicationDeadline and applicationStartDate would let us carry deadlines in schema, which MonetaryGrant appears not to support."
+    },
+    {
+      "county": "",
+      "org": "Google structured data FAQPage guidance",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/faqpage",
+      "kind": "research",
+      "note": "Google restricted FAQ rich results in 2023 to authoritative government and health sites. If FAQPage no longer earns anything in Google, its value here is answer engines only, which changes how much weight it deserves."
+    },
+    {
+      "county": "",
+      "org": "Google scaled content abuse policy",
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "kind": "research",
+      "note": "The largest technical risk to a templated site. Our 3-award and 6-field indexability bars were set from secondary summaries, not this text."
+    },
+    {
+      "county": "",
+      "org": "Brew City Marketing, answer engine optimisation",
+      "url": "https://brewcitymarketing.com/ai/what-is-answer-engine-optimization-and-why-you-should-want-to-optimize-for-it/",
+      "kind": "research",
+      "note": "Read directly rather than through search snippets, which is all we have so far."
+    },
+    {
+      "county": "",
+      "org": "Brew City Marketing, three pillars of SEO",
+      "url": "https://brewcitymarketing.com/seo/3-pillars-of-seo-success-from-a-milwaukee-seo-specialist/",
+      "kind": "research",
+      "note": "Same."
+    },
+    {
+      "county": "",
+      "org": "Fastweb homepage",
+      "url": "https://www.fastweb.com/",
+      "kind": "competitor",
+      "note": "Never inspected. Check their markup, their page structure, and whether they carry scholarship schema at all."
+    },
+    {
+      "county": "",
+      "org": "Scholarships.com, scholarships by state",
+      "url": "https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-state/florida-scholarships",
+      "kind": "competitor",
+      "note": "Their state-level programmatic page. Confirms or refutes the claim that nobody goes below state level, which is the whole premise of this product."
+    },
+    {
+      "county": "",
+      "org": "Bold.org homepage",
+      "url": "https://bold.org/",
+      "kind": "competitor",
+      "note": "Reported to rank first for 'scholarship'. Read their page structure and schema."
+    },
+    {
+      "county": "",
+      "org": "Apply Tampa Bay",
+      "url": "https://applytampabay.org/",
+      "kind": "competitor",
+      "note": "The closest comparable product. Our 73-scholarship figure came from a screenshot the operator sent, which is better sourced than most of this list but still a single point in time."
+    },
+    {
+      "county": "",
+      "org": "CampusReel Florida scholarships",
+      "url": "https://www.campusreel.org/scholarships/location/florida-scholarships/",
+      "kind": "competitor",
+      "note": "We claimed their county pages are hollow and templated, with four Florida counties showing an identical 640 awards and $3,175,206. That claim came from a subagent whose tool calls are not recoverable. Verify or retract."
+    }
+  ]
+}

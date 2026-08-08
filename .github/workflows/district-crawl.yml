@@ -30,6 +30,10 @@ on:
         description: "Enrich only the first N awards (0 = all). Use 40 for a ~$0.11 sample."
         type: string
         default: "0"
+      harvest_research:
+        description: "Also harvest data/research_seeds.json as raw text, so cited claims can be checked against the source instead of a summary"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -147,6 +151,54 @@ jobs:
           path: grants/data/district_pages_${{ matrix.set.dir }}/
           retention-days: 14
           if-no-files-found: ignore
+
+  # Harvest the sources our CLAIMS rest on, as raw text, into the repo.
+  #
+  # Opt-in and separate from the scholarship harvest, because these are not
+  # product data. The point is fidelity: WebFetch returns a model's summary of a
+  # page, so a cited percentage is second-hand and cannot be rechecked later.
+  # Text committed here is permanent, greppable, and auditable by any future
+  # session, which is exactly what a load-bearing claim needs.
+  research:
+    if: ${{ inputs.harvest_research }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pypdf
+
+      - name: Harvest research and competitor sources
+        working-directory: grants
+        run: |
+          # follow 0: these are specific documents, not hubs. Following links on
+          # a blog would drag in its entire archive.
+          python3 scripts/10_district_crawl.py harvest \
+            --seeds data/research_seeds.json --pages data/research_pages \
+            --follow 0 | tee /tmp/r.log
+
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### research"; echo '```'; cat /tmp/r.log 2>/dev/null || echo "(none)"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit harvested sources
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -d grants/data/research_pages ] && git add grants/data/research_pages
+          if git diff --staged --quiet; then
+            echo "nothing harvested"
+          else
+            git commit -m "Harvest research sources as raw text (automated)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
 
   collect:
     needs: harvest

@@ -119,8 +119,14 @@ here more than once.
   committed pages were fetched. Using it for a given host is the operator's call,
   not mine to make silently.
 - **`WebFetch` returns a model's summary, not the page.** Even a successful
-  fetch is second-hand. When a claim matters, harvest the page through the
-  crawler so the raw text lands in the repo and can be re-read.
+  fetch is second-hand, and asking it for "verbatim" output is still a model
+  transcribing, with no way to detect what it dropped. The fix that actually
+  works: `data/research_seeds.json` + the `harvest_research` workflow input
+  harvest cited sources as RAW TEXT into `data/research_pages/`, where any
+  session can grep them. A claim that matters gets checked against harvested
+  text, not a summary. The allowlist also CHANGES: four domains that answered
+  WebFetch earlier in the session returned 403 an hour later, so "it worked
+  before" proves nothing about now.
 
 ---
 
