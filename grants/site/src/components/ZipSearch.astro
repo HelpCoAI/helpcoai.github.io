@@ -1,0 +1,66 @@
+---
+/**
+ * ZIP in, county out, awards listed.
+ *
+ * A student knows their ZIP without thinking. Almost none of them know which
+ * county they live in, and county is how scholarship eligibility is actually
+ * written. This component is that join, done in the browser against a 45KB
+ * lookup, so it works on a static site with no backend and no request logging.
+ *
+ * It always NAMES the county it inferred. ZIPs are USPS delivery routes, not
+ * legal boundaries, and some straddle two counties. Showing the inference lets a
+ * student catch a wrong one instead of silently seeing the wrong list.
+ */
+import zips from "../data/fl-zips.json";
+import data from "../data/awards.json";
+
+const counties = Object.fromEntries(
+  data.counties.map((c: any) => [c.name, { slug: c.slug, count: c.count }])
+);
+---
+<form class="zipsearch" id="zipsearch" novalidate>
+  <label for="zip">Find awards near you</label>
+  <div class="row">
+    <input id="zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]{5}"
+           maxlength="5" autocomplete="postal-code" placeholder="Your ZIP code"
+           aria-describedby="zip-help" />
+    <button type="submit">Search</button>
+  </div>
+  <p id="zip-help" class="hint">Florida ZIP codes. We look up your county and show what is open to you.</p>
+  <p class="zipresult" role="status" aria-live="polite" hidden></p>
+</form>
+
+<script is:inline define:vars={{ zips, counties }}>
+  const form = document.getElementById("zipsearch");
+  const input = document.getElementById("zip");
+  const out = form.querySelector(".zipresult");
+
+  const show = (html) => { out.innerHTML = html; out.hidden = false; };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const zip = (input.value || "").trim();
+    if (!/^\d{5}$/.test(zip)) {
+      return show("Enter a five digit ZIP code.");
+    }
+    const hit = zips[zip];
+    if (!hit) {
+      return show(
+        `We do not have <strong>${zip}</strong> as a Florida ZIP code. ` +
+        `You can still <a href="/florida/">browse by county</a>.`);
+    }
+    const [county, city] = hit;
+    const known = counties[county];
+    // Say what we inferred, always. A ZIP can straddle a county line, and a
+    // student who sees the wrong county named can correct course immediately.
+    const where = `${zip} is in <strong>${county} County</strong>${city ? `, near ${city}` : ""}.`;
+    if (known && known.count > 0) {
+      show(`${where} We hold <strong>${known.count}</strong> award${known.count === 1 ? "" : "s"} ` +
+           `open to students there. <a href="/florida/${known.slug}/">See them</a>.`);
+    } else {
+      show(`${where} We have not found any awards there yet. ` +
+           `<a href="/alerts/?county=${encodeURIComponent(county)}">Get an email when we do</a>, ` +
+           `or <a href="/florida/">browse the counties we cover</a>.`);
+    }
+  });
+</script>

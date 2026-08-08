@@ -222,3 +222,39 @@ The second version still flagged 47, nearly all a lone `$20,000.` in an award's
 Amount field. Correctly labelled, not a total, not misleading. `bare-total` now
 requires an aggregation cue, *total*, *together*, *combined*, *across all*, before it fires. **A linter that cries wolf 47 times to find 4 real problems gets
 switched off**, which would leave the real four shipped.
+
+---
+
+# ZIP search: is the promise real?
+
+Measured before building it, because a name that promises ZIP precision the data
+cannot deliver is the standalone-test problem at brand level.
+
+| | |
+|---|---|
+| awards carrying at least one county | **131 of 137 (96%)** |
+| awards where geography is irrelevant (national or statewide) | 31 (23%) |
+| awards with no county and not national | **6 (4%)** |
+
+So the join works, but not the way the name implies. **No scholarship is defined
+by ZIP code.** Eligibility is written as county, city, or school. What ZIP gives
+us is the *student's* side of the join:
+
+    student's ZIP -> county -> awards restricted to that county
+
+A student knows their ZIP without thinking. Very few know their county, and
+county is how eligibility is actually written. ZIP is the input people have;
+county is the key the data uses.
+
+Implementation: a 45KB browser lookup of 1,399 Florida ZIPs, generated at build
+time from an npm dataset that stays a devDependency. No backend, no request log,
+works on a static site.
+
+**It always names the county it inferred.** ZIPs are USPS delivery routes, not
+legal boundaries, and some straddle a county line. Showing the inference lets a
+student catch a wrong one rather than silently seeing the wrong list. County and
+city pages stay browsable so ZIP is never the only way in.
+
+Uncovered ZIPs are not a dead end. A student in a county we do not hold is
+offered the alert list, which is the only demand data a pre-launch site can
+collect and the input for deciding where to crawl next.

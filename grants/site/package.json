@@ -6,12 +6,16 @@
   "scripts": {
     "data": "python3 ../scripts/22_build_site_data.py --in ../data/16_awards_enriched.csv --out src/data/awards.json",
     "dev": "astro dev",
-    "build": "npm run data && astro build && npm run lint:copy",
+    "build": "npm run data && npm run zips && astro build && npm run lint:copy",
     "preview": "astro preview",
-    "lint:copy": "node scripts/copy-lint.mjs dist"
+    "lint:copy": "node scripts/copy-lint.mjs dist",
+    "zips": "node scripts/build-zips.mjs"
   },
   "dependencies": {
     "astro": "^5.15.9",
     "playwright": "^1.62.1"
+  },
+  "devDependencies": {
+    "zipcodes-nrviens": "^8.0.6"
   }
 }

@@ -1,0 +1,177 @@
+---
+import Base from "../layouts/Base.astro";
+import data from "../data/awards.json";
+import { breadcrumbs, faqNode, orgNode, siteNode } from "../lib/schema";
+
+const site = (Astro.site ?? new URL("http://localhost:4321")).href;
+// Set PUBLIC_ALERTS_ENDPOINT at build time to switch signups on.
+const ALERTS_ENDPOINT = import.meta.env.PUBLIC_ALERTS_ENDPOINT ?? "";
+
+// Every county in Florida is offerable, not only the ones we cover. A student in
+// an uncovered county is the most valuable signal we can collect: it tells us
+// where to crawl next, and it is the only demand data a pre-launch site can get.
+const covered = data.counties.filter((c: any) => c.count > 0)
+  .sort((a: any, b: any) => b.count - a.count);
+
+const CATEGORIES = [
+  "Any field of study", "Nursing and health care", "Engineering and computing",
+  "Education and teaching", "Business and finance", "Trades and technical",
+  "Arts, music and design", "Agriculture and environment",
+  "First generation", "Need based", "Athletics", "Military connected",
+];
+
+const withDeadline = data.awards.filter((a: any) => a.deadline).length;
+
+const faqs = faqNode([
+  {
+    q: "What will you email me?",
+    a: `New scholarships we find matching the places and subjects you pick, and a reminder before one of those deadlines. Matching your filters is not the same as qualifying, which only the sponsor decides. We track deadlines on ${withDeadline} of the ${data.stats.awards} awards in the index.`,
+  },
+  {
+    q: "How often?",
+    a: "Only when there is something new for your selections, plus deadline reminders. There is no weekly newsletter and no digest of things you did not ask for.",
+  },
+  {
+    q: "What happens to my email address?",
+    a: "It is used to send you these alerts and nothing else. We do not sell it, we do not share it with sponsors, and one click unsubscribes.",
+  },
+  {
+    q: "My county is not covered. Is signing up pointless?",
+    a: "No. Requests are how we choose where to crawl next, so an uncovered county with people waiting moves up the list.",
+  },
+]);
+
+const graph = [
+  orgNode(site), siteNode(site),
+  breadcrumbs(site, [
+    { name: "Home", path: "/" },
+    { name: "Scholarship alerts", path: "/alerts/" },
+  ]),
+  faqs,
+].filter(Boolean);
+---
+<Base
+  title="Get an email when a scholarship opens near you"
+  description={`Pick a county, a school or a field of study and we will email you when we find a matching scholarship, plus a reminder before the deadline.`}
+  indexable={true}
+>
+  <script type="application/ld+json" slot="head"
+          set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />
+
+  <div class="detail">
+    <h1>Tell us what to watch for</h1>
+    <p class="lede">
+      Local scholarships open and close quietly. Pick the places and subjects you
+      care about and we will email you when we find one, and again before it closes.
+    </p>
+
+    <form class="alerts" id="alerts" method="post" data-endpoint={ALERTS_ENDPOINT}>
+      <fieldset>
+        <legend>Where</legend>
+        <label for="a-zip">ZIP code</label>
+        <input id="a-zip" name="zip" type="text" inputmode="numeric" maxlength="5"
+               pattern="[0-9]{5}" autocomplete="postal-code" placeholder="34667" />
+
+        <label for="a-county">County</label>
+        <select id="a-county" name="county">
+          <option value="">Any Florida county</option>
+          {covered.map((c: any) => (
+            <option value={c.name}>{c.name} County ({c.count} awards)</option>
+          ))}
+        </select>
+
+        <label for="a-school">High school or city (optional)</label>
+        <input id="a-school" name="school" type="text"
+               placeholder="Zephyrhills High School" />
+      </fieldset>
+
+      <fieldset>
+        <legend>What</legend>
+        <label for="a-category">Field of study or category</label>
+        <select id="a-category" name="category">
+          {CATEGORIES.map((c) => <option value={c}>{c}</option>)}
+        </select>
+
+        <label for="a-year">When do you graduate?</label>
+        <select id="a-year" name="grad_year">
+          <option value="">Not sure</option>
+          {[2026, 2027, 2028, 2029, 2030].map((y) => <option value={y}>{y}</option>)}
+          <option value="already">Already in college</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Where to send it</legend>
+        <label for="a-email">Email</label>
+        <input id="a-email" name="email" type="email" required
+               autocomplete="email" placeholder="you@example.com" />
+        <p class="hint">
+          Used for these alerts only. Never sold, never shared with sponsors, one
+          click to unsubscribe.
+        </p>
+      </fieldset>
+
+      <button type="submit" class="btn">Email me matching scholarships</button>
+      <p class="formstatus" role="status" aria-live="polite" hidden></p>
+    </form>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <dl>
+        {faqs.mainEntity.map((q: any) => (
+          <><dt>{q.name}</dt><dd>{q.acceptedAnswer.text}</dd></>
+        ))}
+      </dl>
+    </section>
+  </div>
+
+  <script is:inline>
+    // PUBLIC_ALERTS_ENDPOINT is injected at build time. Until one is configured
+    // the form does not pretend to work: collecting an address and dropping it is
+    // worse than saying the signup is not open, because the student believes they
+    // are covered and stops looking.
+    const form = document.getElementById("alerts");
+    const status = form.querySelector(".formstatus");
+    const endpoint = form.dataset.endpoint || "";
+
+    const say = (msg, ok) => {
+      status.textContent = msg;
+      status.hidden = false;
+      status.className = "formstatus " + (ok ? "ok" : "err");
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const body = Object.fromEntries(new FormData(form).entries());
+      if (!body.email) return say("Enter an email address.", false);
+      if (!endpoint) {
+        return say(
+          "Alerts are not switched on yet. Nothing was sent and your address " +
+          "was not stored. Check back shortly.", false);
+      }
+      const btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      try {
+        const r = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        if (!r.ok) throw new Error(String(r.status));
+        form.reset();
+        say("Done. We will email you when something matches.", true);
+      } catch {
+        say("That did not send. Try again in a moment.", false);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    // Prefill from ?county= so the ZIP search can hand a student straight here.
+    const q = new URLSearchParams(location.search).get("county");
+    if (q) {
+      const sel = document.getElementById("a-county");
+      for (const o of sel.options) if (o.value === q) o.selected = true;
+    }
+  </script>
+</Base>

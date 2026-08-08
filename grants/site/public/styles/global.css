@@ -107,3 +107,46 @@ footer.site .small { padding-top: 0; }
 .related { list-style: none; padding: 0; margin: .75rem 0; display: grid; gap: .4rem; }
 .related li { border-bottom: 1px solid var(--line); padding-bottom: .4rem; }
 .related span { color: var(--muted); font-size: .9rem; }
+
+/* ZIP search: the front door. A student knows their ZIP; they rarely know
+   their county, which is how eligibility is actually written. */
+.zipsearch { margin: 1.5rem 0 .75rem; max-width: 34rem; }
+.zipsearch label { display: block; font-weight: 700; margin-bottom: .4rem; }
+.zipsearch .row { display: flex; gap: .5rem; }
+.zipsearch input {
+  flex: 1 1 auto; min-width: 0; padding: .7rem .9rem; font-size: 1rem;
+  border: 1px solid var(--line); border-radius: .5rem;
+  background: var(--bg); color: var(--ink);
+}
+.zipsearch button {
+  padding: .7rem 1.15rem; font-size: 1rem; font-weight: 600; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink);
+  border: 0; border-radius: .5rem;
+}
+.zipsearch .hint, .alerts .hint { color: var(--muted); font-size: .87rem; margin: .45rem 0 0; }
+.zipresult {
+  margin: .8rem 0 0; padding: .8rem 1rem; background: var(--soft);
+  border-left: 3px solid var(--accent); border-radius: 0 .4rem .4rem 0;
+}
+.alt { margin: .25rem 0 0; font-size: .95rem; }
+
+.alerts { max-width: 34rem; }
+.alerts fieldset {
+  border: 1px solid var(--line); border-radius: .6rem;
+  padding: 1rem 1.15rem; margin: 0 0 1.15rem;
+}
+.alerts legend { font-weight: 700; padding: 0 .4rem; }
+.alerts label { display: block; font-size: .9rem; margin: .8rem 0 .3rem; }
+.alerts label:first-of-type { margin-top: 0; }
+.alerts input, .alerts select {
+  width: 100%; padding: .6rem .75rem; font-size: 1rem;
+  border: 1px solid var(--line); border-radius: .45rem;
+  background: var(--bg); color: var(--ink);
+}
+.alerts button { cursor: pointer; border: 0; font-size: 1rem; }
+.formstatus { margin-top: .9rem; padding: .7rem .9rem; border-radius: .45rem; font-size: .95rem; }
+.formstatus.ok { background: #e7f5ec; color: #14532d; }
+.formstatus.err { background: var(--soft); color: var(--ink); }
+@media (prefers-color-scheme: dark) {
+  .formstatus.ok { background: #14321f; color: #b7e6c8; }
+}

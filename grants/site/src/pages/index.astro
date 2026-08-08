@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import AwardCard from "../components/AwardCard.astro";
+import ZipSearch from "../components/ZipSearch.astro";
 import data from "../data/awards.json";
 
 const counties = [...data.counties].filter((c: any) => c.indexable)
@@ -31,10 +32,12 @@ const perAward = localAmounts.length
     <p class="lede">
       A national award takes 50,000 applicants for 150 places. A county award
       takes nineteen. We index the second kind: {local.length} scholarships
-      restricted to one Florida county, city or high school
-      {perAward && <>, with individual awards of {perAward}</>}.
+      restricted to one Florida county, city or high school{perAward && (
+        <>, with individual awards of {perAward}</>
+      )}.
     </p>
-    <p><a class="btn" href="/florida/">Find awards in your county →</a></p>
+    <ZipSearch />
+    <p class="alt"><a href="/florida/">Or browse by county</a></p>
   </section>
 
   <section>
