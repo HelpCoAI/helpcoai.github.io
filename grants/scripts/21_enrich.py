@@ -50,7 +50,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 MODEL = "claude-haiku-4-5-20251001"
-PROMPT_VERSION = "v4"          # bump to invalidate the cache deliberately
+PROMPT_VERSION = "v5"          # bump to invalidate the cache deliberately
 CACHE_DIR = Path("data/.enrich_cache")
 MAX_WORKERS = 8
 
@@ -71,6 +71,7 @@ SCALAR_FIELDS = ["name", "sponsor", "amount_min", "amount_max", "num_awards",
                  "geo_scope", "estimated_effort_minutes"]
 
 VERDICTS = {"award", "not_an_award", "recognition_only", "aggregate_page",
+            "not_student_aid",
             "org_grant", "not_a_source"}
 
 SYSTEM = f"""You normalise scholarship records that a regex extractor pulled off
@@ -98,6 +99,20 @@ Set "verdict". Work down this list and take the FIRST that applies:
                      "Award" and has an application deadline. Check who receives
                      the cheque before anything else: a student sent to apply for
                      a nonprofit's project grant wastes hours and trusts us less.
+  "not_student_aid"  the recipient is an INDIVIDUAL but not a college-bound
+                     student. Two cases keep appearing and both were wrongly
+                     kept as scholarships:
+                       - working artists and professionals. The Harpo Foundation
+                         "Impact Award" funds "under-recognized Native American
+                         contemporary visual artists" -- an application, an
+                         essay, a cheque, and no student anywhere in it.
+                       - tuition assistance to attend the K-12 school publishing
+                         the page. Christopher Columbus High School's "Tuition
+                         Scholarships" require that applicants already be
+                         "ACCEPTED AND ENROLLED" at that high school. It is
+                         school financial aid, not a college scholarship.
+                     Ask: would a graduating high school senior receive this
+                     money to pay for college? If not, it is not_student_aid.
   "not_a_source"     the text is ABOUT an award rather than the place you apply:
                      a news story, magazine profile, press release, annual report
                      or history page. It may name a real award, but it carries no
