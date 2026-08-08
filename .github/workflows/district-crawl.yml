@@ -237,15 +237,32 @@ jobs:
             echo '```'; cat /tmp/enrich.log; echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      # Belt and braces: the model responses are paid for, so they must survive
+      # even if the commit step misbehaves again.
+      - name: Upload enrichment output and response cache
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment
+          path: |
+            grants/data/16_awards*.csv
+            grants/data/.enrich_cache/
+          retention-days: 14
+          if-no-files-found: ignore
+
       - name: Commit extracted awards
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # The response cache is a build artifact keyed by content hash; it is
-          # regenerated for free and would add thousands of files to the tree.
-          git add grants/data/clean grants/data/15_awards.csv grants/data/16_awards_sample.csv \
-                  grants/data/16_awards_enriched.csv 2>/dev/null || true
+          # Add each path separately. `git add a b` where b does not exist aborts
+          # WITHOUT staging a -- so a sample run, which writes 16_awards_sample.csv
+          # and not 16_awards_enriched.csv, silently committed nothing and the
+          # step still reported success as "no change in extracted awards".
+          for p in grants/data/clean grants/data/15_awards.csv \
+                   grants/data/16_awards_sample.csv grants/data/16_awards_enriched.csv; do
+            [ -e "$p" ] && git add "$p"
+          done
           if git diff --staged --quiet; then
             echo "no change in extracted awards"
           else
