@@ -1,6 +1,19 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Owner Dashboard | HelpCo AI</title>
 <meta name="robots" content="noindex,nofollow">
+<!-- HOME SCREEN APP. Added 2026-08-06 because tapping the dashboard link inside the
+     Gmail app opens Gmail's in-app browser, which is a SEPARATE storage sandbox from
+     Safari/Chrome, so the saved access key is never seen and the key prompt returns
+     every single time. Installing this to the home screen gives it its own persistent
+     storage and a one-tap icon, which removes the prompt for good.
+     "capable" also drops the browser chrome so it opens like a real app. -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="HelpCo">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0a1f3c">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0a1f3c;--navy2:#102a4f;--teal:#19c6b3;--teal-d:#0fa697;--sun:#ffb23e;--violet:#6c5ce7;--ink:#16202e;--muted:#5d6b7c;--bg:#eef3f8;--line:#e2e9f1;--good:#1f9d6b;--bad:#c0392b}
