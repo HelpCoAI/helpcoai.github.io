@@ -156,6 +156,7 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4p
         <h3>Threads <button class="ib-newbtn" id="ibNewBtn" title="Start a new text conversation">+ New</button></h3>
         <div class="ib-newbox" id="ibNewBox">
           <input id="ibNewTo" type="tel" inputmode="tel" placeholder="Phone number, e.g. 941-555-0133">
+          <div style="padding:8px 0 0"><button class="ib-newbtn" id="ibNewCall" disabled style="opacity:.45" title="Ring my phone, then connect me to this number from the business line">Call this number</button></div>
           <div class="ib-note" id="ibNewNote" style="padding:8px 0 0">They must have opted in, or have texted or called you first.</div>
         </div>
         <div class="ib-pane" id="ibThreads"><div class="ib-empty">Loading conversations...</div></div>
@@ -178,6 +179,15 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4p
   <div class="dhead"><span class="ic" id="dic"></span><div><b id="dtitle"></b><small id="dsub"></small></div><button onclick="closeD()">&times;</button></div>
   <div class="dbody" id="dbody"></div>
 </div>
+
+<!-- Live call bar. Fixed so it survives switching views mid-call. -->
+<div id="spBar" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#0a1f3c;color:#fff;padding:12px 16px;font-weight:700;font-size:14px;gap:12px;align-items:center;justify-content:center;box-shadow:0 -2px 12px rgba(0,0,0,.25)"></div>
+
+<!-- Twilio Voice SDK. Self-hosted on purpose: v2 is NOT on any Twilio CDN, and a
+     third-party CDN outage would take the phone down. Download twilio.min.js from
+     github.com/twilio/twilio-voice.js releases (/dist) and commit it next to this
+     file. If it is absent the page still works and Call uses click-to-call. -->
+<script src="twilio.min.js" onerror="window.__spNoSdk=1"></script>
 
 <script>
 /* ============================================================
@@ -826,9 +836,11 @@ function ibRenderMsgs(){
               : 'You are handling this thread. Click to let the AI answer again.')
       + '" style="background:'+(aiOn?'#0fa697':'#94a3b4')+';color:#fff;border-color:transparent">'
       + (aiOn ? 'AI on' : 'AI off') + '</button>'
+    + '<button class="ib-newbtn" id="ibCallBtn" title="Twilio rings your phone first, then dials them showing your business number.">Call</button>'
     + '<button class="ib-newbtn" id="ibNameBtn">'+(t.name?'Rename':'Add name')+'</button>';
   document.getElementById('ibNameBtn').addEventListener('click', function(){ ibAskName(t); });
   document.getElementById('ibAiBtn').addEventListener('click', function(){ ibToggleAi(t); });
+  document.getElementById('ibCallBtn').addEventListener('click', function(){ ibCall(t.number); });
 
   // Only repaint the message pane when it actually changed. A blind repaint every
   // 20s would yank the scroll position back down and wipe any text selection.
@@ -843,6 +855,117 @@ function ibRenderMsgs(){
   }
   document.getElementById('ibReply').disabled=false;
   document.getElementById('ibSend').disabled=false;
+}
+
+/* ============================================================
+   SOFTPHONE. The instant path: the browser IS the phone, so clicking Call dials
+   them straight away with no callback leg. Falls back to click-to-call when the
+   SDK is absent, unconfigured, or the mic is refused, because those are exactly
+   the moments you still need to reach someone.
+   ============================================================ */
+var SP={dev:null, call:null, ready:false, why:''};
+
+function spBar(html){
+  var el=document.getElementById('spBar');
+  if(!el) return;
+  el.innerHTML=html||'';
+  el.style.display=html?'flex':'none';   // 'flex' not '' so the centering applies
+}
+
+/* Token is short-lived (1h) and minted per session. Failure here is not fatal:
+   we record why and every Call button silently uses click-to-call instead. */
+function spInit(){
+  if(typeof Twilio==='undefined' || !Twilio.Device){ SP.why='sdk-missing'; return; }
+  if(!WORKER_URL || !TOKEN){ SP.why='no-worker'; return; }
+  fetch(WORKER_URL+'/api/voice-token?t='+encodeURIComponent(TOKEN),{cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(!d || !d.ok){ SP.why=(d&&d.reason)||'token-failed'; return; }
+      SP.dev=new Twilio.Device(d.token,{codecPreferences:['opus','pcmu'],logLevel:'error'});
+      SP.dev.on('error',function(e){ spBar('<b>Call error:</b> '+esc((e&&e.message)||'unknown')); });
+      SP.dev.on('tokenWillExpire',function(){
+        fetch(WORKER_URL+'/api/voice-token?t='+encodeURIComponent(TOKEN),{cache:'no-store'})
+          .then(function(r){return r.json();})
+          .then(function(x){ if(x&&x.ok&&SP.dev) SP.dev.updateToken(x.token); })
+          .catch(function(){});
+      });
+      SP.ready=true;
+    })
+    .catch(function(){ SP.why='network'; });
+}
+
+function spHangup(){
+  if(SP.call){ try{ SP.call.disconnect(); }catch(e){} }
+  SP.call=null; spBar('');
+}
+
+/* Returns true if it took the call, false to let the caller fall back. */
+function spDial(number, pretty){
+  if(!SP.ready || !SP.dev) return false;
+  try{
+    spBar('<b>Calling '+esc(pretty)+'...</b> <button class="ib-newbtn" id="spEnd" style="background:#c0392b;color:#fff">Hang up</button>');
+    document.getElementById('spEnd').addEventListener('click', spHangup);
+    SP.dev.connect({params:{To:number}}).then(function(call){
+      SP.call=call;
+      call.on('accept',function(){
+        spBar('<b>On a call with '+esc(pretty)+'</b> <button class="ib-newbtn" id="spEnd" style="background:#c0392b;color:#fff">Hang up</button>');
+        var b=document.getElementById('spEnd'); if(b) b.addEventListener('click', spHangup);
+      });
+      call.on('disconnect',function(){ SP.call=null; spBar(''); ibLoad(); });
+      call.on('cancel',function(){ SP.call=null; spBar(''); });
+      call.on('reject',function(){ SP.call=null; spBar('Call rejected.'); });
+    }).catch(function(err){
+      SP.call=null;
+      // Almost always a refused or missing microphone. Say so, then offer the
+      // path that does not need one.
+      spBar('');
+      if(window.confirm('The browser could not start the call.\n\n'+((err&&err.message)||'')+'\n\nUsually this is microphone permission. Use the fallback instead (rings your phone first)?')) ibCall(number, false, true);
+    });
+    return true;
+  }catch(e){ spBar(''); return false; }
+}
+
+/* CLICK TO CALL. Your phone rings first, you answer, then Twilio dials them with the
+   business number as caller ID. Two legs, about $0.028/min, and they never see your
+   personal number. `force` is the deliberate second step for a contact who opted out
+   of texts: opting out of messaging is not the same as refusing a phone call, but it
+   should be a decision you make on purpose. */
+function ibCall(number, force, forceLegacy){
+  if(!number) return;
+  var pretty = ibPretty(number);
+
+  /* Opt-out check has to happen HERE, not only in /api/call, because the softphone
+     talks to Twilio directly and never touches that endpoint. conversationsView
+     ships an optedOut flag per thread so this costs no extra request. */
+  if(!force){
+    var th=null;
+    for(var i=0;i<IBT.length;i++){ if(IBT[i].number===number){ th=IBT[i]; break; } }
+    if(th && th.optedOut){
+      if(!window.confirm(pretty+' opted OUT of your texts.\n\nA phone call is a separate thing and is your call to make, but do not do it casually.\n\nPlace the call anyway?')) return;
+      force = true;
+    }
+  }
+
+  // Instant path. No confirm dialog: clicking Call IS the intent, and a modal in
+  // front of it would put back the delay this was built to remove.
+  if(!forceLegacy && SP.ready){
+    if(spDial(number, pretty)) return;
+  }
+
+  if(!force && !window.confirm('Call '+pretty+'?\n\nYour phone rings first. Answer it, and you will be connected to them.\nThey will see your business number, not your cell.')) return;
+  fetch(WORKER_URL+'/api/call?t='+encodeURIComponent(TOKEN),{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({to:number, force:!!force})
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if(d && d.ok){ alert('Calling now.\n\nAnswer your phone, then you will be connected to '+pretty+'.'); ibLoad(); return; }
+    if(d && d.reason==='opted-out'){
+      if(window.confirm(pretty+' opted OUT of your texts.\n\nA phone call is a separate thing and is your call to make, but do not do it casually.\n\nPlace the call anyway?')) ibCall(number, true);
+      return;
+    }
+    if(d && d.reason==='no-creds'){ alert('Calling is off: the Twilio secrets are not set on the Worker.'); return; }
+    if(d && d.reason==='self-call'){ alert('That is your own number. The call would ring you twice and never connect.'); return; }
+    alert('Could not place the call: '+((d && (d.note || d.reason)) || 'unknown error'));
+  }).catch(function(){ alert('Could not reach the server.'); });
 }
 
 /* Hand the thread to the AI, or take it back. Sending a manual reply pauses the
@@ -902,18 +1025,27 @@ document.getElementById('ibNewBtn').addEventListener('click', function(){
 document.getElementById('ibNewTo').addEventListener('input', function(){
   var n=ibE164(this.value), note=document.getElementById('ibNewNote');
   var ta=document.getElementById('ibReply'), btn=document.getElementById('ibSend');
+  var callBtn=document.getElementById('ibNewCall');
   if(n){
     IBCOMPOSE=n; IBKEY=null; IBSIG='';
     document.getElementById('ibTitle').textContent='New message to '+ibPretty(n);
     // No thread selected while composing, so there is nothing to rename yet.
     document.getElementById('ibMsgs').innerHTML='<div class="ib-empty">New conversation. Type your message below and send.</div>';
     ta.disabled=false; btn.disabled=false; ta.placeholder='Type your message...';
+    // Calling a stranger is fine; TEXTING one is not. Only the text path carries the
+    // opt-in warning, which is why the note below stays put.
+    callBtn.disabled=false; callBtn.style.opacity='1';
     note.innerHTML='<span class="ib-ok">Ready.</span> They must have opted in, or have texted or called you first.';
     ibRenderThreads();
   } else {
     IBCOMPOSE=null; ta.disabled=true; btn.disabled=true;
+    callBtn.disabled=true; callBtn.style.opacity='.45';
     note.textContent = this.value.trim() ? 'Enter a valid 10-digit US number.' : 'They must have opted in, or have texted or called you first.';
   }
+});
+document.getElementById('ibNewCall').addEventListener('click', function(){
+  var n=ibE164(document.getElementById('ibNewTo').value);
+  if(n) ibCall(n);
 });
 document.getElementById('ibSend').addEventListener('click', function(){
   // Resolve the recipient by number at click time, so a refresh cannot have moved it.
@@ -959,6 +1091,7 @@ async function boot(){
   await loadLocations();
   load();
   ibLoad();                                  // pull threads once so the Messages badge is accurate immediately
+  spInit();                                  // softphone: fails quietly, Call falls back to click-to-call
   setInterval(function(){
     if(VIEW==='dash') load(); else ibLoad();  // refresh whichever view is open
   }, 20000);
