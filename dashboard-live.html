@@ -1105,10 +1105,23 @@ async function boot(){
   load();
   ibLoad();                                  // pull threads once so the Messages badge is accurate immediately
   spInit();                                  // softphone: fails quietly, Call falls back to click-to-call
-  setInterval(function(){
-    if(VIEW==='dash') load(); else ibLoad();  // refresh whichever view is open
-  }, 20000);
-  setInterval(function(){ if(VIEW==='dash') ibLoad(); }, 60000); // keep the badge fresh while on the dashboard
+  /* POLLING IS METERED. Airtable's free plan allows 1,000 API calls per workspace
+     per MONTH, and one dashboard refresh costs several. At the old 20s interval a
+     single open tab burned the entire monthly allowance in about an hour.
+
+     Two fixes: poll far less often, and do not poll at all when you are not looking.
+     A backgrounded tab or a home-screen app sitting in the app switcher now costs
+     nothing. Coming back to it refreshes immediately, so it still feels live. */
+  var POLL_MS = 120000;                      // was 20000
+  function pollTick(){
+    if(document.hidden) return;              // not looking: spend nothing
+    if(VIEW==='dash') load(); else ibLoad();
+  }
+  setInterval(pollTick, POLL_MS);
+  // Badge freshness while on the dashboard, at a quarter of the old rate.
+  setInterval(function(){ if(!document.hidden && VIEW==='dash') ibLoad(); }, 240000);
+  // Returning to the tab should feel instant rather than waiting out the interval.
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) pollTick(); });
 }
 boot();
 </script>
