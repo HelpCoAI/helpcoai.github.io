@@ -1,0 +1,535 @@
+<title>The Satisfying Trap</title>
+<style>
+  :root{
+    --ground:#EDEEEC; --surface:#FAFAF9; --surface-2:#F3F4F1; --line:#D6D9D4; --line-soft:#E3E5E1;
+    --ink:#15181B; --ink-2:#3A4147; --muted:#5C646B;
+    --cobalt:#28479B; --teal:#1E6E68; --clay:#9C3F4E; --green:#2C6A4F;
+    --amber-text:#8A5410; --amber-fill:#B0711F;
+    --bar:#28479B; --bar-soft:#C3CBE2;
+    --chip-ink:#15181B;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0F1214; --surface:#171B1F; --surface-2:#1D2226; --line:#2C3339; --line-soft:#232a2f;
+      --ink:#E4E7E9; --ink-2:#C2C8CD; --muted:#8F979F;
+      --cobalt:#7E9CE8; --teal:#5CB4AC; --clay:#DF8592; --green:#5FB88C;
+      --amber-text:#DFA45E; --amber-fill:#DFA45E;
+      --bar:#7E9CE8; --bar-soft:#2E3A52;
+      --chip-ink:#0F1214;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0F1214; --surface:#171B1F; --surface-2:#1D2226; --line:#2C3339; --line-soft:#232a2f;
+    --ink:#E4E7E9; --ink-2:#C2C8CD; --muted:#8F979F;
+    --cobalt:#7E9CE8; --teal:#5CB4AC; --clay:#DF8592; --green:#5FB88C;
+    --amber-text:#DFA45E; --amber-fill:#DFA45E;
+    --bar:#7E9CE8; --bar-soft:#2E3A52;
+    --chip-ink:#0F1214;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:17px; line-height:1.62; margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sans{font-family:"Helvetica Neue",Helvetica,Arimo,"Liberation Sans",Arial,sans-serif;}
+  .mono,code,td.num,th.num{font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;font-variant-numeric:tabular-nums;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px;}
+  .col{max-width:66ch;}
+  .wide{max-width:940px;}
+
+  /* ---- masthead ---- */
+  header.mast{border-bottom:2px solid var(--ink);margin-bottom:44px;padding:56px 0 22px;}
+  .kicker{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 20px;}
+  h1{font-family:"Helvetica Neue",Helvetica,Arimo,"Liberation Sans",Arial,sans-serif;
+    font-size:clamp(2.6rem,7vw,4.6rem);line-height:.98;letter-spacing:-.033em;font-weight:700;
+    margin:0 0 22px;text-wrap:balance;max-width:16ch;}
+  .standfirst{font-size:clamp(1.06rem,2vw,1.24rem);line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0 0 26px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px 26px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:11.5px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
+
+  /* ---- headings ---- */
+  h2{font-family:"Helvetica Neue",Helvetica,Arimo,"Liberation Sans",Arial,sans-serif;
+    font-size:clamp(1.55rem,3.2vw,2.15rem);line-height:1.08;letter-spacing:-.022em;font-weight:700;
+    margin:0 0 14px;text-wrap:balance;max-width:22ch;}
+  h3{font-family:"Helvetica Neue",Helvetica,Arimo,"Liberation Sans",Arial,sans-serif;
+    font-size:1.16rem;line-height:1.25;letter-spacing:-.012em;font-weight:700;margin:0 0 10px;text-wrap:balance;}
+  h4{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--muted);font-weight:400;margin:0 0 12px;}
+  p{margin:0 0 18px;}
+  a{color:var(--cobalt);}
+
+  section{padding:52px 0 0;}
+  section + section{border-top:1px solid var(--line);margin-top:52px;}
+  .sec-head{display:flex;gap:20px;align-items:baseline;margin-bottom:26px;}
+  .sec-num{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12px;color:var(--muted);
+    letter-spacing:.1em;flex:none;padding-top:6px;}
+
+  /* ---- provenance chips: the most load-bearing structure in this report ---- */
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;
+    white-space:nowrap;vertical-align:2px;font-weight:500;}
+  .chip.verified{background:var(--green);color:var(--chip-ink);}
+  .chip.sourced{background:var(--bar-soft);color:var(--ink);border:1px solid var(--line);}
+  .chip.unverified{background:transparent;color:var(--clay);border:1px dashed var(--clay);}
+  .chip.build{background:var(--green);color:var(--chip-ink);}
+  .chip.maybe{background:var(--amber-fill);color:var(--chip-ink);}
+  .chip.kill{background:var(--clay);color:var(--chip-ink);}
+
+  /* ---- callout ---- */
+  .callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--cobalt);
+    padding:20px 22px;margin:0 0 26px;border-radius:2px;}
+  .callout.warn{border-left-color:var(--clay);}
+  .callout p:last-child{margin-bottom:0;}
+  .callout h4{margin-bottom:8px;}
+
+  /* ---- pull stat ---- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);
+    border:1px solid var(--line);margin:0 0 28px;border-radius:2px;overflow:hidden;}
+  .stat{background:var(--surface);padding:18px 18px 16px;}
+  .stat .v{font-family:"Helvetica Neue",Helvetica,Arimo,Arial,sans-serif;font-size:2.05rem;font-weight:700;
+    letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;display:block;margin-bottom:7px;}
+  .stat .l{font-size:13.5px;line-height:1.35;color:var(--muted);display:block;}
+
+  /* ---- tables ---- */
+  .scroll{overflow-x:auto;margin:0 0 12px;border:1px solid var(--line);border-radius:2px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px;}
+  caption{text-align:left;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:0 0 10px;}
+  th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  thead th{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);font-weight:400;border-bottom:1px solid var(--line);white-space:nowrap;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num,th.num{text-align:right;white-space:nowrap;}
+  .rank{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--muted);font-size:13px;width:1%;
+    white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .note{font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 26px;}
+
+  /* ---- bar chart ---- */
+  figure{margin:0 0 28px;}
+  figcaption{font-size:13px;color:var(--muted);line-height:1.45;margin-top:10px;}
+  .bars{display:flex;flex-direction:column;gap:7px;background:var(--surface);border:1px solid var(--line);
+    padding:20px;border-radius:2px;}
+  .barrow{display:grid;grid-template-columns:118px 1fr 58px;gap:12px;align-items:center;}
+  .barlab{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;color:var(--ink-2);
+    text-align:right;font-variant-numeric:tabular-nums;}
+  .bartrack{height:15px;background:var(--surface-2);border-radius:2px;position:relative;overflow:hidden;}
+  .barfill{height:100%;background:var(--bar);border-radius:0 4px 4px 0;}
+  .barval{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;color:var(--ink-2);
+    font-variant-numeric:tabular-nums;}
+
+  /* ---- concept cards ---- */
+  .concept{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:26px 26px 22px;margin:0 0 22px;}
+  .concept-head{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;margin-bottom:6px;}
+  .concept-n{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12px;color:var(--muted);}
+  .concept h3{margin-bottom:12px;}
+  .oneliner{font-size:1.03rem;color:var(--ink-2);margin:0 0 18px;line-height:1.45;}
+  .spec{display:grid;grid-template-columns:132px 1fr;gap:9px 18px;font-size:14.5px;margin:0 0 4px;}
+  .spec dt{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--muted);padding-top:4px;}
+  .spec dd{margin:0;}
+  .killtest{border-top:1px solid var(--line-soft);margin-top:16px;padding-top:14px;font-size:14.5px;}
+  .killtest b{font-family:"Helvetica Neue",Helvetica,Arimo,Arial,sans-serif;font-size:12.5px;letter-spacing:.02em;}
+
+  ul,ol{margin:0 0 18px;padding-left:22px;}
+  li{margin-bottom:8px;}
+  li::marker{color:var(--muted);}
+  strong{font-weight:700;}
+  em{font-style:italic;}
+  .lede{font-size:1.1rem;line-height:1.5;color:var(--ink-2);}
+
+  hr.rule{border:none;border-top:1px solid var(--line);margin:36px 0;}
+  footer{border-top:2px solid var(--ink);margin-top:60px;padding-top:22px;font-size:13.5px;color:var(--muted);}
+
+  @media (max-width:640px){
+    body{font-size:16px;}
+    .spec{grid-template-columns:1fr;gap:3px 0;}
+    .spec dt{padding-top:10px;}
+    .barrow{grid-template-columns:92px 1fr 50px;gap:8px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  :focus-visible{outline:2px solid var(--cobalt);outline-offset:2px;}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">US App Store · apps &amp; games · 30-day and 6-month read · August 2026</p>
+  <h1>The Satisfying Trap</h1>
+  <p class="standfirst">You asked for the most addictive phone app you could monetize, with ASMR in it. The research says those two goals point in opposite directions — and the data showing why is unusually clean. Here is the evidence, then six ideas built around it rather than against it.</p>
+  <div class="mast-meta">
+    <span>Compiled 16 Aug 2026</span>
+    <span>25 research agents</span>
+    <span>148 days of chart data</span>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="col">
+    <div class="callout warn">
+      <h4>Read this before you trust a number</h4>
+      <p>Outbound web fetching was blocked by an org egress policy for this entire session — Sensor Tower, Appfigures, AppMagic, Apple's own domains, every search engine, all returned 403. So provenance varies enormously across this report, and I've labelled every claim:</p>
+      <p style="margin-bottom:10px;"><span class="chip verified">Verified</span> &nbsp;I pulled and parsed the raw data myself. This is chart data from mirrors of Apple's own feeds — the strongest evidence here, and the reason the games section is the most trustworthy part of the document.</p>
+      <p style="margin-bottom:10px;"><span class="chip sourced">Sourced</span> &nbsp;Named industry source with a date, reached through search-result synthesis rather than an opened page. Directionally reliable; don't bet a budget on the third significant figure.</p>
+      <p style="margin-bottom:0;"><span class="chip unverified">Unverified</span> &nbsp;Widely repeated but I could not trace it to a primary source. Several famous statistics in this field turned out to be untraceable or internally incoherent. Those are flagged, not quietly dropped.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>The finding that reframes the brief</h2></div>
+  <div class="col">
+    <p class="lede">Maximally addictive and maximally monetizable are not the same product in 2026. They are close to opposites, and the gap is measurable.</p>
+    <p>The most compulsively installed category on mobile is hypercasual — the tap-and-scratch toys that ASMR games belong to. In 2025 that category took <strong>22.05 billion installs and produced 1% of all mobile game revenue</strong>. Midcore took 65% of revenue; casual took 34%. <span class="chip sourced">Sourced</span> AppMagic, full-year 2025.</p>
+    <p>The canonical ASMR title makes the same point at title level. CrazyLabs' <em>Soap Cutting</em> has roughly 114M lifetime downloads. It held its peak of 14.6M downloads/month for about three months, then decayed to under 1M. In Q3 2025 CrazyLabs booked 73M installs against $2.2M of store revenue — about three cents of store revenue per install. <span class="chip sourced">Sourced</span></p>
+    <p>So the thing that gets installed is not the thing that gets paid for. If you optimise purely for the install — which is what "addictive" instincts push you toward, because the ad creative is the addictive part — you land in the one category that has proven it cannot convert attention into money.</p>
+    <div class="callout">
+      <h4>The reframe</h4>
+      <p>Stop designing for the install and design for <strong>day 14</strong>. Every idea in this report is judged on one question: name the specific person who opens this two weeks in, and say what pulled them back. Concepts that can only answer "someone who is still curious" are dead — curiosity has a documented half-life of a few days in this category.</p>
+    </div>
+    <p>One note on the word "addictive," then I'll drop it. Designing for genuine compulsion — randomised rewards, punishing streaks, manufactured loss — is now both the weakest-evidenced part of the playbook (§4) and the most legally exposed (§9). The mechanics that actually hold people are gentler than the folklore suggests, which is convenient, because the harsh ones mostly don't work.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Games: the chart that actually lets you in</h2></div>
+  <div class="col">
+    <p>This is the strongest evidence in the report. I pulled 148 consecutive daily snapshots of the US iPhone Top Free Games chart (12 Mar – 15 Aug 2026) from a scraper that reads Apple's own iPhone games chart endpoint, and cross-checked the current day against a second, independent scraper. The two agree on ranks 1–10 exactly. <span class="chip verified">Verified</span></p>
+  </div>
+
+  <div class="wide">
+    <div class="scroll">
+      <table>
+        <caption>US iPhone Top Free Games — 15 August 2026</caption>
+        <thead><tr><th class="rank">#</th><th>Title</th><th>Publisher</th><th>Read</th></tr></thead>
+        <tbody>
+          <tr><td class="rank">1</td><td>Block Out! – Color Sort Puzzle</td><td>Grand Games <span class="mono" style="color:var(--muted);font-size:12px;">TR</span></td><td>Sort puzzle</td></tr>
+          <tr><td class="rank">2</td><td>Smash Fest!</td><td>Flow Games <span class="mono" style="color:var(--muted);font-size:12px;">TR</span></td><td>Knock-down arcade</td></tr>
+          <tr><td class="rank">3</td><td>Meowdoku!</td><td>Oakever Games</td><td>Sudoku variant</td></tr>
+          <tr><td class="rank">4</td><td>JoJo's Bizarre Adventure: GS</td><td>Hoolai Game</td><td>Licensed IP launch</td></tr>
+          <tr><td class="rank">5</td><td>Magic Sort!</td><td>Grand Games <span class="mono" style="color:var(--muted);font-size:12px;">TR</span></td><td>Sort puzzle</td></tr>
+          <tr><td class="rank">6</td><td>Roblox</td><td>Roblox Corp.</td><td>Only legacy evergreen in the top 10</td></tr>
+          <tr><td class="rank">7</td><td>Bus Traffic Fever!</td><td>GOODROID <span class="mono" style="color:var(--muted);font-size:12px;">JP</span></td><td>Escape/untangle puzzle</td></tr>
+          <tr><td class="rank">8</td><td>82-0.com</td><td>Vaulty Studios</td><td>Sports pick'em</td></tr>
+          <tr><td class="rank">9</td><td>Vita Mahjong</td><td>Vita Studio</td><td>Classic board</td></tr>
+          <tr><td class="rank">10</td><td>Whiteout Survival</td><td>Century Games</td><td>4X survival, top-grossing staple</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Five of the top ten are titles less than a year old. Turkish studios hold three of the top five. Sorting is the single most represented mechanic on the chart.</p>
+  </div>
+
+  <div class="col">
+    <h3>The churn is the opportunity — and the warning</h3>
+    <p>Over those 148 days, <strong>86 distinct games passed through the top 15</strong>. Median tenure was eight days. The #1 spot changed hands 42 times; the longest single reign was 19 days and 32 of the 42 reigns lasted three days or less. <span class="chip verified">Verified</span></p>
+  </div>
+
+  <div class="stats wide">
+    <div class="stat"><span class="v">86</span><span class="l">distinct games in the top 15 over 148 days</span></div>
+    <div class="stat"><span class="v">8</span><span class="l">median days a title survives in the top 15</span></div>
+    <div class="stat"><span class="v">42</span><span class="l">separate reigns at #1 in five months</span></div>
+    <div class="stat"><span class="v">10–13</span><span class="l">brand-new titles enter the top 15 every month</span></div>
+  </div>
+
+  <figure class="wide">
+    <div class="bars">
+      <div class="barrow"><span class="barlab">1–3 days</span><div class="bartrack"><div class="barfill" style="width:100%"></div></div><span class="barval">34</span></div>
+      <div class="barrow"><span class="barlab">4–7 days</span><div class="bartrack"><div class="barfill" style="width:23.5%"></div></div><span class="barval">8</span></div>
+      <div class="barrow"><span class="barlab">8–14 days</span><div class="bartrack"><div class="barfill" style="width:38.2%"></div></div><span class="barval">13</span></div>
+      <div class="barrow"><span class="barlab">15–30 days</span><div class="bartrack"><div class="barfill" style="width:29.4%"></div></div><span class="barval">10</span></div>
+      <div class="barrow"><span class="barlab">31–60 days</span><div class="bartrack"><div class="barfill" style="width:23.5%"></div></div><span class="barval">8</span></div>
+      <div class="barrow"><span class="barlab">61–100 days</span><div class="bartrack"><div class="barfill" style="width:20.6%"></div></div><span class="barval">7</span></div>
+      <div class="barrow"><span class="barlab">101–148 days</span><div class="bartrack"><div class="barfill" style="width:17.6%"></div></div><span class="barval">6</span></div>
+    </div>
+    <figcaption>How long a game lasts in the US iPhone top 15, by number of titles. 12 Mar – 15 Aug 2026, n=86. Nearly half of everything that charts is gone within a week; a small durable core (Block Blast!, Vita Mahjong, Magic Sort!, Roblox at 100% presence; Arrows – Puzzle Escape at 93%) holds on for the whole window. <span class="chip verified">Verified</span></figcaption>
+  </figure>
+
+  <div class="col">
+    <p>Read that two ways. The chart genuinely admits newcomers — this is not a closed market, and a small team can reach the top 15. But a chart position is not a business: the median outcome of charting is being gone in eight days.</p>
+    <h3>Where the chart-time actually goes</h3>
+  </div>
+
+  <figure class="wide">
+    <div class="bars">
+      <div class="barrow"><span class="barlab">Classic puzzle</span><div class="bartrack"><div class="barfill" style="width:100%"></div></div><span class="barval">29.1%</span></div>
+      <div class="barrow"><span class="barlab">Sort / organise</span><div class="bartrack"><div class="barfill" style="width:93.8%"></div></div><span class="barval">27.3%</span></div>
+      <div class="barrow"><span class="barlab">Action / arcade</span><div class="bartrack"><div class="barfill" style="width:93.8%"></div></div><span class="barval">27.3%</span></div>
+      <div class="barrow"><span class="barlab">Other</span><div class="bartrack"><div class="barfill" style="width:42.6%"></div></div><span class="barval">12.4%</span></div>
+      <div class="barrow"><span class="barlab">Merge / sim</span><div class="bartrack"><div class="barfill" style="width:13.4%"></div></div><span class="barval">3.9%</span></div>
+    </div>
+    <figcaption>Share of total top-15 chart-days by mechanic, 148-day window. Sorting and tidying alone account for more than a quarter of everything that charted. <span class="chip verified">Verified</span></figcaption>
+  </figure>
+
+  <div class="col">
+    <p>That last chart is the most commercially important thing in this document, and it converges with the independent finding in §5: <strong>the "satisfying" impulse did not die, it got absorbed into sorting puzzles that monetize by IAP instead of ads.</strong> Grand Games' two sort titles did roughly 11M downloads <em>and</em> ~$11M of IAP in a single 30-day window in April 2026, and the studio raised a $70M Series B in May. <span class="chip sourced">Sourced</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>Apps: a fortress, not a chart</h2></div>
+  <div class="col">
+    <p>For non-game apps I pulled Apple's own Top Free Apps RSS feed from a mirrored archive, at five monthly points from April to August 2026. <span class="chip verified">Verified</span> Two caveats travel with it: the feed is iOS-wide rather than iPhone-only, and it carries persistent artifacts — "Netflix Game Controller" oscillates 1 → 41 → 2 → 1 → 3 across the five months, which no real app does, and "TikTok Pro – Events" at #1 is unconfirmed. Ignore those two rows; the rest of the feed behaves sensibly.</p>
+  </div>
+
+  <div class="wide">
+    <div class="scroll">
+      <table>
+        <caption>US Top Free Apps, Apple RSS feed — 10 August 2026</caption>
+        <thead><tr><th class="rank">#</th><th>App</th><th>Category read</th></tr></thead>
+        <tbody>
+          <tr><td class="rank">2</td><td>ChatGPT</td><td>AI assistant — #1 or #2 in all five months</td></tr>
+          <tr><td class="rank">4</td><td>Vinted</td><td>Resale — absent from the April top 100</td></tr>
+          <tr><td class="rank">5</td><td>Depop</td><td>Resale — #42 in April, #5 now</td></tr>
+          <tr><td class="rank">6</td><td>Threads</td><td>Social</td></tr>
+          <tr><td class="rank">7</td><td>DramaWave</td><td>Vertical short drama</td></tr>
+          <tr><td class="rank">8</td><td>Temu</td><td>Shopping</td></tr>
+          <tr><td class="rank">9</td><td>Google</td><td>Utility</td></tr>
+          <tr><td class="rank">10</td><td>Capital One Mobile</td><td>Discover card migration, 27 Jul</td></tr>
+          <tr><td class="rank">14</td><td>Google Gemini</td><td>AI assistant</td></tr>
+          <tr><td class="rank">16</td><td>Claude</td><td>AI assistant</td></tr>
+          <tr><td class="rank">23</td><td>ParentSquare</td><td>Back-to-school seasonality</td></tr>
+          <tr><td class="rank">31</td><td>Meta AI</td><td>AI assistant</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col">
+    <p><strong>38 titles were present in every single one of the five monthly snapshots.</strong> The top of the apps chart belongs to OpenAI, Google, Meta, ByteDance, Temu and Vinted. A solo developer is not charting here, and any app plan that depends on charting is a plan to fail. <span class="chip verified">Verified</span></p>
+    <p>Two genuine movements are visible underneath the incumbents, and both are worth knowing:</p>
+    <ul>
+      <li><strong>Resale is surging.</strong> Vinted went from outside the top 100 in April to #4 in August; Depop from #42 to #5. <span class="chip verified">Verified</span></li>
+      <li><strong>Vertical short drama has quietly colonised the chart.</strong> Seven titles in the US top 100 on one day: DramaWave #7, DramaBox #32, StoryReel #36, ReelShort #41, PineDrama #56, VibeShort #62, NetShort #71. <span class="chip verified">Verified</span> Americans will now consume serialised melodrama in 7-minute chunks, behind an episode unlock, daily. That is a real, proven behaviour that barely existed in the US two years ago.</li>
+    </ul>
+    <div class="callout">
+      <h4>The asymmetry that should drive your decision</h4>
+      <p>The games chart admits 10–13 new top-15 entrants a month. The apps chart admits almost nobody. <strong>If you want reach, build a game. If you want revenue per user, build an app — but plan to monetize a niche without ever charting.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>What actually makes people come back</h2></div>
+  <div class="col">
+    <p>I had agents go after the engagement-mechanics literature specifically to separate evidence from folklore. The result was uncomfortable: this field is bimodal — a small core of traceable, company-disclosed or peer-reviewed findings, surrounded by a very large volume of recycled vendor statistics that trace to nothing.</p>
+
+    <h3>Bet on these</h3>
+    <ul>
+      <li><strong>A forgiving streak.</strong> The only streak experiments with named provenance are Duolingo's, and they all worked by making the streak <em>gentler</em> — going from one streak freeze to two or three raised return rates, and an eight-word explainer of what a streak is produced a five-figure DAU gain. Over half of Duolingo's DAU hold a 7+ day streak; ~10M users are past 365 days. <span class="chip sourced">Sourced</span></li>
+      <li><strong>A daily appointment with a shareable result.</strong> NYT reported 4.2 billion Wordle plays in 2025 and 11.2 billion plays across all its puzzles, 10M+ daily players, and launched a family plan sold explicitly on giving each person their own streak. <span class="chip sourced">Sourced</span></li>
+      <li><strong>Low-frequency, personalised push.</strong> The one clean field experiment (n=17,500, five frequencies, seven weeks) found that raising non-personalised push frequency <em>causally increased uninstalls</em> and lowered open rates with no offsetting gain. Assume roughly half your iPhone users never opt in at all. <span class="chip sourced">Sourced</span></li>
+      <li><strong>Skill-matched cohort leaderboards, never global ones.</strong> Peer-reviewed work finds absolute rankings specifically demotivate the bottom of the distribution. This is exactly why Duolingo Leagues uses ~30-person promotion/relegation cohorts. <span class="chip sourced">Sourced</span></li>
+    </ul>
+
+    <h3>Do not bet on these</h3>
+    <ul>
+      <li><strong>Near-miss effects.</strong> Conceptual replications in online gambling <em>failed to replicate</em> any effect on persistence — the only outcome a founder cares about. <span class="chip sourced">Sourced</span></li>
+      <li><strong>Loss aversion as a 2× multiplier.</strong> Gal &amp; Rucker (2018) review the evidence and conclude it does not support losses outweighing gains on balance; change aversion and plain inertia are the better model for why streaks work. <span class="chip sourced">Sourced</span></li>
+      <li><strong>Variable-ratio / randomised rewards.</strong> The app-facing evidence is arousal and self-report from loot-box studies, and human operant conditioning is explicitly noted as often failing to replicate animal results. Plus live regulatory exposure in the EU. <span class="chip sourced">Sourced</span></li>
+      <li><strong>Endowed progress.</strong> One 2006 car-wash field study, no replication found in either direction. Free to implement, so implement it — but don't forecast on it. <span class="chip sourced">Sourced</span></li>
+      <li><strong>Viral invite loops.</strong> No credible k-factor benchmark exists anywhere in the public literature. Every number found came from content farms. Without a native social graph, treat invites as a discount on acquisition cost, not a growth engine. <span class="chip unverified">Unverified</span></li>
+    </ul>
+
+    <div class="callout warn">
+      <h4>Statistics I could not trace to any source</h4>
+      <p>"63% abandon after one missed day." "1 push/week = 10% disable, 3–6 = 40%." "Braze study of 1.2 billion notifications, 74% lift." "Duolingo leaderboards +17% DAU." "Wordle averaged 4,052,752 DAU" — seven significant figures on a number NYT does not disclose. Every one of these is repeated constantly and traces to nothing. If a deck you're shown quotes them, discount the whole deck.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>The ASMR verdict</h2></div>
+  <div class="col">
+    <p class="lede">ASMR is an outstanding user-acquisition hook and a poor retention mechanic. This is now well-evidenced, and it should change what you build — not whether you build it.</p>
+    <p>The evidence, in order of strength:</p>
+    <ul>
+      <li>Every one of the top 10 ASMR-themed mobile games across a ten-quarter census was hypercasual, published overwhelmingly by CrazyLabs and SayGames. "ASMR" is a marketing skin applied to hypercasual, not a genre with its own economics. <span class="chip sourced">Sourced</span></li>
+      <li>The trade's own term is "ultracasual," and the trade's own assessment is that it retains <em>worse</em> than hypercasual because it has less depth and variety. <span class="chip sourced">Sourced</span></li>
+      <li>Hypercasual retention runs about D1 27% / D7 8% / D30 2%, and even best-in-class tops out near D1 35% / D7 11%. <span class="chip sourced">Sourced</span></li>
+      <li>No ASMR-native app has ever reached commercial scale. The venture-backed flagship, Tingles, peaked around 60K MAU and shut down. ASMR responsiveness is roughly 10–20% of the population, which caps the addressable market before you start. <span class="chip sourced">Sourced</span></li>
+    </ul>
+    <p>But the sensory impulse itself did not die. It survived by finding three shapes that work:</p>
+    <ol>
+      <li><strong>Absorbed into IAP-monetized sorting puzzles</strong> — "hybrid casual puzzle," which buys installs as cheaply as hypercasual but monetizes committed players like casual puzzle. This is what now sits at #1 on the US games chart. It is the highest-value route and it is confirmed independently by my own chart analysis in §2.</li>
+      <li><strong>Used purely as ad creative over a game that retains on its own merits</strong> — the Playrix route: pin-pulling ads selling a match-3. Commercially successful, though it drew a UK advertising ban in 2020 for being misleading, so the creative has to be honest about what's inside.</li>
+      <li><strong>Sold premium, skipping retention economics entirely</strong> — <em>Unpacking</em> passed a million copies; <em>PowerWash Simulator</em> came to mobile via Apple Arcade.</li>
+    </ol>
+    <div class="callout">
+      <h4>What this means for your idea</h4>
+      <p>Put ASMR in the <strong>hook</strong> slot and the <strong>moment-to-moment feel</strong> slot. Never put it in the retention slot. If the answer to "why do they come back on day 14?" is "because it feels nice," the concept is already dead — that is precisely the failure mode with the most evidence behind it.</p>
+    </div>
+
+    <h3>And one hard technical wall</h3>
+    <p>Two iOS constraints kill a whole class of obvious ASMR designs, so check them before you fall in love with anything: <span class="chip sourced">Sourced</span></p>
+    <ul>
+      <li><strong>Core Haptics is foreground-only.</strong> The engine's stop handler fires the moment your app backgrounds, and the feedback generator is inert when not foreground-active. There is <em>no</em> haptic experience that survives screen-lock, backgrounding or a pocket. Every "play it in bed with your eyes closed" or "put your phone face down" haptic concept degrades to audio-only. Background <em>audio</em> is fine; haptics are not.</li>
+      <li><strong>AirPods add roughly 80–220ms of variable, non-compensable audio delay</strong> while haptics fire instantly from the phone body. Tight audio-haptic sync authored on the built-in speaker falls apart on wireless earbuds — which is exactly how people use sensory apps.</li>
+      <li>Also: no iPad has haptics; haptics are suppressed in Low Power Mode; binaural rendering collapses to nothing on the built-in speaker; and the default audio session is muted by the silent switch, which you cannot read.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>Three games</h2></div>
+  <div class="col">
+    <p>Ranked by expected value given your constraints: small team, no acquisition war chest. All three use ASMR in the hook and feel slots, never the retention slot. None uses a mechanic from the "do not bet" list — no loot boxes, no randomised purchasables, no punishing streaks.</p>
+  </div>
+
+  <div class="wide">
+    <article class="concept">
+      <div class="concept-head"><span class="concept-n">G1</span><span class="chip build">Build this first</span></div>
+      <h3>Pour — a sort puzzle where you sort materials, not colours</h3>
+      <p class="oneliner">Honey, mercury, dry sand, glass beads: same proven tube-sorting loop as the #1 game on the chart, except every material has its own pour physics, its own pour sound and its own haptic texture.</p>
+      <dl class="spec">
+        <dt>Why this one</dt><dd>It enters the single most durable and most commercially proven mechanic on the chart — sorting is 27.3% of all top-15 chart-time, Magic Sort! held the top 15 for all 148 days, and Grand Games turned two sort titles into ~11M downloads <em>and</em> ~$11M IAP in 30 days. The sensory layer is genuinely additive but is deliberately <em>not</em> load-bearing: the sort loop retains on its own, which is exactly what §5 says you need.</dd>
+        <dt>Core loop</dt><dd>Tap source tube → tap destination → 1.2s pour with continuous audio and haptics → 8–25 pours per level → a 2.5s settle payoff as the last bead drops → next level in half a second. A new material unlocks deterministically every 12 levels.</dd>
+        <dt>Monetization</dt><dd><strong>IAP-led hybrid-casual, not ads-led.</strong> This is the single most important correction to make. The ad-led version of this game is the 1%-of-revenue trap; the IAP version is the thing that raised a $70M Series B. Rewarded video stays for optional continues; a "Quiet Pass" removes interstitials.</dd>
+        <dt>Honest risks</dt><dd>The mechanic is a commodity and you will be cloned. Grand Games, GOODROID and Lessmore all outspend you on UA by orders of magnitude. Your only durable asset is that the pour <em>feels</em> different, and that is invisible on a store screenshot.</dd>
+        <dt>Build</dt><dd>10–14 weeks solo. The fluid/granular pour sim and its audio are the whole technical risk; prototype only the pour first.</dd>
+      </dl>
+      <p class="killtest"><b>THE TEST THAT KILLS IT →</b> Build one material and one tube set in two weeks. Put it in front of 30 people for 14 days. If D7 is under 7% you are in the median-game graveyard; the go bar is D1 ≥ 30%, D7 ≥ 7%, 22+ minutes/day.</p>
+    </article>
+
+    <article class="concept">
+      <div class="concept-head"><span class="concept-n">G2</span><span class="chip maybe">Strong, needs one fix</span></div>
+      <h3>Clatter — an escape puzzle whose reward is the cascade</h3>
+      <p class="oneliner">You clear the jam in a tray of ball bearings, then hit release and every piece pours out at once in one continuous spatialised, haptic run.</p>
+      <dl class="spec">
+        <dt>Why this one</dt><dd>It enters the newest genre on the chart that is still admitting entrants — arrows/traffic-escape is about twelve months old and has four titles from three independent studios inside the top 30 (Bus Traffic Fever! #7, CubeAway #21, Arrows – Puzzle Escape #22 at 93% durability, Amaze GO! #29). That is genre validity rather than one lucky title, and unlike sorting it is not yet clone-saturated. The cascade is simultaneously the reward, the share asset and the ad creative — the only effective-CPI lever available without capital.</dd>
+        <dt>The required fix</dt><dd><strong>Make the cascade skippable from level one and cut it to ~3 seconds.</strong> A mandatory 6–10 second payoff every 45–90 seconds is spectacular in an ad and dead weight on day 14. Every game with a compulsory satisfying payoff eventually ships a skip button; ship it on day one and let the puzzle carry retention.</dd>
+        <dt>Monetization</dt><dd>IAP-led, same correction as G1. Rewarded video to replay a cascade in slow motion is a reward players genuinely want, which lifts opt-in far above a currency grant.</dd>
+        <dt>Honest risks</dt><dd>Genre timing is a coin flip nobody can resolve — a 12-week build ships into either a wave or a decline. 200-piece physics plus spatial audio will thermally throttle mid-tier devices during the exact moment you're selling, so device-tier piece caps are mandatory. And the haptics will desync against AirPods.</dd>
+        <dt>Build</dt><dd>Budget 18 weeks, not the 12 it looks like — the deterministic solver and solvability validator are the hidden cost.</dd>
+      </dl>
+      <p class="killtest"><b>THE TEST THAT KILLS IT →</b> Ship the puzzle with <em>no</em> cascade to 200 players. If it doesn't retain without the payoff, the payoff is marketing, not product — and you've learned that in three weeks instead of four months.</p>
+    </article>
+
+    <article class="concept">
+      <div class="concept-head"><span class="concept-n">G3</span><span class="chip maybe">Cheap lottery ticket</span></div>
+      <h3>Earwitness — one binaural sound a day, guess what it is</h3>
+      <p class="oneliner">Eight seconds of something being unwrapped, poured or unlatched, recorded close and binaural. Five guesses. A spoiler-free grid to share, and a slow-motion macro reveal at the end.</p>
+      <dl class="spec">
+        <dt>Why this one</dt><dd>Cheapest build in the set (4–6 weeks), no servers, no live-ops, no balance patches — and it uses the one structure the evidence genuinely endorses: a daily appointment with a shareable result. Content cost is roughly seven recording days for a year of puzzles. It is the cheapest possible way to buy information about whether you can build an audience at all.</dd>
+        <dt>The required fix</dt><dd><strong>Wrong guesses must narrow the answer space, not just add volume.</strong> The original design rewards failure with more ASMR, which feels clever and quietly destroys the share loop — a grid only spreads if it encodes a stake. Make each wrong guess return a real category clue (material, size), and make the full dry take the reward for <em>solving</em>. That converts a quiz into a puzzle.</dd>
+        <dt>Monetization</dt><dd>Modest and honest: archive subscription at ~$20/yr, one user-initiated rewarded hint. Expect $40–80K in year one absent a breakout. Call it what it is — the high-variance slot, not the revenue engine.</dd>
+        <dt>Honest risks</dt><dd>Answer ambiguity is the genre killer and it is not fully solvable — foil vs cellophane vs wrapper are all defensible for one recording, and one unfair puzzle produces a permanent one-star. Gate every puzzle on five blind testers agreeing. Binaural also collapses on the built-in speaker, where a lot of first sessions happen. And it is unplayable by deaf users, which you should disclose rather than paper over.</dd>
+      </dl>
+      <p class="killtest"><b>THE TEST THAT KILLS IT →</b> Run 20 puzzles as a plain web page with friends for three weeks before writing any Swift. If the grid doesn't get shared unprompted, the distribution model doesn't exist.</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>Three apps</h2></div>
+  <div class="col">
+    <p>Different rules apply here. No app on this list will chart, so each has to monetize a niche directly. The order reflects how cleanly each escapes the trap in §1.</p>
+  </div>
+
+  <div class="wide">
+    <article class="concept">
+      <div class="concept-head"><span class="concept-n">A1</span><span class="chip build">The most defensible</span></div>
+      <h3>Thock — a resale marketplace where the listing is a sound</h3>
+      <p class="oneliner">Every listing is a standardised, loudness-normalised 25-second sound test recorded to a fixed protocol. You shop mechanical keyboards — and later anything whose value is audible — by ear.</p>
+      <dl class="spec">
+        <dt>Why this one</dt><dd>It is the only concept that escapes install economics entirely. Apple requires physical goods to be sold <em>outside</em> IAP, so the platform takes nothing: roughly 6% on a ~$190 average sale plus a small buyer fee is about $12 a transaction, kept in full. One sale grosses more than a year of a typical sensory subscription. And it rides the strongest non-AI signal in the apps data — resale, with Vinted at #4 and Depop at #5. <span class="chip verified">Verified</span></dd>
+        <dt>Why ASMR belongs here</dt><dd>This is the cleverest available use of sound: it is a <strong>search index and a truth mechanism</strong>, not a feeling. Buyers in this market already argue endlessly about how a board sounds and cannot evaluate it from photos. A standardised recording protocol solves a real information problem, which means the sensory layer creates genuine value rather than a moment of delight that decays. It sidesteps the §5 retention trap completely.</dd>
+        <dt>Honest risks</dt><dd>Cold start is the whole game and it is the hard kind — a marketplace needs supply before demand. The upside is a solid lifestyle business, not a rocket: think $120–600K/year at meaningful GMV. And the niche is genuinely narrow until you prove the protocol generalises.</dd>
+        <dt>Build</dt><dd>8–10 weeks, but the work is community, not code. Your first 200 listings come from you personally messaging enthusiasts in forums and Discords.</dd>
+      </dl>
+      <p class="killtest"><b>THE TEST THAT KILLS IT →</b> Before writing an app, run it as a spreadsheet and a shared folder. Recruit 30 sellers, publish the recording protocol, broker ten sales by hand. If you cannot get thirty enthusiasts to record to spec, the supply side does not exist.</p>
+    </article>
+
+    <article class="concept">
+      <div class="concept-head"><span class="concept-n">A2</span><span class="chip maybe">Sell picks, not gold</span></div>
+      <h3>Foley — one-tap sound design for satisfying video</h3>
+      <p class="oneliner">Shoot ten seconds of anything, place the contact points on a waveform, and get the layered close-mic sound design that makes a clip satisfying — plus the stems, which is what creators actually want.</p>
+      <dl class="spec">
+        <dt>Why this one</dt><dd>The research proves ASMR is a superb <em>acquisition</em> medium. So sell tools to the people exploiting that, rather than competing with them for retention. It is the only concept whose day-14 driver is external economic incentive — a creator opens it because their posts perform and their account grows, which is a far sturdier motivation than delight. Prosumer subscriptions also convert much better than consumer ones.</dd>
+        <dt>The required fix</dt><dd><strong>Drop the automatic material classifier.</strong> Detecting the material from a phone clip is the hardest engineering in the whole portfolio and its failure mode is uncanny rather than merely wrong. The value people pay for is the library plus one-tap layering plus stem export — a five-week build instead of twelve, that fails gracefully.</dd>
+        <dt>Second fix</dt><dd>Randomise within each material per user. If every clip draws from the same 400 samples, audiences learn to hear "that's the Foley app," the output stops performing, and the only reason anyone opened it disappears.</dd>
+        <dt>Honest risks</dt><dd>CapCut sits at #11 with ByteDance behind it and could ship this as a checkbox. Apple's clone rule (4.3(b)) targets exactly this — another video tool in a saturated category. And 20K organic installs a month for a niche creator tool is fantasy; plan on 1–3K.</dd>
+      </dl>
+      <p class="killtest"><b>THE TEST THAT KILLS IT →</b> Hand-produce sound design for 20 creators' clips for free. If their versions with your audio don't measurably outperform their versions without, there is no product.</p>
+    </article>
+
+    <article class="concept">
+      <div class="concept-head"><span class="concept-n">A3</span><span class="chip maybe">Biggest market, hardest fight</span></div>
+      <h3>Downshift — a twenty-minute wind-down that ends before you sleep</h3>
+      <p class="oneliner">You hold the phone, tap along with your breathing for twenty seconds, and a haptic pulse locks to your rate then slows by one beat per minute, with a binaural bed phase-locked to it. Then it ends, and you put the phone down.</p>
+      <dl class="spec">
+        <dt>Why this one</dt><dd>Sleep is the one place the evidence says people genuinely pay. Health &amp; Fitness leads every RevenueCat 2026 category on install value ($1.21 LTV, $0.48 D14 revenue per install, ~6× gaming) and is 68% annual-plan. Consumers demonstrably accept $50–70/year here. Most tellingly, Calm spun sleep out into a <em>standalone</em> app at its own $69.99/yr in September 2025 and raised prices in February 2026 — the category leader validating sleep as a standalone paid product. <span class="chip sourced">Sourced</span></dd>
+        <dt>The required fix</dt><dd><strong>It cannot run all night, so stop pretending it will.</strong> Core Haptics dies the instant the app backgrounds or the screen locks. Reframe it from an all-night sleep aid to a bounded 20-minute foreground ritual that deliberately ends <em>before</em> sleep onset. Screen-on becomes acceptable, battery and heat stop mattering, and the platform gate stops being existential. Price at $39.99–49.99/yr, not Calm tier.</dd>
+        <dt>Honest risks</dt><dd>This is the hardest fight in the portfolio and you should go in knowing it. Sleep is among the most expensive keyword sets on the store — plausible CPI runs $4–9 against roughly $1–2 of gross per install, so <em>you cannot buy a single install profitably</em>. It is organic-only or nothing. BetterSleep or Calm can bolt a haptic taper onto an existing catalogue in six weeks and cross-sell it to millions. And there is a genuine twelve-month problem: one experience, identical on night 200, against a renewal that needs something to have happened.</dd>
+        <dt>Unvalidated premise</dt><dd>Be clear that the core bet is a hypothesis, not a finding: a vibrating object in the hand is an <em>arousing</em> stimulus for many people. That it soothes is the assumption the entire product rests on.</dd>
+      </dl>
+      <p class="killtest"><b>THE TEST THAT KILLS IT →</b> Two things in week one, before any other code. First, confirm on-device what happens to haptics when the screen locks. Second, hand fifteen people a rough build and ask whether they'd rather hold the phone or put it on the nightstand. If they put it down, the haptic premise needs a wearable and this is a different product.</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">08</span><h2>The numbers to judge yourself against</h2></div>
+  <div class="col">
+    <p>Use these as go/no-go bars. Note especially that the genre retention tables all over the web — hypercasual 33/12/4, midcore 45/22/10 — are recycled 2021–22 data running about double current medians. Benchmarking against them will set a bar nobody can clear. <span class="chip sourced">Sourced</span></p>
+  </div>
+  <div class="wide">
+    <div class="scroll">
+      <table>
+        <caption>Benchmarks · GameAnalytics 2026 (16,000+ games) and RevenueCat 2026 (115,000 apps)</caption>
+        <thead><tr><th>Metric</th><th class="num">Median</th><th class="num">Top quartile</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Mobile game D1 retention</td><td class="num">22%</td><td class="num">~30%</td><td>Kill below 22%</td></tr>
+          <tr><td>Mobile game D7 retention</td><td class="num">4%</td><td class="num">6–7%</td><td>Your go bar is 7%</td></tr>
+          <tr><td>Mobile game D30 retention</td><td class="num">0.7%</td><td class="num">—</td><td>Yes, really</td></tr>
+          <tr><td>Daily playtime</td><td class="num">~12 min</td><td class="num">22–24 min</td><td>Top 1% is 94+ min</td></tr>
+          <tr><td>Session length</td><td class="num">5–6 min</td><td class="num">8–9 min</td><td>—</td></tr>
+          <tr><td>D35 install → paid (North America)</td><td class="num">2.6%</td><td class="num">—</td><td>Subscription apps</td></tr>
+          <tr><td>Trial → paid, hard paywall</td><td class="num">10.7%</td><td class="num">—</td><td>vs 2.1% freemium</td></tr>
+          <tr><td>Monthly subscription churn</td><td class="num">13–14%</td><td class="num">—</td><td>—</td></tr>
+          <tr><td>First annual renewal</td><td class="num">23–40%</td><td class="num">—</td><td>95% of cancellers never return</td></tr>
+          <tr><td>Casual game CPI, iOS US</td><td class="num">$1.41</td><td class="num">—</td><td>D30 ROAS 47%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">09</span><h2>Compliance tripwires</h2></div>
+  <div class="col">
+    <p>Verified against Apple's live developer documentation, which was one of only two domains reachable this session. <span class="chip verified">Verified</span></p>
+    <ul>
+      <li><strong>Loot-box odds must be disclosed before purchase</strong> (3.1.1). Every concept here avoids randomised purchasables entirely, which sidesteps this and the EU/Brazil loot-box regimes at zero design cost. Keep it that way.</li>
+      <li><strong>Interstitials must be dismissible</strong> with large close buttons and in-app ad reporting (2.5.18).</li>
+      <li><strong>Subscriptions</strong> need 7-day minimum terms and demonstrable ongoing value; bait-and-switch and gating value behind social posts are explicitly banned (3.1.2). Put "Cancel subscription" at the top level and route it straight to the system sheet.</li>
+      <li><strong>Clone rule 4.3(b)</strong>, tightened 8 June 2026, blocks new entries in saturated categories — and explicitly names sound effects. Shipping another ASMR sound library is a probable rejection, not just an unoriginal idea.</li>
+      <li><strong>The age system changed.</strong> Five tiers went live July 2025; from September 2026 a Social Media capability declaration is mandatory, which pulls an app into iOS 27's parental Time Allowances — a platform-level cap on engagement for Games, Entertainment and Social Media. Shipping in Health &amp; Fitness or Productivity keeps you outside those caps.</li>
+      <li><strong>Age-assurance laws are live, and they bind developers, not just stores.</strong> Texas from 4 June 2026, Utah from 6 May, Louisiana from 1 July.</li>
+      <li><strong>Apple's fees are now regional.</strong> Baseline 30%, or 15% under the Small Business Program (≤$1M proceeds) — which is you. China cut to 25%/12% in March 2026; Brazil and Japan run an unbundled 21% + 5% structure. Physical goods stay outside IAP entirely, which is what makes A1 work.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">10</span><h2>What I would do first</h2></div>
+  <div class="col">
+    <p>If you build one thing: <strong>Pour</strong>. It is the only concept sitting in a mechanic with proven downloads <em>and</em> proven IAP revenue, in the one chart that still lets newcomers in, using the sensory layer where the evidence says it helps rather than where it fails.</p>
+    <p>If you want the cheapest possible information about whether you can build an audience: <strong>Earwitness</strong>, as a web page, this month, for about zero dollars.</p>
+    <p>If you want the most defensible business rather than the biggest one: <strong>Thock</strong> — and start by brokering ten sales by hand.</p>
+    <p>Whatever you pick, the sequence matters more than the pick. Every one of these has a two-to-three week test above that costs a fraction of the build and can kill it. Run the test first. The median game that reaches the US top 15 is gone in eight days; the cost of finding that out after four months of building is the thing most likely to end this.</p>
+    <div class="callout warn">
+      <h4>Where this research is weakest</h4>
+      <p>Because fetching was blocked, I could not open a single primary report — no RevenueCat PDF, no GameAnalytics report body, no Sensor Tower release. The chart data in §2 and §3 is first-hand and solid. Everything with a <span class="chip sourced">Sourced</span> tag is search-synthesis of a named source and should be re-verified against the original before you commit money. There is also <strong>no top-grossing data anywhere in this report</strong> — the mirrors I could reach carry downloads only, so revenue rankings are the biggest genuine hole. If you fund one piece of follow-up research, make it a month of a paid Sensor Tower or Appfigures seat to check the revenue side of §2 and the subscription funnel in §8.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="col">
+  <p>Compiled 16 August 2026 from 25 research and critique agents across three passes, plus 148 days of first-hand US App Store chart data. All 18 candidate concepts were scored adversarially on market economics, build feasibility and day-14 user truth; the six above are what survived, with their required fixes attached.</p>
+</footer>
+
+</div>

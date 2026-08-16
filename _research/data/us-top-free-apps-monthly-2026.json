@@ -1,0 +1,2532 @@
+{
+ "2026-04-06": {
+  "feedUpdated": "Mon, 6 Apr 2026 10:36:23 +0000",
+  "feedId": "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/100/apps.json",
+  "results": [
+   {
+    "rank": 1,
+    "name": "Netflix Game Controller",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 2,
+    "name": "ChatGPT",
+    "artist": "OpenAI OpCo, LLC"
+   },
+   {
+    "rank": 3,
+    "name": "Claude by Anthropic",
+    "artist": "Anthropic PBC"
+   },
+   {
+    "rank": 4,
+    "name": "Temu: Shop Like a Billionaire",
+    "artist": "Temu"
+   },
+   {
+    "rank": 5,
+    "name": "Google Gemini",
+    "artist": "Google"
+   },
+   {
+    "rank": 6,
+    "name": "Threads",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 7,
+    "name": "CapCut: Photo & Video Editor",
+    "artist": "Bytedance Pte. Ltd"
+   },
+   {
+    "rank": 8,
+    "name": "Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 9,
+    "name": "Whatnot: Shop, Sell, Connect",
+    "artist": "Whatnot Inc."
+   },
+   {
+    "rank": 10,
+    "name": "SHEIN - Shopping Online",
+    "artist": "ROADGET BUSINESS PTE. LTD."
+   },
+   {
+    "rank": 11,
+    "name": "VPN - Super Unlimited Proxy",
+    "artist": "Mobile Jump Pte Ltd"
+   },
+   {
+    "rank": 12,
+    "name": "Freecash - Get Paid Real Money",
+    "artist": "256 REWARDS LTD"
+   },
+   {
+    "rank": 13,
+    "name": "7-Eleven: Rewards & Shopping",
+    "artist": "7-Eleven, Inc."
+   },
+   {
+    "rank": 14,
+    "name": "Google Maps",
+    "artist": "Google"
+   },
+   {
+    "rank": 15,
+    "name": "Grok - AI Chat & Video",
+    "artist": "xAI"
+   },
+   {
+    "rank": 16,
+    "name": "DoorDash: Food, Grocery, More",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 17,
+    "name": "Walmart: Shopping & Savings",
+    "artist": "Walmart"
+   },
+   {
+    "rank": 18,
+    "name": "WhatsApp Messenger",
+    "artist": "WhatsApp Inc."
+   },
+   {
+    "rank": 19,
+    "name": "Instagram",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 20,
+    "name": "McDonald's",
+    "artist": "McDonald's USA"
+   },
+   {
+    "rank": 21,
+    "name": "Amazon Prime Video",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 22,
+    "name": "TikTok - Videos, Shop & LIVE",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 23,
+    "name": "HBO Max: Stream Movies & TV",
+    "artist": "WarnerMedia Global Digital Services, LLC"
+   },
+   {
+    "rank": 24,
+    "name": "X",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 25,
+    "name": "Facebook",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 26,
+    "name": "Spotify: Music and Podcasts",
+    "artist": "Spotify"
+   },
+   {
+    "rank": 27,
+    "name": "Telegram Messenger",
+    "artist": "Telegram FZ-LLC"
+   },
+   {
+    "rank": 28,
+    "name": "Gmail - Email by Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 29,
+    "name": "Netflix",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 30,
+    "name": "Life360: Stay Connected & Safe",
+    "artist": "Life360"
+   },
+   {
+    "rank": 31,
+    "name": "Amazon Shopping",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 32,
+    "name": "Uber - Request a ride",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 33,
+    "name": "The Roku App (Official)",
+    "artist": "ROKU INC"
+   },
+   {
+    "rank": 34,
+    "name": "Pinterest",
+    "artist": "Pinterest"
+   },
+   {
+    "rank": 35,
+    "name": "Cash App",
+    "artist": "Block, Inc."
+   },
+   {
+    "rank": 36,
+    "name": "Shop: All your favorite brands",
+    "artist": "Shopify Inc."
+   },
+   {
+    "rank": 37,
+    "name": "Google Chrome",
+    "artist": "Google"
+   },
+   {
+    "rank": 38,
+    "name": "YouTube",
+    "artist": "Google"
+   },
+   {
+    "rank": 39,
+    "name": "Google AI Edge Gallery",
+    "artist": "Google"
+   },
+   {
+    "rank": 40,
+    "name": "Discord - Talk, Play, Hang Out",
+    "artist": "Discord Inc."
+   },
+   {
+    "rank": 41,
+    "name": "Airbnb",
+    "artist": "Airbnb, Inc."
+   },
+   {
+    "rank": 42,
+    "name": "Depop - Buy & Sell Clothes",
+    "artist": "Depop Ltd"
+   },
+   {
+    "rank": 43,
+    "name": "Bible",
+    "artist": "Life.Church"
+   },
+   {
+    "rank": 44,
+    "name": "Snapchat",
+    "artist": "Snap, Inc."
+   },
+   {
+    "rank": 45,
+    "name": "Disney+",
+    "artist": "Disney"
+   },
+   {
+    "rank": 46,
+    "name": "PayPal - Pay, Send, Save",
+    "artist": "PayPal, Inc."
+   },
+   {
+    "rank": 47,
+    "name": "Tubi: Movies & Live TV",
+    "artist": "Tubi, Inc"
+   },
+   {
+    "rank": 48,
+    "name": "Canva: AI Video & Photo Editor",
+    "artist": "Canva"
+   },
+   {
+    "rank": 49,
+    "name": "Indeed Job Search",
+    "artist": "Indeed Inc."
+   },
+   {
+    "rank": 50,
+    "name": "Ticketmaster\uff0dBuy, Sell Tickets",
+    "artist": "Ticketmaster"
+   },
+   {
+    "rank": 51,
+    "name": "Duolingo: Language & Chess",
+    "artist": "Duolingo"
+   },
+   {
+    "rank": 52,
+    "name": "eBay online shopping & selling",
+    "artist": "eBay Inc."
+   },
+   {
+    "rank": 53,
+    "name": "Peacock TV: Stream TV & Movies",
+    "artist": "Peacock TV LLC"
+   },
+   {
+    "rank": 54,
+    "name": "The Cheesecake Factory",
+    "artist": "The Cheesecake Factory Inc"
+   },
+   {
+    "rank": 55,
+    "name": "Alibaba.com",
+    "artist": "Hangzhou Alibaba International Information Technology Co., Ltd."
+   },
+   {
+    "rank": 56,
+    "name": "Vinted: Shop & sell pre-loved",
+    "artist": "Vinted Limited"
+   },
+   {
+    "rank": 57,
+    "name": "Meta AI - Vibes & AI Glasses",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 58,
+    "name": "1.1.1.1: Faster Internet",
+    "artist": "Cloudflare"
+   },
+   {
+    "rank": 59,
+    "name": "AliExpress - Shopping App",
+    "artist": "Alibaba"
+   },
+   {
+    "rank": 60,
+    "name": "VIZIO | WatchFree+",
+    "artist": "VIZIO"
+   },
+   {
+    "rank": 61,
+    "name": "Lyft",
+    "artist": "Lyft, Inc."
+   },
+   {
+    "rank": 62,
+    "name": "Venmo",
+    "artist": "Venmo"
+   },
+   {
+    "rank": 63,
+    "name": "NetShort - Popular Dramas & TV",
+    "artist": "NETSTORY PTE. LTD."
+   },
+   {
+    "rank": 64,
+    "name": "Taco Bell Fast Food & Delivery",
+    "artist": "Taco Bell"
+   },
+   {
+    "rank": 65,
+    "name": "Zillow Real Estate & Rentals",
+    "artist": "Zillow.com"
+   },
+   {
+    "rank": 66,
+    "name": "CrimeRadar Dispatch Audio",
+    "artist": "Scoopz Inc."
+   },
+   {
+    "rank": 67,
+    "name": "NASA",
+    "artist": "NASA"
+   },
+   {
+    "rank": 68,
+    "name": "Capital One Mobile",
+    "artist": "Capital One"
+   },
+   {
+    "rank": 69,
+    "name": "Google Meet",
+    "artist": "Google"
+   },
+   {
+    "rank": 70,
+    "name": "Google Photos: Backup & Edit",
+    "artist": "Google"
+   },
+   {
+    "rank": 71,
+    "name": "Strava: Run, Bike, Walk",
+    "artist": "Strava, Inc."
+   },
+   {
+    "rank": 72,
+    "name": "Paramount+",
+    "artist": "CBS Interactive"
+   },
+   {
+    "rank": 73,
+    "name": "Speak & Learn English: Learna",
+    "artist": "DEEP FLOW SOFTWARE SERVICES"
+   },
+   {
+    "rank": 74,
+    "name": "DramaBox - Stream Drama Shorts",
+    "artist": "STORYMATRIX PTE. LTD."
+   },
+   {
+    "rank": 75,
+    "name": "Uber Eats: Food & Groceries",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 76,
+    "name": "ShortMax - Watch Dramas & Show",
+    "artist": "SHORTTV LIMITED"
+   },
+   {
+    "rank": 77,
+    "name": "Google Drive",
+    "artist": "Google"
+   },
+   {
+    "rank": 78,
+    "name": "Truth Social",
+    "artist": "T Media Tech LLC"
+   },
+   {
+    "rank": 79,
+    "name": "Etsy: Shop Home, Style & More",
+    "artist": "Etsy, Inc."
+   },
+   {
+    "rank": 80,
+    "name": "Intuit Credit Karma",
+    "artist": "Credit Karma, Inc."
+   },
+   {
+    "rank": 81,
+    "name": "TurboTax: File Your Tax Return",
+    "artist": "Intuit Inc."
+   },
+   {
+    "rank": 82,
+    "name": "Domino's Pizza USA",
+    "artist": "Domino's Pizza LLC"
+   },
+   {
+    "rank": 83,
+    "name": "Fly Delta",
+    "artist": "Delta Air Lines, Inc."
+   },
+   {
+    "rank": 84,
+    "name": "Kalshi: Trade News & Sports",
+    "artist": "KalshiEX LLC"
+   },
+   {
+    "rank": 85,
+    "name": "The Home Depot",
+    "artist": "The Home Depot, Inc."
+   },
+   {
+    "rank": 86,
+    "name": "Bible Chat: Daily Devotional",
+    "artist": "Book Vitals Inc."
+   },
+   {
+    "rank": 87,
+    "name": "YouTube Music",
+    "artist": "Google"
+   },
+   {
+    "rank": 88,
+    "name": "Twitch: Live Streaming",
+    "artist": "Twitch Interactive, Inc."
+   },
+   {
+    "rank": 89,
+    "name": "Yuka - Food & Cosmetic Scanner",
+    "artist": "Yuca"
+   },
+   {
+    "rank": 90,
+    "name": "DoorDash - Dasher",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 91,
+    "name": "Messenger",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 92,
+    "name": "Upside: Gas & Food Cash Back",
+    "artist": "Upside Services Inc"
+   },
+   {
+    "rank": 93,
+    "name": "Cal AI - Calorie Tracker",
+    "artist": "Viral Development LLC"
+   },
+   {
+    "rank": 94,
+    "name": "Capital One Shopping: Save Now",
+    "artist": "Wikibuy, LLC"
+   },
+   {
+    "rank": 95,
+    "name": "TV Remote - Universal Control",
+    "artist": "EVOLLY.APP"
+   },
+   {
+    "rank": 96,
+    "name": "Crunchyroll",
+    "artist": "Crunchyroll, LLC"
+   },
+   {
+    "rank": 97,
+    "name": "American Airlines",
+    "artist": "American Airlines"
+   },
+   {
+    "rank": 98,
+    "name": "Microsoft Copilot",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 99,
+    "name": "T-Life",
+    "artist": "T-Mobile"
+   },
+   {
+    "rank": 100,
+    "name": "Edits: Video Editor",
+    "artist": "Instagram, Inc."
+   }
+  ]
+ },
+ "2026-05-01": {
+  "feedUpdated": "Fri, 1 May 2026 03:51:21 +0000",
+  "feedId": "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/100/apps.json",
+  "results": [
+   {
+    "rank": 1,
+    "name": "ChatGPT",
+    "artist": "OpenAI OpCo, LLC"
+   },
+   {
+    "rank": 2,
+    "name": "Claude by Anthropic",
+    "artist": "Anthropic PBC"
+   },
+   {
+    "rank": 3,
+    "name": "Google Gemini",
+    "artist": "Google"
+   },
+   {
+    "rank": 4,
+    "name": "Temu: Shop Like a Billionaire",
+    "artist": "Temu"
+   },
+   {
+    "rank": 5,
+    "name": "Meta AI - Assistant & Glasses",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 6,
+    "name": "Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 7,
+    "name": "CapCut: Photo & Video Editor",
+    "artist": "Bytedance Pte. Ltd"
+   },
+   {
+    "rank": 8,
+    "name": "WhatsApp Messenger",
+    "artist": "WhatsApp Inc."
+   },
+   {
+    "rank": 9,
+    "name": "Threads",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 10,
+    "name": "Microsoft Authenticator",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 11,
+    "name": "Whatnot: Shop, Sell, Connect",
+    "artist": "Whatnot Inc."
+   },
+   {
+    "rank": 12,
+    "name": "Gmail - Email by Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 13,
+    "name": "Microsoft Teams",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 14,
+    "name": "Google Maps",
+    "artist": "Google"
+   },
+   {
+    "rank": 15,
+    "name": "TikTok - Videos, Shop & LIVE",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 16,
+    "name": "Shop: All your favorite brands",
+    "artist": "Shopify Inc."
+   },
+   {
+    "rank": 17,
+    "name": "Suno - AI Songs & Music",
+    "artist": "Suno, Inc."
+   },
+   {
+    "rank": 18,
+    "name": "Liberty Mutual Mobile",
+    "artist": "Liberty Mutual"
+   },
+   {
+    "rank": 19,
+    "name": "Instagram",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 20,
+    "name": "Indeed Job Search",
+    "artist": "Indeed Inc."
+   },
+   {
+    "rank": 21,
+    "name": "Grok - AI Chat & Video",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 22,
+    "name": "Microsoft Outlook",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 23,
+    "name": "Facebook",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 24,
+    "name": "Google Chrome",
+    "artist": "Google"
+   },
+   {
+    "rank": 25,
+    "name": "SHEIN - Shopping Online",
+    "artist": "ROADGET BUSINESS PTE. LTD."
+   },
+   {
+    "rank": 26,
+    "name": "HBO Max: Stream Movies & TV",
+    "artist": "WarnerMedia Global Digital Services, LLC"
+   },
+   {
+    "rank": 27,
+    "name": "Spotify: Music and Podcasts",
+    "artist": "Spotify"
+   },
+   {
+    "rank": 28,
+    "name": "DoorDash: Food, Grocery, More",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 29,
+    "name": "Telegram Messenger",
+    "artist": "Telegram FZ-LLC"
+   },
+   {
+    "rank": 30,
+    "name": "Ticketmaster\uff0dBuy, Sell Tickets",
+    "artist": "Ticketmaster"
+   },
+   {
+    "rank": 31,
+    "name": "YouTube",
+    "artist": "Google"
+   },
+   {
+    "rank": 32,
+    "name": "Cash App",
+    "artist": "Block, Inc."
+   },
+   {
+    "rank": 33,
+    "name": "Walmart: Shopping & Savings",
+    "artist": "Walmart"
+   },
+   {
+    "rank": 34,
+    "name": "Canva: AI Video & Photo Editor",
+    "artist": "Canva"
+   },
+   {
+    "rank": 35,
+    "name": "X",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 36,
+    "name": "McDonald's",
+    "artist": "McDonald's USA"
+   },
+   {
+    "rank": 37,
+    "name": "PayPal - Pay, Send, Save",
+    "artist": "PayPal, Inc."
+   },
+   {
+    "rank": 38,
+    "name": "MyChart",
+    "artist": "Epic"
+   },
+   {
+    "rank": 39,
+    "name": "Uber - Request a ride",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 40,
+    "name": "Google Meet",
+    "artist": "Google"
+   },
+   {
+    "rank": 41,
+    "name": "Netflix Game Controller",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 42,
+    "name": "T-Life",
+    "artist": "T-Mobile"
+   },
+   {
+    "rank": 43,
+    "name": "Citi Mobile\u00ae",
+    "artist": "Citibank"
+   },
+   {
+    "rank": 44,
+    "name": "Google Drive",
+    "artist": "Google"
+   },
+   {
+    "rank": 45,
+    "name": "Amazon Shopping",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 46,
+    "name": "Venmo",
+    "artist": "Venmo"
+   },
+   {
+    "rank": 47,
+    "name": "Depop - Buy & Sell Clothes",
+    "artist": "Depop Ltd"
+   },
+   {
+    "rank": 48,
+    "name": "Google Docs",
+    "artist": "Google"
+   },
+   {
+    "rank": 49,
+    "name": "Airbnb",
+    "artist": "Airbnb, Inc."
+   },
+   {
+    "rank": 50,
+    "name": "Pinterest",
+    "artist": "Pinterest"
+   },
+   {
+    "rank": 51,
+    "name": "Capital One Mobile",
+    "artist": "Capital One"
+   },
+   {
+    "rank": 52,
+    "name": "Life360: Stay Connected & Safe",
+    "artist": "Life360"
+   },
+   {
+    "rank": 53,
+    "name": "Discord - Talk, Play, Hang Out",
+    "artist": "Discord Inc."
+   },
+   {
+    "rank": 54,
+    "name": "Amazon Prime Video",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 55,
+    "name": "LinkedIn: Community & Network",
+    "artist": "LinkedIn Corporation"
+   },
+   {
+    "rank": 56,
+    "name": "Snapchat",
+    "artist": "Snap, Inc."
+   },
+   {
+    "rank": 57,
+    "name": "Vinted: Pre-loved marketplace",
+    "artist": "Vinted Limited"
+   },
+   {
+    "rank": 58,
+    "name": "ADP Mobile Solutions",
+    "artist": "ADP, Inc"
+   },
+   {
+    "rank": 59,
+    "name": "AliExpress - Shopping App",
+    "artist": "Alibaba"
+   },
+   {
+    "rank": 60,
+    "name": "Taco Bell Fast Food & Delivery",
+    "artist": "Taco Bell"
+   },
+   {
+    "rank": 61,
+    "name": "Costco",
+    "artist": "Costco Wholesale Corporation"
+   },
+   {
+    "rank": 62,
+    "name": "Google Authenticator",
+    "artist": "Google"
+   },
+   {
+    "rank": 63,
+    "name": "Google Sheets",
+    "artist": "Google"
+   },
+   {
+    "rank": 64,
+    "name": "Chick-fil-A",
+    "artist": "Chick-fil-A, Inc."
+   },
+   {
+    "rank": 65,
+    "name": "Progressive",
+    "artist": "Progressive Insurance"
+   },
+   {
+    "rank": 66,
+    "name": "VPN - Super Unlimited Proxy",
+    "artist": "Mobile Jump Pte Ltd"
+   },
+   {
+    "rank": 67,
+    "name": "BigFuture School",
+    "artist": "The College Board"
+   },
+   {
+    "rank": 68,
+    "name": "Reddit",
+    "artist": "REDDIT, INC."
+   },
+   {
+    "rank": 69,
+    "name": "CVS Health",
+    "artist": "CVS Pharmacy"
+   },
+   {
+    "rank": 70,
+    "name": "Pizza Hut - Delivery & Takeout",
+    "artist": "Pizza Hut, Inc."
+   },
+   {
+    "rank": 71,
+    "name": "eBay online shopping & selling",
+    "artist": "eBay Inc."
+   },
+   {
+    "rank": 72,
+    "name": "Netflix",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 73,
+    "name": "Fly Delta",
+    "artist": "Delta Air Lines, Inc."
+   },
+   {
+    "rank": 74,
+    "name": "MLB Ballpark",
+    "artist": "MLB"
+   },
+   {
+    "rank": 75,
+    "name": "Chime\u00ae \u2013 Mobile Banking",
+    "artist": "Chime Financial, Inc."
+   },
+   {
+    "rank": 76,
+    "name": "Strava: Run, Bike, Walk",
+    "artist": "Strava, Inc."
+   },
+   {
+    "rank": 77,
+    "name": "Zoom Workplace",
+    "artist": "Zoom Communications, Inc."
+   },
+   {
+    "rank": 78,
+    "name": "Chase Mobile\u00ae: Bank & Invest",
+    "artist": "JPMorgan Chase & Co."
+   },
+   {
+    "rank": 79,
+    "name": "FedEx Mobile",
+    "artist": "FedEx"
+   },
+   {
+    "rank": 80,
+    "name": "Lyft",
+    "artist": "Lyft, Inc."
+   },
+   {
+    "rank": 81,
+    "name": "Upside: Gas & Food Cash Back",
+    "artist": "Upside Services Inc"
+   },
+   {
+    "rank": 82,
+    "name": "Google Photos: Backup & Edit",
+    "artist": "Google"
+   },
+   {
+    "rank": 83,
+    "name": "Duolingo: Language & Chess",
+    "artist": "Duolingo"
+   },
+   {
+    "rank": 84,
+    "name": "Intuit Credit Karma",
+    "artist": "Credit Karma, Inc."
+   },
+   {
+    "rank": 85,
+    "name": "DoorDash - Dasher",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 86,
+    "name": "Microsoft Word",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 87,
+    "name": "Chipotle",
+    "artist": "Chipotle Mexican Grill"
+   },
+   {
+    "rank": 88,
+    "name": "American Airlines",
+    "artist": "American Airlines"
+   },
+   {
+    "rank": 89,
+    "name": "Dollar General-Digital Coupons",
+    "artist": "Dolgencorp, LLC"
+   },
+   {
+    "rank": 90,
+    "name": "Tubi: Movies & Live TV",
+    "artist": "Tubi, Inc"
+   },
+   {
+    "rank": 91,
+    "name": "Messenger",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 92,
+    "name": "Alibaba.com",
+    "artist": "Hangzhou Alibaba International Information Technology Co., Ltd."
+   },
+   {
+    "rank": 93,
+    "name": "Planet Fitness",
+    "artist": "Planet Fitness Holdings, LLC"
+   },
+   {
+    "rank": 94,
+    "name": "OnePay \u2013 Mobile Banking",
+    "artist": "One Finance, Inc."
+   },
+   {
+    "rank": 95,
+    "name": "Yahoo Mail: Your Email & Inbox",
+    "artist": "Yahoo"
+   },
+   {
+    "rank": 96,
+    "name": "Kalshi: Trade News & Sports",
+    "artist": "KalshiEX LLC"
+   },
+   {
+    "rank": 97,
+    "name": "GroupMe",
+    "artist": "Skype Communications S.a.r.l"
+   },
+   {
+    "rank": 98,
+    "name": "YouTube Music",
+    "artist": "Google"
+   },
+   {
+    "rank": 99,
+    "name": "Southwest Airlines: Travel App",
+    "artist": "Southwest Airlines Co."
+   },
+   {
+    "rank": 100,
+    "name": "PictureThis - Plant Identifier",
+    "artist": "Glority Global Group Ltd."
+   }
+  ]
+ },
+ "2026-06-01": {
+  "feedUpdated": "Mon, 1 Jun 2026 04:45:17 +0000",
+  "feedId": "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/100/apps.json",
+  "results": [
+   {
+    "rank": 1,
+    "name": "ChatGPT",
+    "artist": "OpenAI OpCo, LLC"
+   },
+   {
+    "rank": 2,
+    "name": "Netflix Game Controller",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 3,
+    "name": "Claude by Anthropic",
+    "artist": "Anthropic PBC"
+   },
+   {
+    "rank": 4,
+    "name": "Temu: Shop Like a Billionaire",
+    "artist": "Temu"
+   },
+   {
+    "rank": 5,
+    "name": "Google Gemini",
+    "artist": "Google"
+   },
+   {
+    "rank": 6,
+    "name": "CapCut: Photo & Video Editor",
+    "artist": "Bytedance Pte. Ltd"
+   },
+   {
+    "rank": 7,
+    "name": "Threads",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 8,
+    "name": "Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 9,
+    "name": "Whatnot: Shop, Sell, Connect",
+    "artist": "Whatnot Inc."
+   },
+   {
+    "rank": 10,
+    "name": "WhatsApp Messenger",
+    "artist": "WhatsApp Inc."
+   },
+   {
+    "rank": 11,
+    "name": "Planet Fitness",
+    "artist": "Planet Fitness Holdings, LLC"
+   },
+   {
+    "rank": 12,
+    "name": "Peacock TV: Stream TV & Movies",
+    "artist": "Peacock TV LLC"
+   },
+   {
+    "rank": 13,
+    "name": "Google Maps",
+    "artist": "Google"
+   },
+   {
+    "rank": 14,
+    "name": "Depop - Buy & Sell Clothes",
+    "artist": "Depop Ltd"
+   },
+   {
+    "rank": 15,
+    "name": "SHEIN - Shopping Online",
+    "artist": "ROADGET BUSINESS PTE. LTD."
+   },
+   {
+    "rank": 16,
+    "name": "DoorDash: Food, Grocery, More",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 17,
+    "name": "Life360: Stay Connected & Safe",
+    "artist": "Life360"
+   },
+   {
+    "rank": 18,
+    "name": "Instagram",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 19,
+    "name": "TikTok - Videos, Shop & LIVE",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 20,
+    "name": "Meta AI",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 21,
+    "name": "Amazon Prime Video",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 22,
+    "name": "Facebook",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 23,
+    "name": "Walmart: Shopping & Savings",
+    "artist": "Walmart"
+   },
+   {
+    "rank": 24,
+    "name": "Gmail - Email by Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 25,
+    "name": "Uber - Request a ride",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 26,
+    "name": "YouTube",
+    "artist": "Google"
+   },
+   {
+    "rank": 27,
+    "name": "HBO Max: Stream Movies & TV",
+    "artist": "WarnerMedia Global Digital Services, LLC"
+   },
+   {
+    "rank": 28,
+    "name": "Spotify: Music and Podcasts",
+    "artist": "Spotify"
+   },
+   {
+    "rank": 29,
+    "name": "X",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 30,
+    "name": "Shop: All your favorite brands",
+    "artist": "Shopify Inc."
+   },
+   {
+    "rank": 31,
+    "name": "Airbnb",
+    "artist": "Airbnb, Inc."
+   },
+   {
+    "rank": 32,
+    "name": "Vinted: Pre-loved marketplace",
+    "artist": "Vinted Limited"
+   },
+   {
+    "rank": 33,
+    "name": "Amazon Shopping",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 34,
+    "name": "Cash App",
+    "artist": "Block, Inc."
+   },
+   {
+    "rank": 35,
+    "name": "Google Chrome",
+    "artist": "Google"
+   },
+   {
+    "rank": 36,
+    "name": "Rips by Triumph",
+    "artist": "Triumph Arcade"
+   },
+   {
+    "rank": 37,
+    "name": "PictureThis - Plant Identifier",
+    "artist": "Glority Global Group Ltd."
+   },
+   {
+    "rank": 38,
+    "name": "Indeed Job Search",
+    "artist": "Indeed Inc."
+   },
+   {
+    "rank": 39,
+    "name": "Netflix",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 40,
+    "name": "Pinterest",
+    "artist": "Pinterest, Inc."
+   },
+   {
+    "rank": 41,
+    "name": "Telegram Messenger",
+    "artist": "Telegram FZ-LLC"
+   },
+   {
+    "rank": 42,
+    "name": "Costco",
+    "artist": "Costco Wholesale Corporation"
+   },
+   {
+    "rank": 43,
+    "name": "The Roku App (Official)",
+    "artist": "ROKU INC"
+   },
+   {
+    "rank": 44,
+    "name": "NetShort - Popular Dramas & TV",
+    "artist": "NETSTORY PTE. LTD."
+   },
+   {
+    "rank": 45,
+    "name": "PayPal - Pay, Send, Save",
+    "artist": "PayPal, Inc."
+   },
+   {
+    "rank": 46,
+    "name": "DealSeek: Coupons & Discounts",
+    "artist": "DealSeek LLC"
+   },
+   {
+    "rank": 47,
+    "name": "Discord - Talk, Play, Hang Out",
+    "artist": "Discord Inc."
+   },
+   {
+    "rank": 48,
+    "name": "VIZIO | WatchFree+",
+    "artist": "VIZIO"
+   },
+   {
+    "rank": 49,
+    "name": "Snapchat",
+    "artist": "Snap, Inc."
+   },
+   {
+    "rank": 50,
+    "name": "Venmo",
+    "artist": "Venmo"
+   },
+   {
+    "rank": 51,
+    "name": "Kalshi: Trade News & Sports",
+    "artist": "KalshiEX LLC"
+   },
+   {
+    "rank": 52,
+    "name": "Paramount+",
+    "artist": "CBS Interactive"
+   },
+   {
+    "rank": 53,
+    "name": "T-Life",
+    "artist": "T-Mobile"
+   },
+   {
+    "rank": 54,
+    "name": "McDonald's",
+    "artist": "McDonald's USA"
+   },
+   {
+    "rank": 55,
+    "name": "Canva: AI Video & Photo Editor",
+    "artist": "Canva"
+   },
+   {
+    "rank": 56,
+    "name": "Grok - AI Chat & Video",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 57,
+    "name": "Strava: Run, Bike, Walk",
+    "artist": "Strava, Inc."
+   },
+   {
+    "rank": 58,
+    "name": "Amazon Fire TV",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 59,
+    "name": "Duolingo: Language Lessons",
+    "artist": "Duolingo"
+   },
+   {
+    "rank": 60,
+    "name": "eBay online shopping & selling",
+    "artist": "eBay Inc."
+   },
+   {
+    "rank": 61,
+    "name": "Lyft",
+    "artist": "Lyft, Inc."
+   },
+   {
+    "rank": 62,
+    "name": "Capital One Mobile",
+    "artist": "Capital One"
+   },
+   {
+    "rank": 63,
+    "name": "Ticketmaster\uff0dBuy, Sell Tickets",
+    "artist": "Ticketmaster"
+   },
+   {
+    "rank": 64,
+    "name": "Disney+",
+    "artist": "Disney"
+   },
+   {
+    "rank": 65,
+    "name": "Tubi: Movies & Live TV",
+    "artist": "Tubi, Inc"
+   },
+   {
+    "rank": 66,
+    "name": "Google Photos: Backup & Edit",
+    "artist": "Google"
+   },
+   {
+    "rank": 67,
+    "name": "U-Haul",
+    "artist": "U-Haul International, Inc."
+   },
+   {
+    "rank": 68,
+    "name": "Alibaba.com",
+    "artist": "Hangzhou Alibaba International Information Technology Co., Ltd."
+   },
+   {
+    "rank": 69,
+    "name": "Trump Accounts: Official App",
+    "artist": "U.S. Department of the Treasury"
+   },
+   {
+    "rank": 70,
+    "name": "Taco Bell Fast Food & Delivery",
+    "artist": "Taco Bell"
+   },
+   {
+    "rank": 71,
+    "name": "DramaBox - Stream Drama Shorts",
+    "artist": "STORYMATRIX PTE. LTD."
+   },
+   {
+    "rank": 72,
+    "name": "DuckDuckGo, Duck.ai, & VPN",
+    "artist": "DuckDuckGo, Inc."
+   },
+   {
+    "rank": 73,
+    "name": "AliExpress - Shopping App",
+    "artist": "Alibaba"
+   },
+   {
+    "rank": 74,
+    "name": "Fly Delta",
+    "artist": "Delta Air Lines, Inc."
+   },
+   {
+    "rank": 75,
+    "name": "Six Flags",
+    "artist": "Six Flags Entertainment Corporation"
+   },
+   {
+    "rank": 76,
+    "name": "Uber Eats: Food & Groceries",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 77,
+    "name": "CrimeRadar Dispatch Audio",
+    "artist": "Scoopz Inc."
+   },
+   {
+    "rank": 78,
+    "name": "Fetch: America\u2019s Rewards App",
+    "artist": "Fetch Rewards, LLC"
+   },
+   {
+    "rank": 79,
+    "name": "Wingstop",
+    "artist": "Wingstop Restaurants, Inc."
+   },
+   {
+    "rank": 80,
+    "name": "Google Drive",
+    "artist": "Google"
+   },
+   {
+    "rank": 81,
+    "name": "American Airlines",
+    "artist": "American Airlines"
+   },
+   {
+    "rank": 82,
+    "name": "Waze Navigation & Live Traffic",
+    "artist": "Waze Inc."
+   },
+   {
+    "rank": 83,
+    "name": "Domino's Pizza USA",
+    "artist": "Domino's Pizza LLC"
+   },
+   {
+    "rank": 84,
+    "name": "Merlin Bird ID by Cornell Lab",
+    "artist": "Cornell University"
+   },
+   {
+    "rank": 85,
+    "name": "Microsoft Authenticator",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 86,
+    "name": "Sam's Club Shopping & Delivery",
+    "artist": "Sam\u2019s Club"
+   },
+   {
+    "rank": 87,
+    "name": "Ring - Always Home",
+    "artist": "Ring.com"
+   },
+   {
+    "rank": 88,
+    "name": "SmartThings",
+    "artist": "Samsung Electronics Co., Ltd."
+   },
+   {
+    "rank": 89,
+    "name": "The Home Depot",
+    "artist": "The Home Depot, Inc."
+   },
+   {
+    "rank": 90,
+    "name": "Messenger",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 91,
+    "name": "Booking.com: Hotels & Travel",
+    "artist": "Booking.com"
+   },
+   {
+    "rank": 92,
+    "name": "AMC Theatres: Movies & More",
+    "artist": "American Multi-Cinema, Inc"
+   },
+   {
+    "rank": 93,
+    "name": "Edits: Video Editor",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 94,
+    "name": "KICK - Live Streaming",
+    "artist": "Kick Streaming"
+   },
+   {
+    "rank": 95,
+    "name": "GroupMe",
+    "artist": "Skype Communications S.a.r.l"
+   },
+   {
+    "rank": 96,
+    "name": "Speak & Learn English: Learna",
+    "artist": "DEEP FLOW SOFTWARE SERVICES"
+   },
+   {
+    "rank": 97,
+    "name": "Google Meet",
+    "artist": "Google"
+   },
+   {
+    "rank": 98,
+    "name": "Target: Shop. Style. Save.",
+    "artist": "Target"
+   },
+   {
+    "rank": 99,
+    "name": "PineDrama - Short Dramas",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 100,
+    "name": "Zillow Real Estate & Rentals",
+    "artist": "Zillow.com"
+   }
+  ]
+ },
+ "2026-07-27": {
+  "feedUpdated": "Mon, 27 Jul 2026 06:02:10 +0000",
+  "feedId": "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/100/apps.json",
+  "results": [
+   {
+    "rank": 1,
+    "name": "Netflix Game Controller",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 2,
+    "name": "ChatGPT",
+    "artist": "OpenAI OpCo, LLC"
+   },
+   {
+    "rank": 3,
+    "name": "TikTok Pro - Events",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 4,
+    "name": "DramaBox - Stream Drama Shorts",
+    "artist": "STORYMATRIX PTE. LTD."
+   },
+   {
+    "rank": 5,
+    "name": "Depop - Buy & Sell Clothes",
+    "artist": "Depop Ltd"
+   },
+   {
+    "rank": 6,
+    "name": "Vinted: Pre-loved marketplace",
+    "artist": "Vinted Limited"
+   },
+   {
+    "rank": 7,
+    "name": "Threads",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 8,
+    "name": "Google Gemini",
+    "artist": "Google"
+   },
+   {
+    "rank": 9,
+    "name": "Claude by Anthropic",
+    "artist": "Anthropic PBC"
+   },
+   {
+    "rank": 10,
+    "name": "Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 11,
+    "name": "WhatsApp Messenger",
+    "artist": "WhatsApp Inc."
+   },
+   {
+    "rank": 12,
+    "name": "Whatnot: Shop, Sell, Connect",
+    "artist": "Whatnot Inc."
+   },
+   {
+    "rank": 13,
+    "name": "CapCut: Photo & Video Editor",
+    "artist": "Bytedance Pte. Ltd"
+   },
+   {
+    "rank": 14,
+    "name": "Temu: Shop Like a Billionaire",
+    "artist": "Temu"
+   },
+   {
+    "rank": 15,
+    "name": "DoorDash: Food, Grocery, More",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 16,
+    "name": "Walmart: Shopping & Savings",
+    "artist": "Walmart"
+   },
+   {
+    "rank": 17,
+    "name": "TikTok - Videos, Shop & LIVE",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 18,
+    "name": "SHEIN - Shopping Online",
+    "artist": "ROADGET BUSINESS PTE. LTD."
+   },
+   {
+    "rank": 19,
+    "name": "Google Maps",
+    "artist": "Google"
+   },
+   {
+    "rank": 20,
+    "name": "Freecash - Get Paid Real Money",
+    "artist": "Freecash - Get Paid Real Money"
+   },
+   {
+    "rank": 21,
+    "name": "Instagram",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 22,
+    "name": "Facebook",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 23,
+    "name": "Life360: Family Safety & GPS",
+    "artist": "Life360"
+   },
+   {
+    "rank": 24,
+    "name": "Paramount+",
+    "artist": "CBS Interactive"
+   },
+   {
+    "rank": 25,
+    "name": "Gmail - Email by Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 26,
+    "name": "DealSeek: Coupons & Discounts",
+    "artist": "DealSeek LLC"
+   },
+   {
+    "rank": 27,
+    "name": "X",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 28,
+    "name": "Uber - Request a ride",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 29,
+    "name": "Spotify: Music and Podcasts",
+    "artist": "Spotify"
+   },
+   {
+    "rank": 30,
+    "name": "YouTube",
+    "artist": "Google"
+   },
+   {
+    "rank": 31,
+    "name": "Amazon Shopping",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 32,
+    "name": "Shop: All your favorite brands",
+    "artist": "Shopify Inc."
+   },
+   {
+    "rank": 33,
+    "name": "Telegram Messenger",
+    "artist": "Telegram FZ-LLC"
+   },
+   {
+    "rank": 34,
+    "name": "Meta AI",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 35,
+    "name": "Ticketmaster\uff0dBuy, Sell Tickets",
+    "artist": "Ticketmaster"
+   },
+   {
+    "rank": 36,
+    "name": "Airbnb",
+    "artist": "Airbnb, Inc."
+   },
+   {
+    "rank": 37,
+    "name": "Pinterest",
+    "artist": "Pinterest, Inc."
+   },
+   {
+    "rank": 38,
+    "name": "VibeShort: AI Comic Dramas",
+    "artist": "AGILE QUADRANT MEDIA LIMITED"
+   },
+   {
+    "rank": 39,
+    "name": "Discord - Talk, Play, Hang Out",
+    "artist": "Discord Inc."
+   },
+   {
+    "rank": 40,
+    "name": "PineDrama - Short Dramas",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 41,
+    "name": "Rips by Triumph",
+    "artist": "Triumph Arcade"
+   },
+   {
+    "rank": 42,
+    "name": "Cash App",
+    "artist": "Block, Inc."
+   },
+   {
+    "rank": 43,
+    "name": "Netflix",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 44,
+    "name": "StoryReel: Exclusive Drama",
+    "artist": "Equinox Enterprises\u200c Technology Limited"
+   },
+   {
+    "rank": 45,
+    "name": "The Roku App (Official)",
+    "artist": "ROKU INC"
+   },
+   {
+    "rank": 46,
+    "name": "PayPal - Pay, Send, Save",
+    "artist": "PayPal, Inc."
+   },
+   {
+    "rank": 47,
+    "name": "VIZIO | WatchFree+",
+    "artist": "VIZIO"
+   },
+   {
+    "rank": 48,
+    "name": "Capital One Mobile",
+    "artist": "Capital One"
+   },
+   {
+    "rank": 49,
+    "name": "Grok AI",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 50,
+    "name": "Google Chrome",
+    "artist": "Google"
+   },
+   {
+    "rank": 51,
+    "name": "Snapchat",
+    "artist": "Snap, Inc."
+   },
+   {
+    "rank": 52,
+    "name": "Amazon Prime Video",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 53,
+    "name": "DramaWave - Dramas & Reels",
+    "artist": "SKYWORK AI PTE LTD"
+   },
+   {
+    "rank": 54,
+    "name": "AliExpress - Shopping App",
+    "artist": "Alibaba"
+   },
+   {
+    "rank": 55,
+    "name": "Venmo",
+    "artist": "Venmo"
+   },
+   {
+    "rank": 56,
+    "name": "Disney+",
+    "artist": "Disney"
+   },
+   {
+    "rank": 57,
+    "name": "Costco",
+    "artist": "Costco Wholesale Corporation"
+   },
+   {
+    "rank": 58,
+    "name": "Peacock TV: Stream TV & Movies",
+    "artist": "Peacock TV LLC"
+   },
+   {
+    "rank": 59,
+    "name": "Indeed Job Search",
+    "artist": "Indeed Inc."
+   },
+   {
+    "rank": 60,
+    "name": "ReelShort - Stream Drama & TV",
+    "artist": "NewLeaf Publishing"
+   },
+   {
+    "rank": 61,
+    "name": "Duolingo: Language Lessons",
+    "artist": "Duolingo"
+   },
+   {
+    "rank": 62,
+    "name": "T-Life",
+    "artist": "T-Mobile"
+   },
+   {
+    "rank": 63,
+    "name": "McDonald's",
+    "artist": "McDonald's USA"
+   },
+   {
+    "rank": 64,
+    "name": "HBO Max: Stream Movies & TV",
+    "artist": "WarnerMedia Global Digital Services, LLC"
+   },
+   {
+    "rank": 65,
+    "name": "Lyft",
+    "artist": "Lyft, Inc."
+   },
+   {
+    "rank": 66,
+    "name": "eBay online shopping & selling",
+    "artist": "eBay Inc."
+   },
+   {
+    "rank": 67,
+    "name": "Tubi: Movies & Live TV",
+    "artist": "Tubi, Inc"
+   },
+   {
+    "rank": 68,
+    "name": "Glacier App",
+    "artist": "Security App LLC"
+   },
+   {
+    "rank": 69,
+    "name": "Twitch: Live Streaming",
+    "artist": "Twitch Interactive, Inc."
+   },
+   {
+    "rank": 70,
+    "name": "Capital One Shopping: Save Now",
+    "artist": "Wikibuy, LLC"
+   },
+   {
+    "rank": 71,
+    "name": "Kalshi: Trade Events & Sports",
+    "artist": "KalshiEX LLC"
+   },
+   {
+    "rank": 72,
+    "name": "Target: Shop. Style. Save.",
+    "artist": "Target"
+   },
+   {
+    "rank": 73,
+    "name": "Reddit",
+    "artist": "REDDIT, INC."
+   },
+   {
+    "rank": 74,
+    "name": "Google Photos: Backup & Edit",
+    "artist": "Google"
+   },
+   {
+    "rank": 75,
+    "name": "Wayfair \u2013 Shop All Things Home",
+    "artist": "Wayfair LLC"
+   },
+   {
+    "rank": 76,
+    "name": "Fetch: America\u2019s Rewards App",
+    "artist": "Fetch Rewards, LLC"
+   },
+   {
+    "rank": 77,
+    "name": "Canva: AI Video & Photo Editor",
+    "artist": "Canva"
+   },
+   {
+    "rank": 78,
+    "name": "VPN - Super Unlimited Proxy",
+    "artist": "Mobile Jump Pte Ltd"
+   },
+   {
+    "rank": 79,
+    "name": "Strava: Run, Bike, Walk",
+    "artist": "Strava, Inc."
+   },
+   {
+    "rank": 80,
+    "name": "Uber Eats: Food & Groceries",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 81,
+    "name": "Domino's Pizza USA",
+    "artist": "Domino's Pizza LLC"
+   },
+   {
+    "rank": 82,
+    "name": "Ring - Always Home",
+    "artist": "Ring.com"
+   },
+   {
+    "rank": 83,
+    "name": "NetShort - Popular Dramas & TV",
+    "artist": "NETSTORY PTE. LTD."
+   },
+   {
+    "rank": 84,
+    "name": "CrimeRadar Dispatch Audio",
+    "artist": "Scoopz Inc."
+   },
+   {
+    "rank": 85,
+    "name": "Alibaba.com",
+    "artist": "Hangzhou Alibaba International Information Technology Co., Ltd."
+   },
+   {
+    "rank": 86,
+    "name": "Booking.com: Hotels & Travel",
+    "artist": "Booking.com"
+   },
+   {
+    "rank": 87,
+    "name": "Watch Duty: Wildfire & Floods",
+    "artist": "Sherwood Forestry Service, Inc."
+   },
+   {
+    "rank": 88,
+    "name": "Sam's Club Shopping & Delivery",
+    "artist": "Sam\u2019s Club"
+   },
+   {
+    "rank": 89,
+    "name": "Waze Navigation & Live Traffic",
+    "artist": "Waze Inc."
+   },
+   {
+    "rank": 90,
+    "name": "Topgolf",
+    "artist": "TopGolf USA, Inc."
+   },
+   {
+    "rank": 91,
+    "name": "U-Haul",
+    "artist": "U-Haul International, Inc."
+   },
+   {
+    "rank": 92,
+    "name": "Yelp: Food, Services & Reviews",
+    "artist": "Yelp"
+   },
+   {
+    "rank": 93,
+    "name": "TV Remote - Universal Control",
+    "artist": "EVOLLY.APP"
+   },
+   {
+    "rank": 94,
+    "name": "Edits: Video Editor",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 95,
+    "name": "Messenger",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 96,
+    "name": "SmartThings",
+    "artist": "Samsung Electronics Co., Ltd."
+   },
+   {
+    "rank": 97,
+    "name": "American Airlines",
+    "artist": "American Airlines"
+   },
+   {
+    "rank": 98,
+    "name": "Planet Fitness",
+    "artist": "Planet Fitness Holdings, LLC"
+   },
+   {
+    "rank": 99,
+    "name": "Fly Delta",
+    "artist": "Delta Air Lines, Inc."
+   },
+   {
+    "rank": 100,
+    "name": "Chase Mobile\u00ae: Bank & Invest",
+    "artist": "JPMorgan Chase & Co."
+   }
+  ]
+ },
+ "2026-08-10": {
+  "feedUpdated": "Mon, 10 Aug 2026 04:09:25 +0000",
+  "feedId": "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/100/apps.json",
+  "results": [
+   {
+    "rank": 1,
+    "name": "TikTok Pro - Events",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 2,
+    "name": "ChatGPT",
+    "artist": "OpenAI OpCo, LLC"
+   },
+   {
+    "rank": 3,
+    "name": "Netflix Game Controller",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 4,
+    "name": "Vinted: Pre-loved marketplace",
+    "artist": "Vinted Limited"
+   },
+   {
+    "rank": 5,
+    "name": "Depop - Buy & Sell Clothes",
+    "artist": "Depop Ltd"
+   },
+   {
+    "rank": 6,
+    "name": "Threads",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 7,
+    "name": "DramaWave - Dramas & Reels",
+    "artist": "SKYWORK AI PTE LTD"
+   },
+   {
+    "rank": 8,
+    "name": "Temu: Shop Like a Billionaire",
+    "artist": "Temu"
+   },
+   {
+    "rank": 9,
+    "name": "Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 10,
+    "name": "Capital One Mobile",
+    "artist": "Capital One"
+   },
+   {
+    "rank": 11,
+    "name": "CapCut: Photo & Video Editor",
+    "artist": "Bytedance Pte. Ltd"
+   },
+   {
+    "rank": 12,
+    "name": "WhatsApp Messenger",
+    "artist": "WhatsApp Inc."
+   },
+   {
+    "rank": 13,
+    "name": "Whatnot: Shop, Sell, Connect",
+    "artist": "Whatnot Inc."
+   },
+   {
+    "rank": 14,
+    "name": "Google Gemini",
+    "artist": "Google"
+   },
+   {
+    "rank": 15,
+    "name": "Walmart: Shopping & Savings",
+    "artist": "Walmart"
+   },
+   {
+    "rank": 16,
+    "name": "Claude by Anthropic",
+    "artist": "Anthropic PBC"
+   },
+   {
+    "rank": 17,
+    "name": "TikTok - Videos, Shop & LIVE",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 18,
+    "name": "Life360: Family Safety & GPS",
+    "artist": "Life360"
+   },
+   {
+    "rank": 19,
+    "name": "Gmail - Email by Google",
+    "artist": "Google"
+   },
+   {
+    "rank": 20,
+    "name": "Freecash - Get Paid Real Money",
+    "artist": "Freecash - Get Paid Real Money"
+   },
+   {
+    "rank": 21,
+    "name": "Google Maps",
+    "artist": "Google"
+   },
+   {
+    "rank": 22,
+    "name": "DoorDash: Food, Grocery, More",
+    "artist": "DoorDash, Inc."
+   },
+   {
+    "rank": 23,
+    "name": "ParentSquare",
+    "artist": "ParentSquare"
+   },
+   {
+    "rank": 24,
+    "name": "Instagram",
+    "artist": "Instagram, Inc."
+   },
+   {
+    "rank": 25,
+    "name": "Facebook",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 26,
+    "name": "DealSeek: Coupons & Discounts",
+    "artist": "DealSeek LLC"
+   },
+   {
+    "rank": 27,
+    "name": "X",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 28,
+    "name": "YouTube",
+    "artist": "Google"
+   },
+   {
+    "rank": 29,
+    "name": "Uber - Request a ride",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 30,
+    "name": "SHEIN - Shopping Online",
+    "artist": "ROADGET BUSINESS PTE. LTD."
+   },
+   {
+    "rank": 31,
+    "name": "Meta AI",
+    "artist": "Meta Platforms, Inc."
+   },
+   {
+    "rank": 32,
+    "name": "DramaBox - Stream Drama Shorts",
+    "artist": "STORYMATRIX PTE. LTD."
+   },
+   {
+    "rank": 33,
+    "name": "Spotify: Music and Podcasts",
+    "artist": "Spotify"
+   },
+   {
+    "rank": 34,
+    "name": "Shop: All your favorite brands",
+    "artist": "Shopify Inc."
+   },
+   {
+    "rank": 35,
+    "name": "Amazon Shopping",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 36,
+    "name": "StoryReel: Exclusive Drama",
+    "artist": "Equinox Enterprises\u200c Technology Limited"
+   },
+   {
+    "rank": 37,
+    "name": "Rips by Triumph",
+    "artist": "Triumph Arcade"
+   },
+   {
+    "rank": 38,
+    "name": "Pinterest",
+    "artist": "Pinterest, Inc."
+   },
+   {
+    "rank": 39,
+    "name": "Telegram Messenger",
+    "artist": "Telegram FZ-LLC"
+   },
+   {
+    "rank": 40,
+    "name": "Google Chrome",
+    "artist": "Google"
+   },
+   {
+    "rank": 41,
+    "name": "ReelShort - Stream Drama & TV",
+    "artist": "NewLeaf Publishing"
+   },
+   {
+    "rank": 42,
+    "name": "Ticketmaster\uff0dBuy, Sell Tickets",
+    "artist": "Ticketmaster"
+   },
+   {
+    "rank": 43,
+    "name": "Disney+",
+    "artist": "Disney"
+   },
+   {
+    "rank": 44,
+    "name": "Cash App",
+    "artist": "Block, Inc."
+   },
+   {
+    "rank": 45,
+    "name": "Netflix",
+    "artist": "Netflix, Inc."
+   },
+   {
+    "rank": 46,
+    "name": "Discord - Talk, Play, Hang Out",
+    "artist": "Discord Inc."
+   },
+   {
+    "rank": 47,
+    "name": "Snapchat",
+    "artist": "Snap, Inc."
+   },
+   {
+    "rank": 48,
+    "name": "The Roku App (Official)",
+    "artist": "ROKU INC"
+   },
+   {
+    "rank": 49,
+    "name": "Costco",
+    "artist": "Costco Wholesale Corporation"
+   },
+   {
+    "rank": 50,
+    "name": "Amazon Prime Video",
+    "artist": "AMZN Mobile LLC"
+   },
+   {
+    "rank": 51,
+    "name": "Airbnb",
+    "artist": "Airbnb, Inc."
+   },
+   {
+    "rank": 52,
+    "name": "Target: Shop. Style. Save.",
+    "artist": "Target"
+   },
+   {
+    "rank": 53,
+    "name": "VIZIO | WatchFree+",
+    "artist": "VIZIO"
+   },
+   {
+    "rank": 54,
+    "name": "Venmo",
+    "artist": "Venmo"
+   },
+   {
+    "rank": 55,
+    "name": "PayPal - Pay, Send, Save",
+    "artist": "PayPal, Inc."
+   },
+   {
+    "rank": 56,
+    "name": "PineDrama - Short Dramas",
+    "artist": "TikTok Ltd."
+   },
+   {
+    "rank": 57,
+    "name": "Indeed Job Search",
+    "artist": "Indeed Inc."
+   },
+   {
+    "rank": 58,
+    "name": "Grok AI",
+    "artist": "X Corp."
+   },
+   {
+    "rank": 59,
+    "name": "VPN - Super Unlimited Proxy",
+    "artist": "Mobile Jump Pte Ltd"
+   },
+   {
+    "rank": 60,
+    "name": "ESPN Fantasy Sports & More",
+    "artist": "Disney"
+   },
+   {
+    "rank": 61,
+    "name": "Fetch: America\u2019s Rewards App",
+    "artist": "Fetch Rewards, LLC"
+   },
+   {
+    "rank": 62,
+    "name": "VibeShort: AI Short Dramas",
+    "artist": "AGILE QUADRANT MEDIA LIMITED"
+   },
+   {
+    "rank": 63,
+    "name": "T-Life",
+    "artist": "T-Mobile"
+   },
+   {
+    "rank": 64,
+    "name": "McDonald's",
+    "artist": "McDonald's USA"
+   },
+   {
+    "rank": 65,
+    "name": "Watch Duty: Wildfire & Floods",
+    "artist": "Sherwood Forestry Service, Inc."
+   },
+   {
+    "rank": 66,
+    "name": "Lyft",
+    "artist": "Lyft, Inc."
+   },
+   {
+    "rank": 67,
+    "name": "HBO Max: Stream Movies & TV",
+    "artist": "WarnerMedia Global Digital Services, LLC"
+   },
+   {
+    "rank": 68,
+    "name": "Scroll The Bible",
+    "artist": "Gabriel Jacobson"
+   },
+   {
+    "rank": 69,
+    "name": "AliExpress - Shopping App",
+    "artist": "Alibaba"
+   },
+   {
+    "rank": 70,
+    "name": "Duolingo: Language Lessons",
+    "artist": "Duolingo"
+   },
+   {
+    "rank": 71,
+    "name": "NetShort - Popular Dramas & TV",
+    "artist": "NETSTORY PTE. LTD."
+   },
+   {
+    "rank": 72,
+    "name": "ClassDojo",
+    "artist": "ClassDojo, Inc."
+   },
+   {
+    "rank": 73,
+    "name": "eBay online shopping & selling",
+    "artist": "eBay Inc."
+   },
+   {
+    "rank": 74,
+    "name": "Tubi: Movies & Live TV",
+    "artist": "Tubi, Inc"
+   },
+   {
+    "rank": 75,
+    "name": "Google Photos: Backup & Edit",
+    "artist": "Google"
+   },
+   {
+    "rank": 76,
+    "name": "Strava: Run, Bike, Walk",
+    "artist": "Strava, Inc."
+   },
+   {
+    "rank": 77,
+    "name": "Canva: AI Video & Photo Editor",
+    "artist": "Canva"
+   },
+   {
+    "rank": 78,
+    "name": "CrimeRadar Dispatch Audio",
+    "artist": "Scoopz Inc."
+   },
+   {
+    "rank": 79,
+    "name": "Sleeper Sports",
+    "artist": "Blitz Studios"
+   },
+   {
+    "rank": 80,
+    "name": "Uber Eats: Food & Groceries",
+    "artist": "Uber Technologies, Inc."
+   },
+   {
+    "rank": 81,
+    "name": "Paramount+",
+    "artist": "CBS Interactive"
+   },
+   {
+    "rank": 82,
+    "name": "Sam's Club Shopping & Delivery",
+    "artist": "Sam\u2019s Club"
+   },
+   {
+    "rank": 83,
+    "name": "Reddit",
+    "artist": "REDDIT, INC."
+   },
+   {
+    "rank": 84,
+    "name": "Dairy Queen\u00ae Food & Treats",
+    "artist": "International Dairy Queen, Inc."
+   },
+   {
+    "rank": 85,
+    "name": "KICK - Live Streaming",
+    "artist": "Kick Streaming"
+   },
+   {
+    "rank": 86,
+    "name": "Kalshi: Trade Events & Sports",
+    "artist": "KalshiEX LLC"
+   },
+   {
+    "rank": 87,
+    "name": "Ring - Always Home",
+    "artist": "Ring.com"
+   },
+   {
+    "rank": 88,
+    "name": "GroupMe",
+    "artist": "Skype Communications S.a.r.l"
+   },
+   {
+    "rank": 89,
+    "name": "Microsoft Outlook",
+    "artist": "Microsoft Corporation"
+   },
+   {
+    "rank": 90,
+    "name": "Domino's Pizza USA",
+    "artist": "Domino's Pizza LLC"
+   },
+   {
+    "rank": 91,
+    "name": "Speak & Learn English: Learna",
+    "artist": "DEEP FLOW SOFTWARE SERVICES"
+   },
+   {
+    "rank": 92,
+    "name": "SmartThings",
+    "artist": "Samsung Electronics Co., Ltd."
+   },
+   {
+    "rank": 93,
+    "name": "Capital One Shopping: Save Now",
+    "artist": "Wikibuy, LLC"
+   },
+   {
+    "rank": 94,
+    "name": "Booking.com: Hotels & Travel",
+    "artist": "Booking.com"
+   },
+   {
+    "rank": 95,
+    "name": "Alibaba.com",
+    "artist": "Hangzhou Alibaba International Information Technology Co., Ltd."
+   },
+   {
+    "rank": 96,
+    "name": "Taco Bell Fast Food & Delivery",
+    "artist": "Taco Bell"
+   },
+   {
+    "rank": 97,
+    "name": "Google Drive",
+    "artist": "Google"
+   },
+   {
+    "rank": 98,
+    "name": "Waze Navigation & Live Traffic",
+    "artist": "Waze Inc."
+   },
+   {
+    "rank": 99,
+    "name": "OnePay \u2013 Mobile Banking",
+    "artist": "One Finance, Inc."
+   },
+   {
+    "rank": 100,
+    "name": "Locket Widget",
+    "artist": "Locket Labs, Inc."
+   }
+  ]
+ }
+}
