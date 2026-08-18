@@ -1,0 +1,290 @@
+<title>The Wants Board</title>
+<style>
+  :root{
+    --ground:#EFEDE4; --surface:#F8F7F1; --surface-2:#E9E7DC; --line:#D6D3C6; --line-soft:#E3E0D4;
+    --ink:#1B211C; --ink-2:#3C463D; --muted:#5B665C;
+    --moss:#3E6B4A; --water:#2A5F7A; --clay:#8E4526;
+    --bar:#3E6B4A; --bar-track:#DEDBCE; --chip-ink:#F8F7F1;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#101512; --surface:#182019; --surface-2:#1F2921; --line:#2E3A30; --line-soft:#232E26;
+      --ink:#E4E9E3; --ink-2:#C3CCC4; --muted:#8FA093;
+      --moss:#79B98C; --water:#6FAECC; --clay:#D9906A;
+      --bar:#79B98C; --bar-track:#243026; --chip-ink:#101512;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#101512; --surface:#182019; --surface-2:#1F2921; --line:#2E3A30; --line-soft:#232E26;
+    --ink:#E4E9E3; --ink-2:#C3CCC4; --muted:#8FA093;
+    --moss:#79B98C; --water:#6FAECC; --clay:#D9906A;
+    --bar:#79B98C; --bar-track:#243026; --chip-ink:#101512;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--ground);color:var(--ink);margin:0;
+    font-family:"Iowan Old Style",Charter,"Palatino Linotype",Palatino,Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .mono,code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;font-variant-numeric:tabular-nums;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px 96px;}
+  .col{max-width:66ch;} .wide{max-width:900px;}
+  header.mast{border-bottom:2px solid var(--ink);margin-bottom:44px;padding:56px 0 22px;}
+  .kicker{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 20px;}
+  h1{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:clamp(2.5rem,7vw,4.4rem);line-height:.98;
+    letter-spacing:-.033em;font-weight:700;margin:0 0 22px;text-wrap:balance;max-width:15ch;}
+  .standfirst{font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0 0 24px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px 26px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;
+    letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
+  h2{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.08;
+    letter-spacing:-.022em;font-weight:700;margin:0 0 14px;text-wrap:balance;max-width:22ch;}
+  h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1.14rem;line-height:1.25;letter-spacing:-.012em;
+    font-weight:700;margin:0 0 10px;text-wrap:balance;}
+  h4{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--muted);font-weight:400;margin:0 0 12px;}
+  p{margin:0 0 18px;} a{color:var(--water);}
+  section{padding:52px 0 0;} section+section{border-top:1px solid var(--line);margin-top:52px;}
+  .sec-head{display:flex;gap:20px;align-items:baseline;margin-bottom:26px;}
+  .sec-num{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted);letter-spacing:.1em;flex:none;padding-top:6px;}
+  .callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--moss);
+    padding:20px 22px;margin:0 0 26px;border-radius:2px;}
+  .callout.warn{border-left-color:var(--clay);}
+  .callout p:last-child{margin-bottom:0;}
+  .lede{font-size:1.09rem;line-height:1.5;color:var(--ink-2);}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:24px 26px 20px;margin:0 0 20px;}
+  .card-head{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;margin-bottom:8px;}
+  .num{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted);}
+  .chip{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--moss);color:var(--chip-ink);}
+  .chip.alt{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  dl.spec{display:grid;grid-template-columns:118px 1fr;gap:9px 18px;font-size:14.6px;margin:14px 0 0;}
+  dl.spec dt{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);padding-top:4px;}
+  dl.spec dd{margin:0;}
+  .scroll{overflow-x:auto;margin:0 0 14px;border:1px solid var(--line);border-radius:2px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:540px;}
+  th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  thead th{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:400;border-bottom:1px solid var(--line);white-space:nowrap;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n{text-align:right;white-space:nowrap;font-family:ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;}
+  .bars{display:flex;flex-direction:column;gap:7px;background:var(--surface);border:1px solid var(--line);padding:20px;border-radius:2px;}
+  .barrow{display:grid;grid-template-columns:180px 1fr 46px;gap:12px;align-items:center;}
+  .barlab{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--ink-2);text-align:right;}
+  .bartrack{height:15px;background:var(--bar-track);border-radius:2px;overflow:hidden;}
+  .barfill{height:100%;background:var(--bar);border-radius:0 4px 4px 0;}
+  .barval{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--ink-2);}
+  figure{margin:0 0 26px;} figcaption{font-size:13px;color:var(--muted);line-height:1.45;margin-top:10px;}
+  ul,ol{margin:0 0 18px;padding-left:22px;} li{margin-bottom:9px;} li::marker{color:var(--muted);}
+  .rules li{margin-bottom:12px;}
+  .rules b{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;letter-spacing:.01em;}
+  footer{border-top:2px solid var(--ink);margin-top:60px;padding-top:22px;font-size:13.5px;color:var(--muted);}
+  @media (max-width:640px){
+    body{font-size:16px;} dl.spec{grid-template-columns:1fr;gap:3px 0;} dl.spec dt{padding-top:10px;}
+    .barrow{grid-template-columns:120px 1fr 40px;gap:8px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  :focus-visible{outline:2px solid var(--water);outline-offset:2px;}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Mosslight · puzzle systems research · August 2026</p>
+  <h1>The Wants Board</h1>
+  <p class="standfirst">You asked for addictive puzzles to stretch the game across five islands. The research says the puzzle you want is already sitting in your game — it's the decorating — but that turning it into a puzzle takes a different mechanism than the obvious one, and the obvious one quietly fails in a game you can undo.</p>
+  <div class="mast-meta"><span>16 research + design agents</span><span>7 topic sweeps</span><span>2 competing designs</span></div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="col">
+    <div class="callout">
+      <h4>The one-paragraph version</h4>
+      <p>Make every creature's residency a <strong>printed checklist of spatial requirements</strong> evaluated against the decorations you place — Viva Piñata's model. The puzzle is never <em>what</em> is required; it's <em>how</em> to arrange one island that satisfies a dozen creatures whose demands contradict each other on finite land. That is unfailable, it generates its own difficulty from geometry, it makes five islands mechanically necessary rather than just bigger, and it is roughly sixty spreadsheet rows rather than sixty authored levels.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>The trap in the obvious answer</h2></div>
+  <div class="col">
+    <p class="lede">Five of my seven research agents independently recommended Dorfromantik-style placement scoring: give every decoration an adjacency score, show the number, let optimising it be the puzzle. It's the consensus answer and it is <em>almost</em> right.</p>
+    <p>The design agent that disagreed found the flaw, and I think it's correct.</p>
+    <p>Dorfromantik's placement is a genuine puzzle because of two rules it enforces: a <strong>finite tile stack</strong> that acts as a clock, and <strong>irreversibility</strong> — once placed, a tile stays. Take away either one and the puzzle collapses.</p>
+    <p>Mosslight is a persistent island you live on. Players will expect free relocation and unlimited undo, and they should have both — Islanders' no-demolish rule is a roguelike device that reads as punishment in a home. But a global additive placement score with free undo degenerates into something that isn't a puzzle at all: <strong>you nudge the bench two tiles left, watch the number, nudge it back.</strong> That's hill-climbing on a gradient. It's mildly pleasant, it's genuinely good <em>feedback</em>, and it will not occupy anyone for forty hours.</p>
+    <div class="callout warn">
+      <h4>The distinction that resolves it</h4>
+      <p>Keep placement scoring — as <strong>feedback</strong>, not as the puzzle. A ghosted preview showing the delta before you commit is one of the best feel mechanics available and it costs a scoring function. Just don't mistake the number going up for a challenge.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Failable is the real enemy, not gated</h2></div>
+  <div class="col">
+    <p>The gating research came back with a firm rule: never put a puzzle on the critical path, put them in optional off-path chambers like Breath of the Wild's shrines. Churn concentrates exactly at gates, and your next island is your most valuable asset — don't hold it hostage.</p>
+    <p>Half right. The distinction being elided isn't <em>gated versus ungated</em>. It's <strong>failable versus unfailable</strong>.</p>
+    <p>Viva Piñata gates every single species behind a requirement checklist, and it's the beloved ancestor of this whole genre. You cannot fail a checklist. You can only be not-done-yet. The requirements are printed openly and there are thousands of valid arrangements. Meanwhile an off-path shrine is a separate verb in a separate room — precisely the tone break and context switch that the same body of research condemns everywhere else.</p>
+    <p>So: <strong>puzzles go on the critical path, and nothing on the critical path can be failed, timed, or single-solution.</strong></p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>The system</h2></div>
+  <div class="wide">
+
+    <article class="card">
+      <div class="card-head"><span class="num">S1</span><span class="chip">The spine — build first</span></div>
+      <h3>The Wants Board</h3>
+      <p>A creature arrives at the island edge, points at a patch of ground, and tells you in plain printed language exactly what it needs to see around that spot before it moves in. You satisfy it by decorating. No second verb, no second screen, no way to fail.</p>
+      <dl class="spec">
+        <dt>Home site</dt><dd>Every creature claims one point on the ground, and every requirement is evaluated within a stated radius of it. This is the most important decision in the design: it bounds the puzzle to an 8–16m circle rather than the whole island, so it's legible, solvable in one sitting, and drawable as a single ring. A cheap craftable Den Marker lets the player offer an alternative site — that's the agency valve against bad placement.</dd>
+        <dt>Predicates</dt><dd>About 14 templates, each a cheap spatial query over placed objects and terrain: <code>COUNT(tag, R) ≥ N</code> · <code>COUNT(tag, R) ≤ N</code> · <code>DISTINCT(family, R) ≥ K</code> · <code>NEAR(terrain, D)</code> · <code>FAR(tag, D)</code> · <code>OPEN_GROUND(≥ area)</code> · <code>CANOPY</code> · <code>ELEVATION</code> · <code>SIGHTLINE</code> · <code>LIGHT(hour)</code> · <code>RESIDENT(species)</code> · <code>ABSENT(species)</code> · <code>CO_RESIDENT</code> · <code>CORRIDOR</code></dd>
+        <dt>Progression</dt><dd>Four states per species — Sighted → Visiting → Resident → Bonded. Each transition is a checklist of 3–5 predicates. The moment the last box goes green, the transition fires.</dd>
+        <dt>Why it fits</dt><dd>It consumes your existing decoration catalogue as its entire puzzle vocabulary. Every decorative asset you've already made — and every one you add later — becomes new puzzle vocabulary for <em>every</em> species simultaneously. Content compounds instead of accumulating.</dd>
+        <dt>Cost</dt><dd>Predicate engine, spatial query cache, journal UI, backwards generator, state machine: roughly 120–180 hours. Then about 20 minutes of data entry per species. Sixty species is sixty puzzles from one build.</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="num">S2</span><span class="chip">The difficulty engine</span></div>
+      <h3>Crowding &amp; Contested Ground</h3>
+      <p>Land is finite and creatures' circles overlap. The lantern the ember-fox demands is the lantern the moth-hare refuses to live beside. No arrangement houses everyone — so the puzzle stops being "satisfy the checklist" and becomes <strong>decide who this island is for</strong>.</p>
+      <dl class="spec">
+        <dt>Territory</dt><dd>Every resident claims a disc of radius 4–14m by size tier. Discs may not overlap by more than 40%; the game refuses an illegal home site and offers the nearest legal alternative. That one rule creates a visible packing problem on finite land. Critically, it constrains <em>home sites only</em> — the player must never be told where they may not put a bench.</dd>
+        <dt>Won'ts</dt><dd>Wants are checked to reach residency. Won'ts are evaluated forever. Violating one raises Unrest 0→100 over three in-game days.</dd>
+        <dt>Telegraphing</dt><dd>No text needed. At Unrest 30 an icon appears. At 60 the creature <em>walks to the offending object and stares at it</em>. The player learns the cause by watching — free legibility, and pure charm. Your existing pet AI already does walk-to-node-and-do-a-thing.</dd>
+        <dt>The cozy-safe loss</dt><dd>At 100 the creature packs up and returns to the island edge with its wants preserved, ready to be re-satisfied. It never dies, is never lost, nothing is destroyed.</dd>
+        <dt>Cost</dt><dd>~30–40 hours. Conflict tables are generated, not authored. This is effectively free difficulty for every species already in the game.</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="num">S3</span><span class="chip">Highest leverage per hour</span></div>
+      <h3>Morph Expression</h3>
+      <p>The arrangement doesn't just attract the creature — it authors what the creature <em>looks like</em>. Raise a fox in a shaded, water-heavy, lantern-free hollow and you get the Dusk morph. Raise one on sun-warmed high ground thick with flowers and you get Ember.</p>
+      <dl class="spec">
+        <dt>Rules</dt><dd>When a creature becomes Resident, snapshot an environment vector of its home site: dominant hue, canopy fraction, water fraction, elevation band, night light level, dominant material, object density. Seven dimensions, each in 3–4 buckets. Each species has a morph table of 4–8 target vectors, each with a visual delta — palette swap, pattern mask, maybe one small accessory mesh. Nearest vector wins.</dd>
+        <dt>The almanac</dt><dd>Shows every undiscovered morph as a silhouette plus one honest environmental hint: <em>"Ember: sun-warmed, high ground, little water."</em> That single line is simultaneously a collection goal, a knowledge puzzle, and a decoration brief.</dd>
+        <dt>Why it matters</dt><dd>Collection completionism is the actual endgame of this genre — around 30% of long-term retention. This makes it <strong>combinatorial rather than finite</strong>, and fills it by decorating differently instead of grinding. It is the cheapest content in the entire design.</dd>
+        <dt>Cost</dt><dd>~40–60 hours for the vector snapshot, morph tables, matching and almanac UI. Then 2–4 hours of palette work per morph.</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="num">S4</span><span class="chip alt">Later — expensive but it's your marketing</span></div>
+      <h3>Visitor Sightlines</h3>
+      <p>Visitors don't score your island from orbit. They walk a route and score what they can actually <em>see</em> from where they stand.</p>
+      <dl class="spec">
+        <dt>Rules</dt><dd>A visitor spawns at the dock and walks a procedural route, stopping at 8–20 viewpoints. At each, cast a 60° fan of ~24 rays at two eye heights and collect the first object each ray hits, with distance. Score = appeal × distance falloff, with a <strong>novelty cap</strong> — each object type counts fully once per viewpoint and 30% for repeats, which kills prop-spam smoothly. Composition bonuses fall out of the same ray data: framing, depth across three distance bands, horizon, and a tidiness penalty for a visible workshop within 8m.</dd>
+        <dt>Why bother</dt><dd>It scores <em>composition</em> — the thing that actually makes an island beautiful, and the thing a global adjacency score cannot see. It also can't be gamed by nudging one object. And the postcard it produces is your store page.</dd>
+        <dt>Cost</dt><dd>~60–90 hours. Reuses your pathfinding and visitor NPCs. Adds no art.</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="num">S5</span><span class="chip alt">The habit layer — build last</span></div>
+      <h3>The Daily Plot</h3>
+      <p>One 12×12m walled garden per day, identical for every player worldwide, seeded from the calendar date. Three creatures with generated wants, exactly 18 objects, full catalogue access inside the plot, no economy, no clock, no lives, no leaderboard.</p>
+      <dl class="spec">
+        <dt>The catch</dt><dd>All three creatures <em>cannot</em> be satisfied with 18 objects. Two of three is a good day. So the daily is a miniature crowding puzzle that teaches S2 painlessly.</dd>
+        <dt>Rewards</dt><dd>One decor token and a streak counter. Cosmetic only. Everything obtainable here is also obtainable through normal play, more slowly. Fully skippable, nothing gated behind it.</dd>
+        <dt>Cost</dt><dd>~30–50 hours once S1 exists — it's the Wants Board with the island removed. Infinite content thereafter: one integer per day.</dd>
+      </dl>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>Five islands, one vocabulary</h2></div>
+  <div class="col">
+    <p>Kishōtenketsu applied to one predicate vocabulary rather than five hand-built mechanics. Each island turns on two or three new predicate templates and one new scoring rule. <strong>Island five adds nothing new at all</strong> — it's a victory lap where everything combines.</p>
+  </div>
+  <div class="wide">
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Island</th><th>Role</th><th>New predicates</th><th>The lesson</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1 · Home Cove</strong></td><td>Introduce</td><td>COUNT≥, COUNT≤, NEAR(water), FAR(path)</td><td>Placing a pretty thing makes a creature move in. 6 species, generous thresholds, no Won'ts, crowding disabled, land abundant.</td></tr>
+          <tr><td><strong>2 · Terraced Hills</strong></td><td>Develop</td><td>DISTINCT, CANOPY, ELEVATION</td><td>Vary your palette, and hide the workshop. First Won'ts. Terracing makes geometry matter before scarcity does. Morph hints appear.</td></tr>
+          <tr><td><strong>3 · Lantern Reef</strong></td><td><strong>The turn</strong></td><td>SIGHTLINE, LIGHT(hour)</td><td>You cannot have everyone. Land is genuinely scarce, crowding binds for the first time, species-vs-species exclusion appears. The signature conflict: a lantern one species requires and another forbids, with no room to separate them.</td></tr>
+          <tr><td><strong>4 · The Tangle</strong></td><td>Combine</td><td>CO_RESIDENT, CORRIDOR</td><td>Wants reference species living on <em>other islands</em>, so the archipelago becomes one board and the ferry becomes a puzzle move. Finished islands turn back into live puzzle space.</td></tr>
+          <tr><td><strong>5 · —</strong></td><td>Mastery</td><td>None</td><td>No new rules. Density, conflict and combination only.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 26px;">Island 3 is where the game becomes a puzzle rather than a garden, and it's deliberately the same change of gear in every system at once, so it reads as one turn rather than three unrelated difficulty bumps.</p>
+  </div>
+  <div class="col">
+    <h3>How islands actually unlock</h3>
+    <p>Two unfailable accumulating axes, both permanently visible, with an NPC naming the exact deficit in plain words — Animal Crossing's two-threshold model, but transparent. <strong>Residents</strong> (count of creatures housed) and <strong>Charm</strong> (the sightline score). Both must clear, so neither can be brute-forced.</p>
+    <p>Then ship <strong>key surplus</strong>: at every gate make meaningfully more species eligible than the threshold requires — target 1.5×. Slime Rancher shipped 12 keys for 11 gates specifically so that no unlock order could ever strand a player, and Disney Dreamlight Valley's players hit exactly that wall by unlocking biomes in the wrong order. No specific creature, morph, or daily result may ever be a prerequisite for anything.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>The rules I'd hold hardest</h2></div>
+  <div class="col">
+    <ol class="rules">
+      <li><b>Nothing on the critical path can be failed.</b> Unfailable checklists are fine and are exactly what Viva Piñata did. Anything with a lose condition concentrates churn precisely at the gate.</li>
+      <li><b>No timers, move limits, energy meters, durability, or reflex checks.</b> Anywhere, but least of all on gathering, which repeats thousands of times. Spiritfarer's timed mining is that game's most-complained-about verb; ACNH tool durability is the most-hated feature in the franchise's most successful entry, five years on.</li>
+      <li><b>Hide nothing.</b> Print every requirement, rubric and threshold in-game with live checkboxes. Viva Piñata printed everything and reads as beloved; Terraria hid its NPC happiness tables and the community plays it on spreadsheets; ACNH's opaque star rating is a documented five-year frustration.</li>
+      <li><b>Never hand-author puzzles.</b> Authored content runs roughly 50:1 to 300:1 build-hours to play-minutes for a solo dev and has near-zero replay. Every system here is a rules engine plus a config table for exactly this reason.</li>
+      <li><b>No separate puzzle screen.</b> No match-3, no merge board, no sliding tiles, no fishing minigame. If it isn't the placement and arrangement the player already does, it's a context switch out of the cozy state.</li>
+      <li><b>Never emit a target the player's catalogue can't satisfy.</b> Validate every generated want against unlocked items and regenerate. Terra Nil shipped mathematically impossible procedural coverage targets and players lost hours to them.</li>
+      <li><b>Ship an unscored mode from the first hour.</b> Toukana added exactly this to Dorfromantik after players said score pressure broke the coziness. Tiny Glade sold ~616k copies in a month at 97% positive with no goals at all — that's your null hypothesis, and every puzzle has to be something the player chooses to pull rather than something the game pushes.</li>
+      <li><b>Nothing required behind daily login.</b> Cozy Grove's soft wall is that game's most-cited complaint.</li>
+      <li><b>Don't let Unrest accrue while the player is away from that island.</b> Returning to a solved island that has unsolved itself is the fastest way to make this feel hostile.</li>
+      <li><b>Redundant channels always.</b> Never colour alone for predicate icons, satisfied states, or territory discs — shape plus icon plus position.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>What this actually buys you</h2></div>
+  <div class="col">
+    <p>The honest number first: <strong>as a separate system, puzzles are worth about 10–15% of long-term retention in this genre.</strong> If you spend six months building puzzles instead of catalogue, decoration variety and creature variants, you will have optimised the smallest term in the equation.</p>
+  </div>
+  <figure class="wide">
+    <div class="bars">
+      <div class="barrow"><span class="barlab">Collection / catalogue</span><div class="bartrack"><div class="barfill" style="width:100%"></div></div><span class="barval">~30%</span></div>
+      <div class="barrow"><span class="barlab">Decoration &amp; expression</span><div class="bartrack"><div class="barfill" style="width:83%"></div></div><span class="barval">~25%</span></div>
+      <div class="barrow"><span class="barlab">Daily cadence</span><div class="bartrack"><div class="barfill" style="width:67%"></div></div><span class="barval">~20%</span></div>
+      <div class="barrow"><span class="barlab">Creature attachment</span><div class="bartrack"><div class="barfill" style="width:50%"></div></div><span class="barval">~15%</span></div>
+      <div class="barrow"><span class="barlab">Discrete puzzles</span><div class="bartrack"><div class="barfill" style="width:33%"></div></div><span class="barval">~10%</span></div>
+    </div>
+    <figcaption>Estimated share of long-term retention in a cozy 3D sim/builder. A CHI PLAY 2021 study of Animal Crossing found that villagers — the emotional hook everyone assumes is primary — were <em>not</em> the strongest retention factor; frequent content updates and new items to collect were.</figcaption>
+  </figure>
+  <div class="col">
+    <div class="callout">
+      <h4>Why the design above sidesteps that number</h4>
+      <p>The 10–15% figure applies to puzzles as a <em>separate</em> system — and this design is built so no such system exists. The Wants Board is simultaneously the puzzle, the decoration goal, the creature-acquisition mechanic, and the reason to place any given object. It isn't competing for the 10% slot; it's the delivery mechanism for the 30% and the 25%. Morph Expression does the same trick to the catalogue.</p>
+      <p>If you cut this to one thing: <strong>ship the Wants Board plus Morphs and nothing else</strong>, and it would still be the most retentive version of your game.</p>
+    </div>
+    <h3>Where I'd spend the marginal hour instead</h3>
+    <p>Not on puzzle rules. On <strong>the feel of placing an object</strong> — the snap, the click, the ghost preview, the settle. Across Resident Evil 4's attaché case, Townscaper, Save Room and Tiny Glade, the reported satisfaction consistently lives in the placement feel rather than the rules. A great rule set with mushy placement feels like homework. A mediocre rule set with perfect placement feel sold 616,000 copies in a month with no goals at all.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>Build order</h2></div>
+  <div class="col">
+    <ol>
+      <li><strong>Placement feel</strong> — ghost preview, snap, settle. Before any rules.</li>
+      <li><strong>The predicate engine and journal UI</strong> (S1). Six species, four predicate types, one island. This is the whole bet; find out early whether reading a checklist and arranging a garden is fun for you.</li>
+      <li><strong>Crowding</strong> (S2) — the difficulty engine, and cheap once S1 exists.</li>
+      <li><strong>Morphs</strong> (S3) — the collection endgame, highest leverage per hour on the list.</li>
+      <li><strong>Sightlines</strong> (S4) and <strong>the Daily Plot</strong> (S5), in whichever order the game needs.</li>
+    </ol>
+    <p>Step 2 is the real gate. Build one island with six species and no crowding, play it for a week, and ask whether you reach for it. If arranging a garden against a printed checklist isn't compelling at that scale, more predicates won't rescue it.</p>
+    <div class="callout warn">
+      <h4>Caveats on this research</h4>
+      <p>Outbound page fetching was blocked for the whole session, so every source here is search-result synthesis rather than a document I opened — treat specific figures (Tiny Glade's 616k, the retention percentages, the churn correlation) as directional. The first research run was also killed mid-flight by a server outage; two of seven topics were recovered from crashed transcripts and re-distilled rather than re-searched. The design conclusions rest on well-documented games whose mechanics are stable and verifiable — Viva Piñata, Dorfromantik, Slime Rancher, ACNH — and I'd trust those more than any single number.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="col">
+  <p>Compiled 16 August 2026 from seven research sweeps and two independent competing designs. Where the designs disagreed — most sharply on whether additive placement scoring constitutes a puzzle in a persistent, undoable world — the disagreement is preserved above rather than averaged away.</p>
+</footer>
+
+</div>
