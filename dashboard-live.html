@@ -379,13 +379,25 @@ function setBucket(b){
   loadTrends();
 }
 
-async function loadTrends(){
+/* Trends used to refetch on EVERY dashboard poll, because load() called it
+   unconditionally. A trend line does not move minute to minute, and that single
+   call was the most expensive read in the app. It now refetches only when an input
+   actually changes (client, bucket, employee) or after 10 minutes. Any explicit
+   user action passes force=true so clicking a control still feels immediate. */
+var TSIG='', TAT=0, TMAX=600000;
+async function loadTrends(force){
   var sec=document.getElementById('trends'); if(!sec) return;
+  var sig=(CUR||'')+'|'+(TBUCKET||'')+'|'+(TEMP||'');
+  if(!force && sig===TSIG && (Date.now()-TAT)<TMAX) return;   // nothing changed, skip the call
   // Portfolio IS supported: it aggregates every client, which is the agency's
   // own performance view.
   if(!WORKER_URL || MODE!=='live'){ sec.style.display='none'; return; }
   sec.style.display='';
   if(TLOADING) return; TLOADING=true;
+  // Marked only once a fetch is genuinely about to happen. Setting it above the
+  // early returns would record a fetch that never occurred and then suppress the
+  // next real one for the full 10 minutes.
+  TSIG=sig; TAT=Date.now();
   var body=document.getElementById('trendBody');
   try{
     var u=WORKER_URL+'/api/trends?t='+encodeURIComponent(TOKEN)
@@ -409,7 +421,7 @@ function fillEmpSelect(list){
     + list.map(function(e){ return '<option value="'+esc(e.id)+'">'+esc(e.name)+'</option>'; }).join('');
   sel.value = [...sel.options].some(function(o){return o.value===want;}) ? want : 'all';
   TEMP = sel.value;
-  sel.onchange = function(){ TEMP=sel.value; loadTrends(); };
+  sel.onchange = function(){ TEMP=sel.value; loadTrends(true); };
 }
 
 function renderTrends(d){
@@ -752,7 +764,7 @@ function setView(v){
   document.getElementById('inboxView').style.display = isDash?'none':'';
   // Trends belong to the dashboard, not the message inbox.
   var tr=document.getElementById('trends');
-  if(tr){ if(isDash) loadTrends(); else tr.style.display='none'; }
+  if(tr){ if(isDash) loadTrends(true); else tr.style.display='none'; }
   document.getElementById('vDash').classList.toggle('on', isDash);
   document.getElementById('vInbox').classList.toggle('on', !isDash);
   // The week/month toggle and the location picker only mean anything on the dashboard.
